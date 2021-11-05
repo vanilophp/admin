@@ -15,13 +15,13 @@ namespace Vanilo\Admin\Http\Controllers;
 
 use Illuminate\Support\Str;
 use Konekt\AppShell\Http\Controllers\BaseController;
-use Vanilo\Category\Contracts\Taxon;
-use Vanilo\Category\Contracts\Taxonomy;
-use Vanilo\Category\Models\TaxonProxy;
 use Vanilo\Admin\Contracts\Requests\CreateTaxon;
 use Vanilo\Admin\Contracts\Requests\CreateTaxonForm;
 use Vanilo\Admin\Contracts\Requests\UpdateTaxon;
 use Vanilo\Admin\Traits\CreatesMediaFromRequestImages;
+use Vanilo\Category\Contracts\Taxon;
+use Vanilo\Category\Contracts\Taxonomy;
+use Vanilo\Category\Models\TaxonProxy;
 
 class TaxonController extends BaseController
 {

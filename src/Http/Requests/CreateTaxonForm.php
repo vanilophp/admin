@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace Vanilo\Admin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Vanilo\Admin\Contracts\Requests\CreateTaxonForm as CreateTaxonFormContract;
 use Vanilo\Category\Contracts\Taxon;
 use Vanilo\Category\Models\TaxonProxy;
-use Vanilo\Admin\Contracts\Requests\CreateTaxonForm as CreateTaxonFormContract;
 
 class CreateTaxonForm extends FormRequest implements CreateTaxonFormContract
 {

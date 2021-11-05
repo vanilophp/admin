@@ -14,12 +14,12 @@ declare(strict_types=1);
 namespace Vanilo\Admin\Http\Controllers;
 
 use Konekt\AppShell\Http\Controllers\BaseController;
-use Vanilo\Category\Contracts\Taxonomy;
-use Vanilo\Category\Models\TaxonomyProxy;
 use Vanilo\Admin\Contracts\Requests\CreateTaxonomy;
 use Vanilo\Admin\Contracts\Requests\SyncModelTaxons;
 use Vanilo\Admin\Contracts\Requests\UpdateTaxonomy;
 use Vanilo\Admin\Traits\CreatesMediaFromRequestImages;
+use Vanilo\Category\Contracts\Taxonomy;
+use Vanilo\Category\Models\TaxonomyProxy;
 
 class TaxonomyController extends BaseController
 {

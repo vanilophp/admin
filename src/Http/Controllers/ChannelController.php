@@ -16,10 +16,10 @@ namespace Vanilo\Admin\Http\Controllers;
 use Konekt\Address\Models\CountryProxy;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Konekt\Gears\Facades\Settings;
-use Vanilo\Channel\Contracts\Channel;
-use Vanilo\Channel\Models\ChannelProxy;
 use Vanilo\Admin\Contracts\Requests\CreateChannel;
 use Vanilo\Admin\Contracts\Requests\UpdateChannel;
+use Vanilo\Channel\Contracts\Channel;
+use Vanilo\Channel\Models\ChannelProxy;
 
 class ChannelController extends BaseController
 {

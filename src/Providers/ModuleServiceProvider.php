@@ -14,13 +14,10 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Providers;
 
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Konekt\AppShell\Acl\ResourcePermissionMapper;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Menu;
-use Vanilo\Category\Models\TaxonomyProxy;
-use Vanilo\Category\Models\TaxonProxy;
 use Vanilo\Admin\Http\Requests\CreateChannel;
 use Vanilo\Admin\Http\Requests\CreateMedia;
 use Vanilo\Admin\Http\Requests\CreatePaymentMethod;
@@ -41,8 +38,6 @@ use Vanilo\Admin\Http\Requests\UpdateProperty;
 use Vanilo\Admin\Http\Requests\UpdatePropertyValue;
 use Vanilo\Admin\Http\Requests\UpdateTaxon;
 use Vanilo\Admin\Http\Requests\UpdateTaxonomy;
-use Vanilo\Order\Models\OrderProxy;
-use Vanilo\Product\Models\ProductProxy;
 
 class ModuleServiceProvider extends BaseBoxServiceProvider
 {
