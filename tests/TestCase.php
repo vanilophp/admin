@@ -15,8 +15,8 @@ declare(strict_types=1);
 namespace Vanilo\Admin\Tests;
 
 use Cviebrock\EloquentSluggable\ServiceProvider as SluggableServiceProvider;
-use Diglactic\Breadcrumbs\ServiceProvider as BreadcrumbsServiceProvider;
 use Diglactic\Breadcrumbs\Breadcrumbs;
+use Diglactic\Breadcrumbs\ServiceProvider as BreadcrumbsServiceProvider;
 use Konekt\AppShell\Providers\ModuleServiceProvider as AppShellModule;
 use Konekt\Concord\ConcordServiceProvider;
 use Konekt\Gears\Providers\GearsServiceProvider;
