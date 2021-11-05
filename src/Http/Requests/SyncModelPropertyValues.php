@@ -11,11 +11,11 @@ declare(strict_types=1);
  *
  */
 
-namespace Vanilo\Framework\Http\Requests;
+namespace Vanilo\Admin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Konekt\AppShell\Http\Requests\HasFor;
-use Vanilo\Framework\Contracts\Requests\SyncModelPropertyValues as SyncModelPropertyValuesContract;
+use Vanilo\Admin\Contracts\Requests\SyncModelPropertyValues as SyncModelPropertyValuesContract;
 
 class SyncModelPropertyValues extends FormRequest implements SyncModelPropertyValuesContract
 {

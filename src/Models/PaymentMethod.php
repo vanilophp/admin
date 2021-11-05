@@ -12,7 +12,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Vanilo\Framework\Models;
+namespace Vanilo\Admin\Models;
 
 use Collective\Html\Eloquent\FormAccessible;
 use Vanilo\Payment\Models\PaymentMethod as BasePaymentMethod;

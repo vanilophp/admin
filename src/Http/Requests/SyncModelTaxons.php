@@ -11,11 +11,11 @@ declare(strict_types=1);
  *
  */
 
-namespace Vanilo\Framework\Http\Requests;
+namespace Vanilo\Admin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Konekt\AppShell\Http\Requests\HasFor;
-use Vanilo\Framework\Contracts\Requests\SyncModelTaxons as SyncModelTaxonsContract;
+use Vanilo\Admin\Contracts\Requests\SyncModelTaxons as SyncModelTaxonsContract;
 
 class SyncModelTaxons extends FormRequest implements SyncModelTaxonsContract
 {

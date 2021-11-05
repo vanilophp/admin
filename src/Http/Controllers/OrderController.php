@@ -12,11 +12,11 @@ declare(strict_types=1);
  *
  */
 
-namespace Vanilo\Framework\Http\Controllers;
+namespace Vanilo\Admin\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Konekt\AppShell\Http\Controllers\BaseController;
-use Vanilo\Framework\Contracts\Requests\UpdateOrder;
+use Vanilo\Admin\Contracts\Requests\UpdateOrder;
 use Vanilo\Order\Contracts\Order;
 use Vanilo\Order\Contracts\OrderAwareEvent;
 use Vanilo\Order\Events\OrderWasCancelled;

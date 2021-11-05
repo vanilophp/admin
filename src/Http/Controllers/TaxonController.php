@@ -11,17 +11,17 @@ declare(strict_types=1);
  *
  */
 
-namespace Vanilo\Framework\Http\Controllers;
+namespace Vanilo\Admin\Http\Controllers;
 
 use Illuminate\Support\Str;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Category\Contracts\Taxon;
 use Vanilo\Category\Contracts\Taxonomy;
 use Vanilo\Category\Models\TaxonProxy;
-use Vanilo\Framework\Contracts\Requests\CreateTaxon;
-use Vanilo\Framework\Contracts\Requests\CreateTaxonForm;
-use Vanilo\Framework\Contracts\Requests\UpdateTaxon;
-use Vanilo\Framework\Traits\CreatesMediaFromRequestImages;
+use Vanilo\Admin\Contracts\Requests\CreateTaxon;
+use Vanilo\Admin\Contracts\Requests\CreateTaxonForm;
+use Vanilo\Admin\Contracts\Requests\UpdateTaxon;
+use Vanilo\Admin\Traits\CreatesMediaFromRequestImages;
 
 class TaxonController extends BaseController
 {

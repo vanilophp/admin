@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vanilo\Framework\Traits;
+namespace Vanilo\Admin\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;

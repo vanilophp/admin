@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vanilo\Framework\Contracts\Requests;
+namespace Vanilo\Admin\Contracts\Requests;
 
 use Konekt\Concord\Contracts\BaseRequest;
 use Vanilo\Properties\Contracts\PropertyValue;

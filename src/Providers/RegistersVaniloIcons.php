@@ -12,7 +12,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Vanilo\Framework\Providers;
+namespace Vanilo\Admin\Providers;
 
 use Konekt\AppShell\Icons\FontAwesomeIconTheme;
 use Konekt\AppShell\Icons\LineIconsTheme;

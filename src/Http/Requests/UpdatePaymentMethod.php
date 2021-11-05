@@ -12,11 +12,11 @@ declare(strict_types=1);
  *
  */
 
-namespace Vanilo\Framework\Http\Requests;
+namespace Vanilo\Admin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use Vanilo\Framework\Contracts\Requests\UpdatePaymentMethod as UpdatePaymentMethodContract;
+use Vanilo\Admin\Contracts\Requests\UpdatePaymentMethod as UpdatePaymentMethodContract;
 use Vanilo\Payment\PaymentGateways;
 
 class UpdatePaymentMethod extends FormRequest implements UpdatePaymentMethodContract

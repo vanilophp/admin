@@ -11,10 +11,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Vanilo\Framework\Http\Requests;
+namespace Vanilo\Admin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Vanilo\Framework\Contracts\Requests\CreatePropertyValue as CreatePropertyValueContract;
+use Vanilo\Admin\Contracts\Requests\CreatePropertyValue as CreatePropertyValueContract;
 
 class CreatePropertyValue extends FormRequest implements CreatePropertyValueContract
 {

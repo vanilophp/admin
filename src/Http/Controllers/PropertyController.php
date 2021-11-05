@@ -11,12 +11,12 @@ declare(strict_types=1);
  *
  */
 
-namespace Vanilo\Framework\Http\Controllers;
+namespace Vanilo\Admin\Http\Controllers;
 
 use Konekt\AppShell\Http\Controllers\BaseController;
-use Vanilo\Framework\Contracts\Requests\CreateProperty;
-use Vanilo\Framework\Contracts\Requests\UpdateProperty;
-use Vanilo\Framework\Traits\CreatesMediaFromRequestImages;
+use Vanilo\Admin\Contracts\Requests\CreateProperty;
+use Vanilo\Admin\Contracts\Requests\UpdateProperty;
+use Vanilo\Admin\Traits\CreatesMediaFromRequestImages;
 use Vanilo\Properties\Contracts\Property;
 use Vanilo\Properties\Models\PropertyProxy;
 use Vanilo\Properties\PropertyTypes;

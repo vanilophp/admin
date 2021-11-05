@@ -11,12 +11,12 @@ declare(strict_types=1);
  *
  */
 
-namespace Vanilo\Framework\Http\Requests;
+namespace Vanilo\Admin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Vanilo\Category\Contracts\Taxon;
 use Vanilo\Category\Models\TaxonProxy;
-use Vanilo\Framework\Contracts\Requests\CreateTaxonForm as CreateTaxonFormContract;
+use Vanilo\Admin\Contracts\Requests\CreateTaxonForm as CreateTaxonFormContract;
 
 class CreateTaxonForm extends FormRequest implements CreateTaxonFormContract
 {

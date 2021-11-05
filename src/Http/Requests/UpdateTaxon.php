@@ -11,10 +11,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Vanilo\Framework\Http\Requests;
+namespace Vanilo\Admin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Vanilo\Framework\Contracts\Requests\UpdateTaxon as UpdateTaxonContract;
+use Vanilo\Admin\Contracts\Requests\UpdateTaxon as UpdateTaxonContract;
 
 class UpdateTaxon extends FormRequest implements UpdateTaxonContract
 {

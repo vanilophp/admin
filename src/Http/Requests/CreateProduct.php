@@ -11,11 +11,11 @@ declare(strict_types=1);
  *
  */
 
-namespace Vanilo\Framework\Http\Requests;
+namespace Vanilo\Admin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use Vanilo\Framework\Contracts\Requests\CreateProduct as CreateProductContract;
+use Vanilo\Admin\Contracts\Requests\CreateProduct as CreateProductContract;
 use Vanilo\Product\Models\ProductStateProxy;
 
 class CreateProduct extends FormRequest implements CreateProductContract

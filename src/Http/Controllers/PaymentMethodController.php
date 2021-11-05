@@ -12,11 +12,11 @@ declare(strict_types=1);
  *
  */
 
-namespace Vanilo\Framework\Http\Controllers;
+namespace Vanilo\Admin\Http\Controllers;
 
 use Konekt\AppShell\Http\Controllers\BaseController;
-use Vanilo\Framework\Contracts\Requests\CreatePaymentMethod;
-use Vanilo\Framework\Contracts\Requests\UpdatePaymentMethod;
+use Vanilo\Admin\Contracts\Requests\CreatePaymentMethod;
+use Vanilo\Admin\Contracts\Requests\UpdatePaymentMethod;
 use Vanilo\Payment\Contracts\PaymentMethod;
 use Vanilo\Payment\Models\PaymentMethodProxy;
 use Vanilo\Payment\PaymentGateways;

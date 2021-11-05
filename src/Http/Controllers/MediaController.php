@@ -11,11 +11,11 @@ declare(strict_types=1);
  *
  */
 
-namespace Vanilo\Framework\Http\Controllers;
+namespace Vanilo\Admin\Http\Controllers;
 
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Vanilo\Framework\Contracts\Requests\CreateMedia;
+use Vanilo\Admin\Contracts\Requests\CreateMedia;
 
 class MediaController extends BaseController
 {

@@ -11,10 +11,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Vanilo\Framework\Http\Requests;
+namespace Vanilo\Admin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Vanilo\Framework\Contracts\Requests\CreateChannel as CreateChannelContract;
+use Vanilo\Admin\Contracts\Requests\CreateChannel as CreateChannelContract;
 
 class CreateChannel extends FormRequest implements CreateChannelContract
 {

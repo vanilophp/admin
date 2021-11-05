@@ -11,15 +11,15 @@ declare(strict_types=1);
  *
  */
 
-namespace Vanilo\Framework\Http\Controllers;
+namespace Vanilo\Admin\Http\Controllers;
 
 use Konekt\Address\Models\CountryProxy;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Konekt\Gears\Facades\Settings;
 use Vanilo\Channel\Contracts\Channel;
 use Vanilo\Channel\Models\ChannelProxy;
-use Vanilo\Framework\Contracts\Requests\CreateChannel;
-use Vanilo\Framework\Contracts\Requests\UpdateChannel;
+use Vanilo\Admin\Contracts\Requests\CreateChannel;
+use Vanilo\Admin\Contracts\Requests\UpdateChannel;
 
 class ChannelController extends BaseController
 {

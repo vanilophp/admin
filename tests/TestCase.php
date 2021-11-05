@@ -12,7 +12,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Vanilo\Framework\Tests;
+namespace Vanilo\Admin\Tests;
 
 use Cviebrock\EloquentSluggable\ServiceProvider as SluggableServiceProvider;
 use DaveJamesMiller\Breadcrumbs\BreadcrumbsServiceProvider;
@@ -25,7 +25,8 @@ use Konekt\Menu\Facades\Menu;
 use Konekt\Menu\MenuServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\MediaLibrary\MediaLibraryServiceProvider;
-use Vanilo\Framework\Providers\ModuleServiceProvider as VaniloModule;
+use Vanilo\Framework\Providers\ModuleServiceProvider as VaniloFrameworkModule;
+use Vanilo\Admin\Providers\ModuleServiceProvider as VaniloAdminModule;
 
 abstract class TestCase extends Orchestra
 {
@@ -107,7 +108,8 @@ abstract class TestCase extends Orchestra
         parent::resolveApplicationConfiguration($app);
         $app['config']->set('concord.modules', [
             AppShellModule::class,
-            VaniloModule::class
+            VaniloFrameworkModule::class,
+            VaniloAdminModule::class,
         ]);
     }
 }

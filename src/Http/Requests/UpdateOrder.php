@@ -11,11 +11,11 @@ declare(strict_types=1);
  *
  */
 
-namespace Vanilo\Framework\Http\Requests;
+namespace Vanilo\Admin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use Vanilo\Framework\Contracts\Requests\UpdateOrder as UpdateOrderContract;
+use Vanilo\Admin\Contracts\Requests\UpdateOrder as UpdateOrderContract;
 use Vanilo\Order\Contracts\Order;
 use Vanilo\Order\Models\OrderStatusProxy;
 

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Vanilo\Framework\Http\Controllers;
+namespace Vanilo\Admin\Http\Controllers;
 
 use Konekt\AppShell\Http\Controllers\BaseController;
-use Vanilo\Framework\Contracts\Requests\CreatePropertyValue;
-use Vanilo\Framework\Contracts\Requests\CreatePropertyValueForm;
-use Vanilo\Framework\Contracts\Requests\SyncModelPropertyValues;
-use Vanilo\Framework\Contracts\Requests\UpdatePropertyValue;
-use Vanilo\Framework\Traits\CreatesMediaFromRequestImages;
+use Vanilo\Admin\Contracts\Requests\CreatePropertyValue;
+use Vanilo\Admin\Contracts\Requests\CreatePropertyValueForm;
+use Vanilo\Admin\Contracts\Requests\SyncModelPropertyValues;
+use Vanilo\Admin\Contracts\Requests\UpdatePropertyValue;
+use Vanilo\Admin\Traits\CreatesMediaFromRequestImages;
 use Vanilo\Properties\Contracts\Property;
 use Vanilo\Properties\Contracts\PropertyValue;
 use Vanilo\Properties\Models\PropertyProxy;
