@@ -1,35 +1,16 @@
-# Vanilo
+# Vanilo Admin
 
-## The Truly Laravel E-commerce Framework
-
-[![Tests](https://img.shields.io/github/workflow/status/vanilophp/framework/tests/master?style=flat-square)](https://github.com/vanilophp/framework/actions?query=workflow%3Atests)
-[![Packagist version](https://img.shields.io/packagist/v/vanilo/framework.svg?style=flat-square)](https://packagist.org/packages/vanilo/framework)
-[![Packagist downloads](https://img.shields.io/packagist/dt/vanilo/framework.svg?style=flat-square)](https://packagist.org/packages/vanilo/framework)
-[![StyleCI](https://styleci.io/repos/101036876/shield?branch=master)](https://styleci.io/repos/101036876)
+[![Tests](https://img.shields.io/github/workflow/status/vanilophp/admin/tests/master?style=flat-square)](https://github.com/vanilophp/admin/actions?query=workflow%3Atests)
+[![Packagist version](https://img.shields.io/packagist/v/vanilo/admin.svg?style=flat-square)](https://packagist.org/packages/vanilo/admin)
+[![Packagist downloads](https://img.shields.io/packagist/dt/vanilo/admin.svg?style=flat-square)](https://packagist.org/packages/vanilo/admin)
+[![StyleCI](https://styleci.io/repos/424961444/shield?branch=master)](https://styleci.io/repos/424961444)
 [![MIT Software License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE.md)
 
-Vanilo's aim is that **Laravel developers** can **rapidly** create E-commerce applications with **pleasure**.
+This is the Vanilo Admin package that used to be the part of the `vanilo/framework` package in versions 0.x, 1.x and 2.x.
 
-## Current Version
-
-#### 2.2
-
-The latest Vanilo version is **2.2.0**, and it was released on Sep 11, 2021.
-It supports Laravel 6.x - 8.x versions and PHP 7.4 - 8.0
-
-Refer to the [Roadmap](https://vanilo.io/docs/2.x/roadmap) for upcoming versions.
+Beginning with v3.x the Admin has been extracted from the Framework and is optional.
 
 ## Further Information
 
-The [Vanilo Documentation](https://vanilo.io/docs/) contains technical
-information about using Vanilo or its components.
-
-There is a [demo application](https://github.com/vanilophp/demo) available on
-github.
-
-Feel free to submit your questions, suggestions by adding a
-[new issue](https://github.com/vanilophp/framework/issues/new) here.
-
-Follow us on [twitter](https://twitter.com/vanilo_io).
-
-Support [Vanilo on Github](https://github.com/sponsors/fulopattila122)
+The [Vanilo Documentation](https://vanilo.io/docs/) contains technical  information about using Vanilo and its
+components.
