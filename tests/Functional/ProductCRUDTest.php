@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Vanilo\Admin\Tests\Functional;
 
 use Vanilo\Foundation\Models\Product;
@@ -11,22 +13,22 @@ class ProductCRUDTest extends TestCase
     public function it_can_list_active_products()
     {
         $productA = Product::create([
-            'name'  => 'Audi A4',
-            'sku'   => 'AUD-A4',
+            'name' => 'Audi A4',
+            'sku' => 'AUD-A4',
             'state' => ProductState::ACTIVE(),
             'price' => 11500
         ]);
 
         $productB = Product::create([
-            'name'  => 'BMW M3',
-            'sku'   => 'BMW-F31',
+            'name' => 'BMW M3',
+            'sku' => 'BMW-F31',
             'state' => ProductState::ACTIVE(),
             'price' => 14500
         ]);
 
         $productC = Product::create([
-            'name'  => 'Daewoo Tico',
-            'sku'   => 'DWO-TICO',
+            'name' => 'Daewoo Tico',
+            'sku' => 'DWO-TICO',
             'state' => ProductState::ACTIVE(),
             'price' => 1500
         ]);
@@ -47,16 +49,16 @@ class ProductCRUDTest extends TestCase
     /** @test */
     public function it_can_list_only_active_products()
     {
-       Product::create([
-            'name'  => 'Audi A3',
-            'sku'   => 'AUD-A3',
+        Product::create([
+            'name' => 'Audi A3',
+            'sku' => 'AUD-A3',
             'state' => ProductState::ACTIVE(),
             'price' => 15500
         ]);
 
         Product::create([
-            'name'  => 'BMW x6',
-            'sku'   => 'BMW-F31',
+            'name' => 'BMW x6',
+            'sku' => 'BMW-F31',
             'price' => 22000
         ]);
 
@@ -88,8 +90,8 @@ class ProductCRUDTest extends TestCase
     public function the_product_edit_form_can_be_displayed()
     {
         $product = Product::create([
-            'name'  => 'Netgear LB 2120',
-            'sku'   => '115278447875',
+            'name' => 'Netgear LB 2120',
+            'sku' => '115278447875',
             'state' => ProductState::ACTIVE(),
             'price' => 197,
             'description' => 'Simple, Fail-safe Connectivity.'
@@ -115,8 +117,8 @@ class ProductCRUDTest extends TestCase
     public function a_product_can_be_deleted()
     {
         $product = Product::create([
-            'name'  => '4G LTE Mobile Hotspot (AC797)',
-            'sku'   => '552919920',
+            'name' => '4G LTE Mobile Hotspot (AC797)',
+            'sku' => '552919920',
             'state' => ProductState::ACTIVE(),
             'price' => 179,
         ]);

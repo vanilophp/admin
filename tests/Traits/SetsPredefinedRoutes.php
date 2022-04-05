@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 trait SetsPredefinedRoutes
 {
-    private function predefinedRoutes():void
+    private function predefinedRoutes(): void
     {
         Route::get('/home', fn () => true)->name('home');
         Route::get('/login', fn () => true)->name('login');
