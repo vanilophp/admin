@@ -26,7 +26,7 @@ use Konekt\Menu\MenuServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\MediaLibrary\MediaLibraryServiceProvider;
 use Vanilo\Admin\Providers\ModuleServiceProvider as VaniloAdminModule;
-use Vanilo\Framework\Providers\ModuleServiceProvider as VaniloFrameworkModule;
+use Vanilo\Foundation\Providers\ModuleServiceProvider as VaniloFrameworkModule;
 
 abstract class TestCase extends Orchestra
 {
