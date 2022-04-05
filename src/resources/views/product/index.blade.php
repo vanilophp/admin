@@ -13,7 +13,7 @@
 
             <div class="card-actionbar">
                 @can('create products')
-                    <a href="{{ route('vanilo.product.create') }}" class="btn btn-sm btn-outline-success float-right">
+                    <a href="{{ route('vanilo.admin.product.create') }}" class="btn btn-sm btn-outline-success float-right">
                         {!! icon('+') !!}
                         {{ __('New Product') }}
                     </a>
@@ -40,13 +40,13 @@
                 @foreach($products as $product)
                     <tr>
                         <td>
-                            @can('view products')<a href="{{ route('vanilo.product.show', $product) }}">@endcan
+                            @can('view products')<a href="{{ route('vanilo.admin.product.show', $product) }}">@endcan
                                 <img src="{{ $product->getThumbnailUrl() ?: $defaultThumbnail }}" class="mw-100" style="height: 2.5em;" />
                             @can('view products')</a>@endcan
                         </td>
                         <td>
                             <span class="font-lg mb-3 font-weight-bold">
-                                @can('view products')<a href="{{ route('vanilo.product.show', $product) }}">@endcan
+                                @can('view products')<a href="{{ route('vanilo.admin.product.show', $product) }}">@endcan
                                     {{ $product->name }}
                                 @can('view products')</a>@endcan
                             </span>
@@ -77,11 +77,11 @@
                         </td>
                         <td>
                             @can('edit products')
-                                <a href="{{ route('vanilo.product.edit', $product) }}"
+                                <a href="{{ route('vanilo.admin.product.edit', $product) }}"
                                    class="btn btn-xs btn-outline-primary btn-show-on-tr-hover float-right">{{ __('Edit') }}</a>
                             @endcan
                             @can('delete products')
-                                {!! Form::open(['route' => ['vanilo.product.destroy', $product],
+                                {!! Form::open(['route' => ['vanilo.admin.product.destroy', $product],
                                         'method' => 'DELETE',
                                         'data-confirmation-text' => __('Are you sure to delete :name?', ['name' => $product->name])
                                     ])

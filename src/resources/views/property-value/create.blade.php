@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-{!! Form::model($propertyValue, ['url' => route('vanilo.property_value.store', $property), 'autocomplete' => 'off', 'class' => 'row']) !!}
+{!! Form::model($propertyValue, ['url' => route('vanilo.admin.property_value.store', $property), 'autocomplete' => 'off', 'class' => 'row']) !!}
     <div class="col-12 col-lg-8 col-xl-9">
         <div class="card card-accent-success">
             <div class="card-header">

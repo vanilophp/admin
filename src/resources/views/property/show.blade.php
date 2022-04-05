@@ -18,12 +18,12 @@
     <div class="card">
         <div class="card-body">
             @can('edit properties')
-                <a href="{{ route('vanilo.property.edit', $property) }}" class="btn btn-outline-primary">{{ __('Edit Property') }}</a>
+                <a href="{{ route('vanilo.admin.property.edit', $property) }}" class="btn btn-outline-primary">{{ __('Edit Property') }}</a>
             @endcan
 
             @can('delete properties')
                 {!! Form::open([
-                        'route' => ['vanilo.property.destroy', $property],
+                        'route' => ['vanilo.admin.property.destroy', $property],
                         'method' => 'DELETE',
                         'class' => 'float-right',
                         'data-confirmation-text' => __('Delete this property: ":name"?', ['name' => $property->name])

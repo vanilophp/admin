@@ -13,7 +13,7 @@
 
             <div class="card-actionbar">
                 @can('create taxonomies')
-                    <a href="{{ route('vanilo.taxonomy.create') }}" class="btn btn-sm btn-outline-success float-right">
+                    <a href="{{ route('vanilo.admin.taxonomy.create') }}" class="btn btn-sm btn-outline-success float-right">
                         {!! icon('+') !!}
                         {{ __('New Category Tree') }}
                     </a>
@@ -39,7 +39,7 @@
                         <td>
                             <span class="font-lg mb-3 font-weight-bold">
                             @can('view taxonomies')
-                                <a href="{{ route('vanilo.taxonomy.show', $taxonomy) }}">{{ $taxonomy->name }}</a>
+                                <a href="{{ route('vanilo.admin.taxonomy.show', $taxonomy) }}">{{ $taxonomy->name }}</a>
                             @else
                                 {{ $taxonomy->name }}
                             @endcan
@@ -49,13 +49,13 @@
                         <td><span title="{{ $taxonomy->created_at }}">{{ show_datetime($taxonomy->created_at) }}</span></td>
                         <td>
                             @can('edit taxonomies')
-                                <a href="{{ route('vanilo.taxonomy.edit', $taxonomy) }}"
+                                <a href="{{ route('vanilo.admin.taxonomy.edit', $taxonomy) }}"
                                    class="btn btn-xs btn-outline-primary btn-show-on-tr-hover float-right">{{ __('Edit') }}</a>
                             @endcan
 
                             @can('delete taxonomies')
                                 {{ Form::open([
-                                    'url' => route('vanilo.taxonomy.destroy', $taxonomy),
+                                    'url' => route('vanilo.admin.taxonomy.destroy', $taxonomy),
                                     'data-confirmation-text' => __('Delete this categorization: ":name"?', ['name' => $taxonomy->name]),
                                     'method' => 'DELETE'
                                 ])}}

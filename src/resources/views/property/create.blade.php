@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-{!! Form::open(['route' => 'vanilo.property.store', 'autocomplete' => 'off']) !!}
+{!! Form::open(['route' => 'vanilo.admin.property.store', 'autocomplete' => 'off']) !!}
 
     <div class="card card-accent-success">
 

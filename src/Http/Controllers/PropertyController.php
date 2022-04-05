@@ -52,7 +52,7 @@ class PropertyController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.property.index'));
+        return redirect(route('vanilo.admin.property.index'));
     }
 
     public function show(Property $property)
@@ -80,7 +80,7 @@ class PropertyController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.property.index'));
+        return redirect(route('vanilo.admin.property.index'));
     }
 
     public function destroy(Property $property)
@@ -96,6 +96,6 @@ class PropertyController extends BaseController
             return redirect()->back();
         }
 
-        return redirect(route('vanilo.property.index'));
+        return redirect(route('vanilo.admin.property.index'));
     }
 }

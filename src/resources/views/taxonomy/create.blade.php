@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-{!! Form::open(['route' => 'vanilo.taxonomy.store', 'autocomplete' => 'off','enctype'=>'multipart/form-data', 'class' => 'row']) !!}
+{!! Form::open(['route' => 'vanilo.admin.taxonomy.store', 'autocomplete' => 'off','enctype'=>'multipart/form-data', 'class' => 'row']) !!}
 
     <div class="col-12 col-lg-8 col-xl-9 mb-4">
         <div class="card card-accent-success">

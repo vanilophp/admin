@@ -9,7 +9,7 @@ return [
     ],
     'routes' => [
         'prefix' => 'admin',
-        'as' => 'vanilo.',
+        'as' => 'vanilo.admin.',
         'middleware' => ['web', 'auth', 'acl'],
         'files' => ['admin']
     ],

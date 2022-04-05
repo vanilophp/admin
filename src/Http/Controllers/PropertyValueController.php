@@ -57,7 +57,7 @@ class PropertyValueController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.property.show', $property));
+        return redirect(route('vanilo.admin.property.show', $property));
     }
 
     public function edit(Property $property, PropertyValue $property_value)
@@ -81,7 +81,7 @@ class PropertyValueController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.property.show', $property));
+        return redirect(route('vanilo.admin.property.show', $property));
     }
 
     public function destroy(Property $property, PropertyValue $property_value)
@@ -97,7 +97,7 @@ class PropertyValueController extends BaseController
             return redirect()->back();
         }
 
-        return redirect(route('vanilo.property.show', $property));
+        return redirect(route('vanilo.admin.property.show', $property));
     }
 
     public function sync(SyncModelPropertyValues $request, $for, $forId)

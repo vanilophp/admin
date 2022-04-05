@@ -13,7 +13,7 @@
 
             <div class="card-actionbar">
                 @can('create channels')
-                    <a href="{{ route('vanilo.channel.create') }}" class="btn btn-sm btn-outline-success float-right">
+                    <a href="{{ route('vanilo.admin.channel.create') }}" class="btn btn-sm btn-outline-success float-right">
                         {!! icon('+') !!}
                         {{ __('Create Channel') }}
                     </a>
@@ -39,7 +39,7 @@
                         <td>
                             <span class="font-lg mb-3 font-weight-bold">
                             @can('view channels')
-                                <a href="{{ route('vanilo.channel.show', $channel) }}">{{ $channel->name }}</a>
+                                <a href="{{ route('vanilo.admin.channel.show', $channel) }}">{{ $channel->name }}</a>
                             @else
                                 {{ $channel->name }}
                             @endcan
@@ -49,13 +49,13 @@
                         <td><span title="{{ $channel->created_at }}">{{ show_datetime($channel->created_at) }}</span></td>
                         <td>
                             @can('edit channels')
-                                <a href="{{ route('vanilo.channel.edit', $channel) }}"
+                                <a href="{{ route('vanilo.admin.channel.edit', $channel) }}"
                                    class="btn btn-xs btn-outline-primary btn-show-on-tr-hover float-right">{{ __('Edit') }}</a>
                             @endcan
 
                             @can('delete channels')
                                 {{ Form::open([
-                                    'url' => route('vanilo.channel.destroy', $channel),
+                                    'url' => route('vanilo.admin.channel.destroy', $channel),
                                     'data-confirmation-text' => __('Delete this channel: ":name"?', ['name' => $channel->name]),
                                     'method' => 'DELETE'
                                 ])}}

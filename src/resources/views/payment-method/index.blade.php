@@ -13,7 +13,7 @@
 
             <div class="card-actionbar">
                 @can('create payment methods')
-                    <a href="{{ route('vanilo.payment-method.create') }}" class="btn btn-sm btn-outline-success float-right">
+                    <a href="{{ route('vanilo.admin.payment-method.create') }}" class="btn btn-sm btn-outline-success float-right">
                         {!! icon('+') !!}
                         {{ __('New Payment Method') }}
                     </a>
@@ -40,7 +40,7 @@
                         <td>
                             <span class="font-lg mb-3 font-weight-bold">
                             @can('view payment methods')
-                                    <a href="{{ route('vanilo.payment-method.show', $paymentMethod) }}">{{ $paymentMethod->getName() }}</a>
+                                    <a href="{{ route('vanilo.admin.payment-method.show', $paymentMethod) }}">{{ $paymentMethod->getName() }}</a>
                                 @else
                                     {{ $paymentMethod->getName() }}
                                 @endcan
@@ -57,13 +57,13 @@
                         </td>
                         <td>
                             @can('edit payment methods')
-                                <a href="{{ route('vanilo.payment-method.edit', $paymentMethod) }}"
+                                <a href="{{ route('vanilo.admin.payment-method.edit', $paymentMethod) }}"
                                    class="btn btn-xs btn-outline-primary btn-show-on-tr-hover float-right">{{ __('Edit') }}</a>
                             @endcan
 
                             @can('delete payment methods')
                                 {{ Form::open([
-                                    'url' => route('vanilo.payment-method.destroy', $paymentMethod),
+                                    'url' => route('vanilo.admin.payment-method.destroy', $paymentMethod),
                                     'data-confirmation-text' => __('Delete this payment method: ":name"?', ['name' => $paymentMethod->getName()]),
                                     'method' => 'DELETE'
                                 ])}}

@@ -9,7 +9,7 @@
 
         <div class="col-12 col-md-6 col-lg-8 col-xl-9">
             {!! Form::model($taxonomy, [
-                    'route'  => ['vanilo.taxonomy.update', $taxonomy],
+                    'route'  => ['vanilo.admin.taxonomy.update', $taxonomy],
                     'method' => 'PUT'
                 ])
             !!}

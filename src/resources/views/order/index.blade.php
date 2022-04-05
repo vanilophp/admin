@@ -13,11 +13,11 @@
 
             <div class="card-actionbar">
                 @if($inactives)
-                    <a class="btn btn-sm btn-outline-secondary" href="{{ route('vanilo.order.index') }}">
+                    <a class="btn btn-sm btn-outline-secondary" href="{{ route('vanilo.admin.order.index') }}">
                         {{ __('Hide closed orders') }}
                     </a>
                 @else
-                    <a class="btn btn-sm btn-outline-secondary" href="{{ route('vanilo.order.index') }}?inactives=1">
+                    <a class="btn btn-sm btn-outline-secondary" href="{{ route('vanilo.admin.order.index') }}?inactives=1">
                         {{ __('Show closed orders') }}
                     </a>
                 @endif
@@ -44,7 +44,7 @@
                         <td>
                             <span class="font-lg mb-3 font-weight-bold">
                             @can('view orders')
-                                <a href="{{ route('vanilo.order.show', $order) }}">{{ $order->number }}</a>
+                                <a href="{{ route('vanilo.admin.order.show', $order) }}">{{ $order->number }}</a>
                             @else
                                 {{ $order->number }}
                             @endcan
@@ -89,7 +89,7 @@
                         <td>
                             @can('delete orders')
                                 {{ Form::open([
-                                    'url' => route('vanilo.order.destroy', $order),
+                                    'url' => route('vanilo.admin.order.destroy', $order),
                                     'data-confirmation-text' => __('Delete order from :name with number :number?', ['name' => $order->getBillpayer()->getName(), 'number' => $order->getNumber()]),
                                     'method' => 'DELETE'
                                 ])}}

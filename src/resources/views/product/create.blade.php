@@ -6,7 +6,7 @@
 
 @section('content')
 
-    {!! Form::open(['route' => 'vanilo.product.store', 'autocomplete' => 'off', 'enctype'=>'multipart/form-data', 'class' => 'row']) !!}
+    {!! Form::open(['route' => 'vanilo.admin.product.store', 'autocomplete' => 'off', 'enctype'=>'multipart/form-data', 'class' => 'row']) !!}
 
         <div class="col-12 col-lg-8 col-xl-9">
             <div class="card card-accent-success">

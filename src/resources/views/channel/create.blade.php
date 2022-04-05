@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-{!! Form::model($channel, ['route' => 'vanilo.channel.store', 'autocomplete' => 'off']) !!}
+{!! Form::model($channel, ['route' => 'vanilo.admin.channel.store', 'autocomplete' => 'off']) !!}
 
     <div class="card card-accent-success">
 

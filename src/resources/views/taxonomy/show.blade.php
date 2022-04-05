@@ -27,7 +27,7 @@
 
                 @can('create taxons')
                     <div class="card-footer">
-                        <a href="{{ route('vanilo.taxon.create', $taxonomy) }}"
+                        <a href="{{ route('vanilo.admin.taxon.create', $taxonomy) }}"
                            class="btn btn-outline-success btn-sm">{{ __('Add :category', ['category' => \Illuminate\Support\Str::singular($taxonomy->name)]) }}</a>
                     </div>
                 @endcan
@@ -39,12 +39,12 @@
     <div class="card">
         <div class="card-body">
             @can('edit taxonomies')
-                <a href="{{ route('vanilo.taxonomy.edit', $taxonomy) }}" class="btn btn-outline-primary">{{ __('Edit Category Tree') }}</a>
+                <a href="{{ route('vanilo.admin.taxonomy.edit', $taxonomy) }}" class="btn btn-outline-primary">{{ __('Edit Category Tree') }}</a>
             @endcan
 
             @can('delete taxonomies')
                 {!! Form::open([
-                        'route' => ['vanilo.taxonomy.destroy', $taxonomy],
+                        'route' => ['vanilo.admin.taxonomy.destroy', $taxonomy],
                         'method' => 'DELETE',
                         'class' => 'float-right',
                         'data-confirmation-text' => __('Delete this categorization: ":name"?', ['name' => $taxonomy->name])

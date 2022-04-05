@@ -64,7 +64,7 @@ class TaxonController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.taxonomy.show', $taxonomy));
+        return redirect(route('vanilo.admin.taxonomy.show', $taxonomy));
     }
 
     public function edit(Taxonomy $taxonomy, Taxon $taxon)
@@ -88,7 +88,7 @@ class TaxonController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.taxonomy.show', $taxonomy));
+        return redirect(route('vanilo.admin.taxonomy.show', $taxonomy));
     }
 
     public function destroy(Taxonomy $taxonomy, Taxon $taxon)
@@ -104,6 +104,6 @@ class TaxonController extends BaseController
             return redirect()->back();
         }
 
-        return redirect(route('vanilo.taxonomy.show', $taxonomy));
+        return redirect(route('vanilo.admin.taxonomy.show', $taxonomy));
     }
 }

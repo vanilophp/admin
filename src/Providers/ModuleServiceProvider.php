@@ -83,31 +83,31 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     {
         if ($menu = Menu::get('appshell')) {
             $shop = $menu->addItem('shop', __('Shop'));
-            $shop->addSubItem('products', __('Products'), ['route' => 'vanilo.product.index'])
+            $shop->addSubItem('products', __('Products'), ['route' => 'vanilo.admin.product.index'])
                 ->data('icon', 'product')
-                ->activateOnUrls(route('vanilo.product.index', [], false) . '*')
+                ->activateOnUrls(route('vanilo.admin.product.index', [], false) . '*')
                 ->allowIfUserCan('list products');
-            $shop->addSubItem('product_properties', __('Product Properties'), ['route' => 'vanilo.property.index'])
+            $shop->addSubItem('product_properties', __('Product Properties'), ['route' => 'vanilo.admin.property.index'])
                 ->data('icon', 'properties')
-                ->activateOnUrls(route('vanilo.property.index', [], false) . '*')
+                ->activateOnUrls(route('vanilo.admin.property.index', [], false) . '*')
                 ->allowIfUserCan('list properties');
-            $shop->addSubItem('categories', __('Categorization'), ['route' => 'vanilo.taxonomy.index'])
+            $shop->addSubItem('categories', __('Categorization'), ['route' => 'vanilo.admin.taxonomy.index'])
                 ->data('icon', 'taxonomies')
-                ->activateOnUrls(route('vanilo.taxonomy.index', [], false) . '*')
+                ->activateOnUrls(route('vanilo.admin.taxonomy.index', [], false) . '*')
                 ->allowIfUserCan('list taxonomies');
-            $shop->addSubItem('orders', __('Orders'), ['route' => 'vanilo.order.index'])
+            $shop->addSubItem('orders', __('Orders'), ['route' => 'vanilo.admin.order.index'])
                 ->data('icon', 'bag')
-                ->activateOnUrls(route('vanilo.order.index', [], false) . '*')
+                ->activateOnUrls(route('vanilo.admin.order.index', [], false) . '*')
                 ->allowIfUserCan('list orders');
 
             $settings = $menu->getItem('settings_group');
-            $settings->addSubItem('channels', __('Channels'), ['route' => 'vanilo.channel.index'])
+            $settings->addSubItem('channels', __('Channels'), ['route' => 'vanilo.admin.channel.index'])
                 ->data('icon', 'channel')
-                ->activateOnUrls(route('vanilo.channel.index', [], false) . '*')
+                ->activateOnUrls(route('vanilo.admin.channel.index', [], false) . '*')
                 ->allowIfUserCan('list channels');
-            $settings->addSubItem('payment-methods', __('Payment Methods'), ['route' => 'vanilo.payment-method.index'])
+            $settings->addSubItem('payment-methods', __('Payment Methods'), ['route' => 'vanilo.admin.payment-method.index'])
                      ->data('icon', 'payment-method')
-                     ->activateOnUrls(route('vanilo.payment-method.index', [], false) . '*')
+                     ->activateOnUrls(route('vanilo.admin.payment-method.index', [], false) . '*')
                      ->allowIfUserCan('list payment methods');
         }
     }

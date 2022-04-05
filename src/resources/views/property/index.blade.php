@@ -13,7 +13,7 @@
 
             <div class="card-actionbar">
                 @can('create properties')
-                    <a href="{{ route('vanilo.property.create') }}" class="btn btn-sm btn-outline-success float-right">
+                    <a href="{{ route('vanilo.admin.property.create') }}" class="btn btn-sm btn-outline-success float-right">
                         {!! icon('+') !!}
                         {{ __('New Property') }}
                     </a>
@@ -40,7 +40,7 @@
                         <td>
                             <span class="font-lg mb-3 font-weight-bold">
                             @can('view properties')
-                                <a href="{{ route('vanilo.property.show', $property) }}">{{ $property->name }}</a>
+                                <a href="{{ route('vanilo.admin.property.show', $property) }}">{{ $property->name }}</a>
                             @else
                                 {{ $property->name }}
                             @endcan
@@ -51,13 +51,13 @@
                         <td><span title="{{ $property->created_at }}">{{ show_datetime($property->created_at) }}</span></td>
                         <td>
                             @can('edit properties')
-                                <a href="{{ route('vanilo.property.edit', $property) }}"
+                                <a href="{{ route('vanilo.admin.property.edit', $property) }}"
                                    class="btn btn-xs btn-outline-primary btn-show-on-tr-hover float-right">{{ __('Edit') }}</a>
                             @endcan
 
                             @can('delete properties')
                                 {{ Form::open([
-                                    'url' => route('vanilo.property.destroy', $property),
+                                    'url' => route('vanilo.admin.property.destroy', $property),
                                     'data-confirmation-text' => __('Delete this property: ":name"?', ['name' => $property->name]),
                                     'method' => 'DELETE'
                                 ])}}

@@ -8,7 +8,7 @@
                     'id' => 'create_property_value_form',
                     ':action' => "'" . implode(
                                     "' + adding.property_id + '",
-                                    explode('@@@', route('vanilo.property_value.store', '@@@'))
+                                    explode('@@@', route('vanilo.admin.property_value.store', '@@@'))
                                 ) . "'",
                     'method' => 'PUT'
                 ])

@@ -71,11 +71,11 @@
     <div class="card mb-3">
         <div class="card-body">
             @can('edit products')
-            <a href="{{ route('vanilo.product.edit', $product) }}" class="btn btn-outline-primary">{{ __('Edit product') }}</a>
+            <a href="{{ route('vanilo.admin.product.edit', $product) }}" class="btn btn-outline-primary">{{ __('Edit product') }}</a>
             @endcan
 
             @can('delete products')
-                {!! Form::open(['route' => ['vanilo.product.destroy', $product], 'method' => 'DELETE', 'class' => "float-right"]) !!}
+                {!! Form::open(['route' => ['vanilo.admin.product.destroy', $product], 'method' => 'DELETE', 'class' => "float-right"]) !!}
                 <button class="btn btn-outline-danger">
                     {{ __('Delete product') }}
                 </button>

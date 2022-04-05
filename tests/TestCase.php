@@ -14,15 +14,19 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Tests;
 
+use Collective\Html\FormFacade;
+use Collective\Html\HtmlServiceProvider;
 use Cviebrock\EloquentSluggable\ServiceProvider as SluggableServiceProvider;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\ServiceProvider as BreadcrumbsServiceProvider;
+use Konekt\AppShell\Models\User;
 use Konekt\AppShell\Providers\ModuleServiceProvider as AppShellModule;
 use Konekt\Concord\ConcordServiceProvider;
 use Konekt\Gears\Providers\GearsServiceProvider;
 use Konekt\LaravelMigrationCompatibility\LaravelMigrationCompatibilityProvider;
 use Konekt\Menu\Facades\Menu;
 use Konekt\Menu\MenuServiceProvider;
+use Laracasts\Flash\FlashServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\MediaLibrary\MediaLibraryServiceProvider;
 use Vanilo\Admin\Providers\ModuleServiceProvider as VaniloAdminModule;
@@ -38,11 +42,6 @@ abstract class TestCase extends Orchestra
         $this->setUpDatabase($this->app);
     }
 
-    /**
-     * @param \Illuminate\Foundation\Application $app
-     *
-     * @return array
-     */
     protected function getPackageProviders($app)
     {
         return [
@@ -53,6 +52,8 @@ abstract class TestCase extends Orchestra
             BreadcrumbsServiceProvider::class,
             MenuServiceProvider::class,
             SluggableServiceProvider::class,
+            HtmlServiceProvider::class,
+            FlashServiceProvider::class,
         ];
     }
 
@@ -61,14 +62,10 @@ abstract class TestCase extends Orchestra
         return [
             'Breadcrumbs' => Breadcrumbs::class,
             'Menu' => Menu::class,
+            'Form' => FormFacade::class,
         ];
     }
 
-    /**
-     * Set up the environment.
-     *
-     * @param \Illuminate\Foundation\Application $app
-     */
     protected function getEnvironmentSetUp($app)
     {
         $engine = env('TEST_DB_ENGINE', 'sqlite');
@@ -89,20 +86,12 @@ abstract class TestCase extends Orchestra
         }
     }
 
-    /**
-     * Set up the database.
-     *
-     * @param \Illuminate\Foundation\Application $app
-     */
     protected function setUpDatabase($app)
     {
         $this->loadLaravelMigrations();
         $this->artisan('migrate', ['--force' => true]);
     }
 
-    /**
-     * @inheritdoc
-     */
     protected function resolveApplicationConfiguration($app)
     {
         parent::resolveApplicationConfiguration($app);
@@ -111,5 +100,7 @@ abstract class TestCase extends Orchestra
             VaniloFrameworkModule::class,
             VaniloAdminModule::class,
         ]);
+
+        $app['config']->set('auth.providers.users.model', User::class);
     }
 }

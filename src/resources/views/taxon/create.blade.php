@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-{!! Form::model($taxon, ['url' => route('vanilo.taxon.store', $taxonomy), 'autocomplete' => 'off', 'enctype'=>'multipart/form-data', 'class' => 'row']) !!}
+{!! Form::model($taxon, ['url' => route('vanilo.admin.taxon.store', $taxonomy), 'autocomplete' => 'off', 'enctype'=>'multipart/form-data', 'class' => 'row']) !!}
     <div class="col-12 col-lg-8 col-xl-9 mb-4">
         <div class="card card-accent-success">
             <div class="card-header">

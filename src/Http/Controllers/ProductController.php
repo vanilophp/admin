@@ -69,7 +69,7 @@ class ProductController extends BaseController
             } catch (\Exception $e) { // Here we already have the product created
                 flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
 
-                return redirect()->route('vanilo.product.edit', ['product' => $product]);
+                return redirect()->route('vanilo.admin.product.edit', ['product' => $product]);
             }
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
@@ -77,7 +77,7 @@ class ProductController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.product.index'));
+        return redirect(route('vanilo.admin.product.index'));
     }
 
     /**
@@ -129,7 +129,7 @@ class ProductController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.product.show', $product));
+        return redirect(route('vanilo.admin.product.show', $product));
     }
 
     /**
@@ -152,6 +152,6 @@ class ProductController extends BaseController
             return redirect()->back();
         }
 
-        return redirect(route('vanilo.product.index'));
+        return redirect(route('vanilo.admin.product.index'));
     }
 }

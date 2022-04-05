@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-{!! Form::model($propertyValue, ['url'  => route('vanilo.property_value.update', [$property, $propertyValue]), 'method' => 'PUT', 'class' => 'row']) !!}
+{!! Form::model($propertyValue, ['url'  => route('vanilo.admin.property_value.update', [$property, $propertyValue]), 'method' => 'PUT', 'class' => 'row']) !!}
 
     <div class="col-12 col-lg-8 col-xl-9">
         <div class="card card-accent-secondary">

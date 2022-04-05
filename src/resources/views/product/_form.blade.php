@@ -70,7 +70,7 @@
             }}
             <span class="input-group-append">
                 <span class="input-group-text">
-                    {{ config('vanilo.framework.currency.code') }}
+                    {{ config('vanilo.foundation.currency.code') }}
                 </span>
             </span>
         </div>

@@ -6,7 +6,7 @@
 
 @section('content')
 {!! Form::model($paymentMethod, [
-        'route'  => ['vanilo.payment-method.update', $paymentMethod],
+        'route'  => ['vanilo.admin.payment-method.update', $paymentMethod],
         'method' => 'PUT'
     ])
 !!}

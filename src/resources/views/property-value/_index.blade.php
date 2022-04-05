@@ -1,7 +1,7 @@
 @foreach($propertyValues as $propertyValue)
     <div class="btn-group btn-group-sm mb-1" role="group">
         @can('edit property values')
-            <a href="{{ route('vanilo.property_value.edit', [$property, $propertyValue]) }}"
+            <a href="{{ route('vanilo.admin.property_value.edit', [$property, $propertyValue]) }}"
                class="btn btn-secondary">{{ $propertyValue->title }}</a>
         @else
             <button class="btn btn-secondary" type="button">{{ $propertyValue->title }}</button>
@@ -12,7 +12,7 @@
         <div class="dropdown-menu">
             @can('delete property values')
                 {{ Form::open([
-                            'url' => route('vanilo.property_value.destroy', [$property, $propertyValue]),
+                            'url' => route('vanilo.admin.property_value.destroy', [$property, $propertyValue]),
                             'style' => 'display: inline',
                             'data-confirmation-text' => __('Delete :title?', ['title' => $propertyValue->title]),
                             'method' => 'DELETE'
@@ -29,7 +29,7 @@
     </div>
 @endforeach
 @can('create property values')
-    <a href="{{ route('vanilo.property_value.create', $property) }}"
+    <a href="{{ route('vanilo.admin.property_value.create', $property) }}"
        class="btn btn-success btn-sm mb-1"
        title="{{ __('Add :property value', ['property' => $property->name]) }}">{!! icon('+') !!}</a>
 @endcan

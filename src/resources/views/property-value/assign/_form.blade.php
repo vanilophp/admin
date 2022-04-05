@@ -5,7 +5,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             {!! Form::open([
-                    'url'  => route('vanilo.property_value.sync', [$for, $forId]),
+                    'url'  => route('vanilo.admin.property_value.sync', [$for, $forId]),
                     'method' => 'PUT'
                 ])
             !!}
@@ -148,7 +148,7 @@
                 this.adding.name = this.assignedProperties[propertyId].property.name;
                 this.adding.property_id = propertyId;
 
-                var url = "{{ route('vanilo.property_value.create', '@@@') }}";
+                var url = "{{ route('vanilo.admin.property_value.create', '@@@') }}";
                 window.open(url.replace('@@@', propertyId), '_blank');
                 //$('#create-property-value').modal('show');
             }

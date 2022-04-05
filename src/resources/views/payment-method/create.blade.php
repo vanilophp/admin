@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-{!! Form::model($paymentMethod, ['route' => 'vanilo.payment-method.store', 'autocomplete' => 'off']) !!}
+{!! Form::model($paymentMethod, ['route' => 'vanilo.admin.payment-method.store', 'autocomplete' => 'off']) !!}
 
     <div class="card card-accent-success">
 

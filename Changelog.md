@@ -4,3 +4,4 @@
 ##### 2022-04-XX
 
 - Extracted from Vanilo Framework, the Admin is now a standalone and optional module 
+- Changed route names from `vanilo.x.y` to `vanilo.admin.x.y`

@@ -5,7 +5,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             {!! Form::open([
-                    'url'  => route('vanilo.taxonomy.sync', [$taxonomy]),
+                    'url'  => route('vanilo.admin.taxonomy.sync', [$taxonomy]),
                     'method' => 'PUT'
                 ])
             !!}

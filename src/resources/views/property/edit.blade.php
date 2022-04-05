@@ -6,7 +6,7 @@
 
 @section('content')
 {!! Form::model($property, [
-        'route'  => ['vanilo.property.update', $property],
+        'route'  => ['vanilo.admin.property.update', $property],
         'method' => 'PUT'
     ])
 !!}

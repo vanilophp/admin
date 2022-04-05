@@ -9,7 +9,7 @@
 
     <div class="col-12 col-lg-8 col-xl-9">
         {!! Form::model($product, [
-                'route'  => ['vanilo.product.update', $product],
+                'route'  => ['vanilo.admin.product.update', $product],
                 'method' => 'PUT'
             ])
         !!}

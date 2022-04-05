@@ -52,7 +52,7 @@ class PaymentMethodController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.payment-method.index'));
+        return redirect(route('vanilo.admin.payment-method.index'));
     }
 
     public function show(PaymentMethod $paymentMethod)
@@ -83,7 +83,7 @@ class PaymentMethodController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.payment-method.index'));
+        return redirect(route('vanilo.admin.payment-method.index'));
     }
 
     public function destroy(PaymentMethod $paymentMethod)
@@ -99,6 +99,6 @@ class PaymentMethodController extends BaseController
             return redirect()->back();
         }
 
-        return redirect(route('vanilo.payment-method.index'));
+        return redirect(route('vanilo.admin.payment-method.index'));
     }
 }

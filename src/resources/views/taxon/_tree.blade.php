@@ -12,7 +12,7 @@
         @endif
 
         @can('edit taxons')
-            <a href="{{ route('vanilo.taxon.edit', [$taxonomy, $taxon]) }}">{{ $taxon->name }}</a>
+            <a href="{{ route('vanilo.admin.taxon.edit', [$taxonomy, $taxon]) }}">{{ $taxon->name }}</a>
         @else
             {{ $taxon->name }}
         @endcan
@@ -20,7 +20,7 @@
 
         <div class="d-inline card-actionbar-show-on-hover">
             @can('create taxons')
-                <a href="{{ route('vanilo.taxon.create', $taxonomy) }}?parent={{$taxon->id}}"
+                <a href="{{ route('vanilo.admin.taxon.create', $taxonomy) }}?parent={{$taxon->id}}"
                    class="btn btn-outline-success btn-xs"
                    title="{{ __('Add Child :category', ['category' => \Illuminate\Support\Str::singular($taxonomy->name)]) }}">
                     {!! icon('+') !!}
@@ -28,7 +28,7 @@
             @endcan
             @can('delete taxons')
                 {{ Form::open([
-                            'url' => route('vanilo.taxon.destroy', [$taxonomy, $taxon]),
+                            'url' => route('vanilo.admin.taxon.destroy', [$taxonomy, $taxon]),
                             'class' => 'form',
                             'style' => 'display: inline-flex',
                             'data-confirmation-text' => __('Delete :name?', ['name' => $taxon->name]),

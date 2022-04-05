@@ -9,12 +9,12 @@
     <div class="card">
         <div class="card-body">
             @can('edit channels')
-                <a href="{{ route('vanilo.channel.edit', $channel) }}" class="btn btn-outline-primary">{{ __('Edit Channel') }}</a>
+                <a href="{{ route('vanilo.admin.channel.edit', $channel) }}" class="btn btn-outline-primary">{{ __('Edit Channel') }}</a>
             @endcan
 
             @can('delete channels')
                 {!! Form::open([
-                        'route' => ['vanilo.channel.destroy', $channel],
+                        'route' => ['vanilo.admin.channel.destroy', $channel],
                         'method' => 'DELETE',
                         'class' => 'float-right',
                         'data-confirmation-text' => __('Delete this channel: ":name"?', ['name' => $channel->name])

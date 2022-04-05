@@ -18,12 +18,12 @@
     <div class="card">
         <div class="card-body">
             @can('edit payment methods')
-                <a href="{{ route('vanilo.payment-method.edit', $paymentMethod) }}" class="btn btn-outline-primary">{{ __('Edit Payment Method') }}</a>
+                <a href="{{ route('vanilo.admin.payment-method.edit', $paymentMethod) }}" class="btn btn-outline-primary">{{ __('Edit Payment Method') }}</a>
             @endcan
 
             @can('delete payment methods')
                 {!! Form::open([
-                        'route' => ['vanilo.payment-method.destroy', $paymentMethod],
+                        'route' => ['vanilo.admin.payment-method.destroy', $paymentMethod],
                         'method' => 'DELETE',
                         'class' => 'float-right',
                         'data-confirmation-text' => __('Delete this payment method: ":name"?', ['name' => $paymentMethod->name])

@@ -68,7 +68,7 @@ class OrderController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.order.show', $order));
+        return redirect(route('vanilo.admin.order.show', $order));
     }
 
     public function destroy(Order $order)
@@ -84,7 +84,7 @@ class OrderController extends BaseController
             return redirect()->back();
         }
 
-        return redirect(route('vanilo.order.index'));
+        return redirect(route('vanilo.admin.order.index'));
     }
 
     private function getStatusUpdateEventClass(string $status, Order $order): ?OrderAwareEvent

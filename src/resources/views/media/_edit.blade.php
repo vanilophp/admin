@@ -24,7 +24,7 @@
                         <div class="w-25 pr-2 pl-0 b-l-1">
                             <div class="align-content-center text-center">
                                 @can('delete media')
-                                    {!! Form::open(['route' => ['vanilo.media.destroy', $medium], 'method' => 'DELETE', 'class' => "float-right"]) !!}
+                                    {!! Form::open(['route' => ['vanilo.admin.media.destroy', $medium], 'method' => 'DELETE', 'class' => "float-right"]) !!}
                                     <button class="btn btn-sm btn-outline-danger" title="{{ __('Delete image') }}">
                                         {!! icon('delete') !!}
                                     </button>
@@ -33,7 +33,7 @@
 
                                     @can('edit media')
                                         @unless($medium->getCustomProperty('isPrimary'))
-                                            {!! Form::open(['route' => ['vanilo.media.update', $medium], 'method' => 'PUT', 'class' => "float-right"]) !!}
+                                            {!! Form::open(['route' => ['vanilo.admin.media.update', $medium], 'method' => 'PUT', 'class' => "float-right"]) !!}
                                             <button class="btn btn-sm btn-outline-info mr-1" title="{{ __('Set as Primary Image') }}">
                                                 {!! icon('image') !!}
                                             </button>
@@ -55,7 +55,7 @@
             @endforeach
 
             @can('create media')
-                {!! Form::open(['route' => 'vanilo.media.store', 'enctype'=>'multipart/form-data', 'class' => 'card']) !!}
+                {!! Form::open(['route' => 'vanilo.admin.media.store', 'enctype'=>'multipart/form-data', 'class' => 'card']) !!}
                     <div class="card-body p-0 d-flex align-items-center">
                         <div class="w-75 p-2">
                             {{ Form::hidden('for', shorten(get_class($model))) }}

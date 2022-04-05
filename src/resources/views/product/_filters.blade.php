@@ -7,7 +7,7 @@
                 @endif
             >{!! icon('>') !!} {{ __('Filters') }}</a>
         </h5>
-        <form action="{{ route('vanilo.product.index') }}" id="product-filters" class="collapse{{ ($hasActiveFilters ?? false) ? ' show' : '' }}">
+        <form action="{{ route('vanilo.admin.product.index') }}" id="product-filters" class="collapse{{ ($hasActiveFilters ?? false) ? ' show' : '' }}">
 
             <div class="row">
                 <div class="form-group col-sm-6 col-md-4">

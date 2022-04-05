@@ -52,7 +52,7 @@ class ChannelController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.channel.index'));
+        return redirect(route('vanilo.admin.channel.index'));
     }
 
     public function show(Channel $channel)
@@ -80,7 +80,7 @@ class ChannelController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.channel.index'));
+        return redirect(route('vanilo.admin.channel.index'));
     }
 
     public function destroy(Channel $channel)
@@ -96,7 +96,7 @@ class ChannelController extends BaseController
             return redirect()->back();
         }
 
-        return redirect(route('vanilo.channel.index'));
+        return redirect(route('vanilo.admin.channel.index'));
     }
 
     private function getCountries()

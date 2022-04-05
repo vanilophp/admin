@@ -51,7 +51,7 @@ class TaxonomyController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.taxonomy.index'));
+        return redirect(route('vanilo.admin.taxonomy.index'));
     }
 
     public function show(Taxonomy $taxonomy)
@@ -76,7 +76,7 @@ class TaxonomyController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.taxonomy.index'));
+        return redirect(route('vanilo.admin.taxonomy.index'));
     }
 
     public function destroy(Taxonomy $taxonomy)
@@ -92,7 +92,7 @@ class TaxonomyController extends BaseController
             return redirect()->back();
         }
 
-        return redirect(route('vanilo.taxonomy.index'));
+        return redirect(route('vanilo.admin.taxonomy.index'));
     }
 
     public function sync(Taxonomy $taxonomy, SyncModelTaxons $request)

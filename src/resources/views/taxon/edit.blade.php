@@ -7,7 +7,7 @@
 @section('content')
 <div class="row">
     <div class="col-12 col-lg-8 col-xl-9">
-        {!! Form::model($taxon, ['url'  => route('vanilo.taxon.update', [$taxonomy, $taxon]), 'method' => 'PUT']) !!}
+        {!! Form::model($taxon, ['url'  => route('vanilo.admin.taxon.update', [$taxonomy, $taxon]), 'method' => 'PUT']) !!}
         <div class="card card-accent-secondary">
 
             <div class="card-header">

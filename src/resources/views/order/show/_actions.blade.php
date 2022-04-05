@@ -19,7 +19,7 @@
                     @endforeach
 
                     {!! Form::model($order, [
-                        'route'  => ['vanilo.order.update', $order],
+                        'route'  => ['vanilo.admin.order.update', $order],
                         'method' => 'PUT',
                         'id'     => 'order-update-form',
                         'style'  => 'display: none;'
@@ -40,12 +40,12 @@
         @endcan
 
         @can('view orders')
-                <a href="{{ route('vanilo.order.show', $order) }}?print=1"
+                <a href="{{ route('vanilo.admin.order.show', $order) }}?print=1"
                    class="btn btn-outline-secondary ml-2">{{ __('Print') }}</a>
         @endcan
 
         @can('delete orders')
-            {!! Form::open(['route' => ['vanilo.order.destroy', $order], 'method' => 'DELETE', 'class' => "float-right"]) !!}
+            {!! Form::open(['route' => ['vanilo.admin.order.destroy', $order], 'method' => 'DELETE', 'class' => "float-right"]) !!}
             <button class="btn btn-outline-danger">
                 {{ __('Delete order') }}
             </button>

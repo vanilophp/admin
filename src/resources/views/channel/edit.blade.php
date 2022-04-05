@@ -6,7 +6,7 @@
 
 @section('content')
 {!! Form::model($channel, [
-        'route'  => ['vanilo.channel.update', $channel],
+        'route'  => ['vanilo.admin.channel.update', $channel],
         'method' => 'PUT'
     ])
 !!}
