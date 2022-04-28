@@ -1,7 +1,7 @@
 @extends('appshell::layouts.private')
 
 @section('title')
-    {{ __('Viewing order :no', ['no' => $order->number]) }}
+    {{ __('Order :no', ['no' => $order->number]) }}
 @stop
 
 @section('content')

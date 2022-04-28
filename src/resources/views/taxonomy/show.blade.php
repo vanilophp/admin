@@ -1,7 +1,7 @@
 @extends('appshell::layouts.private')
 
 @section('title')
-    {{ __('Viewing') }} {{ $taxonomy->name }}
+    {{ $taxonomy->name }}
 @stop
 
 @section('content')
