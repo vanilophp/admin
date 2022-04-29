@@ -105,6 +105,6 @@ class PropertyValueController extends BaseController
         $model = $request->getFor();
         $model->propertyValues()->sync($request->getPropertyValueIds());
 
-        return redirect(route(sprintf('vanilo.%s.show', shorten(get_class($model))), $model));
+        return redirect(route(sprintf('vanilo.admin.%s.show', shorten(get_class($model))), $model));
     }
 }

@@ -1,4 +1,4 @@
-<div id="properties-assign-component">
+<div id="properties-assign-component" x-data="vaniloPropertyValues">
 <div id="properties-assign-to-model-modal" class="modal fade" tabindex="-1" role="dialog"
      aria-labelledby="properties-assign-to-model-modal-title" aria-hidden="true">
 
@@ -21,11 +21,15 @@
 
                 <table class="table table-condensed table-striped">
                     <tbody>
-                    <tr v-for="(assignedProperty, id) in assignedProperties" :id="id">
-                        <th class="align-middle">@{{ assignedProperty.property.name }}</th>
+                    <template x-for="(assignedProperty, id) in assignedProperties">
+                        <tr :id="id">
+                        <th class="align-middle" x-text="assignedProperty.property.name"></th>
                         <td>
-                            <select name="propertyValues[]" v-model="assignedProperty.value" @change="onPropertyValueChange($event, id)" class="form-control form-control-sm">
-                                <option v-for="value in assignedProperty.values" :value="value.id" v-html="value.title"></option>
+                            <select name="propertyValues[]" x-model="assignedProperty.value" @change="onPropertyValueChange($event, id)" class="form-control form-control-sm">
+                                <option value=""></option>
+                                <template x-for="value in assignedProperty.values">
+                                    <option :value="value.id" x-html="value.title" :selected="assignedProperty.value == value.id"></option>
+                                </template>
                                 <optgroup label="{{ __('Missing value?') }}"></optgroup>
                                 <option value="+">[+] {{ __('Add value') }}</option>
                             </select>
@@ -34,20 +38,22 @@
                             {!! icon('delete', 'danger', ['style' => 'cursor: pointer', '@click' => 'removePropertyValue(id)']) !!}
                         </td>
                     </tr>
+                    </template>
                     </tbody>
                     <tfoot>
                         <tr class="bg-success">
                             <th class="align-middle">{{ __('Unused properties') }}:</th>
                             <td>
-                                <select v-model="selected" class="form-control form-control-sm">
-                                    <option v-for="(unassignedProperty, id) in unassignedProperties" :value="id">
-                                        @{{ unassignedProperty.property.name }}
-                                    </option>
+                                <select x-model="selected" class="form-control form-control-sm">
+                                    <option value="">--</option>
+                                    <template x-for="(unassignedProperty, id) in unassignedProperties">
+                                        <option :value="id" x-text="unassignedProperty.property.name"></option>
+                                    </template>
                                 </select>
                             </td>
                             <td class="align-middle">
                                 <button class="btn btn-light btn-sm" type="button" :disabled="selected == ''"
-                                        @click="addSelectedPropertyValue">
+                                        @click="addSelectedPropertyValue()">
                                     {{ __('Use property') }}
                                 </button>
                             </td>
@@ -69,17 +75,15 @@
 
 </div>
 
-@section('scripts')
-@parent()
+@push('scripts')
+
 <script>
-    new Vue({
-        //el: '#properties-assign-to-model-modal',
-        el: '#properties-assign-component',
-        data: {
-            selected: "",
+    document.addEventListener('alpine:init', function() {
+        Alpine.data('vaniloPropertyValues', () => ({
+            selected: '',
             adding: {
-                "name": "",
-                "property_id": ""
+                name: '',
+                property_id: ''
             },
             assignedProperties: {
                 @foreach($assignments as $propertyValue)
@@ -111,7 +115,7 @@
                         "name": "{{ $unassignedProperty->name }}"
                     },
                     "values": [
-                        @foreach($unassignedProperty->values() as $value)
+                            @foreach($unassignedProperty->values() as $value)
                         {
                             "id": "{{ $value->id }}",
                             "title": "{{ $value->title }}"
@@ -120,15 +124,13 @@
                     ]
                 },
                 @endforeach
-            }
-        },
-        methods: {
+            },
             addSelectedPropertyValue() {
                 if (this.selected && '' !== this.selected) {
                     var property = this.unassignedProperties[this.selected];
                     if (property) {
                         this.assignedProperties[property.property.id] = property;
-                        Vue.delete(this.unassignedProperties, property.property.id);
+                        delete this.unassignedProperties[property.property.id];
                     }
                 }
             },
@@ -136,7 +138,7 @@
                 var property = this.assignedProperties[propertyId];
                 if (property) {
                     this.unassignedProperties[propertyId] = property;
-                    Vue.delete(this.assignedProperties, propertyId)
+                    delete this.assignedProperties[propertyId];
                 }
             },
             onPropertyValueChange(event, propertyId) {
@@ -150,9 +152,8 @@
 
                 var url = "{{ route('vanilo.admin.property_value.create', '@@@') }}";
                 window.open(url.replace('@@@', propertyId), '_blank');
-                //$('#create-property-value').modal('show');
             }
-        }
-    });
+        }))
+    })
 </script>
-@endsection
+@endpush
