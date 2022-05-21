@@ -53,12 +53,11 @@
 <div class="form-group row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Configuration') }}</label>
     <div class="col-md-10">
-        {{ Form::textarea('configuration', null, [
-            'class' => 'form-control form-control-sm' . ($errors->has('configuration') ? ' is-invalid' : ''),
-            'placeholder' => __('Enter JSON config'),
-            'rows' => 6
-            ])
-        }}
+        <textarea name="configuration"
+            class="form-control form-control-sm{{ $errors->has('configuration') ? ' is-invalid' : '' }}"
+            placeholder="{{ __('Enter JSON config') }}"
+            rows="6"
+        >{{ old('configuration') ?? json_encode(Form::getModel()->configuration ?? [], JSON_PRETTY_PRINT | JSON_FORCE_OBJECT) }}</textarea>
         @if ($errors->has('configuration'))
             <div class="invalid-feedback">{{ $errors->first('configuration') }}</div>
         @endif
