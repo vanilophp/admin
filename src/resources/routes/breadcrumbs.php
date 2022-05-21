@@ -111,3 +111,23 @@ Breadcrumbs::for('vanilo.admin.channel.edit', function ($breadcrumbs, $channel) 
     $breadcrumbs->parent('vanilo.admin.channel.show', $channel);
     $breadcrumbs->push(__('Edit'), route('vanilo.admin.channel.edit', $channel));
 });
+
+Breadcrumbs::for('vanilo.admin.payment-method.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push(__('Payment Methods'), route('vanilo.admin.payment-method.index'));
+});
+
+Breadcrumbs::for('vanilo.admin.payment-method.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('vanilo.admin.payment-method.index');
+    $breadcrumbs->push(__('Create'));
+});
+
+Breadcrumbs::for('vanilo.admin.payment-method.show', function ($breadcrumbs, $paymentMethod) {
+    $breadcrumbs->parent('vanilo.admin.payment-method.index');
+    $breadcrumbs->push($paymentMethod->name, route('vanilo.admin.payment-method.show', $paymentMethod));
+});
+
+Breadcrumbs::for('vanilo.admin.payment-method.edit', function ($breadcrumbs, $paymentMethod) {
+    $breadcrumbs->parent('vanilo.admin.payment-method.show', $paymentMethod);
+    $breadcrumbs->push(__('Edit'), route('vanilo.admin.payment-method.edit', $paymentMethod));
+});
