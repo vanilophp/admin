@@ -12,5 +12,5 @@ Beginning with v3.x the Admin has been extracted from the Framework and is optio
 
 ## Further Information
 
-The [Vanilo Documentation](https://vanilo.io/docs/) contains technical  information about using Vanilo and its
+The [Vanilo Documentation](https://vanilo.io/docs/) contains technical information about using Vanilo and its
 components.
