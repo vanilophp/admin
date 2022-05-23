@@ -1,5 +1,10 @@
 # Vanilo Admin Changelog
 
+## Unreleased
+##### 2022-05-XX
+
+- Fixed invalid route error after assign categories to product
+
 ## 3.0.0
 ##### 2022-05-21
 

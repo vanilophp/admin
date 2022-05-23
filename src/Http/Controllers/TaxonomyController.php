@@ -109,6 +109,6 @@ class TaxonomyController extends BaseController
 
         $model->taxons()->byTaxonomy($taxonomy)->sync($taxonIds);
 
-        return redirect(route(sprintf('vanilo.%s.show', shorten(get_class($model))), $model));
+        return redirect(route(sprintf('vanilo.admin.%s.show', shorten(get_class($model))), $model));
     }
 }
