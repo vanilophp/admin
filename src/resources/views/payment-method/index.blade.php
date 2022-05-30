@@ -46,7 +46,7 @@
                                 @endcan
                             </span>
                         </td>
-                        <td>{{ $paymentMethod->getGateway()->getName() }}</td>
+                        <td>{{ $paymentMethod->getGatewayName() }}</td>
                         <td>{{ (int) $paymentMethod->transaction_count }}</td>
                         <td>
                             @if($paymentMethod->isEnabled())
