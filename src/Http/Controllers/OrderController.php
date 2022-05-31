@@ -44,7 +44,7 @@ class OrderController extends BaseController
     {
         $view = $request->has('print') ? 'print' : 'show';
         if ('show' === $view) {
-            $order = $order->with(['items', 'items.product'])->first();
+            $order = OrderProxy::where('id', $order->id)->with(['items', 'items.product'])->first();
         }
 
         return view("vanilo::order.$view", ['order' => $order]);
