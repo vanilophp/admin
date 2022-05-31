@@ -1,5 +1,13 @@
 # Vanilo Admin Changelog
 
+## Unreleased
+##### 2022-XX-YY
+
+- Added link to product when listing order items
+- Added Enum v4 support
+- Fixed Payment method listing error in case of unconfigured gateways
+
+
 ## 3.0.1
 ##### 2022-05-23
 

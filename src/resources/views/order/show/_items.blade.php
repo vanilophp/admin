@@ -19,7 +19,10 @@
             @foreach($order->getItems() as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->name }}</td>
+                    <td>@if($item->product)<a href="{{ route('vanilo.admin.product.show', $item->product) }}">@endif
+                        {{ $item->name }}
+                        @if($item->product)</a>@endif
+                    </td>
                     <td>{{ $item->quantity }}</td>
                     <td>{{ format_price($item->price) }}</td>
                     <td>{{ format_price($item->total) }}</td>

@@ -43,6 +43,9 @@ class OrderController extends BaseController
     public function show(Order $order, Request $request)
     {
         $view = $request->has('print') ? 'print' : 'show';
+        if ('show' === $view) {
+            $order = $order->with(['items', 'items.product'])->first();
+        }
 
         return view("vanilo::order.$view", ['order' => $order]);
     }
