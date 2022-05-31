@@ -38,11 +38,16 @@ use Vanilo\Admin\Http\Requests\UpdateProperty;
 use Vanilo\Admin\Http\Requests\UpdatePropertyValue;
 use Vanilo\Admin\Http\Requests\UpdateTaxon;
 use Vanilo\Admin\Http\Requests\UpdateTaxonomy;
+use Vanilo\Admin\Models\SkuMode;
 
 class ModuleServiceProvider extends BaseBoxServiceProvider
 {
     use HasBreadcrumbs;
     use RegistersVaniloIcons;
+
+    protected $enums = [
+        SkuMode::class,
+    ];
 
     protected $requests = [
         CreateProduct::class,

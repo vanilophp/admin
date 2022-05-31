@@ -3,6 +3,7 @@
 ## Unreleased
 ##### 2022-XX-YY
 
+- Added auto SKU generation feature
 - Added link to product when listing order items
 - Added Enum v4 support
 - Fixed Payment method listing error in case of unconfigured gateways

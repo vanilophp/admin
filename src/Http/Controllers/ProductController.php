@@ -16,14 +16,31 @@ namespace Vanilo\Admin\Http\Controllers;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateProduct;
 use Vanilo\Admin\Contracts\Requests\UpdateProduct;
+use Vanilo\Admin\Contracts\SkuMode;
+use Vanilo\Admin\Models\SkuModeProxy;
 use Vanilo\Category\Models\TaxonomyProxy;
 use Vanilo\Product\Contracts\Product;
 use Vanilo\Product\Models\ProductProxy;
 use Vanilo\Product\Models\ProductStateProxy;
 use Vanilo\Properties\Models\PropertyProxy;
+use Vanilo\Support\Generators\NanoIdGenerator;
 
 class ProductController extends BaseController
 {
+    protected SkuMode $skuMode;
+
+    public function __construct()
+    {
+        try {
+            $this->skuMode = SkuModeProxy::create(config('vanilo.admin.sku.mode'));
+        } catch (\Exception $e) {
+            $this->skuMode = SkuModeProxy::create(SkuModeProxy::defaultValue());
+            flash()->error(
+                __('SKU Mode configuration`:value` is invalid', ['value' => config('vanilo.admin.sku.mode')])
+            );
+        }
+    }
+
     /**
      * Displays the product index
      *
@@ -57,7 +74,7 @@ class ProductController extends BaseController
     public function store(CreateProduct $request)
     {
         try {
-            $product = ProductProxy::create($request->except('images'));
+            $product = ProductProxy::create($this->withAdjustedSku($request->except('images')));
             flash()->success(__(':name has been created', ['name' => $product->name]));
 
             try {
@@ -153,5 +170,13 @@ class ProductController extends BaseController
         }
 
         return redirect(route('vanilo.admin.product.index'));
+    }
+
+    protected function withAdjustedSku(array $fields): array
+    {
+        return match (true) {
+            $this->skuMode->isNanoid() => array_merge($fields, ['sku' => (new NanoIdGenerator())->generate()]),
+            default => $fields,
+        };
     }
 }

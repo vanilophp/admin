@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Vanilo\Admin\Models\SkuMode;
+
 return [
     'event_listeners' => true,
     'views' => [
@@ -14,4 +16,8 @@ return [
         'files' => ['admin']
     ],
     'breadcrumbs' => true,
+    'sku' => [
+        'hidden' => false,
+        'mode' => SkuMode::NANOID
+    ],
 ];
