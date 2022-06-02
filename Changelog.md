@@ -5,6 +5,7 @@
 
 - Added link to product when listing order items
 - Added Enum v4 support
+- Changed minimum AppShell requirement to v3.1.1 (to fix possible corrupted data issue with Octane)
 - Fixed Payment method listing error in case of unconfigured gateways
 
 
