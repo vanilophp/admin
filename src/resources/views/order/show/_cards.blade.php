@@ -12,6 +12,11 @@
     @endif
     @slot('subtitle')
         {{ $order->number }}
+        @if ($order->channel_id)
+            | @can('view channels')<a href="{{ route('vanilo.admin.channel.show', $order->channel_id) }}">@endcan
+                <span title="{{ __('Channel of the order') }}">{{ $order->channel?->name }}</span>
+              @can('view channels')</a>@endcan
+        @endif
     @endslot
 @endcomponent
 
