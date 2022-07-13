@@ -29,11 +29,15 @@
 
     <?php $shippingAddress = $order->getShippingAddress(); ?>
     <div class="card-body">
+        @unless($shippingAddress)
         <h6>{{ $shippingAddress->getName() }}</h6>
         <p>
             {{ $shippingAddress->getAddress() }}<br>
             {{ $shippingAddress->getCity() }}@if($shippingAddress->getPostalCode()), {{ $shippingAddress->getPostalCode() }} @endif<br>
             {{ $shippingAddress->country->name }}<br>
         </p>
+        @else
+        <h6>{{ __('No Shipping Address') }}</h6>
+        @endunless
     </div>
 </div>
