@@ -29,7 +29,7 @@
 
     <?php $shippingAddress = $order->getShippingAddress(); ?>
     <div class="card-body">
-        @unless($shippingAddress)
+        @if($shippingAddress)
         <h6>{{ $shippingAddress->getName() }}</h6>
         <p>
             {{ $shippingAddress->getAddress() }}<br>
@@ -38,6 +38,6 @@
         </p>
         @else
         <h6>{{ __('No Shipping Address') }}</h6>
-        @endunless
+        @endif
     </div>
 </div>
