@@ -13,10 +13,23 @@
 
             <div class="card-actionbar">
                 @can('create products')
-                    <a href="{{ route('vanilo.admin.product.create') }}" class="btn btn-sm btn-outline-success float-right">
-                        {!! icon('+') !!}
-                        {{ __('New Product') }}
-                    </a>
+                    <div class="btn-group">
+                        <a href="{{ route('vanilo.admin.product.create') }}" class="btn btn-sm btn-outline-success">
+                            {!! icon('+') !!}
+                            {{ __('New Product') }}
+                        </a>
+                        <button type="button" class="btn btn-sm btn-outline-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="{{ route('vanilo.admin.product.create') }}" class="dropdown-item">
+                                {{ __('New Product') }}
+                            </a>
+                            <a href="{{ route('vanilo.admin.master-product.create') }}" class="dropdown-item">
+                                {{ __('New Master Product') }}
+                            </a>
+                        </div>
+                    </div>
                 @endcan
             </div>
 
