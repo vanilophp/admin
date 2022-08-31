@@ -16,6 +16,7 @@ namespace Vanilo\Admin\Http\Controllers;
 
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\MasterProduct\Contracts\MasterProduct;
+use Vanilo\Product\Models\ProductStateProxy;
 
 class MasterProductController extends BaseController
 {
