@@ -14,6 +14,16 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Http\Controllers;
 
-class MasterProductController
+use Konekt\AppShell\Http\Controllers\BaseController;
+use Vanilo\MasterProduct\Contracts\MasterProduct;
+
+class MasterProductController extends BaseController
 {
+    public function create()
+    {
+        return view('vanilo::master-product.create', [
+            'product' => app(MasterProduct::class),
+            'states' => ProductStateProxy::choices()
+        ]);
+    }
 }

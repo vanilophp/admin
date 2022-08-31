@@ -24,11 +24,6 @@ use Vanilo\Properties\Models\PropertyProxy;
 
 class ProductController extends BaseController
 {
-    /**
-     * Displays the product index
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function index()
     {
         return view('vanilo::product.index', [
@@ -36,11 +31,6 @@ class ProductController extends BaseController
         ]);
     }
 
-    /**
-     * Displays the create new product view
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function create()
     {
         return view('vanilo::product.create', [
@@ -49,11 +39,6 @@ class ProductController extends BaseController
         ]);
     }
 
-    /**
-     * @param CreateProduct $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function store(CreateProduct $request)
     {
         try {
@@ -80,13 +65,6 @@ class ProductController extends BaseController
         return redirect(route('vanilo.admin.product.index'));
     }
 
-    /**
-     * Show the product
-     *
-     * @param Product $product
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function show(Product $product)
     {
         return view('vanilo::product.show', [
@@ -96,11 +74,6 @@ class ProductController extends BaseController
         ]);
     }
 
-    /**
-     * @param Product $product
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function edit(Product $product)
     {
         return view('vanilo::product.edit', [
@@ -109,15 +82,7 @@ class ProductController extends BaseController
         ]);
     }
 
-    /**
-     * Saves updates to an existing product
-     *
-     * @param Product       $product
-     * @param UpdateProduct $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function update(Product $product, UpdateProduct $request)
+   public function update(Product $product, UpdateProduct $request)
     {
         try {
             $product->update($request->all());
@@ -132,13 +97,6 @@ class ProductController extends BaseController
         return redirect(route('vanilo.admin.product.show', $product));
     }
 
-    /**
-     * Delete a product
-     *
-     * @param Product $product
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function destroy(Product $product)
     {
         try {

@@ -15,7 +15,7 @@ declare(strict_types=1);
 Route::resource('channel', 'ChannelController');
 Route::resource('taxonomy', 'TaxonomyController');
 Route::resource('product', 'ProductController');
-Route::resource('master-product', 'MasterProductController');
+Route::resource('master-product', 'MasterProductController')->except(['index']);
 Route::resource('property', 'PropertyController');
 Route::resource('order', 'OrderController');
 Route::resource('media', 'MediaController')->only(['update', 'destroy', 'store']);
