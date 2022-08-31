@@ -82,7 +82,7 @@ class ProductController extends BaseController
         ]);
     }
 
-   public function update(Product $product, UpdateProduct $request)
+    public function update(Product $product, UpdateProduct $request)
     {
         try {
             $product->update($request->all());
