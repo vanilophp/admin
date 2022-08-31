@@ -3,11 +3,12 @@
 ## Unreleased
 ##### 2022-XX-YY
 
+- Added Master product CRUD
 - Added link to product when listing order items
 - Added Channel to order show page (if an order has an assigned one)
 - Added Enum v4 support
 - Changed minimum Laravel requirement to 9.2
-- Changed minimum AppShell requirement to v3.1.1 (to fix possible corrupted data issue with Octane)
+- Changed minimum AppShell requirement to v3.3
 - Fixed Payment method listing error in case of unconfigured gateways
 - Fixed Order display error for orders without shipping address 
 

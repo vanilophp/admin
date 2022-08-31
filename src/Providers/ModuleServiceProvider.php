@@ -71,7 +71,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     {
         parent::boot();
 
-        $this->app->get(ResourcePermissionMapper::class)->overrideResourcePlural('taxon', 'taxons');
+        /** @var ResourcePermissionMapper $aclResourceMapper */
+        $aclResourceMapper = $this->app->get(ResourcePermissionMapper::class);
+        $aclResourceMapper->overrideResourcePlural('taxon', 'taxons');
+        $aclResourceMapper->addAlias('master product', 'product');
 
         $this->registerIconExtensions();
         $this->registerEnumIcons();
