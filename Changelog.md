@@ -1,7 +1,7 @@
 # Vanilo Admin Changelog
 
-## Unreleased
-##### 2022-XX-YY
+## 3.1.0
+##### 2022-11-17
 
 - Added Master product CRUD
 - Added link to product when listing order items
