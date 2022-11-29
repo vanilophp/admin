@@ -1,5 +1,11 @@
 # Vanilo Admin Changelog
 
+## Unreleased
+##### 2022-XX-YY
+
+- Added listing of Master products along with classic products
+- Fixed master product creation & edit form (fields were missing)
+
 ## 3.1.0
 ##### 2022-11-17
 

@@ -13,10 +13,12 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Http\Controllers;
 
+use Illuminate\Pagination\LengthAwarePaginator;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateProduct;
 use Vanilo\Admin\Contracts\Requests\UpdateProduct;
 use Vanilo\Category\Models\TaxonomyProxy;
+use Vanilo\MasterProduct\Models\MasterProductProxy;
 use Vanilo\Product\Contracts\Product;
 use Vanilo\Product\Models\ProductProxy;
 use Vanilo\Product\Models\ProductStateProxy;
@@ -26,8 +28,19 @@ class ProductController extends BaseController
 {
     public function index()
     {
+        $commonFields = ['id', 'name', 'slug'];
+
+        $products = ProductProxy::actives()->paginate(50);
+        $masterProducts = MasterProductProxy::actives()->paginate(50);
+
+        $paginator = new LengthAwarePaginator(
+            collect($products->items())->merge($masterProducts->items()),
+            $products->total() + $masterProducts->total(),
+            100,
+        ) ;
+
         return view('vanilo::product.index', [
-            'products' => ProductProxy::paginate(100)
+            'products' => $paginator,
         ]);
     }
 

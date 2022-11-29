@@ -22,6 +22,21 @@ Breadcrumbs::for('vanilo.admin.product.edit', function ($breadcrumbs, $product) 
     $breadcrumbs->push(__('Edit'), route('vanilo.admin.product.edit', $product));
 });
 
+Breadcrumbs::for('vanilo.admin.master-product.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('vanilo.admin.product.index');
+    $breadcrumbs->push(__('Create Master Product'));
+});
+
+Breadcrumbs::for('vanilo.admin.master-product.show', function ($breadcrumbs, $product) {
+    $breadcrumbs->parent('vanilo.admin.product.index');
+    $breadcrumbs->push($product->name, route('vanilo.admin.master-product.show', $product));
+});
+
+Breadcrumbs::for('vanilo.admin.master-product.edit', function ($breadcrumbs, $product) {
+    $breadcrumbs->parent('vanilo.admin.master-product.show', $product);
+    $breadcrumbs->push(__('Edit'), route('vanilo.admin.master-product.edit', $product));
+});
+
 Breadcrumbs::for('vanilo.admin.taxonomy.index', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
     $breadcrumbs->push(__('Categorization'), route('vanilo.admin.taxonomy.index'));

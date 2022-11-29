@@ -19,6 +19,7 @@ use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Menu;
 use Vanilo\Admin\Http\Requests\CreateChannel;
+use Vanilo\Admin\Http\Requests\CreateMasterProduct;
 use Vanilo\Admin\Http\Requests\CreateMedia;
 use Vanilo\Admin\Http\Requests\CreatePaymentMethod;
 use Vanilo\Admin\Http\Requests\CreateProduct;
@@ -47,6 +48,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     protected $requests = [
         CreateProduct::class,
         UpdateProduct::class,
+        CreateMasterProduct::class,
         UpdateOrder::class,
         CreateTaxonomy::class,
         UpdateTaxonomy::class,
