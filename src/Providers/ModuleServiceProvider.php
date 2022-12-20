@@ -20,6 +20,7 @@ use Konekt\Concord\BaseBoxServiceProvider;
 use Menu;
 use Vanilo\Admin\Http\Requests\CreateChannel;
 use Vanilo\Admin\Http\Requests\CreateMasterProduct;
+use Vanilo\Admin\Http\Requests\CreateMasterProductVariant;
 use Vanilo\Admin\Http\Requests\CreateMedia;
 use Vanilo\Admin\Http\Requests\CreatePaymentMethod;
 use Vanilo\Admin\Http\Requests\CreateProduct;
@@ -32,6 +33,7 @@ use Vanilo\Admin\Http\Requests\CreateTaxonomy;
 use Vanilo\Admin\Http\Requests\SyncModelPropertyValues;
 use Vanilo\Admin\Http\Requests\SyncModelTaxons;
 use Vanilo\Admin\Http\Requests\UpdateChannel;
+use Vanilo\Admin\Http\Requests\UpdateMasterProductVariant;
 use Vanilo\Admin\Http\Requests\UpdateOrder;
 use Vanilo\Admin\Http\Requests\UpdatePaymentMethod;
 use Vanilo\Admin\Http\Requests\UpdateProduct;
@@ -49,6 +51,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         CreateProduct::class,
         UpdateProduct::class,
         CreateMasterProduct::class,
+        CreateMasterProductVariant::class,
+        UpdateMasterProductVariant::class,
         UpdateOrder::class,
         CreateTaxonomy::class,
         UpdateTaxonomy::class,
@@ -77,6 +81,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $aclResourceMapper = $this->app->get(ResourcePermissionMapper::class);
         $aclResourceMapper->overrideResourcePlural('taxon', 'taxons');
         $aclResourceMapper->addAlias('master product', 'product');
+        $aclResourceMapper->addAlias('master product variant', 'product');
 
         $this->registerIconExtensions();
         $this->registerEnumIcons();

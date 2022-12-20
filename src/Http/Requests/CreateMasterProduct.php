@@ -30,19 +30,12 @@ class CreateMasterProduct extends FormRequest implements CreateMasterProductCont
             'original_price' => 'nullable|numeric',
             'description' => 'nullable|string',
             'images' => 'nullable',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif'
+            'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp'
         ];
     }
 
     public function authorize()
     {
         return true;
-    }
-
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            'stock' => $this->stock ?? 0,
-        ]);
     }
 }

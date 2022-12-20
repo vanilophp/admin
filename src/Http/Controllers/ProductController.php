@@ -28,8 +28,6 @@ class ProductController extends BaseController
 {
     public function index()
     {
-        $commonFields = ['id', 'name', 'slug'];
-
         $products = ProductProxy::query()->paginate(50);
         $masterProducts = MasterProductProxy::query()->paginate(50);
 

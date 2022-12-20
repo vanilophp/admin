@@ -16,9 +16,11 @@ namespace Vanilo\Admin\Http\Controllers;
 
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateMasterProduct;
+use Vanilo\Category\Models\TaxonomyProxy;
 use Vanilo\MasterProduct\Contracts\MasterProduct;
 use Vanilo\MasterProduct\Models\MasterProductProxy;
 use Vanilo\Product\Models\ProductStateProxy;
+use Vanilo\Properties\Models\PropertyProxy;
 
 class MasterProductController extends BaseController
 {
@@ -27,6 +29,15 @@ class MasterProductController extends BaseController
         return view('vanilo::master-product.create', [
             'product' => app(MasterProduct::class),
             'states' => ProductStateProxy::choices()
+        ]);
+    }
+
+    public function show(MasterProduct $product)
+    {
+        return view('vanilo::master-product.show', [
+            'product' => $product,
+            'taxonomies' => TaxonomyProxy::all(),
+            'properties' => PropertyProxy::all()
         ]);
     }
 

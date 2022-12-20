@@ -6,6 +6,7 @@
 - Added listing of Master products along with classic products
 - Added `original_price` field to the product form
 - Added webp image support
+- Added master product variant CRUD
 - Changed minimally required Media Library version from 10.0 to 10.3.6 (for webp support)
 - Fixed master product creation & edit form (fields were missing)
 
