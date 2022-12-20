@@ -11,7 +11,7 @@
             ])
         }}
         @if ($errors->has('name'))
-            <div class="invalid-tooltip">{{ $errors->first('name') }}</div>
+            <div class="invalid-feedback">{{ $errors->first('name') }}</div>
         @endif
     </div>
 </div>
@@ -62,6 +62,7 @@
 
 <div class="form-row">
     <div class="form-group col-12 col-md-6 col-xl-4">
+        <label class="form-control-label">{{ __('Price') }}</label>
         <div class="input-group">
             {{ Form::text('price', null, [
                     'class' => 'form-control' . ($errors->has('price') ? ' is-invalid' : ''),
@@ -75,8 +76,28 @@
             </span>
         </div>
         @if ($errors->has('price'))
-            <input hidden class="form-control is-invalid">
+            <input type="hidden" class="form-control is-invalid">
             <div class="invalid-feedback">{{ $errors->first('price') }}</div>
+        @endif
+    </div>
+
+    <div class="form-group col-12 col-md-6 col-xl-4">
+        <label class="form-control-label">{{ __('Original Price') }}</label>
+        <div class="input-group">
+            {{ Form::text('original_price', null, [
+                    'class' => 'form-control' . ($errors->has('original_price') ? ' is-invalid' : ''),
+                    'placeholder' => __('optional')
+                ])
+            }}
+            <span class="input-group-append">
+                <span class="input-group-text">
+                    {{ config('vanilo.foundation.currency.code') }}
+                </span>
+            </span>
+        </div>
+        @if ($errors->has('original_price'))
+            <input type="hidden" class="form-control is-invalid">
+            <div class="invalid-feedback">{{ $errors->first('original_price') }}</div>
         @endif
     </div>
 </div>

@@ -30,7 +30,7 @@ class CreateMedia extends FormRequest implements CreateMediaContract
     {
         return array_merge($this->getForRules(), [
             'images' => 'required',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif'
+            'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp'
         ]);
     }
 

@@ -24,7 +24,7 @@ class CreateTaxonomy extends FormRequest implements CreateTaxonomyContract
             'name' => 'required|min:2|max:191',
             'slug' => 'nullable|max:191',
             'images' => 'nullable',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif',
+            'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
         ];
     }
 

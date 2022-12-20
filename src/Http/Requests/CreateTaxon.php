@@ -25,7 +25,7 @@ class CreateTaxon extends FormRequest implements CreateTaxonContract
             'parent_id' => 'nullable|exists:taxons,id',
             'priority' => 'nullable|integer',
             'images' => 'nullable',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif',
+            'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
         ];
     }
 

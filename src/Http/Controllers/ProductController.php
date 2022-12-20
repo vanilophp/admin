@@ -30,8 +30,8 @@ class ProductController extends BaseController
     {
         $commonFields = ['id', 'name', 'slug'];
 
-        $products = ProductProxy::actives()->paginate(50);
-        $masterProducts = MasterProductProxy::actives()->paginate(50);
+        $products = ProductProxy::query()->paginate(50);
+        $masterProducts = MasterProductProxy::query()->paginate(50);
 
         $paginator = new LengthAwarePaginator(
             collect($products->items())->merge($masterProducts->items()),
