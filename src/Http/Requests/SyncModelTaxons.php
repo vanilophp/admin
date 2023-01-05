@@ -21,7 +21,7 @@ class SyncModelTaxons extends FormRequest implements SyncModelTaxonsContract
 {
     use HasFor;
 
-    protected $allowedFor = ['product'];
+    protected $allowedFor = ['product', 'master_product', 'master_product_variant'];
 
     /**
      * @inheritDoc

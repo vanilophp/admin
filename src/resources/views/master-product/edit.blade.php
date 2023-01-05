@@ -7,7 +7,7 @@
 @section('content')
 
     {!! Form::model($product, [
-            'route'  => ['vanilo.admin.master-product.update', $product],
+            'route'  => ['vanilo.admin.master_product.update', $product],
             'method' => 'PUT',
             'class' => 'row mb-4',
         ])

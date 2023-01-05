@@ -5,7 +5,7 @@
         <table class="table">
             <tr>
                 <td>
-                    @foreach($product->propertyValues as $propertyValue)
+                    @foreach($for->propertyValues as $propertyValue)
                         <span class="badge badge-pill badge-dark">
                             {{ $propertyValue->property->name }}:
                             {{ $propertyValue->title }}
@@ -23,8 +23,8 @@
 </div>
 
 @include('vanilo::property-value.assign._form', [
-    'for' => 'product',
-    'forId' => $product->id,
-    'assignments' => $product->propertyValues,
+    'for' => shorten(get_class($for)),
+    'forId' => $for->id,
+    'assignments' => $for->propertyValues,
     'properties' => $properties
 ])

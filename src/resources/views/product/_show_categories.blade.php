@@ -7,7 +7,7 @@
                 <tr>
                     <td>{{ $taxonomy->name }}</td>
                     <td>
-                        @foreach($product->taxons()->byTaxonomy($taxonomy)->get() as $taxon)
+                        @foreach($for->taxons()->byTaxonomy($taxonomy)->get() as $taxon)
                             <span class="badge badge-pill badge-dark">{{ $taxon->name }}</span>
                         @endforeach
                     </td>
@@ -24,9 +24,9 @@
 
 @foreach($taxonomies as $taxonomy)
     @include('vanilo::taxon.assign._form', [
-        'for' => 'product',
-        'forId' => $product->id,
-        'assignments' => $product->taxons()->byTaxonomy($taxonomy)->get()->keyBy('id'),
+        'for' => shorten(get_class($for)),
+        'forId' => $for->id,
+        'assignments' => $for->taxons()->byTaxonomy($taxonomy)->get()->keyBy('id'),
         'taxonomy' => $taxonomy
         ])
 @endforeach

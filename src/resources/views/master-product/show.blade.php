@@ -21,7 +21,7 @@
                     </small>
                 @endif
                 @slot('subtitle')
-                    {{ $product->variants->implode('sku', ',') }}&nbsp;
+                    {{ $product->variants->implode('sku', ', ') }}&nbsp;
                 @endslot
             @endcomponent
         </div>
@@ -60,8 +60,8 @@
 
         <div class="col-12 col-md-6 col-lg-8 col-xl-9 mb-3">
             @include('vanilo::master-product._variants')
-            @include('vanilo::product._show_categories')
-            @include('vanilo::product._show_properties')
+            @include('vanilo::product._show_categories', ['for' => $product])
+            @include('vanilo::product._show_properties', ['for' => $product])
         </div>
 
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
@@ -72,11 +72,11 @@
     <div class="card mb-3">
         <div class="card-body">
             @can('edit products')
-            <a href="{{ route('vanilo.admin.master-product.edit', $product) }}" class="btn btn-outline-primary">{{ __('Edit product') }}</a>
+            <a href="{{ route('vanilo.admin.master_product.edit', $product) }}" class="btn btn-outline-primary">{{ __('Edit product') }}</a>
             @endcan
 
             @can('delete products')
-                {!! Form::open(['route' => ['vanilo.admin.master-product.destroy', $product], 'method' => 'DELETE', 'class' => "float-right"]) !!}
+                {!! Form::open(['route' => ['vanilo.admin.master_product.destroy', $product], 'method' => 'DELETE', 'class' => "float-right"]) !!}
                 <button class="btn btn-outline-danger">
                     {{ __('Delete product') }}
                 </button>

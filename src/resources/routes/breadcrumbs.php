@@ -22,28 +22,28 @@ Breadcrumbs::for('vanilo.admin.product.edit', function ($breadcrumbs, $product) 
     $breadcrumbs->push(__('Edit'), route('vanilo.admin.product.edit', $product));
 });
 
-Breadcrumbs::for('vanilo.admin.master-product.create', function ($breadcrumbs) {
+Breadcrumbs::for('vanilo.admin.master_product.create', function ($breadcrumbs) {
     $breadcrumbs->parent('vanilo.admin.product.index');
     $breadcrumbs->push(__('Create Master Product'));
 });
 
-Breadcrumbs::for('vanilo.admin.master-product.show', function ($breadcrumbs, $product) {
+Breadcrumbs::for('vanilo.admin.master_product.show', function ($breadcrumbs, $product) {
     $breadcrumbs->parent('vanilo.admin.product.index');
-    $breadcrumbs->push($product->name, route('vanilo.admin.master-product.show', $product));
+    $breadcrumbs->push($product->name, route('vanilo.admin.master_product.show', $product));
 });
 
-Breadcrumbs::for('vanilo.admin.master-product.edit', function ($breadcrumbs, $product) {
-    $breadcrumbs->parent('vanilo.admin.master-product.show', $product);
-    $breadcrumbs->push(__('Edit'), route('vanilo.admin.master-product.edit', $product));
+Breadcrumbs::for('vanilo.admin.master_product.edit', function ($breadcrumbs, $product) {
+    $breadcrumbs->parent('vanilo.admin.master_product.show', $product);
+    $breadcrumbs->push(__('Edit'), route('vanilo.admin.master_product.edit', $product));
 });
 
 Breadcrumbs::for('vanilo.admin.master-product-variant.create', function ($breadcrumbs, $masterProduct) {
-    $breadcrumbs->parent('vanilo.admin.master-product.show', $masterProduct);
+    $breadcrumbs->parent('vanilo.admin.master_product.show', $masterProduct);
     $breadcrumbs->push(__('Create Variant'));
 });
 
 Breadcrumbs::for('vanilo.admin.master-product-variant.edit', function ($breadcrumbs, $masterProduct, $masterProductVariant) {
-    $breadcrumbs->parent('vanilo.admin.master-product.show', $masterProduct);
+    $breadcrumbs->parent('vanilo.admin.master_product.show', $masterProduct);
     $breadcrumbs->push($masterProductVariant->name);
 });
 

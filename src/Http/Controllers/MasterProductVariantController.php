@@ -86,6 +86,6 @@ class MasterProductVariantController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.admin.master-product.show', $masterProduct));
+        return redirect(route('vanilo.admin.master_product.show', $masterProduct));
     }
 }

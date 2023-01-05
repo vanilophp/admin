@@ -59,8 +59,8 @@
         </div>
 
         <div class="col-12 col-md-6 col-lg-8 col-xl-9 mb-3">
-            @include('vanilo::product._show_categories')
-            @include('vanilo::product._show_properties')
+            @include('vanilo::product._show_categories', ['for' => $product])
+            @include('vanilo::product._show_properties', ['for' => $product])
         </div>
 
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
