@@ -66,4 +66,12 @@ class MasterProductController extends BaseController
 
         return redirect(route('vanilo.admin.product.index'));
     }
+
+    public function edit(MasterProduct $product)
+    {
+        return view('vanilo::master-product.edit', [
+            'product' => $product,
+            'states' => ProductStateProxy::choices()
+        ]);
+    }
 }

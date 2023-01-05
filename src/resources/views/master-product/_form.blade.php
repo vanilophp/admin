@@ -96,7 +96,7 @@
 
 <hr>
 
-@include('$vanilo::master-product._variants')
+@include('vanilo::master-product._variants')
 
 <div class="form-group">
     <?php $seoHasErrors = any_key_exists($errors->toArray(), ['ext_title', 'meta_description', 'meta_keywords']) ?>
