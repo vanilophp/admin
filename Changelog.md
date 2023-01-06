@@ -1,16 +1,22 @@
 # Vanilo Admin Changelog
 
-## Unreleased
-##### 2022-XX-YY
+## 3.3.0
+##### 2023-01-06
 
 - Added listing of Master products along with classic products
 - Added `original_price` field to the product form
 - Added webp image support
 - Added master product variant CRUD
-- Changed minimally required Media Library version from 10.0 to 10.3.6 (for webp support)
+- Changed minimal Media Library requirement from 10.0 to v10.3.6 (for webp support)
 - Changed minimal Vanilo requirement to v3.3
+- Changed minimum Concord requirement to v1.12
 - Fixed master product creation & edit form (fields were missing)
 - Fixed missing Media for/forId validation messages
+
+## 3.2.0
+##### Never
+
+This release was skipped in order to keep version parity match with Vanilo Framework.
 
 ## 3.1.0
 ##### 2022-11-17

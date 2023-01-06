@@ -20,7 +20,7 @@
         "ext-pdo": "*",
         "laravel/framework": "^9.2",
         "konekt/appshell": "^3.3",
-        "konekt/concord": "^1.11",
+        "konekt/concord": "^1.12",
         "spatie/laravel-medialibrary": "^10.3.6",
         "vanilo/framework": "^3.3"
     },
