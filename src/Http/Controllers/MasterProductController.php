@@ -16,6 +16,7 @@ namespace Vanilo\Admin\Http\Controllers;
 
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateMasterProduct;
+use Vanilo\Admin\Contracts\Requests\UpdateMasterProduct;
 use Vanilo\Category\Models\TaxonomyProxy;
 use Vanilo\MasterProduct\Contracts\MasterProduct;
 use Vanilo\MasterProduct\Models\MasterProductProxy;
@@ -56,7 +57,7 @@ class MasterProductController extends BaseController
             } catch (\Exception $e) { // Here we already have the product created
                 flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
 
-                return redirect()->route('vanilo.admin.admin-product.edit', ['product' => $product]);
+                return redirect()->route('vanilo.admin.master_product.edit', ['product' => $product]);
             }
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
@@ -73,5 +74,20 @@ class MasterProductController extends BaseController
             'product' => $product,
             'states' => ProductStateProxy::choices()
         ]);
+    }
+
+    public function update(MasterProduct $product, UpdateMasterProduct $request)
+    {
+        try {
+            $product->update($request->all());
+
+            flash()->success(__(':name has been updated', ['name' => $product->name]));
+        } catch (\Exception $e) {
+            flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
+
+            return redirect()->back()->withInput();
+        }
+
+        return redirect(route('vanilo.admin.master_product.show', $product));
     }
 }

@@ -33,6 +33,7 @@ use Vanilo\Admin\Http\Requests\CreateTaxonomy;
 use Vanilo\Admin\Http\Requests\SyncModelPropertyValues;
 use Vanilo\Admin\Http\Requests\SyncModelTaxons;
 use Vanilo\Admin\Http\Requests\UpdateChannel;
+use Vanilo\Admin\Http\Requests\UpdateMasterProduct;
 use Vanilo\Admin\Http\Requests\UpdateMasterProductVariant;
 use Vanilo\Admin\Http\Requests\UpdateOrder;
 use Vanilo\Admin\Http\Requests\UpdatePaymentMethod;
@@ -51,6 +52,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         CreateProduct::class,
         UpdateProduct::class,
         CreateMasterProduct::class,
+        UpdateMasterProduct::class,
         CreateMasterProductVariant::class,
         UpdateMasterProductVariant::class,
         UpdateOrder::class,

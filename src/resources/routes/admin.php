@@ -37,8 +37,9 @@ Route::put('/property/{property}/value/{property_value}', 'PropertyValueControll
 Route::delete('/property/{property}/value/{property_value}', 'PropertyValueController@destroy')->name('property_value.destroy');
 Route::put('/property/sync/{for}/{forId}', 'PropertyValueController@sync')->name('property_value.sync');
 
-Route::get('/master-product/{masterProduct}/variant/create', 'MasterProductVariantController@create')->name('master-product-variant.create');
-Route::post('/master-product/{masterProduct}/variant', 'MasterProductVariantController@store')->name('master-product-variant.store');
-Route::get('/master-product/{masterProduct}/variant/{masterProductVariant}/edit', 'MasterProductVariantController@edit')->name('master-product-variant.edit');
-Route::put('/master-product/{masterProduct}/variant/{masterProductVariant}', 'MasterProductVariantController@update')->name('master-product-variant.update');
-//Route::delete('/taxonomy/{taxonomy}/taxon/{taxon}', 'TaxonController@destroy')->name('taxon.destroy');
+Route::get('/master-product/{masterProduct}/variant/create', 'MasterProductVariantController@create')->name('master_product_variant.create');
+Route::post('/master-product/{masterProduct}/variant', 'MasterProductVariantController@store')->name('master_product_variant.store');
+Route::get('/master-product/{masterProduct}/variant/{masterProductVariant}/edit', 'MasterProductVariantController@edit')->name('master_product_variant.edit');
+Route::get('/master-product/{masterProduct}/variant/{masterProductVariant}', 'MasterProductVariantController@show')->name('master_product_variant.show');
+Route::put('/master-product/{masterProduct}/variant/{masterProductVariant}', 'MasterProductVariantController@update')->name('master_product_variant.update');
+Route::delete('/master-product/{masterProduct}/variant/{masterProductVariant}', 'MasterProductVariantController@destroy')->name('master_product_variant.destroy');

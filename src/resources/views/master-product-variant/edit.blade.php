@@ -9,7 +9,7 @@
 
     <div class="col-12 col-lg-8 col-xl-9">
         {!! Form::model($variant, [
-                'url'  => route('vanilo.admin.master-product-variant.update', [$master, $variant]),
+                'url'  => route('vanilo.admin.master_product_variant.update', [$master, $variant]),
                 'method' => 'PUT'
             ])
         !!}
@@ -31,6 +31,25 @@
 
     <div class="col-12 col-lg-4 col-xl-3">
         @include('vanilo::media._edit', ['model' => $variant])
+        <div class="mb-3"></div>
+
+        @include('vanilo::product._show_properties', ['for' => $variant])
+
+        @can('delete products')
+            {!! Form::open([
+                    'route' => ['vanilo.admin.master_product_variant.destroy', [$master, $variant]],
+                    'method' => 'DELETE',
+                    'class' => 'card mb-3',
+                    'data-confirmation-text' => __('Delete this variant: ":name"?', ['name' => $variant->name])
+                ])
+            !!}
+            <div class="card-body">
+                <button class="btn btn-sm btn-outline-danger float-right">
+                    {{ __('Delete This Variant') }}
+                </button>
+            </div>
+            {!! Form::close() !!}
+        @endcan
     </div>
 
 </div>

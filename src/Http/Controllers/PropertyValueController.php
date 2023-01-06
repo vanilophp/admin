@@ -105,6 +105,11 @@ class PropertyValueController extends BaseController
         $model = $request->getFor();
         $model->propertyValues()->sync($request->getPropertyValueIds());
 
-        return redirect(route(sprintf('vanilo.admin.%s.show', shorten(get_class($model))), $model));
+        $resource = shorten(get_class($model));
+        if ('master_product_variant' === $resource) {
+            return redirect()->route('vanilo.admin.master_product_variant.edit', [$model->masterProduct, $model]);
+        }
+
+        return redirect(route(sprintf('vanilo.admin.%s.show', $resource), $model));
     }
 }

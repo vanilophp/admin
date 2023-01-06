@@ -2,7 +2,7 @@
     <div class="card-body">
         <h6 class="card-title">{{ __('Variants') }}</h6>
             @foreach($product->variants as $variant)
-                <a href="{{ route('vanilo.admin.master-product-variant.edit', [$product, $variant]) }}" class="badge badge-secondary">
+                <a href="{{ route('vanilo.admin.master_product_variant.edit', [$product, $variant]) }}" class="badge badge-secondary">
                     @if ($variant->hasImage())
                         <img src="{{ $variant->getThumbnailUrl() }}" style="width: 24px; border-radius: 50%" />
                     @elseif($product->hasImage())
@@ -16,7 +16,7 @@
                 </a>
             @endforeach
             @can('create products')
-                <a class="btn btn-xs btn-success" href="{{ route('vanilo.admin.master-product-variant.create', $product) }}">
+                <a class="btn btn-xs btn-success" href="{{ route('vanilo.admin.master_product_variant.create', $product) }}">
                     {!! icon('+') !!} {{ __('Create variant') }}
                 </a>
             @endcan

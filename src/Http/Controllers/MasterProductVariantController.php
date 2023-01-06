@@ -21,6 +21,7 @@ use Vanilo\MasterProduct\Contracts\MasterProduct;
 use Vanilo\MasterProduct\Contracts\MasterProductVariant;
 use Vanilo\MasterProduct\Models\MasterProductVariantProxy;
 use Vanilo\Product\Models\ProductStateProxy;
+use Vanilo\Properties\Models\PropertyProxy;
 
 class MasterProductVariantController extends BaseController
 {
@@ -52,8 +53,8 @@ class MasterProductVariantController extends BaseController
 
                 return redirect()
                     ->route(
-                        'vanilo.admin.master-product-variant.edit',
-                        ['masterProduct' => $masterProduct, 'variant' => $variant],
+                        'vanilo.admin.master_product_variant.edit',
+                        [$masterProduct, $variant],
                     );
             }
         } catch (\Exception $e) {
@@ -62,7 +63,13 @@ class MasterProductVariantController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.admin.product.index'));
+        return redirect(route('vanilo.admin.master_product.show', $masterProduct));
+    }
+
+    public function show(MasterProduct $masterProduct, MasterProductVariant $masterProductVariant)
+    {
+        return redirect()
+            ->route('vanilo.admin.master_product_variant.edit', [$masterProduct, $masterProductVariant]);
     }
 
     public function edit(MasterProduct $masterProduct, MasterProductVariant $masterProductVariant)
@@ -70,7 +77,8 @@ class MasterProductVariantController extends BaseController
         return view('vanilo::master-product-variant.edit', [
             'master' => $masterProduct,
             'variant' => $masterProductVariant,
-            'states' => ProductStateProxy::choices()
+            'states' => ProductStateProxy::choices(),
+            'properties' => PropertyProxy::all(),
         ]);
     }
 
@@ -86,6 +94,23 @@ class MasterProductVariantController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.admin.master_product.show', $masterProduct));
+        return redirect()->route('vanilo.admin.master_product.show', $masterProduct);
+    }
+
+    public function destroy(MasterProduct $masterProduct, MasterProductVariant $masterProductVariant)
+    {
+        try {
+            $name = $masterProductVariant->name;
+            $masterProductVariant->propertyValues()->detach();
+            $masterProductVariant->delete();
+
+            flash()->warning(__(':name has been deleted', ['name' => $name]));
+        } catch (\Exception $e) {
+            flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
+
+            return redirect()->back();
+        }
+
+        return redirect()->route('vanilo.admin.master_product.show', $masterProduct);
     }
 }

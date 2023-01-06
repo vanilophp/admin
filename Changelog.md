@@ -8,7 +8,9 @@
 - Added webp image support
 - Added master product variant CRUD
 - Changed minimally required Media Library version from 10.0 to 10.3.6 (for webp support)
+- Changed minimal Vanilo requirement to v3.3
 - Fixed master product creation & edit form (fields were missing)
+- Fixed missing Media for/forId validation messages
 
 ## 3.1.0
 ##### 2022-11-17

@@ -112,6 +112,7 @@ class ProductController extends BaseController
     {
         try {
             $name = $product->name;
+            $product->propertyValues()->detach();
             $product->delete();
 
             flash()->warning(__(':name has been deleted', ['name' => $name]));

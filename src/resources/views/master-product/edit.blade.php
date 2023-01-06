@@ -6,14 +6,14 @@
 
 @section('content')
 
-    {!! Form::model($product, [
-            'route'  => ['vanilo.admin.master_product.update', $product],
-            'method' => 'PUT',
-            'class' => 'row mb-4',
-        ])
-    !!}
+<div class="row mb-4">
 
     <div class="col-12 col-lg-8 col-xl-9 mb-4">
+        {!! Form::model($product, [
+                'route'  => ['vanilo.admin.master_product.update', $product],
+                'method' => 'PUT',
+            ])
+        !!}
         <div class="card card-accent-success">
             <div class="card-header">
                 {{ __('Master Details') }}
@@ -26,10 +26,11 @@
                 <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
             </div>
         </div>
+        {!! Form::close() !!}
     </div>
 
     <div class="col-12 col-lg-4 col-xl-3">
-        @include('vanilo::media._create')
+        @include('vanilo::media._edit', ['model' => $product])
     </div>
 
     {!! Form::close() !!}

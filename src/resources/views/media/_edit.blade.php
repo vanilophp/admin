@@ -4,9 +4,15 @@
             <span class="badge badge-pill badge-info">{{ $media->isNotEmpty() }}</span>
         </div>
         <div class="card-body">
-            @if($errors->has('images'))
-                <div class="alert alert-danger">{{ $errors->first('images') }}</div>
-            @endif
+            @error('images')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            @error('for')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            @error('forId')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             @foreach($media as $medium)
                 <div class="card mb-2">
                     <div class="card-body p-0 d-flex align-items-center">

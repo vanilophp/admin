@@ -37,12 +37,12 @@ Breadcrumbs::for('vanilo.admin.master_product.edit', function ($breadcrumbs, $pr
     $breadcrumbs->push(__('Edit'), route('vanilo.admin.master_product.edit', $product));
 });
 
-Breadcrumbs::for('vanilo.admin.master-product-variant.create', function ($breadcrumbs, $masterProduct) {
+Breadcrumbs::for('vanilo.admin.master_product_variant.create', function ($breadcrumbs, $masterProduct) {
     $breadcrumbs->parent('vanilo.admin.master_product.show', $masterProduct);
     $breadcrumbs->push(__('Create Variant'));
 });
 
-Breadcrumbs::for('vanilo.admin.master-product-variant.edit', function ($breadcrumbs, $masterProduct, $masterProductVariant) {
+Breadcrumbs::for('vanilo.admin.master_product_variant.edit', function ($breadcrumbs, $masterProduct, $masterProductVariant) {
     $breadcrumbs->parent('vanilo.admin.master_product.show', $masterProduct);
     $breadcrumbs->push($masterProductVariant->name);
 });
