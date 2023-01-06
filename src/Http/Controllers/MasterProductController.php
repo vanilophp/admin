@@ -14,11 +14,13 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateMasterProduct;
 use Vanilo\Admin\Contracts\Requests\UpdateMasterProduct;
 use Vanilo\Category\Models\TaxonomyProxy;
 use Vanilo\MasterProduct\Contracts\MasterProduct;
+use Vanilo\MasterProduct\Contracts\MasterProductVariant;
 use Vanilo\MasterProduct\Models\MasterProductProxy;
 use Vanilo\Product\Models\ProductStateProxy;
 use Vanilo\Properties\Models\PropertyProxy;
@@ -89,5 +91,28 @@ class MasterProductController extends BaseController
         }
 
         return redirect(route('vanilo.admin.master_product.show', $product));
+    }
+
+    public function destroy(MasterProduct $product)
+    {
+        try {
+            $name = $product->name;
+            DB::transaction(function() use ($product) {
+                $product->variants->each(function (MasterProductVariant $variant) {
+                    $variant->propertyValues()->detach();
+                    $variant->delete();
+                });
+                $product->propertyValues()->detach();
+                $product->taxons()->detach();
+                $product->delete();
+            });
+            flash()->warning(__(':name has been deleted', ['name' => $name]));
+        } catch (\Exception $e) {
+            flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
+
+            return redirect()->back();
+        }
+
+        return redirect(route('vanilo.admin.product.index'));
     }
 }
