@@ -97,7 +97,7 @@ class MasterProductController extends BaseController
     {
         try {
             $name = $product->name;
-            DB::transaction(function() use ($product) {
+            DB::transaction(function () use ($product) {
                 $product->variants->each(function (MasterProductVariant $variant) {
                     $variant->propertyValues()->detach();
                     $variant->delete();
