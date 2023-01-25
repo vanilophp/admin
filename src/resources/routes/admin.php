@@ -24,7 +24,6 @@ Route::resource('payment-method', 'PaymentMethodController')
 Route::resource('shipping-method', 'ShippingMethodController')
     ->parameters(['shipping-method' => 'shippingMethod']);
 
-
 Route::get('/taxonomy/{taxonomy}/taxon/create', 'TaxonController@create')->name('taxon.create');
 Route::post('/taxonomy/{taxonomy}/taxon', 'TaxonController@store')->name('taxon.store');
 Route::get('/taxonomy/{taxonomy}/taxon/{taxon}/edit', 'TaxonController@edit')->name('taxon.edit');
