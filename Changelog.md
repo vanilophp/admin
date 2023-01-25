@@ -3,6 +3,7 @@
 ## Unreleased
 ##### 2023-XX-YY
 
+- Added Carrier CRUD
 - Added Shipping method CRUD
 - Changed minimal Vanilo requirement to v3.4.1
 

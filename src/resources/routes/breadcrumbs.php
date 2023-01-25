@@ -176,3 +176,23 @@ Breadcrumbs::for('vanilo.admin.shipping-method.edit', function ($breadcrumbs, $s
     $breadcrumbs->parent('vanilo.admin.shipping-method.show', $shippingMethod);
     $breadcrumbs->push(__('Edit'), route('vanilo.admin.shipping-method.edit', $shippingMethod));
 });
+
+Breadcrumbs::for('vanilo.admin.carrier.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push(__('Carriers'), route('vanilo.admin.carrier.index'));
+});
+
+Breadcrumbs::for('vanilo.admin.carrier.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('vanilo.admin.carrier.index');
+    $breadcrumbs->push(__('Create'));
+});
+
+Breadcrumbs::for('vanilo.admin.carrier.show', function ($breadcrumbs, $carrier) {
+    $breadcrumbs->parent('vanilo.admin.carrier.index');
+    $breadcrumbs->push($carrier->name, route('vanilo.admin.carrier.show', $carrier));
+});
+
+Breadcrumbs::for('vanilo.admin.carrier.edit', function ($breadcrumbs, $carrier) {
+    $breadcrumbs->parent('vanilo.admin.carrier.show', $carrier);
+    $breadcrumbs->push(__('Edit'), route('vanilo.admin.carrier.edit', $carrier));
+});

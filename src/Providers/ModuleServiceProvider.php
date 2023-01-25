@@ -18,6 +18,7 @@ use Konekt\AppShell\Acl\ResourcePermissionMapper;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Menu;
+use Vanilo\Admin\Http\Requests\CreateCarrier;
 use Vanilo\Admin\Http\Requests\CreateChannel;
 use Vanilo\Admin\Http\Requests\CreateMasterProduct;
 use Vanilo\Admin\Http\Requests\CreateMasterProductVariant;
@@ -33,6 +34,7 @@ use Vanilo\Admin\Http\Requests\CreateTaxonForm;
 use Vanilo\Admin\Http\Requests\CreateTaxonomy;
 use Vanilo\Admin\Http\Requests\SyncModelPropertyValues;
 use Vanilo\Admin\Http\Requests\SyncModelTaxons;
+use Vanilo\Admin\Http\Requests\UpdateCarrier;
 use Vanilo\Admin\Http\Requests\UpdateChannel;
 use Vanilo\Admin\Http\Requests\UpdateMasterProduct;
 use Vanilo\Admin\Http\Requests\UpdateMasterProductVariant;
@@ -77,6 +79,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         UpdatePaymentMethod::class,
         CreateShippingMethod::class,
         UpdateShippingMethod::class,
+        CreateCarrier::class,
+        UpdateCarrier::class,
     ];
 
     public function boot()
@@ -129,6 +133,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 ->data('icon', 'shipping')
                 ->activateOnUrls(route('vanilo.admin.shipping-method.index', [], false) . '*')
                 ->allowIfUserCan('list shipping methods');
+            $settings->addSubItem('carriers', __('Carriers'), ['route' => 'vanilo.admin.carrier.index'])
+                ->data('icon', 'carrier')
+                ->activateOnUrls(route('vanilo.admin.carrier.index', [], false) . '*')
+                ->allowIfUserCan('list carriers');
         }
     }
 }

@@ -107,10 +107,15 @@ trait RegistersVaniloIcons
             LineIconsTheme::ID => 'credit-cards',
             FontAwesomeIconTheme::ID => 'credit-card'
         ],
-        'shipping' => [
+        'carrier' => [
             ZmdiIconTheme::ID => 'truck',
             LineIconsTheme::ID => 'delivery',
             FontAwesomeIconTheme::ID => 'truck'
+        ],
+        'shipping' => [
+            ZmdiIconTheme::ID => 'bike',
+            LineIconsTheme::ID => 'upload',
+            FontAwesomeIconTheme::ID => 'truck-loading'
         ],
     ];
 
