@@ -156,3 +156,23 @@ Breadcrumbs::for('vanilo.admin.payment-method.edit', function ($breadcrumbs, $pa
     $breadcrumbs->parent('vanilo.admin.payment-method.show', $paymentMethod);
     $breadcrumbs->push(__('Edit'), route('vanilo.admin.payment-method.edit', $paymentMethod));
 });
+
+Breadcrumbs::for('vanilo.admin.shipping-method.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push(__('Shipping Methods'), route('vanilo.admin.shipping-method.index'));
+});
+
+Breadcrumbs::for('vanilo.admin.shipping-method.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('vanilo.admin.shipping-method.index');
+    $breadcrumbs->push(__('Create'));
+});
+
+Breadcrumbs::for('vanilo.admin.shipping-method.show', function ($breadcrumbs, $shippingMethod) {
+    $breadcrumbs->parent('vanilo.admin.shipping-method.index');
+    $breadcrumbs->push($shippingMethod->name, route('vanilo.admin.shipping-method.show', $shippingMethod));
+});
+
+Breadcrumbs::for('vanilo.admin.shipping-method.edit', function ($breadcrumbs, $shippingMethod) {
+    $breadcrumbs->parent('vanilo.admin.shipping-method.show', $shippingMethod);
+    $breadcrumbs->push(__('Edit'), route('vanilo.admin.shipping-method.edit', $shippingMethod));
+});

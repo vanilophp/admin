@@ -1,5 +1,11 @@
 # Vanilo Admin Changelog
 
+## Unreleased
+##### 2023-XX-YY
+
+- Added Shipping method CRUD
+- Changed minimal Vanilo requirement to v3.4.1
+
 ## 3.3.0
 ##### 2023-01-06
 

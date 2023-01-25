@@ -107,6 +107,11 @@ trait RegistersVaniloIcons
             LineIconsTheme::ID => 'credit-cards',
             FontAwesomeIconTheme::ID => 'credit-card'
         ],
+        'shipping' => [
+            ZmdiIconTheme::ID => 'truck',
+            LineIconsTheme::ID => 'delivery',
+            FontAwesomeIconTheme::ID => 'truck'
+        ],
     ];
 
     private array $enumIcons = [

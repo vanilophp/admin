@@ -27,6 +27,7 @@ use Vanilo\Admin\Http\Requests\CreateProduct;
 use Vanilo\Admin\Http\Requests\CreateProperty;
 use Vanilo\Admin\Http\Requests\CreatePropertyValue;
 use Vanilo\Admin\Http\Requests\CreatePropertyValueForm;
+use Vanilo\Admin\Http\Requests\CreateShippingMethod;
 use Vanilo\Admin\Http\Requests\CreateTaxon;
 use Vanilo\Admin\Http\Requests\CreateTaxonForm;
 use Vanilo\Admin\Http\Requests\CreateTaxonomy;
@@ -40,6 +41,7 @@ use Vanilo\Admin\Http\Requests\UpdatePaymentMethod;
 use Vanilo\Admin\Http\Requests\UpdateProduct;
 use Vanilo\Admin\Http\Requests\UpdateProperty;
 use Vanilo\Admin\Http\Requests\UpdatePropertyValue;
+use Vanilo\Admin\Http\Requests\UpdateShippingMethod;
 use Vanilo\Admin\Http\Requests\UpdateTaxon;
 use Vanilo\Admin\Http\Requests\UpdateTaxonomy;
 
@@ -72,7 +74,9 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         CreateChannel::class,
         UpdateChannel::class,
         CreatePaymentMethod::class,
-        UpdatePaymentMethod::class
+        UpdatePaymentMethod::class,
+        CreateShippingMethod::class,
+        UpdateShippingMethod::class,
     ];
 
     public function boot()
@@ -121,6 +125,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                      ->data('icon', 'payment-method')
                      ->activateOnUrls(route('vanilo.admin.payment-method.index', [], false) . '*')
                      ->allowIfUserCan('list payment methods');
+            $settings->addSubItem('shipping-methods', __('Shipping Methods'), ['route' => 'vanilo.admin.shipping-method.index'])
+                ->data('icon', 'shipping')
+                ->activateOnUrls(route('vanilo.admin.shipping-method.index', [], false) . '*')
+                ->allowIfUserCan('list shipping methods');
         }
     }
 }
