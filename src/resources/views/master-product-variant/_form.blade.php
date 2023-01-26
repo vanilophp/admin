@@ -106,6 +106,23 @@
 <hr>
 
 <div class="form-group">
+    <label>{{ __('Description') }}</label>
+
+    {{ Form::textarea('description', null,
+            [
+                'class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''),
+                'placeholder' => __('Type or copy/paste product description here')
+            ]
+    ) }}
+
+    @if ($errors->has('description'))
+        <div class="invalid-feedback">{{ $errors->first('description') }}</div>
+    @endif
+</div>
+
+<hr>
+
+<div class="form-group">
     <label class="form-control-label text-muted">{{ __('Short Description') }} ({{ __('optional') }})</label>
     {{ Form::textarea('excerpt', null, [
             'class' => 'form-control form-control-sm' . ($errors->has('excerpt') ? ' is-invalid' : ''),

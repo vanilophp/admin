@@ -1,5 +1,10 @@
 # Vanilo Admin Changelog
 
+## Unreleased
+##### 2023-XX-YY
+
+- Added the `description` field to the master product variant screen
+
 ## 3.4.0
 ##### 2023-01-25
 

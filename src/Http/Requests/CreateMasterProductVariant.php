@@ -28,6 +28,7 @@ class CreateMasterProductVariant extends FormRequest implements CreateMasterProd
             'original_price' => 'sometimes|nullable|numeric',
             'stock' => 'nullable|numeric',
             'excerpt' => 'sometimes|nullable|max:8192',
+            'description' => 'sometimes|nullable|max:32768',
             'images' => 'nullable',
             'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp'
         ];
