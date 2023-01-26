@@ -4,6 +4,12 @@
 ##### 2023-XX-YY
 
 - Added the `description` field to the master product variant screen
+- Added filters widget on top of the order list
+- Added number filter to the order list
+- Added the enhanced status filter to the order list
+- Removed the "Show closed orders"/"Hide closed orders" button in favour of the new status filter
+- Changed minimum Vanilo requirement to v3.5
+- Changed minimum AppShell requirement to v3.7
 
 ## 3.4.0
 ##### 2023-01-25

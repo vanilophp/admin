@@ -19,10 +19,10 @@
         "ext-json": "*",
         "ext-pdo": "*",
         "laravel/framework": "^9.2",
-        "konekt/appshell": "^3.5.1",
+        "konekt/appshell": "^3.7",
         "konekt/concord": "^1.12",
         "spatie/laravel-medialibrary": "^10.3.6",
-        "vanilo/framework": "^3.4.1"
+        "vanilo/framework": "^3.5"
     },
     "autoload": {
         "psr-4": {

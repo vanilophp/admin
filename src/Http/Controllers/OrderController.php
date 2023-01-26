@@ -15,8 +15,16 @@ declare(strict_types=1);
 namespace Vanilo\Admin\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Konekt\AppShell\Filters\Filters;
+use Konekt\AppShell\Filters\Generic\ExactMatch;
+use Konekt\AppShell\Filters\Generic\PartialMatch;
+use Konekt\AppShell\Filters\PartialMatchPattern;
 use Konekt\AppShell\Http\Controllers\BaseController;
+use Konekt\AppShell\Widgets;
+use Konekt\AppShell\Widgets\AppShellWidgets;
 use Vanilo\Admin\Contracts\Requests\UpdateOrder;
+use Vanilo\Admin\Filters\OrderStatusFilter;
+use Vanilo\Channel\Models\ChannelProxy;
 use Vanilo\Order\Contracts\Order;
 use Vanilo\Order\Contracts\OrderAwareEvent;
 use Vanilo\Order\Events\OrderWasCancelled;
@@ -28,15 +36,20 @@ class OrderController extends BaseController
 {
     public function index(Request $request)
     {
-        $query = OrderProxy::withCurrentPayment()->orderBy('created_at', 'desc');
+        $filters = $this->getFilters();
 
-        $inactives = $request->has('inactives');
-        if (!$inactives) {
-            $query->open();
+        $filters->activateFromRequest($request);
+        $query = OrderProxy::withCurrentPayment()->orderBy('created_at', 'desc');
+        if (!$filters->isActive('status')) {
+            $query->open(); // Give open orders only if no explicit status was requested
         }
+
         return view('vanilo::order.index', [
-            'orders' => $query->paginate(100),
-            'inactives' => $inactives,
+            'orders' => $filters->apply($query)->paginate(100)->withQueryString(),
+            'filters' => Widgets::make(AppShellWidgets::FILTER_SET, [
+                'route' => 'vanilo.admin.order.index',
+                'filters' => $filters,
+            ])
         ]);
     }
 
@@ -88,6 +101,23 @@ class OrderController extends BaseController
         }
 
         return redirect(route('vanilo.admin.order.index'));
+    }
+
+    protected function getFilters(): Filters
+    {
+        $filters = [
+            (new PartialMatch('number', __('Number'), PartialMatchPattern::ANYWHERE()))->displayAsTextField(),
+        ];
+
+        if (ChannelProxy::count() > 0) {
+            $filters[] = new ExactMatch(
+                'channel_id',
+                __('Channel'),
+                [null => __('Any channel')] + ChannelProxy::pluck('name', 'id')->toArray(),
+            );
+        }
+
+        return Filters::make(array_merge($filters, [new OrderStatusFilter()]));
     }
 
     private function getStatusUpdateEventClass(string $status, Order $order): ?OrderAwareEvent
