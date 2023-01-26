@@ -25,14 +25,13 @@ use Vanilo\Order\Models\OrderStatusProxy;
 
 class OrderStatusFilter implements Filter
 {
-    public const OPEN = 'open';
-    public const CLOSED = 'closed';
-    public const ANY = 'any';
-
     use HasBaseFilterAttributes;
     use HasPlaceholderSetter;
     use HasWidgetType;
     use DoesNotAllowMultipleValues;
+    public const OPEN = 'open';
+    public const CLOSED = 'closed';
+    public const ANY = 'any';
 
     public function __construct()
     {
