@@ -29,6 +29,7 @@ class OrderStatusFilter implements Filter
     use HasPlaceholderSetter;
     use HasWidgetType;
     use DoesNotAllowMultipleValues;
+
     public const OPEN = 'open';
     public const CLOSED = 'closed';
     public const ANY = 'any';
