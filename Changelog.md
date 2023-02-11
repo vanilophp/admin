@@ -1,7 +1,7 @@
 # Vanilo Admin Changelog
 
-## Unreleased
-##### 2023-02-XX
+## 3.4.1
+##### 2023-02-11
 
 - Fixed broken pagination links on product admin
 
