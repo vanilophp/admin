@@ -35,10 +35,10 @@ class ProductController extends BaseController
             collect($products->items())->merge($masterProducts->items()),
             $products->total() + $masterProducts->total(),
             100,
-        ) ;
+        );
 
         return view('vanilo::product.index', [
-            'products' => $paginator,
+            'products' => $paginator->withPath(route('vanilo.admin.product.index')),
         ]);
     }
 

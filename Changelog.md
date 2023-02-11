@@ -11,6 +11,11 @@
 - Changed minimum Vanilo requirement to v3.5
 - Changed minimum AppShell requirement to v3.7
 
+## 3.4.1
+##### 2023-02-11
+
+- Fixed broken pagination links on product admin
+
 ## 3.4.0
 ##### 2023-01-25
 
