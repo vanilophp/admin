@@ -23,6 +23,9 @@
 
         <div class="col-12 col-md-4">
             @include('vanilo::order.show._payment')
+            @if(null !== $order->shipping_address_id)
+                @include('vanilo::order.show._shipment')
+            @endif
         </div>
     </div>
 

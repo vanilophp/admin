@@ -25,6 +25,12 @@
 <div class="card mb-3">
     <div class="card-header">
         {{ __('Ship To') }}
+        @if($order->shipping_method_id)
+            |
+            <a href="{{ route('vanilo.admin.shipping-method.show', $order->shippingMethod) }}" class="badge badge-pill badge-primary" title="{{ __('Shipping method') }}">
+                {{ $order->shippingMethod->name }}
+            </a>
+        @endif
     </div>
 
     <?php $shippingAddress = $order->getShippingAddress(); ?>

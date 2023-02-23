@@ -7,6 +7,7 @@
 - Added filters widget on top of the order list
 - Added number filter to the order list
 - Added the enhanced status filter to the order list
+- Added shipping method and shipment lists to the order page
 - Removed the "Show closed orders"/"Hide closed orders" button in favour of the new status filter
 - Changed minimum Vanilo requirement to v3.5
 - Changed minimum AppShell requirement to v3.7

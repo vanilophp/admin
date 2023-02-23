@@ -7,6 +7,7 @@
         <table class="table table-striped">
             <thead>
             <tr>
+                <th style="width: 3%"></th>
                 <th style="width: 7%">#</th>
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Qty') }}</th>
@@ -18,6 +19,9 @@
             <tbody>
             @foreach($order->getItems() as $item)
                 <tr>
+                    <td>
+                        <input type="checkbox" name="order_item[{{$item->id}}]" />
+                    </td>
                     <td>{{ $loop->iteration }}</td>
                     <td>@if($item->product)<a href="{{ route('vanilo.admin.product.show', $item->product) }}">@endif
                         {{ $item->name }}
