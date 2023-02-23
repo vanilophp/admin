@@ -68,7 +68,7 @@
                     </td>
                     <td>
                         <div class="mt-2">
-                                <span class="badge badge-pill badge-{{$order->status->is_completed ? 'success' : 'secondary'}}">
+                                <span class="badge badge-pill badge-{{$order->status->is_completed ? 'success' : ($order->status->is_cancelled ? 'warning': 'secondary')}}">
                                     {{ $order->status->label() }}
                                 </span>
                         </div>

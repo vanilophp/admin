@@ -9,7 +9,8 @@
 - Added the enhanced status filter to the order list
 - Added shipping method and shipment lists to the order page
 - Removed the "Show closed orders"/"Hide closed orders" button in favour of the new status filter
-- Changed minimum Vanilo requirement to v3.5
+- Changed the status badge color to `warning` for cancelled orders in the order list
+- Changed minimum Vanilo requirement to v3.5.1
 - Changed minimum AppShell requirement to v3.7
 
 ## 3.4.1
