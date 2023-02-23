@@ -1,7 +1,7 @@
 # Vanilo Admin Changelog
 
-## Unreleased
-##### 2023-XX-YY
+## 3.5.0
+##### 2023-02-23
 
 - Added the `description` field to the master product variant screen
 - Added filters widget on top of the order list
