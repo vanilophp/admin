@@ -38,7 +38,7 @@ class ProductController extends BaseController
                 $perPage,
                 $page,
                 [
-                    'path'     => LengthAwarePaginator::resolveCurrentPath(),
+                    'path' => LengthAwarePaginator::resolveCurrentPath(),
                     'pageName' => $pageName,
                 ]
             );
