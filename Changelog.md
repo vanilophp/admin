@@ -1,5 +1,10 @@
 # Vanilo Admin Changelog
 
+## Unreleased
+##### 2023-XX-YY
+
+- Fixed the product index pagination bug due to the multi-model collection
+
 ## 3.5.0
 ##### 2023-02-23
 

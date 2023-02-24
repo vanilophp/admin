@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Vanilo\Admin\Http\Controllers;
 
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\LazyCollection;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateProduct;
 use Vanilo\Admin\Contracts\Requests\UpdateProduct;
@@ -28,17 +29,29 @@ class ProductController extends BaseController
 {
     public function index()
     {
-        $products = ProductProxy::query()->paginate(50);
-        $masterProducts = MasterProductProxy::query()->paginate(50);
+        LazyCollection::macro('paginate', function ($perPage = 100, $total = null, $page = null, $pageName = 'page') {
+            $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
 
-        $paginator = new LengthAwarePaginator(
-            collect($products->items())->merge($masterProducts->items()),
-            $products->total() + $masterProducts->total(),
-            100,
-        );
+            return new LengthAwarePaginator(
+                $this->forPage($page, $perPage),
+                $total ?: $this->count(),
+                $perPage,
+                $page,
+                [
+                    'path'     => LengthAwarePaginator::resolveCurrentPath(),
+                    'pageName' => $pageName,
+                ]
+            );
+        });
+
+        /** @todo this solution requires significant improvement. It loads all the records in the memory! */
+        $products = ProductProxy::query()->with(['taxons', 'media'])->get();
+        $masterProducts = MasterProductProxy::query()->with(['taxons', 'media'])->get();
+
+        $items = collect()->push($products, $masterProducts)->lazy()->flatten()->sortByDesc('created_at');
 
         return view('vanilo::product.index', [
-            'products' => $paginator->withPath(route('vanilo.admin.product.index')),
+                'products' => $items->paginate(100)->withPath(route('vanilo.admin.product.index')),
         ]);
     }
 
