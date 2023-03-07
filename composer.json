@@ -18,7 +18,7 @@
         "php": "^8.0",
         "ext-json": "*",
         "ext-pdo": "*",
-        "laravel/framework": "^9.2",
+        "laravel/framework": "^9.2|^10.0",
         "konekt/appshell": "^3.7",
         "konekt/concord": "^1.12",
         "spatie/laravel-medialibrary": "^10.3.6",
@@ -30,7 +30,7 @@
         }
     },
     "require-dev": {
-        "orchestra/testbench": "^7.0",
+        "orchestra/testbench": "^7.0|^8.0",
         "phpunit/phpunit" : "^9.5",
         "laravel/legacy-factories": "^1.3"
     },
