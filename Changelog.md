@@ -4,6 +4,7 @@
 ##### 2023-XX-YY
 
 - Added Laravel 10 support
+- Added alternate color to the new `processing` order status
 
 ## 3.5.1
 ##### 2023-02-24
