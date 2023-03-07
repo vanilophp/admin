@@ -22,7 +22,7 @@
         "konekt/appshell": "^3.7",
         "konekt/concord": "^1.12",
         "spatie/laravel-medialibrary": "^10.3.6",
-        "vanilo/framework": "^3.5.1"
+        "vanilo/framework": "^3.6"
     },
     "autoload": {
         "psr-4": {
@@ -44,7 +44,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.x-dev"
+            "dev-master": "3.6.x-dev"
         }
     }
 }
