@@ -13,6 +13,7 @@ declare(strict_types=1);
 */
 
 Route::resource('channel', 'ChannelController');
+Route::resource('zone', 'ZoneController');
 Route::resource('taxonomy', 'TaxonomyController');
 Route::resource('product', 'ProductController');
 Route::resource('master_product', 'MasterProductController')->except(['index']);
@@ -46,3 +47,9 @@ Route::get('/master-product/{masterProduct}/variant/{masterProductVariant}/edit'
 Route::get('/master-product/{masterProduct}/variant/{masterProductVariant}', 'MasterProductVariantController@show')->name('master_product_variant.show');
 Route::put('/master-product/{masterProduct}/variant/{masterProductVariant}', 'MasterProductVariantController@update')->name('master_product_variant.update');
 Route::delete('/master-product/{masterProduct}/variant/{masterProductVariant}', 'MasterProductVariantController@destroy')->name('master_product_variant.destroy');
+
+Route::get('/zone/{zone}/member/create', 'ZoneMemberController@create')->name('zone_member.create');
+Route::post('/zone/{zone}/member', 'ZoneMemberController@store')->name('zone_member.store');
+Route::get('/zone/{zone}/member/{zoneMember}/edit', 'ZoneMemberController@edit')->name('zone_member.edit');
+Route::put('/zone/{zone}/member/{zoneMember}', 'ZoneMemberController@update')->name('zone_member.update');
+Route::delete('/zone/{zone}/member/{zoneMember}', 'ZoneMemberController@destroy')->name('zone_member.destroy');

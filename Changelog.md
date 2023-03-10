@@ -4,7 +4,13 @@
 ##### 2023-XX-YY
 
 - Added Laravel 10 support
+- Added Zone CRUD
+- Added zone and calculator editing option to shipping methods
 - Added alternate color to the new `processing` order status
+- Changed minimum Vanilo requirement to v3.6.1
+- Changed minimum AppShell requirement to v3.9
+- Change minimum Address module requirement to v2.6
+
 
 ## 3.5.1
 ##### 2023-02-24

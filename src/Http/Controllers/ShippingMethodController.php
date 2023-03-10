@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Http\Controllers;
 
+use Konekt\Address\Query\Zones;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateShippingMethod;
 use Vanilo\Admin\Contracts\Requests\UpdateShippingMethod;
@@ -64,6 +65,7 @@ class ShippingMethodController extends BaseController
         return view('vanilo::shipping-method.edit', [
             'shippingMethod' => $shippingMethod,
             'carriers' => CarrierProxy::all(),
+            'zones' => Zones::withShippingScope()->get(),
         ]);
     }
 

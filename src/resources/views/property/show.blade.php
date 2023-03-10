@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div class="card">
+    <div class="card mt-4">
         <div class="card-body">
             @can('edit properties')
                 <a href="{{ route('vanilo.admin.property.edit', $property) }}" class="btn btn-outline-primary">{{ __('Edit Property') }}</a>

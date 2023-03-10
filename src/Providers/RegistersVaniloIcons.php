@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Providers;
 
+use Konekt\AppShell\Icons\FontAwesome6IconTheme;
 use Konekt\AppShell\Icons\FontAwesomeIconTheme;
 use Konekt\AppShell\Icons\LineIconsTheme;
 use Konekt\AppShell\Icons\ZmdiIconTheme;
@@ -31,6 +32,12 @@ trait RegistersVaniloIcons
             ZmdiIconTheme::ID => 'portable-wifi',
             LineIconsTheme::ID => 'signal',
             FontAwesomeIconTheme::ID => 'satellite-dish'
+        ],
+        'zone' => [
+            ZmdiIconTheme::ID => 'globe',
+            LineIconsTheme::ID => 'map',
+            FontAwesomeIconTheme::ID => 'map-marked-alt',
+            FontAwesome6IconTheme::ID => 'map-location-dot'
         ],
         'product' => [
             ZmdiIconTheme::ID => 'layers',

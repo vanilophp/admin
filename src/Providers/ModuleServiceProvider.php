@@ -14,8 +14,12 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Providers;
 
+use Konekt\Address\Models\ZoneScope;
+use Konekt\Address\Models\ZoneScopeProxy;
 use Konekt\AppShell\Acl\ResourcePermissionMapper;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
+use Konekt\AppShell\EnumColors;
+use Konekt\AppShell\Theme\ThemeColor;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Menu;
 use Vanilo\Admin\Http\Requests\CreateCarrier;
@@ -32,6 +36,7 @@ use Vanilo\Admin\Http\Requests\CreateShippingMethod;
 use Vanilo\Admin\Http\Requests\CreateTaxon;
 use Vanilo\Admin\Http\Requests\CreateTaxonForm;
 use Vanilo\Admin\Http\Requests\CreateTaxonomy;
+use Vanilo\Admin\Http\Requests\CreateZone;
 use Vanilo\Admin\Http\Requests\SyncModelPropertyValues;
 use Vanilo\Admin\Http\Requests\SyncModelTaxons;
 use Vanilo\Admin\Http\Requests\UpdateCarrier;
@@ -46,6 +51,7 @@ use Vanilo\Admin\Http\Requests\UpdatePropertyValue;
 use Vanilo\Admin\Http\Requests\UpdateShippingMethod;
 use Vanilo\Admin\Http\Requests\UpdateTaxon;
 use Vanilo\Admin\Http\Requests\UpdateTaxonomy;
+use Vanilo\Admin\Http\Requests\UpdateZone;
 
 class ModuleServiceProvider extends BaseBoxServiceProvider
 {
@@ -81,6 +87,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         UpdateShippingMethod::class,
         CreateCarrier::class,
         UpdateCarrier::class,
+        CreateZone::class,
+        UpdateZone::class,
     ];
 
     public function boot()
@@ -95,6 +103,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
         $this->registerIconExtensions();
         $this->registerEnumIcons();
+        $this->registerEnumColors();
         $this->loadBreadcrumbs();
         $this->addMenuItems();
     }
@@ -125,6 +134,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 ->data('icon', 'channel')
                 ->activateOnUrls(route('vanilo.admin.channel.index', [], false) . '*')
                 ->allowIfUserCan('list channels');
+            $settings->addSubItem('zones', __('Zones'), ['route' => 'vanilo.admin.zone.index'])
+                ->data('icon', 'zone')
+                ->activateOnUrls(route('vanilo.admin.zone.index', [], false) . '*')
+                ->allowIfUserCan('list zones');
             $settings->addSubItem('payment-methods', __('Payment Methods'), ['route' => 'vanilo.admin.payment-method.index'])
                      ->data('icon', 'payment-method')
                      ->activateOnUrls(route('vanilo.admin.payment-method.index', [], false) . '*')
@@ -138,5 +151,19 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 ->activateOnUrls(route('vanilo.admin.carrier.index', [], false) . '*')
                 ->allowIfUserCan('list carriers');
         }
+    }
+
+    private function registerEnumColors(): void
+    {
+        EnumColors::registerEnumColor(
+            ZoneScopeProxy::enumClass(),
+            [
+                ZoneScope::SHIPPING => ThemeColor::SUCCESS(),
+                ZoneScope::BILLING => ThemeColor::INFO(),
+                ZoneScope::TAXATION => ThemeColor::WARNING(),
+                ZoneScope::PRICING => ThemeColor::PRIMARY(),
+                ZoneScope::CONTENT => ThemeColor::SECONDARY(),
+            ]
+        );
     }
 }

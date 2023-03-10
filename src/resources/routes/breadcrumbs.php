@@ -196,3 +196,23 @@ Breadcrumbs::for('vanilo.admin.carrier.edit', function ($breadcrumbs, $carrier) 
     $breadcrumbs->parent('vanilo.admin.carrier.show', $carrier);
     $breadcrumbs->push(__('Edit'), route('vanilo.admin.carrier.edit', $carrier));
 });
+
+Breadcrumbs::for('vanilo.admin.zone.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push(__('Zones'), route('vanilo.admin.zone.index'));
+});
+
+Breadcrumbs::for('vanilo.admin.zone.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('vanilo.admin.zone.index');
+    $breadcrumbs->push(__('Create'));
+});
+
+Breadcrumbs::for('vanilo.admin.zone.show', function ($breadcrumbs, $zone) {
+    $breadcrumbs->parent('vanilo.admin.zone.index');
+    $breadcrumbs->push($zone->name, route('vanilo.admin.zone.show', $zone));
+});
+
+Breadcrumbs::for('vanilo.admin.zone.edit', function ($breadcrumbs, $zone) {
+    $breadcrumbs->parent('vanilo.admin.zone.show', $zone);
+    $breadcrumbs->push(__('Edit'), route('vanilo.admin.zone.edit', $zone));
+});
