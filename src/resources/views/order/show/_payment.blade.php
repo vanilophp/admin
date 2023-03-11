@@ -15,6 +15,9 @@
                                 {{ $payment->getMethod()->getName() }}
                             </a>
                         </span>
+                        @if(null !== $payment->subtype)
+                            <small class="badge badge-pill badge-light">{{ $payment->subtype }}</small>
+                        @endif
                         <div class="text-muted">
                             {{ show_datetime($payment->updated_at) }}
                         </div>
