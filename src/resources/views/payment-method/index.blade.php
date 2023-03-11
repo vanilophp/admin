@@ -46,7 +46,13 @@
                                 @endcan
                             </span>
                         </td>
-                        <td>{{ $paymentMethod->getGatewayName() }}</td>
+                        <td>
+                            @if('null' === $paymentMethod->gateway)
+                                <span class="badge badge-pill badge-warning">{{ $paymentMethod->getGatewayName() }}</span>
+                            @else
+                                <span class="badge badge-pill badge-primary">{{ $paymentMethod->getGatewayName() }}</span>
+                            @endif
+                        </td>
                         <td>{{ (int) $paymentMethod->transaction_count }}</td>
                         <td>
                             @if($paymentMethod->isEnabled())
