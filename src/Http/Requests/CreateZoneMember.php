@@ -37,7 +37,7 @@ class CreateZoneMember extends FormRequest implements CreateZoneMemberContract
 
     private function getMemberIdRule(): string
     {
-        return match($this->input('member_type')) {
+        return match ($this->input('member_type')) {
             ZoneMemberType::COUNTRY => 'required|exists:countries,id',
             ZoneMemberType::PROVINCE => 'required|exists:provinces,id',
             default => 'required',
