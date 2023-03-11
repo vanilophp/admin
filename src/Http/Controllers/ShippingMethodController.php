@@ -21,6 +21,7 @@ use Vanilo\Admin\Contracts\Requests\UpdateShippingMethod;
 use Vanilo\Shipment\Contracts\ShippingMethod;
 use Vanilo\Shipment\Models\CarrierProxy;
 use Vanilo\Shipment\Models\ShippingMethodProxy;
+use Vanilo\Shipment\ShippingFeeCalculators;
 
 class ShippingMethodController extends BaseController
 {
@@ -36,6 +37,8 @@ class ShippingMethodController extends BaseController
         return view('vanilo::shipping-method.create', [
             'shippingMethod' => app(ShippingMethod::class),
             'carriers' => CarrierProxy::all(),
+            'zones' => Zones::withShippingScope()->get(),
+            'calculators' => ShippingFeeCalculators::choices(),
         ]);
     }
 
@@ -66,6 +69,7 @@ class ShippingMethodController extends BaseController
             'shippingMethod' => $shippingMethod,
             'carriers' => CarrierProxy::all(),
             'zones' => Zones::withShippingScope()->get(),
+            'calculators' => ShippingFeeCalculators::choices(),
         ]);
     }
 

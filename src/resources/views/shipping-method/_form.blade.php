@@ -66,6 +66,21 @@
 
 <hr>
 
+
+<div class="form-group row">
+    <label class="col-form-label col-form-label-sm col-md-2">{{ __('Calculator') }}</label>
+    <div class="col-md-10">
+        {{ Form::select('calculator', $calculators, null, [
+                'class' => 'form-control form-control-sm' . ($errors->has('calculator') ? ' is-invalid': ''),
+                'placeholder' => __('--')
+           ])
+        }}
+        @if ($errors->has('calculator'))
+            <div class="invalid-feedback">{{ $errors->first('calculator') }}</div>
+        @endif
+    </div>
+</div>
+
 <div class="form-group row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Configuration') }}</label>
     <div class="col-md-10">

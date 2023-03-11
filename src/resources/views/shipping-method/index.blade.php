@@ -29,6 +29,7 @@
                 <tr>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Zone') }}</th>
+                    <th>{{ __('Calculation') }}</th>
                     <th>{{ __('Carrier') }}</th>
                     <th>{{ __('Enabled') }}</th>
                     <th style="width: 10%">&nbsp;</th>
@@ -58,7 +59,26 @@
                                 <span class="badge badge-pill badge-secondary">{{ __('Unrestricted') }}</span>
                             @endif
                         </td>
-                        <td>{{ $shippingMethod->getCarrier()?->name() }}</td>
+                        <td>
+                            @if(null === $shippingMethod->calculator)
+                                <span class="badge badge-pill badge-warning">{{ $shippingMethod->getCalculator()->getName() }}</span>
+                            @else
+                                <span class="badge badge-pill badge-primary">{{ $shippingMethod->getCalculator()->getName() }}</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if(null === $shippingMethod->carrier)
+                                {{ __('No carrier assigned') }}
+                            @else
+                                @can('view carriers')
+                                    <a href="{{ route('vanilo.admin.carrier.show', $shippingMethod->getCarrier()) }}">
+                                        {{ $shippingMethod->getCarrier()?->name() }}
+                                    </a>
+                                @else
+                                    {{ $shippingMethod->getCarrier()->name() }}
+                                @endcan
+                            @endif
+                        </td>
                         <td>
                             @if($shippingMethod->is_active)
                                 {!! icon('active') !!}

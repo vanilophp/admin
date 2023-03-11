@@ -15,7 +15,9 @@ declare(strict_types=1);
 namespace Vanilo\Admin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Vanilo\Admin\Contracts\Requests\CreateShippingMethod as CreateShippingMethodContract;
+use Vanilo\Shipment\ShippingFeeCalculators;
 
 class CreateShippingMethod extends FormRequest implements CreateShippingMethodContract
 {
@@ -25,6 +27,7 @@ class CreateShippingMethod extends FormRequest implements CreateShippingMethodCo
             'name' => 'required|min:2|max:255',
             'carrier_id' => 'required|exists:carriers,id',
             'zone_id' => 'sometimes|nullable|exists:zones,id',
+            'calculator' => ['sometimes', 'nullable', Rule::in(ShippingFeeCalculators::ids())],
             'configuration' => 'sometimes|json',
             'is_active' => 'sometimes|boolean',
         ];
