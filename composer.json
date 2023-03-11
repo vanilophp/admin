@@ -19,7 +19,7 @@
         "ext-json": "*",
         "ext-pdo": "*",
         "laravel/framework": "^9.2|^10.0",
-        "konekt/address": "^2.6",
+        "konekt/address": "^2.7",
         "konekt/appshell": "^3.9",
         "konekt/concord": "^1.12",
         "spatie/laravel-medialibrary": "^10.3.6",

@@ -37,6 +37,7 @@ use Vanilo\Admin\Http\Requests\CreateTaxon;
 use Vanilo\Admin\Http\Requests\CreateTaxonForm;
 use Vanilo\Admin\Http\Requests\CreateTaxonomy;
 use Vanilo\Admin\Http\Requests\CreateZone;
+use Vanilo\Admin\Http\Requests\CreateZoneMember;
 use Vanilo\Admin\Http\Requests\SyncModelPropertyValues;
 use Vanilo\Admin\Http\Requests\SyncModelTaxons;
 use Vanilo\Admin\Http\Requests\UpdateCarrier;
@@ -89,6 +90,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         UpdateCarrier::class,
         CreateZone::class,
         UpdateZone::class,
+        CreateZoneMember::class,
     ];
 
     public function boot()
@@ -100,6 +102,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $aclResourceMapper->overrideResourcePlural('taxon', 'taxons');
         $aclResourceMapper->addAlias('master product', 'product');
         $aclResourceMapper->addAlias('master product variant', 'product');
+        $aclResourceMapper->addAlias('zone member', 'zone');
 
         $this->registerIconExtensions();
         $this->registerEnumIcons();

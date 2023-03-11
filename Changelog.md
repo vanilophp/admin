@@ -9,7 +9,7 @@
 - Added alternate color to the new `processing` order status
 - Changed minimum Vanilo requirement to v3.6.1
 - Changed minimum AppShell requirement to v3.9
-- Change minimum Address module requirement to v2.6
+- Changed minimum Address module requirement to v2.7
 
 
 ## 3.5.1

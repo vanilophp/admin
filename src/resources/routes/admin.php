@@ -50,6 +50,4 @@ Route::delete('/master-product/{masterProduct}/variant/{masterProductVariant}', 
 
 Route::get('/zone/{zone}/member/create', 'ZoneMemberController@create')->name('zone_member.create');
 Route::post('/zone/{zone}/member', 'ZoneMemberController@store')->name('zone_member.store');
-Route::get('/zone/{zone}/member/{zoneMember}/edit', 'ZoneMemberController@edit')->name('zone_member.edit');
-Route::put('/zone/{zone}/member/{zoneMember}', 'ZoneMemberController@update')->name('zone_member.update');
 Route::delete('/zone/{zone}/member/{zoneMember}', 'ZoneMemberController@destroy')->name('zone_member.destroy');
