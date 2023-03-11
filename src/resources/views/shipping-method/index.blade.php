@@ -28,6 +28,7 @@
                 <thead>
                 <tr>
                     <th>{{ __('Name') }}</th>
+                    <th>{{ __('Zone') }}</th>
                     <th>{{ __('Carrier') }}</th>
                     <th>{{ __('Enabled') }}</th>
                     <th style="width: 10%">&nbsp;</th>
@@ -45,6 +46,17 @@
                                     {{ $shippingMethod->name }}
                                 @endcan
                             </span>
+                        </td>
+                        <td>
+                            @if($shippingMethod->zone_id)
+                                @can('view zones')
+                                    <a href="{{ route('vanilo.admin.zone.show', $shippingMethod->zone) }}" class="badge badge-pill badge-info">{{ $shippingMethod->zone->name }}</a>
+                                @else
+                                    <span class="badge badge-pill badge-info">{{ $shippingMethod->zone->name }}</span>
+                                @endcan
+                            @else
+                                <span class="badge badge-pill badge-secondary">{{ __('Unrestricted') }}</span>
+                            @endif
                         </td>
                         <td>{{ $shippingMethod->getCarrier()?->name() }}</td>
                         <td>

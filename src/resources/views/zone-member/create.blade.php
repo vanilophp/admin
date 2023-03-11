@@ -18,7 +18,7 @@
         </div>
 
         <div class="card-footer">
-            <button class="btn btn-success">{{ __('Add area to the zone') }}</button>
+            <button class="btn btn-success">{{ __('Add to the zone') }}</button>
             <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
         </div>
     </div>

@@ -24,6 +24,7 @@ class CreateShippingMethod extends FormRequest implements CreateShippingMethodCo
         return [
             'name' => 'required|min:2|max:255',
             'carrier_id' => 'required|exists:carriers,id',
+            'zone_id' => 'sometimes|nullable|exists:zones,id',
             'configuration' => 'sometimes|json',
             'is_active' => 'sometimes|boolean',
         ];

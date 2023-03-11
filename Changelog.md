@@ -6,6 +6,7 @@
 - Added Laravel 10 support
 - Added Zone CRUD
 - Added zone and calculator editing option to shipping methods
+- Added zone to shipping method list
 - Added alternate color to the new `processing` order status
 - Changed minimum Vanilo requirement to v3.6.1
 - Changed minimum AppShell requirement to v3.9
