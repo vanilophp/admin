@@ -1,7 +1,7 @@
 # Vanilo Admin Changelog
 
-## Unreleased
-##### 2023-XX-YY
+## 3.6.0
+##### 2023-03-12
 
 - Added Laravel 10 support
 - Added Zone CRUD
@@ -10,7 +10,7 @@
 - Added the payment `subtype` field to the order/payments list
 - Added adjustments (like shipping fee, promotion, etc.) to the bottom of the order item list
 - Added alternate color to the new `processing` order status
-- Changed minimum Vanilo requirement to v3.6.1
+- Changed minimum Vanilo requirement to v3.6.2
 - Changed minimum AppShell requirement to v3.9
 - Changed minimum Address module requirement to v2.7
 
