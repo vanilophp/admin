@@ -38,6 +38,6 @@
 @component('appshell::widgets.card_with_icon', ['icon' => 'bag'])
     {{ format_price($order->total()) }}
     @slot('subtitle')
-        {{ __(':no lines on order', ['no' => $order->items->count()]) }}
+        {{ trans_choice(':no line on order|:no lines on order',  $order->items->count(), ['no' => $order->items->count()]) }}
     @endslot
 @endcomponent

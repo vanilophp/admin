@@ -8,6 +8,7 @@
 - Added zone and calculator editing option to shipping methods
 - Added zone to shipping method list
 - Added the payment `subtype` field to the order/payments list
+- Added adjustments (like shipping fee, promotion, etc.) to the bottom of the order item list
 - Added alternate color to the new `processing` order status
 - Changed minimum Vanilo requirement to v3.6.1
 - Changed minimum AppShell requirement to v3.9

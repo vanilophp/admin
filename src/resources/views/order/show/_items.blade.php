@@ -32,6 +32,24 @@
                     <td>{{ format_price($item->total) }}</td>
                 </tr>
             @endforeach
+            @foreach($order->adjustments() as $adjustment)
+                @unless($adjustment->isIncluded())
+                <tr>
+                    <td colspan="2">
+                        <small class="badge badge-pill badge-secondary">{{ $adjustment->getType()->label() }}</small>
+                    </td>
+                    <td>
+                        {{ $adjustment->getTitle()}}
+                        @if(null !== $adjustment->getOrigin())
+                            <small class="text-secondary">[{{ $adjustment->getOrigin() }}]</small>
+                        @endif
+                    </td>
+                    <td>1</td>
+                    <td>{{ format_price($adjustment->getAmount()) }}</td>
+                    <td>{{ format_price($adjustment->getAmount()) }}</td>
+                </tr>
+                @endunless
+            @endforeach
             </tbody>
             <tfoot>
             <tr>
