@@ -3,7 +3,7 @@
         <span class="input-group-text">
             {!! icon('property-value') !!}
         </span>
-        <x-appshell::floating-label :label="__('Property name')" :is-invalid="$errors->has('title')">
+        <x-appshell::floating-label :label="__('Title')" :is-invalid="$errors->has('title')">
             {{ Form::text('title', null,
                 [
                     'class' => 'form-control form-control-lg' . ($errors->has('title') ? ' is-invalid' : ''),
