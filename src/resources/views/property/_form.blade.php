@@ -1,20 +1,19 @@
 <div class="mb-3">
-    <div class="input-group">
-        <span class="input-group-prepend">
-            <span class="input-group-text">
-                {!! icon('property') !!}
-            </span>
+    <div class="input-group input-group-lg {{ $errors->has('name') ? 'has-validation' : '' }}">
+        <span class="input-group-text">
+            {!! icon('property') !!}
         </span>
-        {{ Form::text('name', null, [
+        <x-appshell::floating-label :label="__('Property name')" :is-invalid="$errors->has('name')">
+            {{ Form::text('name', null, [
                 'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
                 'placeholder' => __('Name of the property')
             ])
         }}
+        </x-appshell::floating-label>
+        @if ($errors->has('name'))
+            <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+        @endif
     </div>
-    @if ($errors->has('name'))
-        <input hidden class="form-control is-invalid" />
-        <div class="invalid-feedback">{{ $errors->first('name') }}</div>
-    @endif
 </div>
 
 <div class="mb-3 row">
@@ -37,7 +36,7 @@
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Type') }}</label>
     <div class="col-md-10">
         {{ Form::select('type', $types, null, [
-                'class' => 'form-control form-control-sm' . ($errors->has('type') ? ' is-invalid': ''),
+                'class' => 'form-select form-select-sm' . ($errors->has('type') ? ' is-invalid': ''),
                 'placeholder' => __('--')
            ])
         }}

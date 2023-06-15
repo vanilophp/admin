@@ -4,37 +4,28 @@
     {{ $property->name }} {{ __('property') }}
 @stop
 
+@push('page-actions')
+    @can('delete properties')
+        {!! Form::open([
+                'route' => ['vanilo.admin.property.destroy', $property],
+                'method' => 'DELETE',
+                'class' => 'd-inline',
+                'data-confirmation-text' => __('Delete this property: ":name"?', ['name' => $property->name])
+            ])
+        !!}
+        <x-appshell::button variant="outline-danger" type="submit">{{ __('Delete Property') }}</x-appshell::button>
+        {!! Form::close() !!}
+    @endcan
+
+    @can('edit properties')
+        <x-appshell::button :href="route('vanilo.admin.property.edit', $property)" variant="outline-primary">{{ __('Edit Property') }}</x-appshell::button>
+    @endcan
+@endpush
+
 @section('content')
+    <x-appshell::card accent="secondary">
+        <x-slot:title>{{ __(':name Values', ['name' => $property->name]) }}</x-slot:title>
 
-    <div class="card">
-        <div class="card-header">
-            <h5>{{ __(':name Values', ['name' => $property->name]) }}</h5>
-        </div>
-        <div class="card-body">
-            @include('vanilo::property-value._index', ['propertyValues' => $property->values()])
-        </div>
-    </div>
-
-    <div class="card mt-4">
-        <div class="card-body">
-            @can('edit properties')
-                <a href="{{ route('vanilo.admin.property.edit', $property) }}" class="btn btn-outline-primary">{{ __('Edit Property') }}</a>
-            @endcan
-
-            @can('delete properties')
-                {!! Form::open([
-                        'route' => ['vanilo.admin.property.destroy', $property],
-                        'method' => 'DELETE',
-                        'class' => 'float-right',
-                        'data-confirmation-text' => __('Delete this property: ":name"?', ['name' => $property->name])
-                    ])
-                !!}
-                <button class="btn btn-outline-danger">
-                    {{ __('Delete Property') }}
-                </button>
-                {!! Form::close() !!}
-            @endcan
-        </div>
-    </div>
-
+        @include('vanilo::property-value._index', ['propertyValues' => $property->values()])
+    </x-appshell::card>
 @stop
