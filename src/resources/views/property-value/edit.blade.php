@@ -7,24 +7,16 @@
 @section('content')
 {!! Form::model($propertyValue, ['url'  => route('vanilo.admin.property_value.update', [$property, $propertyValue]), 'method' => 'PUT', 'class' => 'row']) !!}
 
-    <div class="col-12 col-lg-8 col-xl-9">
-        <div class="card card-accent-secondary">
+    <x-appshell::card accent="secondary">
+        <x-slot:title>{{ __(':property Value', ['property' => $property->name]) }}</x-slot:title>
 
-            <div class="card-header">
-                {{ __(':property Value', ['property' => $property->name]) }}
-            </div>
+        @include('vanilo::property-value._form')
 
-            <div class="card-body">
-                @include('vanilo::property-value._form')
-            </div>
-
-            <div class="card-footer">
-                <button class="btn btn-primary">{{ __('Save') }}</button>
-                <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-            </div>
-
-        </div>
-    </div>
+        <x-slot:footer>
+            <x-appshell::button variant="primary">{{ __('Save') }}</x-appshell::button>
+            <x-appshell::button variant="link" href="#" onclick="history.back();" class="text-secondary">{{ __('Cancel') }}</x-appshell::button>
+        </x-slot:footer>
+    </x-appshell::card>
 
 {!! Form::close() !!}
 @stop

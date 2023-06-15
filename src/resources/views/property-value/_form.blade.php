@@ -1,21 +1,20 @@
 <div class="mb-3">
-    <div class="input-group">
-        <span class="input-group-prepend">
-            <span class="input-group-text">
-                {!! icon('property-value') !!}
-            </span>
+    <div class="input-group input-group-lg {{ $errors->has('title') ? 'has-validation' : '' }}">
+        <span class="input-group-text">
+            {!! icon('property-value') !!}
         </span>
-        {{ Form::text('title', null,
+        <x-appshell::floating-label :label="__('Title')" :is-invalid="$errors->has('title')">
+            {{ Form::text('title', null,
                 [
                     'class' => 'form-control form-control-lg' . ($errors->has('title') ? ' is-invalid' : ''),
                     'placeholder' => __('Title')
                 ]
-        ) }}
+            ) }}
+        </x-appshell::floating-label>
+        @if ($errors->has('title'))
+            <div class="invalid-feedback">{{ $errors->first('title') }}</div>
+        @endif
     </div>
-    @if ($errors->has('title'))
-        <input hidden class="form-control is-invalid" />
-        <div class="invalid-feedback">{{ $errors->first('title') }}</div>
-    @endif
 </div>
 
 <div class="mb-3 row">
