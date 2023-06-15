@@ -7,21 +7,16 @@
 @section('content')
 {!! Form::open(['route' => 'vanilo.admin.property.store', 'autocomplete' => 'off']) !!}
 
-    <div class="card card-accent-success">
+    <x-appshell::card accent="success">
+        <x-slot:title>{{ __('Property Details') }}</x-slot:title>
 
-        <div class="card-header">
-            {{ __('Property Details') }}
-        </div>
+        @include('vanilo::property._form')
 
-        <div class="card-body">
-            @include('vanilo::property._form')
-        </div>
-
-        <div class="card-footer">
-            <button class="btn btn-success">{{ __('Create property') }}</button>
-            <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        </div>
-    </div>
+        <x-slot:footer>
+            <x-appshell::button variant="success">{{ __('Create property') }}</x-appshell::button>
+            <x-appshell::button variant="link" href="#" onclick="history.back();" class="text-secondary">{{ __('Cancel') }}</x-appshell::button>
+        </x-slot:footer>
+    </x-appshell::card>
 
 {!! Form::close() !!}
 @stop
