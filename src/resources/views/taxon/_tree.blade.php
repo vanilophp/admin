@@ -12,19 +12,21 @@
         @endif
 
         @can('edit taxons')
-            <a href="{{ route('vanilo.admin.taxon.edit', [$taxonomy, $taxon]) }}">{{ $taxon->name }}</a>
+            <x-appshell::button :href="route('vanilo.admin.taxon.edit', [$taxonomy, $taxon])" variant="link">{{ $taxon->name }}</x-appshell::button>
         @else
             {{ $taxon->name }}
         @endcan
-            &nbsp;<span class="badge badge-pill badge-light text-muted">{{ $taxon->products()->count() }}</span>
+        &nbsp;<span class="badge rounded-pill text-bg-light text-muted">{{ $taxon->products()->count() }}</span>
 
         <div class="d-inline card-actionbar-show-on-hover">
             @can('create taxons')
-                <a href="{{ route('vanilo.admin.taxon.create', $taxonomy) }}?parent={{$taxon->id}}"
-                   class="btn btn-outline-success btn-xs"
-                   title="{{ __('Add Child :category', ['category' => \Illuminate\Support\Str::singular($taxonomy->name)]) }}">
-                    {!! icon('+') !!}
-                </a>
+                <x-appshell::button
+                    :href="route('vanilo.admin.taxon.create', $taxonomy).'?parent='.$taxon->id"
+                    :title="__('Add Child :category', ['category' => \Illuminate\Support\Str::singular($taxonomy->name)])"
+                    variant="outline-success"
+                    size="xs"
+                    icon="+"
+                ></x-appshell::button>
             @endcan
             @can('delete taxons')
                 {{ Form::open([
@@ -35,8 +37,13 @@
                             'method' => 'DELETE'
                         ])
                 }}
-                <button type="submit"
-                        class="btn btn-outline-danger btn-xs" title="{{ __('Delete') }}">{!! icon('delete') !!}</button>
+                    <x-appshell::button
+                        :title="__('Delete')"
+                        type="submit"
+                        variant="outline-danger"
+                        size="xs"
+                        icon="delete"
+                    ></x-appshell::button>
                 {{ Form::close() }}
             @endcan
         </div>
