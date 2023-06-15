@@ -7,21 +7,16 @@
 @section('content')
 {!! Form::model($paymentMethod, ['route' => 'vanilo.admin.payment-method.store', 'autocomplete' => 'off']) !!}
 
-    <div class="card card-accent-success">
+    <x-appshell::card accent="success">
+        <x-slot:title>{{ __('Payment Method Details') }}</x-slot:title>
 
-        <div class="card-header">
-            {{ __('Payment Method Details') }}
-        </div>
+        @include('vanilo::payment-method._form')
 
-        <div class="card-body">
-            @include('vanilo::payment-method._form')
-        </div>
-
-        <div class="card-footer">
-            <button class="btn btn-success">{{ __('Create payment method') }}</button>
-            <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        </div>
-    </div>
+        <x-slot:footer>
+            <x-appshell::button variant="success">{{ __('Create payment method') }}</x-appshell::button>
+            <x-appshell::button variant="link" href="#" onclick="history.back();" class="text-secondary">{{ __('Cancel') }}</x-appshell::button>
+        </x-slot:footer>
+    </x-appshell::card>
 
 {!! Form::close() !!}
 @stop

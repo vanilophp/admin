@@ -1,27 +1,26 @@
 <div class="mb-3">
-    <div class="input-group">
-        <span class="input-group-prepend">
-            <span class="input-group-text">
-                {!! icon('payment-method') !!}
-            </span>
+    <div class="input-group input-group-lg {{ $errors->has('name') ? 'has-validation' : '' }}">
+        <span class="input-group-text">
+            {!! icon('payment-method') !!}
         </span>
-        {{ Form::text('name', null, [
+        <x-appshell::floating-label :label="__('Name')" :is-invalid="$errors->has('name')">
+            {{ Form::text('name', null, [
                 'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
                 'placeholder' => __('Name of payment method')
             ])
         }}
+        </x-appshell::floating-label>
+        @if ($errors->has('name'))
+            <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+        @endif
     </div>
-    @if ($errors->has('name'))
-        <input hidden class="form-control is-invalid" />
-        <div class="invalid-feedback">{{ $errors->first('name') }}</div>
-    @endif
 </div>
 
 <div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Gateway') }}</label>
     <div class="col-md-10">
         {{ Form::select('gateway', $gateways, null, [
-                'class' => 'form-control form-control-sm' . ($errors->has('gateway') ? ' is-invalid': ''),
+                'class' => 'form-select form-select-sm' . ($errors->has('gateway') ? ' is-invalid': ''),
                 'placeholder' => __('--')
            ])
         }}
@@ -37,13 +36,13 @@
     <div class="col-md-10 offset-md-2">
         {{ Form::hidden('is_enabled', 0) }}
 
-        <div class="custom-control custom-switch">
-            {{ Form::checkbox('is_enabled', 1, null, ['class' => 'custom-control-input', 'id' => 'is-payment-method-enabled']) }}
-            <label class="custom-control-label" for="is-payment-method-enabled">{{ __('Enabled') }}</label>
+        <div class="form-check form-switch">
+            {{ Form::checkbox('is_enabled', 1, null, ['class' => 'form-check-input', 'id' => 'is-payment-method-enabled', 'role' => 'switch']) }}
+            <label class="form-check-label" for="is-payment-method-enabled">{{ __('Enabled') }}</label>
         </div>
 
         @if ($errors->has('is_enabled'))
-            <div class="form-control-feedback">{{ $errors->first('is_enabled') }}</div>
+            <div class="invalid-feedback">{{ $errors->first('is_enabled') }}</div>
         @endif
     </div>
 </div>

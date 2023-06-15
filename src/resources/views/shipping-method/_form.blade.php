@@ -43,7 +43,7 @@
         </div>
 
         @if ($errors->has('is_active'))
-            <div class="form-control-feedback">{{ $errors->first('is_active') }}</div>
+            <div class="invalid-feedback">{{ $errors->first('is_active') }}</div>
         @endif
     </div>
 </div>

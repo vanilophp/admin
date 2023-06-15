@@ -44,7 +44,7 @@
                             </span>
                         </td>
                         <td>
-                            <span class="badge badge-pill badge-{{ enum_color($zone->scope) }}">{{ $zone->scope }}</span>
+                            <span class="badge rounded-pill bg-{{ enum_color($zone->scope) }}">{{ $zone->scope }}</span>
                         </td>
                         <td>
                             @can('edit zones')
