@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="mb-3">
     <div class="input-group">
         <span class="input-group-prepend">
             <span class="input-group-text">
@@ -19,7 +19,7 @@
 
 <hr>
 
-<div class="form-group">
+<div class="mb-3">
     {{ Form::text('slug', null, [
             'class' => 'form-control form-control-sm' . ($errors->has('slug') ? ' is-invalid': ''),
             'placeholder' => __('URL (leave empty to auto-generate from name)')

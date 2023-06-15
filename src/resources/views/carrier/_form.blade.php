@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="mb-3">
     <div class="input-group">
         <span class="input-group-prepend">
             <span class="input-group-text">
@@ -12,11 +12,11 @@
         }}
     </div>
     @if ($errors->has('name'))
-        <div class="invalid-tooltip">{{ $errors->first('name') }}</div>
+        <div class="invalid-feedback">{{ $errors->first('name') }}</div>
     @endif
 </div>
 
-<div class="form-group row{{ $errors->has('is_active') ? ' has-danger' : '' }}">
+<div class="mb-3 row{{ $errors->has('is_active') ? ' has-danger' : '' }}">
     <div class="col-md-10 offset-md-2">
         {{ Form::hidden('is_active', 0) }}
 
@@ -33,7 +33,7 @@
 
 <hr>
 
-<div class="form-group row">
+<div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Configuration') }}</label>
     <div class="col-md-10">
         <textarea name="configuration"

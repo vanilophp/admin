@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="mb-3">
     <div class="input-group">
         <span class="input-group-prepend">
             <span class="input-group-text">
@@ -17,7 +17,7 @@
     @endif
 </div>
 
-<div class="form-group row">
+<div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('URL') }}</label>
     <div class="col-md-10">
         {{ Form::text('slug', null, [
@@ -33,7 +33,7 @@
 
 <hr>
 
-<div class="form-group row">
+<div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Type') }}</label>
     <div class="col-md-10">
         {{ Form::select('type', $types, null, [

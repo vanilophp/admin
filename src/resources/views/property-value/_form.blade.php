@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="mb-3">
     <div class="input-group">
         <span class="input-group-prepend">
             <span class="input-group-text">
@@ -18,7 +18,7 @@
     @endif
 </div>
 
-<div class="form-group row">
+<div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Value') }}</label>
     <div class="col-md-10">
         {{ Form::text('value', null, [
@@ -35,7 +35,7 @@
 <hr>
 
 @unless($hideProperties ?? false)
-<div class="form-group row">
+<div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Property') }}</label>
     <div class="col-md-10">
         {{ Form::select('property_id', $properties, null, [
@@ -50,7 +50,7 @@
 </div>
 @endunless
 
-<div class="form-group row">
+<div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Priority') }}</label>
     <div class="col-md-10">
         {{ Form::text('priority', null, [

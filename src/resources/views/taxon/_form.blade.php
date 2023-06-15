@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="mb-3">
     <div class="input-group">
         <span class="input-group-prepend">
             <span class="input-group-text">
@@ -18,7 +18,7 @@
     @endif
 </div>
 
-<div class="form-group row">
+<div class="mb-3 row">
     <label class="col-form-label col-md-2">{{ __('URL') }}</label>
     <div class="col-md-10">
         {{ Form::text('slug', null, [
@@ -34,7 +34,7 @@
 
 <hr>
 
-<div class="form-group row">
+<div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Parent') }}</label>
     <div class="col-md-10">
         {{ Form::select('parent_id', $taxons, null, [
@@ -48,7 +48,7 @@
     </div>
 </div>
 
-<div class="form-group row">
+<div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Priority') }}</label>
     <div class="col-md-10">
         {{ Form::text('priority', null, [
@@ -63,7 +63,7 @@
 
 <hr>
 
-<div class="form-group">
+<div class="mb-3">
     <?php $seoHasErrors = any_key_exists($errors->toArray(), ['ext_title', 'meta_description', 'meta_keywords']) ?>
     <h5><a data-toggle="collapse" href="#taxon-form-seo" class="collapse-toggler-heading"
            @if ($seoHasErrors)

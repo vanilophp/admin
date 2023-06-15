@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="mb-3">
     {{ Form::text('slug', null, [
             'class' => 'form-control form-control-sm' . ($errors->has('slug') ? ' is-invalid': ''),
             'placeholder' => __('URL')
@@ -9,7 +9,7 @@
     @endif
 </div>
 
-<div class="form-group">
+<div class="mb-3">
     {{ Form::textarea('excerpt', null, [
             'class' => 'form-control form-control-sm' . ($errors->has('excerpt') ? ' is-invalid' : ''),
             'placeholder' => __('Short Description'),

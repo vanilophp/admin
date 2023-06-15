@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="mb-3">
     <div class="input-group">
         <span class="input-group-prepend">
             <span class="input-group-text">
@@ -19,7 +19,7 @@
 <hr>
 
 <div class="form-row">
-    <div class="form-group col-12 col-md-6 col-xl-4">
+    <div class="mb-3 col-12 col-md-6 col-xl-4">
         <label class="form-control-label">{{ __('SKU') }}</label>
         <div class="input-group">
             <span class="input-group-prepend">
@@ -39,7 +39,7 @@
         @endif
     </div>
 
-    <div class="form-group col-12 col-md-6 col-xl-4">
+    <div class="mb-3 col-12 col-md-6 col-xl-4">
         <label class="form-control-label">{{ __('Stock') }}</label>
         <div class="input-group">
             <span class="input-group-prepend">
@@ -62,7 +62,7 @@
 </div>
 
 <div class="form-row">
-    <div class="form-group col-12 col-md-6 col-xl-4">
+    <div class="mb-3 col-12 col-md-6 col-xl-4">
         <label class="form-control-label">{{ __('Price') }}</label>
         <div class="input-group">
             {{ Form::text('price', null, [
@@ -82,7 +82,7 @@
         @endif
     </div>
 
-    <div class="form-group col-12 col-md-6 col-xl-4">
+    <div class="mb-3 col-12 col-md-6 col-xl-4">
         <label class="form-control-label text-muted">{{ __('Original Price') }} ({{ __('optional') }})</label>
         <div class="input-group">
             {{ Form::text('original_price', null, [
@@ -105,7 +105,7 @@
 
 <hr>
 
-<div class="form-group">
+<div class="mb-3">
     <label>{{ __('Description') }}</label>
 
     {{ Form::textarea('description', null,
@@ -122,7 +122,7 @@
 
 <hr>
 
-<div class="form-group">
+<div class="mb-3">
     <label class="form-control-label text-muted">{{ __('Short Description') }} ({{ __('optional') }})</label>
     {{ Form::textarea('excerpt', null, [
             'class' => 'form-control form-control-sm' . ($errors->has('excerpt') ? ' is-invalid' : ''),

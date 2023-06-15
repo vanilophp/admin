@@ -1,22 +1,23 @@
-<div class="form-group">
-    <div class="input-group">
-        <span class="input-group-prepend">
-            <span class="input-group-text">
-                {!! icon('channel') !!}
-            </span>
+<div class="mb-3">
+
+    <div class="input-group input-group-lg {{ $errors->has('name') ? 'has-validation' : '' }}">
+        <span class="input-group-text">
+            {!! icon('channel') !!}
         </span>
-        {{ Form::text('name', null, [
-                'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
-                'placeholder' => __('Name of the channel')
-            ])
-        }}
+        <x-appshell::floating-label :label="__('Channel name')" :is-invalid="$errors->has('name')">
+            {{ Form::text('name', null, [
+                    'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
+                    'placeholder' => __('Name of the channel')
+                ])
+            }}
+        </x-appshell::floating-label>
+        @if ($errors->has('name'))
+            <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+        @endif
     </div>
-    @if ($errors->has('name'))
-        <div class="invalid-tooltip">{{ $errors->first('name') }}</div>
-    @endif
 </div>
 
-<div class="form-group row">
+<div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Slug') }}</label>
     <div class="col-md-10">
         {{ Form::text('slug', null, [
@@ -32,11 +33,11 @@
 
 <hr>
 
-<div class="form-group row">
+<div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Country') }}</label>
     <div class="col-md-10">
         {{ Form::select('configuration[country_id]', $countries, null, [
-                'class' => 'form-control form-control-sm' . ($errors->has('configuration') ? ' is-invalid': ''),
+                'class' => 'form-select form-select-sm' . ($errors->has('configuration') ? ' is-invalid': ''),
                 'placeholder' => __('--')
            ])
         }}

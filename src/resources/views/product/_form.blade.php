@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="mb-3">
     <div class="input-group">
         <span class="input-group-prepend">
             <span class="input-group-text">
@@ -19,7 +19,7 @@
 <hr>
 
 <div class="form-row">
-    <div class="form-group col-12 col-md-6 col-xl-4">
+    <div class="mb-3 col-12 col-md-6 col-xl-4">
         <div class="input-group">
             <span class="input-group-prepend">
                 <span class="input-group-text">
@@ -40,7 +40,7 @@
 </div>
 
 <div class="form-row">
-    <div class="form-group col-12 col-md-6 col-xl-4">
+    <div class="mb-3 col-12 col-md-6 col-xl-4">
         <div class="input-group">
             <span class="input-group-prepend">
                 <span class="input-group-text">
@@ -61,7 +61,7 @@
 </div>
 
 <div class="form-row">
-    <div class="form-group col-12 col-md-6 col-xl-4">
+    <div class="mb-3 col-12 col-md-6 col-xl-4">
         <label class="form-control-label">{{ __('Price') }}</label>
         <div class="input-group">
             {{ Form::text('price', null, [
@@ -81,7 +81,7 @@
         @endif
     </div>
 
-    <div class="form-group col-12 col-md-6 col-xl-4">
+    <div class="mb-3 col-12 col-md-6 col-xl-4">
         <label class="form-control-label">{{ __('Original Price') }}</label>
         <div class="input-group">
             {{ Form::text('original_price', null, [
@@ -104,7 +104,7 @@
 
 <hr>
 
-<div class="form-group row">
+<div class="mb-3 row">
     <label class="form-control-label col-md-2">{{ __('State') }}</label>
     <div class="col-md-10">
         <?php /*$errors->has('state') ? ' is-invalid' : ''; */ ?>
@@ -125,7 +125,7 @@
 
 <hr>
 
-<div class="form-group">
+<div class="mb-3">
     <label>{{ __('Description') }}</label>
 
     {{ Form::textarea('description', null,
@@ -140,7 +140,7 @@
     @endif
 </div>
 
-<div class="form-group">
+<div class="mb-3">
     <?php $seoHasErrors = any_key_exists($errors->toArray(), ['ext_title', 'meta_description', 'meta_keywords']) ?>
     <h5><a data-toggle="collapse" href="#product-form-seo" class="collapse-toggler-heading"
            @if ($seoHasErrors)
@@ -157,7 +157,7 @@
     </div>
 </div>
 
-<div class="form-group">
+<div class="mb-3">
     <?php $extraHasErrors = any_key_exists($errors->toArray(), ['slug', 'excerpt']) ?>
     <h5><a data-toggle="collapse" href="#product-form-extra" class="collapse-toggler-heading"
            @if ($extraHasErrors)

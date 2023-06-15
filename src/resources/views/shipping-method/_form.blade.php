@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="mb-3">
     <div class="input-group">
         <span class="input-group-prepend">
             <span class="input-group-text">
@@ -17,7 +17,7 @@
     @endif
 </div>
 
-<div class="form-group row">
+<div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Carrier') }}</label>
     <div class="col-md-10">
         {{ Form::select('carrier_id', $carriers->pluck('name', 'id'), null, [
@@ -33,7 +33,7 @@
 
 <hr>
 
-<div class="form-group row{{ $errors->has('is_active') ? ' has-danger' : '' }}">
+<div class="mb-3 row{{ $errors->has('is_active') ? ' has-danger' : '' }}">
     <div class="col-md-10 offset-md-2">
         {{ Form::hidden('is_active', 0) }}
 
@@ -50,7 +50,7 @@
 
 <hr>
 
-<div class="form-group row">
+<div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Restricted to Zone') }}</label>
     <div class="col-md-10">
         {{ Form::select('zone_id', $zones->pluck('name', 'id'), null, [
@@ -67,7 +67,7 @@
 <hr>
 
 
-<div class="form-group row">
+<div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Calculator') }}</label>
     <div class="col-md-10">
         {{ Form::select('calculator', $calculators, null, [
@@ -81,7 +81,7 @@
     </div>
 </div>
 
-<div class="form-group row">
+<div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Configuration') }}</label>
     <div class="col-md-10">
         <textarea name="configuration"

@@ -10,7 +10,7 @@
         <form action="{{ route('vanilo.admin.product.index') }}" id="product-filters" class="collapse{{ ($hasActiveFilters ?? false) ? ' show' : '' }}">
 
             <div class="row">
-                <div class="form-group col-sm-6 col-md-4">
+                <div class="mb-3 col-sm-6 col-md-4">
                     <label class="form-control-label">{{ __('Categories') }}</label>
                     {!! Form::select('taxons[]', [], null, ['class' => 'form-control form-control-sm', 'placeholder' => __('Any')]) !!}
                 </div>

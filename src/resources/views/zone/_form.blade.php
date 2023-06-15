@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="mb-3">
     <div class="input-group">
         <span class="input-group-prepend">
             <span class="input-group-text">
@@ -12,12 +12,12 @@
         }}
     </div>
     @if ($errors->has('name'))
-        <div class="invalid-tooltip">{{ $errors->first('name') }}</div>
+        <div class="invalid-feedback">{{ $errors->first('name') }}</div>
     @endif
 </div>
 
 <hr>
-<div class="form-group row">
+<div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Scope') }}</label>
     <div class="col-md-10">
         {{ Form::select('scope', $scopes, $zone->scope?->value(), [

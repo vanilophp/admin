@@ -7,21 +7,17 @@
 @section('content')
 {!! Form::model($channel, ['route' => 'vanilo.admin.channel.store', 'autocomplete' => 'off']) !!}
 
-    <div class="card card-accent-success">
+    <x-appshell::card accent="success">
+        <x-slot:title>{{ __('Channel Details') }}</x-slot:title>
 
-        <div class="card-header">
-            {{ __('Channel Details') }}
-        </div>
+        @include('vanilo::channel._form')
 
-        <div class="card-body">
-            @include('vanilo::channel._form')
-        </div>
+        <x-slot:footer>
+            <x-appshell::button variant="success">{{ __('Create channel') }}</x-appshell::button>
+            <x-appshell::button variant="link" href="#" onclick="history.back();" class="text-secondary">{{ __('Cancel') }}</x-appshell::button>
+        </x-slot:footer>
 
-        <div class="card-footer">
-            <button class="btn btn-success">{{ __('Create channel') }}</button>
-            <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        </div>
-    </div>
+    </x-appshell::card>
 
 {!! Form::close() !!}
 @stop

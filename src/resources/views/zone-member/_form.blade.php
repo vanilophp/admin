@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="mb-3">
     @foreach($zoneMemberTypes as $key => $label)
         <label class="radio-inline" for="member_type_{{ $key }}">
             {{ Form::radio('member_type', $key, ($zoneMember->member_type?->value() === $key), ['id' => "member_type_$key", 'x-model' => 'memberType']) }}
@@ -12,7 +12,7 @@
     @endif
 </div>
 
-<div class="form-group">
+<div class="mb-3">
     <div x-show="memberType === 'country'">
         <label class="col-form-label col-form-label-sm col-md-2">{{ __('Country') }}</label>
         <div class="col-md-10">
