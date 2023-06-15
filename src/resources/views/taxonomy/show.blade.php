@@ -4,6 +4,28 @@
     {{ $taxonomy->name }}
 @stop
 
+@push('page-actions')
+    @can('delete taxonomies')
+        {!! Form::open([
+                'route' => ['vanilo.admin.taxonomy.destroy', $taxonomy],
+                'method' => 'DELETE',
+                'class' => 'd-inline',
+                'data-confirmation-text' => __('Delete this categorization: ":name"?', ['name' => $taxonomy->name])
+            ])
+        !!}
+        <x-appshell::button variant="outline-danger" type="submit">
+            {{ __('Delete Category Tree') }}
+        </x-appshell::button>
+        {!! Form::close() !!}
+    @endcan
+
+    @can('edit taxonomies')
+        <x-appshell::button variant="outline-primary" :href="route('vanilo.admin.taxonomy.edit', $taxonomy)">
+            {{ __('Edit Category Tree') }}
+        </x-appshell::button>
+    @endcan
+@endpush
+
 @section('content')
 
     <style>
@@ -18,45 +40,14 @@
     </style>
 
 <div class="row">
-
     <div class="col-12 col-md-6 col-lg-8 col-xl-9">
-    <div class="card mb-4">
-        <div class="card-body">
-            <div class="card">
-                @include('vanilo::taxon._tree', ['taxons' => $taxonomy->rootLevelTaxons()])
+        <x-appshell::card accent="secondary">
+            @include('vanilo::taxon._tree', ['taxons' => $taxonomy->rootLevelTaxons()])
 
-                @can('create taxons')
-                    <div class="card-footer">
-                        <a href="{{ route('vanilo.admin.taxon.create', $taxonomy) }}"
-                           class="btn btn-outline-success btn-sm">{{ __('Add :category', ['category' => \Illuminate\Support\Str::singular($taxonomy->name)]) }}</a>
-                    </div>
-                @endcan
-            </div>
-        </div>
-    </div>
-
-
-    <div class="card">
-        <div class="card-body">
-            @can('edit taxonomies')
-                <a href="{{ route('vanilo.admin.taxonomy.edit', $taxonomy) }}" class="btn btn-outline-primary">{{ __('Edit Category Tree') }}</a>
-            @endcan
-
-            @can('delete taxonomies')
-                {!! Form::open([
-                        'route' => ['vanilo.admin.taxonomy.destroy', $taxonomy],
-                        'method' => 'DELETE',
-                        'class' => 'float-right',
-                        'data-confirmation-text' => __('Delete this categorization: ":name"?', ['name' => $taxonomy->name])
-                    ])
-                !!}
-                <button class="btn btn-outline-danger">
-                    {{ __('Delete Category Tree') }}
-                </button>
-                {!! Form::close() !!}
-            @endcan
-        </div>
-    </div>
+            <x-slot:footer>
+                <x-appshell::button :href="route('vanilo.admin.taxon.create', $taxonomy)" variant="outline-success" size="sm">{{ __('Add :category', ['category' => \Illuminate\Support\Str::singular($taxonomy->name)]) }}</x-appshell::button>
+            </x-slot:footer>
+        </x-appshell::card>
     </div>
 
     <div class="col-12 col-md-6 col-lg-4 col-xl-3">

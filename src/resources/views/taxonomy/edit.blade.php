@@ -14,20 +14,16 @@
                 ])
             !!}
 
-            <div class="card card-accent-secondary">
-                <div class="card-header">
-                    {{ __('Category Tree Data') }}
-                </div>
+            <x-appshell::card accent="secondary">
+                <x-slot:title>{{ __('Category Tree Data') }}</x-slot:title>
 
-                <div class="card-body">
-                    @include('vanilo::taxonomy._form')
-                </div>
+                @include('vanilo::taxonomy._form')
 
-                <div class="card-footer">
-                    <button class="btn btn-primary">{{ __('Save') }}</button>
-                    <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-                </div>
-            </div>
+                <x-slot:footer>
+                    <x-appshell::button variant="primary">{{ __('Save') }}</x-appshell::button>
+                    <x-appshell::button variant="link" href="#" onclick="history.back();" class="text-secondary">{{ __('Cancel') }}</x-appshell::button>
+                </x-slot:footer>
+            </x-appshell::card>
 
             {!! Form::close() !!}
         </div>
