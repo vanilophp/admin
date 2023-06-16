@@ -9,6 +9,7 @@
 - Dropped Laravel 9 support
 - Upgraded to AppShell 4, Bootstrap 5.3 and to Konekt Components v3
 - Changed the image index to use thumbnails instead of the carousel
+- Changed most of the common CRUD components to use the generic AppShell components
 - Improved the UI
 
 ## 3.6.0
