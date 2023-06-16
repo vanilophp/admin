@@ -20,8 +20,9 @@ use Konekt\AppShell\Acl\ResourcePermissionMapper;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\EnumColors;
 use Konekt\AppShell\Theme\ThemeColor;
+use Konekt\AppShell\Widgets;
 use Konekt\Concord\BaseBoxServiceProvider;
-use Menu;
+use Konekt\Menu\Facades\Menu;
 use Vanilo\Admin\Http\Requests\CreateCarrier;
 use Vanilo\Admin\Http\Requests\CreateChannel;
 use Vanilo\Admin\Http\Requests\CreateMasterProduct;
@@ -92,6 +93,13 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         UpdateZone::class,
         CreateZoneMember::class,
     ];
+
+    public function register(): void
+    {
+        parent::register();
+
+        Widgets::registerWidgetNamespace('vanilo', $this->basePath . '/resources/widgets');
+    }
 
     public function boot()
     {

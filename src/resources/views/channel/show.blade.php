@@ -21,11 +21,13 @@
 
     @can('edit channels')
         <x-appshell::button :href="route('vanilo.admin.channel.edit', $channel)" size="sm"
-            variant="light" icon="edit" :title="__('Edit Channel')">
-        </x-appshell::button>
+            variant="outline-secondary">{{ __('Edit Channel') }}</x-appshell::button>
     @endcan
 
 @endpush
 
 @section('content')
+    <x-appshell::card>
+        <x-slot:title>{{ __('Statistics') }}</x-slot:title>
+    </x-appshell::card>
 @stop
