@@ -1,20 +1,19 @@
 <div class="mb-3">
-    <div class="input-group">
-        <span class="input-group-prepend">
-            <span class="input-group-text">
-                {!! icon('taxonomy') !!}
-            </span>
+    <div class="input-group input-group-lg {{ $errors->has('name') ? 'has-validation' : '' }}">
+        <span class="input-group-text">
+            {!! icon('taxonomy') !!}
         </span>
-        {{ Form::text('name', null, [
+        <x-appshell::floating-label :label="__('Name')" :is-invalid="$errors->has('name')">
+            {{ Form::text('name', null, [
                 'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
                 'placeholder' => __('Name of the Category Tree')
-            ])
-        }}
+                ])
+            }}
+        </x-appshell::floating-label>
+        @if ($errors->has('name'))
+            <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+        @endif
     </div>
-    @if ($errors->has('name'))
-        <input hidden class="form-control is-invalid" />
-        <div class="invalid-feedback">{{ $errors->first('name') }}</div>
-    @endif
 </div>
 
 <hr>
