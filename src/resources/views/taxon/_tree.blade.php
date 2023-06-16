@@ -3,7 +3,7 @@
 
         @if ($taxon->children->isNotEmpty())
             <a href="#taxon-{{$taxon->id}}" aria-expanded="false"
-               aria-controls="taxon-{{$taxon->id}}" data-toggle="collapse"
+               aria-controls="taxon-{{$taxon->id}}" data-bs-toggle="collapse"
                class="collapse-toggler-heading">
                 &nbsp;{!! icon('>') !!}
             </a>
@@ -12,11 +12,11 @@
         @endif
 
         @can('edit taxons')
-            <x-appshell::button :href="route('vanilo.admin.taxon.edit', [$taxonomy, $taxon])" variant="link">{{ $taxon->name }}</x-appshell::button>
+            <a href="{{ route('vanilo.admin.taxon.edit', [$taxonomy, $taxon]) }}">{{ $taxon->name }}</a>
         @else
             {{ $taxon->name }}
         @endcan
-        &nbsp;<span class="badge rounded-pill text-bg-light text-muted">{{ $taxon->products()->count() }}</span>
+        &nbsp;<x-appshell::badge variant="light" class="small">{{ $taxon->products()->count() }}</x-appshell::badge>
 
         <div class="d-inline card-actionbar-show-on-hover">
             @can('create taxons')
@@ -31,26 +31,19 @@
             @can('delete taxons')
                 {{ Form::open([
                             'url' => route('vanilo.admin.taxon.destroy', [$taxonomy, $taxon]),
-                            'class' => 'form',
-                            'style' => 'display: inline-flex',
+                            'class' => 'form d-inline-flex',
                             'data-confirmation-text' => __('Delete :name?', ['name' => $taxon->name]),
                             'method' => 'DELETE'
                         ])
                 }}
-                    <x-appshell::button
-                        :title="__('Delete')"
-                        type="submit"
-                        variant="outline-danger"
-                        size="xs"
-                        icon="delete"
-                    ></x-appshell::button>
+                    <x-appshell::button :title="__('Delete')" variant="outline-danger" size="xs" icon="delete"></x-appshell::button>
                 {{ Form::close() }}
             @endcan
         </div>
     </div>
 
     @if ($taxon->children->isNotEmpty())
-        <div class="collapse multi-collapse" id="taxon-{{$taxon->id}}" data-toggle="collapse">
+        <div class="collapse multi-collapse" id="taxon-{{$taxon->id}}" data-bs-toggle="collapse">
             <div class="card-body">
                 <div class="card">
                     @include('vanilo::taxon._tree', ['taxons' => $taxon->children])

@@ -2,7 +2,7 @@
     <div>
     @if ($taxon->children->isNotEmpty())
         <a href="#taxon-{{$taxon->id}}" aria-expanded="false"
-           aria-controls="taxon-{{$taxon->id}}" data-toggle="collapse"
+           aria-controls="taxon-{{$taxon->id}}" data-bs-toggle="collapse"
            class="collapse-toggler-heading">
             &nbsp;{!! icon('>') !!}
         </a>
@@ -17,7 +17,7 @@
     <label for="taxon-checkbox-{{$taxon->id}}"></label>{{ $taxon->name }}
 
     @if ($taxon->children->isNotEmpty())
-        <div class="collapse multi-collapse" id="taxon-{{$taxon->id}}" data-toggle="collapse">
+        <div class="collapse multi-collapse" id="taxon-{{$taxon->id}}" data-bs-toggle="collapse">
             <div style="padding-left: 1.35em">
             @include('vanilo::taxon.assign._tree', ['taxons' => $taxon->children])
             </div>
