@@ -3,7 +3,7 @@
         <span class="input-group-text">
             {!! icon('taxonomy') !!}
         </span>
-        <x-appshell::floating-label :label="__('Name of the Category Tree')" :is-invalid="$errors->has('name')">
+        <x-appshell::floating-label :label="__('Name')" :is-invalid="$errors->has('name')">
             {{ Form::text('name', null, [
                 'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
                 'placeholder' => __('Name of the Category Tree')

@@ -13,15 +13,13 @@
                 'data-confirmation-text' => __('Delete this categorization: ":name"?', ['name' => $taxonomy->name])
             ])
         !!}
-        <x-appshell::button variant="outline-danger" type="submit">
-            {{ __('Delete Category Tree') }}
-        </x-appshell::button>
+        <x-appshell::button variant="outline-danger" size="sm" type="submit" icon="delete" :title="__('Delete Category Tree')"></x-appshell::button>
         {!! Form::close() !!}
     @endcan
 
     @can('edit taxonomies')
-        <x-appshell::button variant="outline-primary" :href="route('vanilo.admin.taxonomy.edit', $taxonomy)">
-            {{ __('Edit Category Tree') }}
+        <x-appshell::button variant="outline-secondary" size="sm" :href="route('vanilo.admin.taxonomy.edit', $taxonomy)">
+            {{ __('Edit') }}
         </x-appshell::button>
     @endcan
 @endpush

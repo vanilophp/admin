@@ -4,7 +4,7 @@
     @can('create media')
         <div class="card">
             <div class="card-body p-0 d-flex align-items-center">
-                <div class="p-3 bg-secondary">
+                <div class="p-3 text-bg-secondary rounded-start">
                     <div class="align-content-center text-center">
                         {!! icon('image') !!}
                     </div>

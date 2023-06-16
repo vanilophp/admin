@@ -3,36 +3,35 @@
 <x-appshell::card accent="secondary">
     <x-slot:title>
         {{ __('Images') }}
-        <span class="badge rounded-pill text-bg-info float-right">{{ $media->isNotEmpty() }}</span>
+        <x-appshell::badge variant="secondary">{{ $media->count() }}</x-appshell::badge>
     </x-slot:title>
 
     @error('images')
-    <div class="alert alert-danger">{{ $message }}</div>
+    <x-appshell::alert variant="danger">{{ $message }}</x-appshell::alert>
     @enderror
     @error('for')
-    <div class="alert alert-danger">{{ $message }}</div>
+    <x-appshell::alert variant="danger">{{ $message }}</x-appshell::alert>
     @enderror
     @error('forId')
-    <div class="alert alert-danger">{{ $message }}</div>
+    <x-appshell::alert variant="danger">{{ $message }}</x-appshell::alert>
     @enderror
     @foreach($media as $medium)
         <div class="card mb-2">
             <div class="card-body p-0 d-flex align-items-center">
-                <img class="mr-3 w-25" src="{{ $medium->getUrl('thumbnail') }}"
+                <img class="mr-3 w-25 rounded-start object-fit-cover" style="max-height: 4.35rem;" src="{{ $medium->getUrl('thumbnail') }}"
                      alt="{{ $medium->name }}" title="{{ $medium->name }}">
                 <div class="w-50">
-                    <div class="text-sm-left text-info font-weight-bold">
+                    <div class="text-sm-left text-info fw-bold ps-2">
                         <span title="{{ $medium->getPath() }}">{{ $medium->human_readable_size }}</span>
-                    </div>
-                    <div class="text-muted text-uppercase font-weight-bold small">
-                        <a href="{{ $medium->getUrl() }}" title="{{ $medium->getUrl() }}"
+                        &nbsp;
+                        <a href="{{ $medium->getUrl() }}" title="{{ $medium->getUrl() }}" class="small text-secondary"
                            target="_blank">{!! icon('link') !!}</a>
                     </div>
                 </div>
                 <div class="w-25 pr-2 pl-0 b-l-1">
                     <div class="align-content-center text-center">
                         @can('delete media')
-                            {!! Form::open(['route' => ['vanilo.admin.media.destroy', $medium], 'method' => 'DELETE', 'class' => "float-right"]) !!}
+                            {!! Form::open(['route' => ['vanilo.admin.media.destroy', $medium], 'method' => 'DELETE', 'class' => "d-inline"]) !!}
                             <button class="btn btn-sm btn-outline-danger" title="{{ __('Delete image') }}">
                                 {!! icon('delete') !!}
                             </button>
@@ -41,17 +40,15 @@
 
                         @can('edit media')
                             @unless($medium->getCustomProperty('isPrimary'))
-                                {!! Form::open(['route' => ['vanilo.admin.media.update', $medium], 'method' => 'PUT', 'class' => "float-right"]) !!}
-                                <button class="btn btn-sm btn-outline-info mr-1" title="{{ __('Set as Primary Image') }}">
-                                    {!! icon('image') !!}
+                                {!! Form::open(['route' => ['vanilo.admin.media.update', $medium], 'method' => 'PUT', 'class' => "d-inline"]) !!}
+                                <button class="btn btn-sm btn-outline-secondary mr-1" title="{{ __('Set as Primary Image') }}">
+                                    {!! icon('check') !!}
                                 </button>
                                 {!! Form::close() !!}
                             @else
-                                <div class="float-right">
-                                    <button class="btn btn-sm btn-info mr-1" title="{{ __('Primary Image') }}" disabled>
-                                        {!! icon('image') !!}
-                                    </button>
-                                </div>
+                                <button class="btn btn-sm btn-info mr-1" title="{{ __('This is the primary image') }}" onclick="alert('{{ __("This is already the primary image")  }}')">
+                                    {!! icon('check') !!}
+                                </button>
                             @endunless
                         @endcan
                     </div>
@@ -63,33 +60,31 @@
     @endforeach
 
     @can('create media')
-        {!! Form::open(['route' => 'vanilo.admin.media.store', 'enctype'=>'multipart/form-data', 'class' => 'card']) !!}
-        <div class="card-body p-0 d-flex align-items-center">
-            <div class="w-75 p-2">
-                {{ Form::hidden('for', shorten(get_class($model))) }}
-                {{ Form::hidden('forId', $model->id) }}
+        <h6 class="mt-4">
+            @if($media->isNotEmpty())
+                {{ __('Add Further Images') }}
+            @else
+                {{ __('Add Images') }}
+            @endif
+        </h6>
 
-                {{ Form::file('images[]', ['multiple', 'class' => 'form-control-file']) }}
-            </div>
-            <div class="w-25 p-2 bg-success">
-                <div class="align-content-center text-center">
-                    <button class="btn btn-sm btn-success" title="{{ __('Upload image(s)') }}">
-                        {!! icon('check') !!}
-                    </button>
-                </div>
-            </div>
-        </div>
+        <form action="{{ route('vanilo.admin.media.store') }}" enctype="multipart/form-data" method="post" class="input-group mb-4">
+            {{ Form::file('images[]', ['multiple', 'class' => 'form-control']) }}
+            @csrf
+            {{ Form::hidden('for', shorten(get_class($model))) }}
+            {{ Form::hidden('forId', $model->id) }}
 
+            <x-appshell::button class="btn btn-sm btn-success" icon="upload" title="{{ __('Upload image(s)') }}">
+            </x-appshell::button>
+        </form>
         @if ($errors->has('images.*'))
-            <div class="alert alert-danger m-2">
+            <x-appshell::alert variant="danger" class="my-2">
                 @foreach($errors->get('images.*') as $fileErrors)
                     @foreach($fileErrors as $error)
                         {{ $error }}<br>
                     @endforeach
                 @endforeach
-            </div>
+            </x-appshell::alert>
         @endif
-
-        {!! Form::close() !!}
     @endcan
 </x-appshell::card>

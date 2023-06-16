@@ -5,8 +5,8 @@
 @stop
 
 @push('page-actions')
-    @can('create customers')
-        <x-appshell::button variant="success" size="sm" icon="+" :href="route('vanilo.admin.taxonomy.create')">
+    @can('create taxonomies')
+        <x-appshell::button variant="outline-success" size="sm" icon="+" :href="route('vanilo.admin.taxonomy.create')">
             {{ __('New Category Tree') }}
         </x-appshell::button>
     @endcan

@@ -1,6 +1,6 @@
 <?php $media = $model->getMedia($collection ?? 'default') ?>
 
-<x-appshell::card accent="secondary">
+<x-appshell::card>
     <x-slot:title>
         {{ __('Images') }}
         <span class="badge rounded-pill text-bg-dark float-right">{{ $media->count() }}</span>
