@@ -41,7 +41,7 @@
 
 <div class="row">
     <div class="col-12 col-md-6 col-lg-8 col-xl-9">
-        <x-appshell::card accent="secondary">
+        <x-appshell::card>
             @include('vanilo::taxon._tree', ['taxons' => $taxonomy->rootLevelTaxons()])
 
         @can('create taxons')
