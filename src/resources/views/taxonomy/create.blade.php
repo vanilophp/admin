@@ -8,21 +8,16 @@
 {!! Form::open(['route' => 'vanilo.admin.taxonomy.store', 'autocomplete' => 'off','enctype'=>'multipart/form-data', 'class' => 'row']) !!}
 
     <div class="col-12 col-lg-8 col-xl-9 mb-4">
-        <div class="card card-accent-success">
+        <x-appshell::card accent="success">
+            <x-slot:title>{{ __('Category Tree Details') }}</x-slot:title>
 
-            <div class="card-header">
-                {{ __('Category Tree Details') }}
-            </div>
+            @include('vanilo::taxonomy._form')
 
-            <div class="card-body">
-                @include('vanilo::taxonomy._form')
-            </div>
-
-            <div class="card-footer">
-                <button class="btn btn-success">{{ __('Create category tree') }}</button>
-                <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-            </div>
-        </div>
+            <x-slot:footer>
+                <x-appshell::button variant="success">{{ __('Create category tree') }}</x-appshell::button>
+                <x-appshell::button variant="link" href="#" onclick="history.back();" class="text-secondary">{{ __('Cancel') }}</x-appshell::button>
+            </x-slot:footer>
+        </x-appshell::card>
     </div>
 
     <div class="col-12 col-lg-4 col-xl-3">

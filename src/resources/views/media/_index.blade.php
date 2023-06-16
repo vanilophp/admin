@@ -1,18 +1,17 @@
 <?php $media = $model->getMedia($collection ?? 'default') ?>
-<div class="card">
-    <div class="card-body">
 
-        <h6 class="card-title">
-            {{ __('Images') }}
-            <span class="badge badge-pill badge-dark">{{ $media->count() }}</span>
-        </h6>
+<x-appshell::card>
+    <x-slot:title>
+        {{ __('Images') }}
+        <x-appshell::badge variant="secondary">{{ $media->count() }}</x-appshell::badge>
+    </x-slot:title>
 
-        @if($media->isNotEmpty())
-            <div id="model-images" class="carousel slide" data-ride="carousel" data-interval="false">
+    @if($media->isNotEmpty())
+        <div id="model-images" class="carousel slide" data-ride="carousel" data-interval="false">
 
             <ol class="carousel-indicators">
                 @foreach($media as $medium)
-                <li data-target="#product-images" data-slide-to="{{ $loop->index }}"{{ $loop->first ? ' class="active"' : ''}}></li>
+                    <li data-target="#product-images" data-slide-to="{{ $loop->index }}"{{ $loop->first ? ' class="active"' : ''}}></li>
                 @endforeach
             </ol>
 
@@ -33,9 +32,7 @@
                 <span class="sr-only">{{ __('Next') }}</span>
             </a>
         </div>
-        @else
-            <div class="alert alert-secondary">{{ __('No image') }}</div>
-        @endif
-
-    </div>
-</div>
+    @else
+        <div class="alert alert-secondary">{{ __('No image') }}</div>
+    @endif
+</x-appshell::card>
