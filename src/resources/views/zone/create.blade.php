@@ -7,21 +7,17 @@
 @section('content')
 {!! Form::model($zone, ['route' => 'vanilo.admin.zone.store', 'autocomplete' => 'off']) !!}
 
-    <div class="card card-accent-success">
+    <x-appshell::card variant="success">
 
-        <div class="card-header">
-            {{ __('Zone Details') }}
-        </div>
+        <x-slot:title>{{ __('Zone Details') }}</x-slot:title>
 
-        <div class="card-body">
-            @include('vanilo::zone._form')
-        </div>
+        @include('vanilo::zone._form')
 
-        <div class="card-footer">
-            <button class="btn btn-success">{{ __('Create zone') }}</button>
-            <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        </div>
-    </div>
+        <x-slot:footer>
+            <x-appshell::create-button model-name="zone" />
+            <x-appshell::cancel-button />
+        </x-slot:footer>
+    </x-appshell::card>
 
 {!! Form::close() !!}
 @stop
