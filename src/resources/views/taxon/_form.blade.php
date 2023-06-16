@@ -1,21 +1,19 @@
 <div class="mb-3">
-    <div class="input-group">
-        <span class="input-group-prepend">
-            <span class="input-group-text">
-                {!! icon('taxon') !!}
-            </span>
+    <div class="input-group input-group-lg {{ $errors->has('name') ? 'has-validation' : '' }}">
+        <span class="input-group-text">
+            {!! icon('taxon') !!}
         </span>
-        {{ Form::text('name', null,
-                [
-                    'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
-                    'placeholder' => __('Name')
-                ]
-        ) }}
+        <x-appshell::floating-label :label="__('Name')" :is-invalid="$errors->has('name')">
+            {{ Form::text('name', null, [
+                'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
+                'placeholder' => __('Name')
+                ])
+            }}
+        </x-appshell::floating-label>
+        @if ($errors->has('name'))
+            <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+        @endif
     </div>
-    @if ($errors->has('name'))
-        <input hidden class="form-control is-invalid" />
-        <div class="invalid-feedback">{{ $errors->first('name') }}</div>
-    @endif
 </div>
 
 <div class="mb-3 row">
@@ -65,7 +63,7 @@
 
 <div class="mb-3">
     <?php $seoHasErrors = any_key_exists($errors->toArray(), ['ext_title', 'meta_description', 'meta_keywords']) ?>
-    <h5><a data-toggle="collapse" href="#taxon-form-seo" class="collapse-toggler-heading"
+    <h5><a data-bs-toggle="collapse" href="#taxon-form-seo" class="collapse-toggler-heading"
            @if ($seoHasErrors)
            aria-expanded="true"
                 @endif

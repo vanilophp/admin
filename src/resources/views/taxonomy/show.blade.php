@@ -57,3 +57,12 @@
 </div>
 
 @stop
+
+@push('footer-scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const collapseElementList = document.querySelectorAll('.collapse');
+            const collapseList = [...collapseElementList].map(collapseEl => new bootstrap.Collapse(collapseEl));
+        });
+    </script>
+@endpush
