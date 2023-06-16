@@ -29,7 +29,7 @@ return [
                 'valign' => 'middle',
                 'widget' => [
                     'type' => 'badge',
-                    'color' => fn($scope) => enum_color($scope),
+                    'color' => fn ($scope) => enum_color($scope),
                     'text' => '$model.scope',
                 ]
             ],
