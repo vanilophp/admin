@@ -3,7 +3,7 @@
 <x-appshell::card>
     <x-slot:title>
         {{ __('Images') }}
-        <span class="badge rounded-pill text-bg-dark float-right">{{ $media->count() }}</span>
+        <x-appshell::badge variant="secondary">{{ $media->count() }}</x-appshell::badge>
     </x-slot:title>
 
     @if($media->isNotEmpty())
