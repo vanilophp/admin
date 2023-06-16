@@ -7,21 +7,16 @@
 @section('content')
     {!! Form::model($shippingMethod, ['route' => 'vanilo.admin.shipping-method.store', 'autocomplete' => 'off']) !!}
 
-    <div class="card card-accent-success">
+    <x-appshell::card accent="success">
+        <x-slot:title>{{ __('Shipping Method Details') }}</x-slot:title>
 
-        <div class="card-header">
-            {{ __('Shipping Method Details') }}
-        </div>
+        @include('vanilo::shipping-method._form')
 
-        <div class="card-body">
-            @include('vanilo::shipping-method._form')
-        </div>
-
-        <div class="card-footer">
-            <button class="btn btn-success">{{ __('Create shipping method') }}</button>
-            <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        </div>
-    </div>
+        <x-slot:footer>
+            <x-appshell::create-button :text="__('Create shipping method')" />
+            <x-appshell::cancel-button />
+        </x-slot:footer>
+    </x-appshell::card>
 
     {!! Form::close() !!}
 @stop

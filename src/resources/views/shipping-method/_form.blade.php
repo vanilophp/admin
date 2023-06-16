@@ -1,15 +1,15 @@
 <div class="mb-3">
     <div class="input-group">
-        <span class="input-group-prepend">
-            <span class="input-group-text">
-                {!! icon('payment-method') !!}
-            </span>
+        <span class="input-group-text">
+            {!! icon('payment-method') !!}
         </span>
+        <x-appshell::floating-label :label="__('Name')" :is-invalid="$errors->has('name')">
         {{ Form::text('name', null, [
                 'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
-                'placeholder' => __('Name of payment method')
+                'placeholder' => __('Name of shipping method')
             ])
         }}
+        </x-appshell::floating-label>
     </div>
     @if ($errors->has('name'))
         <input hidden class="form-control is-invalid" />
@@ -21,7 +21,7 @@
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Carrier') }}</label>
     <div class="col-md-10">
         {{ Form::select('carrier_id', $carriers->pluck('name', 'id'), null, [
-                'class' => 'form-control form-control-sm' . ($errors->has('carrier_id') ? ' is-invalid': ''),
+                'class' => 'form-select form-select-sm' . ($errors->has('carrier_id') ? ' is-invalid': ''),
                 'placeholder' => __('--')
            ])
         }}
@@ -33,13 +33,14 @@
 
 <hr>
 
+
 <div class="mb-3 row{{ $errors->has('is_active') ? ' has-danger' : '' }}">
     <div class="col-md-10 offset-md-2">
         {{ Form::hidden('is_active', 0) }}
 
-        <div class="custom-control custom-switch">
-            {{ Form::checkbox('is_active', 1, null, ['class' => 'custom-control-input', 'id' => 'is-shipping-method-active']) }}
-            <label class="custom-control-label" for="is-shipping-method-active">{{ __('Enabled') }}</label>
+        <div class="form-check form-switch">
+            {{ Form::checkbox('is_active', 1, null, ['class' => 'form-check-input', 'id' => 'is-shipping-method-active', 'role' => 'switch']) }}
+            <label class="form-check-label" for="is-shipping-method-active">{{ __('Enabled') }}</label>
         </div>
 
         @if ($errors->has('is_active'))
@@ -54,7 +55,7 @@
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Restricted to Zone') }}</label>
     <div class="col-md-10">
         {{ Form::select('zone_id', $zones->pluck('name', 'id'), null, [
-                'class' => 'form-control form-control-sm' . ($errors->has('zone_id') ? ' is-invalid': ''),
+                'class' => 'form-select form-select-sm' . ($errors->has('zone_id') ? ' is-invalid': ''),
                 'placeholder' => '<' . __('Unrestricted') . '>',
            ])
         }}
@@ -71,7 +72,7 @@
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Calculator') }}</label>
     <div class="col-md-10">
         {{ Form::select('calculator', $calculators, null, [
-                'class' => 'form-control form-control-sm' . ($errors->has('calculator') ? ' is-invalid': ''),
+                'class' => 'form-select form-select-sm' . ($errors->has('calculator') ? ' is-invalid': ''),
                 'placeholder' => __('--')
            ])
         }}

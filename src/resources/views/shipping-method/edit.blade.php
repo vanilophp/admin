@@ -11,20 +11,16 @@
         ])
     !!}
 
-    <div class="card card-accent-secondary">
-        <div class="card-header">
-            {{ __('Shipping Method Details') }}
-        </div>
+    <x-appshell::card accent="secondary">
+        <x-slot:title>{{ __('Shipping Method Details') }}</x-slot:title>
 
-        <div class="card-body">
-            @include('vanilo::shipping-method._form')
-        </div>
+        @include('vanilo::shipping-method._form')
 
-        <div class="card-footer">
-            <button class="btn btn-primary">{{ __('Save') }}</button>
-            <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        </div>
-    </div>
+        <x-slot:footer>
+            <x-appshell::save-button />
+            <x-appshell::cancel-button />
+        </x-slot:footer>
+    </x-appshell::card>
 
     {!! Form::close() !!}
 @stop
