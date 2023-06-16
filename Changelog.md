@@ -7,7 +7,9 @@
 - Dropped Vanilo v3 support
 - Dropped PHP 8.0 & 8.1 support
 - Dropped Laravel 9 support
-- Upgraded to AppShell 4 and to Konekt Components v3
+- Upgraded to AppShell 4, Bootstrap 5.3 and to Konekt Components v3
+- Changed the image index to use thumbnails instead of the carousel
+- Improved the UI
 
 ## 3.6.0
 ##### 2023-03-12
