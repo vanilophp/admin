@@ -3,7 +3,7 @@
     @can('edit zones')
         <span class="dropdown" title="{{ $member->member_type->label() }}">
             <button @class(['btn dropdown-toggle', 'btn-secondary' => $member->isCountry(), 'btn-dark' => $member->isProvince()])
-                    type="button" data-toggle="dropdown" aria-expanded="false">
+                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ $member->getName() }}
             </button>
             <div class="dropdown-menu">

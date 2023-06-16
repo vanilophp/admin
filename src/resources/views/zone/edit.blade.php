@@ -18,7 +18,7 @@
         @include('vanilo::zone._form')
 
         <x-slot:footer>
-            <x-appshell::save-button model-name="zone />
+            <x-appshell::save-button model-name="zone" />
             <x-appshell::cancel-button />
         </x-slot:footer>
     </x-appshell::card>

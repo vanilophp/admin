@@ -7,21 +7,17 @@
 @section('content')
 {!! Form::open(['url' => route('vanilo.admin.zone_member.store', $zone), 'autocomplete' => 'off', 'x-data' => 'vaniloZoneMember']) !!}
 
-    <div class="card card-accent-success">
+    <x-appshell::card accent="success">
 
-        <div class="card-header">
-            {{ __('Area To Add') }}
-        </div>
+        <x-slot:title>{{ __('Area To Add') }}</x-slot:title>
 
-        <div class="card-body">
-            @include('vanilo::zone-member._form')
-        </div>
+        @include('vanilo::zone-member._form')
 
-        <div class="card-footer">
-            <button class="btn btn-success">{{ __('Add to the zone') }}</button>
-            <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        </div>
-    </div>
+        <x-slot:footer>
+            <x-appshell::create-button :text="__('Add to the zone')" />
+            <x-appshell::cancel-button />
+        </x-slot:footer>
+    </x-appshell::card>
 
 {!! Form::close() !!}
 @stop

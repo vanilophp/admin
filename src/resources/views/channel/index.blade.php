@@ -5,11 +5,7 @@
 @stop
 
 @push('page-actions')
-    @can('create channels')
-        <x-appshell::button size="sm" variant="outline-success" icon="+" :href="route('vanilo.admin.channel.create')">
-            {{ __('Create Channel') }}
-        </x-appshell::button>
-    @endcan
+    <x-appshell::create-action model-name="channel" route="vanilo.admin.channel.create" />
 @endpush
 
 @section('content')
