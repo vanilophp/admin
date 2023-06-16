@@ -44,10 +44,12 @@
         <x-appshell::card accent="secondary">
             @include('vanilo::taxon._tree', ['taxons' => $taxonomy->rootLevelTaxons()])
 
+        @can('create taxons')
             <x-slot:footer>
                 <x-appshell::button :href="route('vanilo.admin.taxon.create', $taxonomy)" variant="outline-success" size="sm">{{ __('Add :category', ['category' => \Illuminate\Support\Str::singular($taxonomy->name)]) }}</x-appshell::button>
             </x-slot:footer>
         </x-appshell::card>
+    @endcan
     </div>
 
     <div class="col-12 col-md-6 col-lg-4 col-xl-3">
