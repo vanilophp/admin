@@ -1,28 +1,28 @@
 <div class="mb-3">
-    <div class="input-group">
-        <span class="input-group-prepend">
-            <span class="input-group-text">
-                {!! icon('carrier') !!}
-            </span>
+    <div class="input-group input-group-lg {{ $errors->has('name') ? 'has-validation' : '' }}">
+        <span class="input-group-text">
+            {!! icon('channel') !!}
         </span>
-        {{ Form::text('name', null, [
-                'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
-                'placeholder' => __('Name of the carrier')
-            ])
-        }}
+        <x-appshell::floating-label :label="__('Carrier name')" :is-invalid="$errors->has('name')">
+            {{ Form::text('name', null, [
+                    'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
+                    'placeholder' => __('Name of the carrier')
+                ])
+            }}
+        </x-appshell::floating-label>
+        @if ($errors->has('name'))
+            <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+        @endif
     </div>
-    @if ($errors->has('name'))
-        <div class="invalid-feedback">{{ $errors->first('name') }}</div>
-    @endif
 </div>
 
 <div class="mb-3 row{{ $errors->has('is_active') ? ' has-danger' : '' }}">
     <div class="col-md-10 offset-md-2">
         {{ Form::hidden('is_active', 0) }}
 
-        <div class="custom-control custom-switch">
-            {{ Form::checkbox('is_active', 1, null, ['class' => 'custom-control-input', 'id' => 'is-shipping-method-active']) }}
-            <label class="custom-control-label" for="is-shipping-method-active">{{ __('Enabled') }}</label>
+        <div class="form-check form-switch">
+            {{ Form::checkbox('is_active', 1, null, ['class' => 'form-check-input', 'id' => 'is-carrier-enabled', 'role' => 'switch']) }}
+            <label class="form-check-label" for="is-payment-method-enabled">{{ __('Enabled') }}</label>
         </div>
 
         @if ($errors->has('is_active'))

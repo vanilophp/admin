@@ -5,23 +5,19 @@
 @stop
 
 @section('content')
-{!! Form::model($carrier, ['route' => 'vanilo.admin.carrier.store', 'autocomplete' => 'off']) !!}
+    {!! Form::model($carrier, ['route' => 'vanilo.admin.carrier.store', 'autocomplete' => 'off']) !!}
 
-    <div class="card card-accent-success">
+    <x-appshell::card accent="success">
+        <x-slot:title>{{ __('Carrier Details') }}</x-slot:title>
 
-        <div class="card-header">
-            {{ __('Carrier Details') }}
-        </div>
+        @include('vanilo::carrier._form')
 
-        <div class="card-body">
-            @include('vanilo::carrier._form')
-        </div>
+        <x-slot:footer>
+            <x-appshell::create-button model-name="carrier" />
+            <x-appshell::cancel-button />
+        </x-slot:footer>
 
-        <div class="card-footer">
-            <button class="btn btn-success">{{ __('Create carrier') }}</button>
-            <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        </div>
-    </div>
+    </x-appshell::card>
 
-{!! Form::close() !!}
+    {!! Form::close() !!}
 @stop

@@ -17,20 +17,22 @@ return [
                         'text' => '$model.name',
                     ],
                     'url' => [
-                        'route' => 'vanilo.admin.channel.edit',
+                        'route' => 'vanilo.admin.carrier.edit',
                         'parameters' => ['$model']
                     ],
-                    'onlyIfCan' => 'edit channels',
+                    'onlyIfCan' => 'edit carriers',
                 ],
                 'title' => __('Name')
             ],
-            'slug',
-            'country' => [
+            'is_active' => [
+                'title' => __('Status'),
+                'valign' => 'middle',
                 'widget' => [
                     'type' => 'badge',
-                    'color' => 'primary',
-                    'text' => '$model.configuration.country_id',
-                ],
+                    'color' => ['bool' => ['success', 'secondary']],
+                    'text' => '$model.is_active',
+                    'modifier' => sprintf('bool2text:%s,%s', __('active'), __('inactive'))
+                ]
             ],
             'created_at' => [
                 'type' => 'show_datetime',

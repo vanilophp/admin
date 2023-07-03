@@ -15,10 +15,10 @@ return [
                     'primary' => [
                         'text' => '$model.name',
                         'url' => [
-                            'route' => 'vanilo.admin.payment-method.show',
+                            'route' => 'vanilo.admin.payment-method.edit',
                             'parameters' => ['$model']
                         ],
-                        'onlyIfCan' => 'view payment methods',
+                        'onlyIfCan' => 'edit payment methods',
                     ],
                     'secondary' => [
                         'text' => '$model.getGatewayName()'

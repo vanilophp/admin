@@ -5,26 +5,23 @@
 @stop
 
 @section('content')
-{!! Form::model($carrier, [
-        'route'  => ['vanilo.admin.carrier.update', $carrier],
-        'method' => 'PUT'
-    ])
-!!}
+    {!! Form::model($carrier, [
+            'route'  => ['vanilo.admin.carrier.update', $carrier],
+            'method' => 'PUT'
+        ])
+    !!}
 
-    <div class="card card-accent-secondary">
-        <div class="card-header">
-            {{ __('Carrier Details') }}
-        </div>
+    <x-appshell::card accent="secondary">
+        <x-slot:title>{{ __('Carrier Details') }}</x-slot:title>
 
-        <div class="card-body">
-            @include('vanilo::carrier._form')
-        </div>
+        @include('vanilo::carrier._form')
 
-        <div class="card-footer">
-            <button class="btn btn-primary">{{ __('Save') }}</button>
-            <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        </div>
-    </div>
+        <x-slot:footer>
+            <x-appshell::save-button />
+            <x-appshell::cancel-button />
+        </x-slot:footer>
 
-{!! Form::close() !!}
+    </x-appshell::card>
+
+    {!! Form::close() !!}
 @stop

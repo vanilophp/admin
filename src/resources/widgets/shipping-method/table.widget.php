@@ -15,10 +15,10 @@ return [
                     'primary' => [
                         'text' => '$model.name',
                         'url' => [
-                            'route' => 'vanilo.admin.shipping-method.show',
+                            'route' => 'vanilo.admin.shipping-method.edit',
                             'parameters' => ['$model']
                         ],
-                        'onlyIfCan' => 'view shipping methods',
+                        'onlyIfCan' => 'edit shipping methods',
                     ],
                     'secondary' => [
                         'text' => '$model.getCarrier().name()',
