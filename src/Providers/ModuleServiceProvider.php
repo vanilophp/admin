@@ -54,6 +54,10 @@ use Vanilo\Admin\Http\Requests\UpdateShippingMethod;
 use Vanilo\Admin\Http\Requests\UpdateTaxon;
 use Vanilo\Admin\Http\Requests\UpdateTaxonomy;
 use Vanilo\Admin\Http\Requests\UpdateZone;
+use Vanilo\Order\Models\OrderStatus;
+use Vanilo\Order\Models\OrderStatusProxy;
+use Vanilo\Product\Models\ProductState;
+use Vanilo\Product\Models\ProductStateProxy;
 
 class ModuleServiceProvider extends BaseBoxServiceProvider
 {
@@ -174,6 +178,24 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 ZoneScope::TAXATION => ThemeColor::WARNING(),
                 ZoneScope::PRICING => ThemeColor::PRIMARY(),
                 ZoneScope::CONTENT => ThemeColor::SECONDARY(),
+            ]
+        );
+
+        EnumColors::registerEnumColor(
+            ProductStateProxy::enumClass(),
+            [
+                ProductState::DRAFT => ThemeColor::SECONDARY(),
+                ProductState::INACTIVE => ThemeColor::SECONDARY(),
+                ProductState::ACTIVE => ThemeColor::SUCCESS(),
+                ProductState::UNAVAILABLE => ThemeColor::WARNING(),
+                ProductState::RETIRED => ThemeColor::LIGHT(),
+            ]
+        );
+
+        EnumColors::registerEnumColor(
+            OrderStatusProxy::enumClass(),
+            [
+                OrderStatus::PENDING => ThemeColor::WARNING(),
             ]
         );
     }
