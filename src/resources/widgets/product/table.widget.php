@@ -22,7 +22,7 @@ return [
                     'type' => 'multi_text',
                     'primary' => [
                         'text' => '$model.name',
-                        'url' => fn($product) => route(sprintf('vanilo.admin.%s.show', is_master_product($product) ? 'master_product' : 'product'), $product),
+                        'url' => fn ($product) => route(sprintf('vanilo.admin.%s.show', is_master_product($product) ? 'master_product' : 'product'), $product),
                         'onlyIfCan' => 'view products',
                     ],
                     'secondary' => [
