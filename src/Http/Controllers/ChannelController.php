@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Vanilo\Admin\Http\Controllers;
 
 use Konekt\Address\Models\CountryProxy;
+use Konekt\AppShell\Helpers\Currencies;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Konekt\Gears\Facades\Settings;
 use Vanilo\Admin\Contracts\Requests\CreateChannel;
@@ -38,6 +39,7 @@ class ChannelController extends BaseController
         return view('vanilo::channel.create', [
             'channel' => $channel,
             'countries' => $this->getCountries(),
+            'currencies' => Currencies::choices(),
         ]);
     }
 
@@ -65,6 +67,7 @@ class ChannelController extends BaseController
         return view('vanilo::channel.edit', [
             'channel' => $channel,
             'countries' => $this->getCountries(),
+            'currencies' => Currencies::choices(),
         ]);
     }
 

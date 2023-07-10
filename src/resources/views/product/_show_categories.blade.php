@@ -1,26 +1,25 @@
-<div class="card mb-3">
-    <div class="card-body">
-        <h6 class="card-title">{{ __('Categorization') }}</h6>
+<x-appshell::card>
+    <x-slot:title>{{ __('Categorization') }}</x-slot:title>
 
-        <table class="table">
-            @foreach($taxonomies as $taxonomy)
-                <tr>
-                    <td>{{ $taxonomy->name }}</td>
-                    <td>
-                        @foreach($for->taxons()->byTaxonomy($taxonomy)->get() as $taxon)
-                            <span class="badge badge-pill badge-dark">{{ $taxon->name }}</span>
-                        @endforeach
-                    </td>
-                    <td class="text-right">
-                        <button type="button" data-toggle="modal"
-                                data-target="#taxon-assign-to-model-{{$taxonomy->id}}"
-                                class="btn btn-outline-success btn-sm">{{ __('Manage') }}</button>
-                    </td>
-                </tr>
-            @endforeach
-        </table>
-    </div>
-</div>
+    <table class="table">
+        @foreach($taxonomies as $taxonomy)
+            <tr>
+                <td>{{ $taxonomy->name }}</td>
+                <td>
+                    @foreach($for->taxons()->byTaxonomy($taxonomy)->get() as $taxon)
+                        <x-appshell::badge variant="dark">{{ $taxon->name }}</x-appshell::badge>
+                    @endforeach
+                </td>
+                <td class="text-end">
+                    <x-appshell::button data-bs-toggle="modal" data-bs-target="#taxon-assign-to-model-{{$taxonomy->id}}"
+                        size="sm" variant="outline-success">
+                        {{ __('Manage') }}
+                    </x-appshell::button>
+                </td>
+            </tr>
+        @endforeach
+    </table>
+</x-appshell::card>
 
 @foreach($taxonomies as $taxonomy)
     @include('vanilo::taxon.assign._form', [

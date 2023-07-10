@@ -11,6 +11,7 @@
 - Changed the image index to use thumbnails instead of the carousel
 - Changed most of the common CRUD components to use the generic AppShell components
 - Improved the UI
+- Added the `currency` field to the channels form (VFW 4 feature)
 
 ## 3.6.0
 ##### 2023-03-12

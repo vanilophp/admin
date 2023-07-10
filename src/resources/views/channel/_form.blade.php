@@ -34,6 +34,20 @@
 <hr>
 
 <div class="mb-3 row">
+    <label class="col-form-label col-form-label-sm col-md-2">{{ __('Currency') }}</label>
+    <div class="col-md-10">
+        {{ Form::select('currency', $currencies, null, [
+                'class' => 'form-select form-select-sm' . ($errors->has('currency') ? ' is-invalid': ''),
+                'placeholder' => __('--')
+           ])
+        }}
+        @if ($errors->has('currency'))
+            <div class="invalid-feedback">{{ $errors->first('currency') }}</div>
+        @endif
+    </div>
+</div>
+
+<div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Country') }}</label>
     <div class="col-md-10">
         {{ Form::select('configuration[country_id]', $countries, null, [
@@ -42,7 +56,7 @@
            ])
         }}
         @if ($errors->has('configuration'))
-            <div class="invalid-feedback">{{ $errors->first('type') }}</div>
+            <div class="invalid-feedback">{{ $errors->first('configuration') }}</div>
         @endif
     </div>
 </div>
