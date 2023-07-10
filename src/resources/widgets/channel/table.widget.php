@@ -31,8 +31,8 @@ return [
                 'title' => __('Currency'),
                 'widget' => [
                     'type' => 'badge',
-                    'color' => 'primary',
-                    'text' => '$model.configuration.country_id',
+                    'color' => 'secondary',
+                    'text' => '$model.currency',
                 ],
             ],
             'country' => [
