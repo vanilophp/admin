@@ -24,8 +24,19 @@ return [
                 ],
                 'title' => __('Name')
             ],
-            'slug',
+            'slug' => [
+                'title' => __('Slug'),
+            ],
+            'currency' => [
+                'title' => __('Currency'),
+                'widget' => [
+                    'type' => 'badge',
+                    'color' => 'primary',
+                    'text' => '$model.configuration.country_id',
+                ],
+            ],
             'country' => [
+                'title' => __('Country'),
                 'widget' => [
                     'type' => 'badge',
                     'color' => 'primary',

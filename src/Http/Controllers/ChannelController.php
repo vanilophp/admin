@@ -46,7 +46,7 @@ class ChannelController extends BaseController
     public function store(CreateChannel $request)
     {
         try {
-            $channel = ChannelProxy::create($request->all());
+            $channel = ChannelProxy::create($request->validated());
             flash()->success(__(':name has been created', ['name' => $channel->name]));
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
@@ -74,7 +74,7 @@ class ChannelController extends BaseController
     public function update(Channel $channel, UpdateChannel $request)
     {
         try {
-            $channel->update($request->all());
+            $channel->update($request->validated());
 
             flash()->success(__(':name has been updated', ['name' => $channel->name]));
         } catch (\Exception $e) {
