@@ -1,26 +1,24 @@
-<div class="card mb-3">
-    <div class="card-body">
-        <h6 class="card-title">{{ __('Properties') }}</h6>
+<x-appshell::card>
+    <x-slot:title>{{ __('Properties') }}</x-slot:title>
 
-        <table class="table">
-            <tr>
-                <td>
-                    @foreach($for->propertyValues as $propertyValue)
-                        <span class="badge badge-pill badge-dark">
-                            {{ $propertyValue->property->name }}:
-                            {{ $propertyValue->title }}
-                        </span>
-                    @endforeach
-                </td>
-                <td class="text-right">
-                    <button type="button" data-toggle="modal"
-                            data-target="#properties-assign-to-model-modal"
-                            class="btn btn-outline-success btn-sm">{{ __('Manage') }}</button>
-                </td>
-            </tr>
-        </table>
-    </div>
-</div>
+    <table class="table">
+        <tr>
+            <td>
+                @foreach($for->propertyValues as $propertyValue)
+                    <x-appshell::badge variant="dark">
+                        {{ $propertyValue->property->name }}: {{ $propertyValue->title }}
+                    </x-appshell::badge>
+                @endforeach
+            </td>
+            <td class="text-end">
+                <x-appshell::button data-bs-toggle="modal" data-bs-target="#properties-assign-to-model-modal"
+                    size="sm" variant="outline-success">
+                    {{ __('Manage') }}
+                </x-appshell::button>
+            </td>
+        </tr>
+    </table>
+</x-appshell::card>
 
 @include('vanilo::property-value.assign._form', [
     'for' => shorten(get_class($for)),

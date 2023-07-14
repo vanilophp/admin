@@ -1,15 +1,15 @@
 <div class="mb-3">
     <div class="input-group">
-        <span class="input-group-prepend">
-            <span class="input-group-text">
-                {!! icon('product') !!}
-            </span>
+        <span class="input-group-text">
+            {!! icon('product') !!}
         </span>
+        <x-appshell::floating-label :label="__('Product name')" :is-invalid="$errors->has('name')">
         {{ Form::text('name', null, [
                 'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
                 'placeholder' => __('Product name')
             ])
         }}
+        </x-appshell::floating-label>
         @if ($errors->has('name'))
             <div class="invalid-feedback">{{ $errors->first('name') }}</div>
         @endif
@@ -18,13 +18,12 @@
 
 <hr>
 
-<div class="form-row">
+<div class="row">
     <div class="mb-3 col-12 col-md-6 col-xl-4">
+        <label class="form-control-label">{{ __('SKU') }}</label>
         <div class="input-group">
-            <span class="input-group-prepend">
-                <span class="input-group-text">
-                    {!! icon('sku') !!}
-                </span>
+            <span class="input-group-text">
+                {!! icon('sku') !!}
             </span>
             {{ Form::text('sku', null, [
                     'class' => 'form-control' . ($errors->has('sku') ? ' is-invalid' : ''),
@@ -37,15 +36,12 @@
             <div class="invalid-feedback">{{ $errors->first('sku') }}</div>
         @endif
     </div>
-</div>
 
-<div class="form-row">
     <div class="mb-3 col-12 col-md-6 col-xl-4">
+        <label class="form-control-label">{{ __('Stock') }}</label>
         <div class="input-group">
-            <span class="input-group-prepend">
-                <span class="input-group-text">
-                    {!! icon('stock') !!}
-                </span>
+            <span class="input-group-text">
+                {!! icon('stock') !!}
             </span>
             {{ Form::number('stock', null, [
                     'class' => 'form-control' . ($errors->has('stock') ? ' is-invalid' : ''),
@@ -58,9 +54,10 @@
             <div class="invalid-feedback">{{ $errors->first('stock') }}</div>
         @endif
     </div>
+
 </div>
 
-<div class="form-row">
+<div class="row">
     <div class="mb-3 col-12 col-md-6 col-xl-4">
         <label class="form-control-label">{{ __('Price') }}</label>
         <div class="input-group">
@@ -69,10 +66,8 @@
                     'placeholder' => __('Price')
                 ])
             }}
-            <span class="input-group-append">
-                <span class="input-group-text">
-                    {{ config('vanilo.foundation.currency.code') }}
-                </span>
+            <span class="input-group-text">
+                {{ config('vanilo.foundation.currency.code') }}
             </span>
         </div>
         @if ($errors->has('price'))
@@ -89,10 +84,8 @@
                     'placeholder' => __('optional')
                 ])
             }}
-            <span class="input-group-append">
-                <span class="input-group-text">
-                    {{ config('vanilo.foundation.currency.code') }}
-                </span>
+            <span class="input-group-text">
+                {{ config('vanilo.foundation.currency.code') }}
             </span>
         </div>
         @if ($errors->has('original_price'))
@@ -126,7 +119,7 @@
 <hr>
 
 <div class="mb-3">
-    <label>{{ __('Description') }}</label>
+    <label class="form-control-label">{{ __('Description') }}</label>
 
     {{ Form::textarea('description', null,
             [
@@ -142,7 +135,7 @@
 
 <div class="mb-3">
     <?php $seoHasErrors = any_key_exists($errors->toArray(), ['ext_title', 'meta_description', 'meta_keywords']) ?>
-    <h5><a data-toggle="collapse" href="#product-form-seo" class="collapse-toggler-heading"
+    <h5><a data-bs-toggle="collapse" href="#product-form-seo" class="collapse-toggler-heading"
            @if ($seoHasErrors)
                aria-expanded="true"
            @endif
@@ -159,7 +152,7 @@
 
 <div class="mb-3">
     <?php $extraHasErrors = any_key_exists($errors->toArray(), ['slug', 'excerpt']) ?>
-    <h5><a data-toggle="collapse" href="#product-form-extra" class="collapse-toggler-heading"
+    <h5><a data-bs-toggle="collapse" href="#product-form-extra" class="collapse-toggler-heading"
            @if ($extraHasErrors)
            aria-expanded="true"
                 @endif
