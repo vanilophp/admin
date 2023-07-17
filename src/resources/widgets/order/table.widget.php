@@ -36,7 +36,7 @@ return [
                         'bold' => false,
                     ],
                     'secondary' => [
-                        'text' => fn(Order $order) => format_price($order->total()),
+                        'text' => fn (Order $order) => format_price($order->total()),
                     ],
                 ],
                 'title' => __('Ordered'),
