@@ -15,8 +15,8 @@
             @include('vanilo::taxon._form')
 
             <x-slot:footer>
-                <x-appshell::button variant="success">{{ __('Create :category', ['category' => $taxonTypeName]) }}</x-appshell::button>
-                <x-appshell::button variant="link" href="#" onclick="history.back();" class="text-secondary">{{ __('Cancel') }}</x-appshell::button>
+                <x-appshell::create-button :text="__('Create :category', ['category' => $taxonTypeName])" />
+                <x-appshell::cancel-button />
             </x-slot:footer>
         </x-appshell::card>
     </div>

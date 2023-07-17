@@ -43,7 +43,7 @@
     </div>
 
     @if ($taxon->children->isNotEmpty())
-        <div class="collapse multi-collapse" id="taxon-{{$taxon->id}}" data-bs-toggle="collapse">
+        <div id="taxon-{{$taxon->id}}" data-bs-toggle="collapse">
             <div class="card-body">
                 <div class="card">
                     @include('vanilo::taxon._tree', ['taxons' => $taxon->children])

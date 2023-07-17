@@ -5,23 +5,9 @@
 @stop
 
 @push('page-actions')
-    @can('delete taxonomies')
-        {!! Form::open([
-                'route' => ['vanilo.admin.taxonomy.destroy', $taxonomy],
-                'method' => 'DELETE',
-                'class' => 'd-inline',
-                'data-confirmation-text' => __('Delete this categorization: ":name"?', ['name' => $taxonomy->name])
-            ])
-        !!}
-        <x-appshell::button variant="outline-danger" size="sm" type="submit" icon="delete" :title="__('Delete Category Tree')"></x-appshell::button>
-        {!! Form::close() !!}
-    @endcan
-
-    @can('edit taxonomies')
-        <x-appshell::button variant="outline-secondary" size="sm" :href="route('vanilo.admin.taxonomy.edit', $taxonomy)">
-            {{ __('Edit') }}
-        </x-appshell::button>
-    @endcan
+    <x-appshell::standard-actions :model="$taxonomy" route="vanilo.admin.taxonomy" :name="$taxonomy->name"
+        :delete-button-title="__('Delete Category Tree')" :delete-confirmation-text="__('Delete this categorization: `:name`?', ['name' => $taxonomy->name])"
+    />
 @endpush
 
 @section('content')
@@ -39,7 +25,7 @@
 
 <div class="row">
     <div class="col-12 col-md-6 col-lg-8 col-xl-9">
-        <x-appshell::card>
+        <x-appshell::card id="taxonomyTreeCollapse">
             @include('vanilo::taxon._tree', ['taxons' => $taxonomy->rootLevelTaxons()])
 
         @can('create taxons')
@@ -57,12 +43,3 @@
 </div>
 
 @stop
-
-@push('footer-scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const collapseElementList = document.querySelectorAll('.collapse');
-            const collapseList = [...collapseElementList].map(collapseEl => new bootstrap.Collapse(collapseEl));
-        });
-    </script>
-@endpush
