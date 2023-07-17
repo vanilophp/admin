@@ -1,35 +1,36 @@
 @foreach($propertyValues as $propertyValue)
-    <div class="btn-group btn-group-sm mb-1" role="group">
-        @can('edit property values')
-            <a href="{{ route('vanilo.admin.property_value.edit', [$property, $propertyValue]) }}"
-               class="btn btn-secondary">{{ $propertyValue->title }}</a>
-        @else
-            <button class="btn btn-secondary" type="button">{{ $propertyValue->title }}</button>
-        @endcan
-        <button type="button" class="btn btn-secondary" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">{!! icon('more-items') !!}
-        </button>
-        <div class="dropdown-menu">
-            @can('delete property values')
+
+    @canany(['edit property values', 'delete property values'])
+        <span class="dropdown" title="{{ $propertyValue->title }}">
+            <x-appshell::button size="sm" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" variant="secondary">
+                {{ $propertyValue->title }}
+            </x-appshell::button>
+            <div class="dropdown-menu">
+                @can('edit property values')
+                    <a href="{{ route('vanilo.admin.property_value.edit', [$property, $propertyValue]) }}" class="dropdown-item">{{ __('Edit') }}</a>
+                @endcan
+                @can('delete property values')
                 {{ Form::open([
-                            'url' => route('vanilo.admin.property_value.destroy', [$property, $propertyValue]),
-                            'style' => 'display: inline',
-                            'data-confirmation-text' => __('Delete :title?', ['title' => $propertyValue->title]),
-                            'method' => 'DELETE'
-                        ])
-                }}
+                    'url' => route('vanilo.admin.property_value.destroy', [$property, $propertyValue]),
+                    'style' => 'display: inline',
+                    'data-confirmation-text' => __('Delete :title?', ['title' => $propertyValue->title]),
+                    'method' => 'DELETE'
+                ]) }}
                 <button class="dropdown-item" type="submit">
                     {!! icon('delete', 'danger') !!}
-                    {{ __('Delete ":title"', ['title' => $propertyValue->title]) }}
+                    {{ __('Delete ":name"', ['name' => $propertyValue->title]) }}
                 </button>
                 {{ Form::close() }}
-
-            @endcan
-        </div>
-    </div>
+                @endcan
+            </div>
+        </span>
+    @else
+        <x-appshell::button variant="secondary">{{ $propertyValues->title }}</x-appshell::button>
+    @endcanany
 @endforeach
+
 @can('create property values')
-    <a href="{{ route('vanilo.admin.property_value.create', $property) }}"
-       class="btn btn-success btn-sm mb-1"
-       title="{{ __('Add :property value', ['property' => $property->name]) }}">{!! icon('+') !!}</a>
+    <x-appshell::button :href="route('vanilo.admin.property_value.create', $property)"
+        :title="__('Add :property value', ['property' => $property->name])"
+        size="sm" variant="success" icon="+"></x-appshell::button>
 @endcan

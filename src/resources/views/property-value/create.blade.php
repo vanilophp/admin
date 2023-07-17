@@ -14,7 +14,7 @@
 
         <x-slot:footer>
             <x-appshell::button variant="success">{{ __('Create :property value', ['property' => $property->name]) }}</x-appshell::button>
-            <x-appshell::button variant="link" href="#" onclick="history.back();" class="text-secondary">{{ __('Cancel') }}</x-appshell::button>
+            <x-appshell::cancel-button />
         </x-slot:footer>
     </x-appshell::card>
 

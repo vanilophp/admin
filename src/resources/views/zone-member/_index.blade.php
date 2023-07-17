@@ -2,7 +2,7 @@
 
     @can('edit zones')
         <span class="dropdown" title="{{ $member->member_type->label() }}">
-            <button @class(['btn dropdown-toggle', 'btn-secondary' => $member->isCountry(), 'btn-dark' => $member->isProvince()])
+            <button @class(['btn btn-sm dropdown-toggle', 'btn-secondary' => $member->isCountry(), 'btn-dark' => $member->isProvince()])
                     type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ $member->getName() }}
             </button>
@@ -29,6 +29,6 @@
     @endcan
 @endforeach
 @can('create zones')
-    <a href="{{ route('vanilo.admin.zone_member.create', $zone) }}" class="btn btn-success"
+    <a href="{{ route('vanilo.admin.zone_member.create', $zone) }}" class="btn btn-sm btn-success"
        title="{{ __('Add area') }}">{!! icon('+') !!}</a>
 @endcan

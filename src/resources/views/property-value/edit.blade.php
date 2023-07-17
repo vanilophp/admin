@@ -13,8 +13,8 @@
         @include('vanilo::property-value._form')
 
         <x-slot:footer>
-            <x-appshell::button variant="primary">{{ __('Save') }}</x-appshell::button>
-            <x-appshell::button variant="link" href="#" onclick="history.back();" class="text-secondary">{{ __('Cancel') }}</x-appshell::button>
+            <x-appshell::save-button />
+            <x-appshell::cancel-button />
         </x-slot:footer>
     </x-appshell::card>
 

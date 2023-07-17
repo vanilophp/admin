@@ -5,21 +5,7 @@
 @stop
 
 @push('page-actions')
-    @can('delete properties')
-        {!! Form::open([
-                'route' => ['vanilo.admin.property.destroy', $property],
-                'method' => 'DELETE',
-                'class' => 'd-inline',
-                'data-confirmation-text' => __('Delete this property: ":name"?', ['name' => $property->name])
-            ])
-        !!}
-        <x-appshell::button variant="outline-danger" type="submit">{{ __('Delete Property') }}</x-appshell::button>
-        {!! Form::close() !!}
-    @endcan
-
-    @can('edit properties')
-        <x-appshell::button :href="route('vanilo.admin.property.edit', $property)" variant="outline-primary">{{ __('Edit Property') }}</x-appshell::button>
-    @endcan
+    <x-appshell::standard-actions :model="$property" route="vanilo.admin.property" :name="$property->name" />
 @endpush
 
 @section('content')

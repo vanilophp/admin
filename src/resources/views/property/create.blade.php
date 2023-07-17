@@ -13,8 +13,8 @@
         @include('vanilo::property._form')
 
         <x-slot:footer>
-            <x-appshell::button variant="success">{{ __('Create property') }}</x-appshell::button>
-            <x-appshell::button variant="link" href="#" onclick="history.back();" class="text-secondary">{{ __('Cancel') }}</x-appshell::button>
+            <x-appshell::create-button model-name="property" />
+            <x-appshell::cancel-button />
         </x-slot:footer>
     </x-appshell::card>
 
