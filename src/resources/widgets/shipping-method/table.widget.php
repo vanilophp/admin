@@ -60,8 +60,10 @@ return [
                 ]
             ],
             'created_at' => [
-                'valign' => 'middle',
-                'type' => 'show_datetime',
+                'widget' => [
+                    'type' => 'show_datetime',
+                    'text' => '$model.created_at'
+                ],
                 'title' => __('Created'),
             ],
         ]

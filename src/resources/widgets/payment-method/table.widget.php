@@ -27,7 +27,8 @@ return [
                 'title' => __('Name'),
             ],
             'transaction_count' => [
-                'title' => __('No. of Transactions')
+                'title' => __('No. of Transactions'),
+                'valign' => 'middle',
             ],
             'is_enabled' => [
                 'title' => __('Status'),
@@ -40,7 +41,11 @@ return [
                 ]
             ],
             'created_at' => [
-                'type' => 'show_datetime',
+                'widget' => [
+                    'type' => 'show_datetime',
+                    'text' => '$model.created_at'
+                ],
+                'valign' => 'middle',
                 'title' => __('Created'),
             ],
         ]

@@ -17,22 +17,16 @@ return [
                         'text' => '$model.name',
                     ],
                     'url' => [
-                        'route' => 'vanilo.admin.carrier.edit',
+                        'route' => 'vanilo.admin.taxonomy.show',
                         'parameters' => ['$model']
                     ],
-                    'onlyIfCan' => 'edit carriers',
+                    'onlyIfCan' => 'view taxonomies',
                 ],
                 'title' => __('Name')
             ],
-            'is_active' => [
-                'title' => __('Status'),
+            'slug' => [
+                'title' => __('Slug'),
                 'valign' => 'middle',
-                'widget' => [
-                    'type' => 'badge',
-                    'color' => ['bool' => ['success', 'secondary']],
-                    'text' => '$model.is_active',
-                    'modifier' => sprintf('bool2text:%s,%s', __('active'), __('inactive'))
-                ]
             ],
             'created_at' => [
                 'widget' => [

@@ -38,7 +38,10 @@ return [
                 ]
             ],
             'created_at' => [
-                'type' => 'show_datetime',
+                'widget' => [
+                    'type' => 'show_datetime',
+                    'text' => '$model.created_at'
+                ],
                 'title' => __('Created'),
             ],
         ]
