@@ -4,58 +4,51 @@
     {{ $product->name }}
 @stop
 
-@section('content')
+@push('page-actions')
+    <x-appshell::standard-actions :model="$product" route="vanilo.admin.master_product" :name="$product->name" model-name="product" />
+@endpush
 
+@section('content')
     <div class="row">
         <div class="col-sm-6 col-md-4 mb-3">
-            @component('appshell::widgets.card_with_icon', [
-                    'icon' => $product->is_active ? 'product' : 'product-off',
-                    'type' => $product->is_active ? 'success' : 'warning'
-            ])
+            <x-appshell::card-with-icon :icon="$product->is_active ? 'product' : 'product-off'" :type="$product->is_active ? 'success' : 'warning'">
                 {{ $product->name }}
                 @if (!$product->is_active)
-                    <small>
-                        <span class="badge badge-secondary">
-                            {{ __('inactive') }}
-                        </span>
-                    </small>
+                    <x-appshell::badge variant="light"><small>{{ __('inactive') }}</small></x-appshell::badge>
                 @endif
-                @slot('subtitle')
+                <x-slot:subtitle>
                     {{ $product->variants->implode('sku', ', ') }}&nbsp;
-                @endslot
-            @endcomponent
+                </x-slot:subtitle>
+            </x-appshell::card-with-icon>
         </div>
 
         <div class="col-sm-6 col-md-5 mb-3">
-            @component('appshell::widgets.card_with_icon', [
-                    'icon' => 'time',
-                    'type' => 'info'
-            ])
+            <x-appshell::card-with-icon icon="time" type="info">
                 {{ $product->state }}
 
-                @slot('subtitle')
+                <x-slot:subtitle>
                     {{ __('Updated') }}
                     {{ show_datetime($product->updated_at) }}
                     |
                     {{ __('Created at') }}
                     {{ show_datetime($product->created_at) }}
-                @endslot
-            @endcomponent
+                </x-slot:subtitle>
+            </x-appshell::card-with-icon>
         </div>
 
         <div class="col-sm-6 col-md-3 mb-3">
-            @component('appshell::widgets.card_with_icon', ['icon' => 'bag'])
+            <x-appshell::card-with-icon icon="bag">
                 {{ $product->units_sold ?: '0' }}
                 {{ __('units sold') }}
-                @slot('subtitle')
+                <x-slot:subtitle>
                     @if ($product->last_sale_at)
                         {{ __('Last sale at') }}
                         {{ show_datetime($product->last_sale_at) }}
                     @else
                         {{ __('No sales were registered') }}
                     @endif
-                @endslot
-            @endcomponent
+                </x-slot:subtitle>
+            </x-appshell::card-with-icon>
         </div>
 
         <div class="col-12 col-md-6 col-lg-8 col-xl-9 mb-3">
@@ -68,22 +61,4 @@
             @include('vanilo::media._index', ['model' => $product])
         </div>
     </div>
-
-    <div class="card mb-3">
-        <div class="card-body">
-            @can('edit products')
-            <a href="{{ route('vanilo.admin.master_product.edit', $product) }}" class="btn btn-outline-primary">{{ __('Edit product') }}</a>
-            @endcan
-
-            @can('delete products')
-                {!! Form::open(['route' => ['vanilo.admin.master_product.destroy', $product], 'method' => 'DELETE', 'class' => "float-right"]) !!}
-                <button class="btn btn-outline-danger">
-                    {{ __('Delete product') }}
-                </button>
-                {!! Form::close() !!}
-            @endcan
-
-        </div>
-    </div>
-
 @stop

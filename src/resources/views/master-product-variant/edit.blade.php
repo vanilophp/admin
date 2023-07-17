@@ -4,6 +4,20 @@
     {{ __('Editing') }} {{ $variant->name }}
 @stop
 
+@push('page-actions')
+    @can('delete products')
+        {!! Form::open([
+                'route' => ['vanilo.admin.master_product_variant.destroy', [$master, $variant]],
+                'method' => 'DELETE',
+                'class' => 'd-inline',
+                'data-confirmation-text' => __('Delete this variant: ":name"?', ['name' => $variant->name])
+            ])
+        !!}
+        <x-appshell::button variant="outline-danger" size="sm" icon="delete" :title="__('Delete This Variant')" />
+        {!! Form::close() !!}
+    @endcan
+@endpush
+
 @section('content')
 <div class="row">
 
@@ -13,43 +27,23 @@
                 'method' => 'PUT'
             ])
         !!}
-        <div class="card card-accent-secondary">
-            <div class="card-header">
-                {{ __('Variant Data') }}
-            </div>
-            <div class="card-body">
-                @include('vanilo::master-product-variant._form')
-            </div>
+        <x-appshell::card accent="secondary">
+            <x-slot:title>{{ __('Variant Data') }}</x-slot:title>
 
-            <div class="card-footer">
-                <button class="btn btn-primary">{{ __('Save') }}</button>
-                <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-            </div>
-        </div>
+            @include('vanilo::master-product-variant._form')
+
+            <x-slot:footer>
+                <x-appshell::save-button />
+                <x-appshell::cancel-button />
+            </x-slot:footer>
+        </x-appshell::card>
         {!! Form::close() !!}
     </div>
 
     <div class="col-12 col-lg-4 col-xl-3">
         @include('vanilo::media._edit', ['model' => $variant])
-        <div class="mb-3"></div>
 
         @include('vanilo::product._show_properties', ['for' => $variant])
-
-        @can('delete products')
-            {!! Form::open([
-                    'route' => ['vanilo.admin.master_product_variant.destroy', [$master, $variant]],
-                    'method' => 'DELETE',
-                    'class' => 'card mb-3',
-                    'data-confirmation-text' => __('Delete this variant: ":name"?', ['name' => $variant->name])
-                ])
-            !!}
-            <div class="card-body">
-                <button class="btn btn-sm btn-outline-danger float-right">
-                    {{ __('Delete This Variant') }}
-                </button>
-            </div>
-            {!! Form::close() !!}
-        @endcan
     </div>
 
 </div>

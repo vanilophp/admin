@@ -1,20 +1,22 @@
 <div class="mb-3">
     <div class="input-group">
-        <span class="input-group-prepend">
-            <span class="input-group-text">
-                {!! icon('product') !!}
-            </span>
+        <span class="input-group-text">
+            {!! icon('product') !!}
         </span>
-        {{ Form::text('name', null, [
-                'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
-                'placeholder' => __('Product name')
-            ])
-        }}
+        <x-appshell::floating-label :label="__('Product name')" :is-invalid="$errors->has('name')">
+            {{ Form::text('name', null, [
+                    'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
+                    'placeholder' => __('Product name')
+                ])
+            }}
+        </x-appshell::floating-label>
         @if ($errors->has('name'))
             <div class="invalid-feedback">{{ $errors->first('name') }}</div>
         @endif
     </div>
 </div>
+
+<hr>
 
 <div class="mb-3 row">
     <label class="form-control-label col-md-2">{{ __('State') }}</label>
@@ -36,42 +38,39 @@
 
 <hr>
 
-<div class="form-row">
-    <label class="col-form-label col-12 col-md-3 col-lg-2">{{ __('Price') }}</label>
-    <div class="mb-3 col-12 col-md-9 col-lg-4">
+<div class="row">
+    <div class="mb-3 col-12 col-md-6 col-xl-4">
+        <label class="form-control-label">{{ __('Price') }}</label>
         <div class="input-group">
             {{ Form::text('price', null, [
                     'class' => 'form-control' . ($errors->has('price') ? ' is-invalid' : ''),
                     'placeholder' => __('Price')
                 ])
             }}
-            <span class="input-group-append">
-                <span class="input-group-text">
-                    {{ config('vanilo.foundation.currency.code') }}
-                </span>
+            <span class="input-group-text">
+                {{ config('vanilo.foundation.currency.code') }}
             </span>
         </div>
         @if ($errors->has('price'))
-            <input hidden class="form-control is-invalid">
+            <input type="hidden" class="form-control is-invalid">
             <div class="invalid-feedback">{{ $errors->first('price') }}</div>
         @endif
     </div>
 
-    <label class="col-form-label col-12 col-md-3 col-lg-2 text-lg-right">{{ __('Original price') }}</label>
-    <div class="mb-3 col-12 col-md-9 col-lg-4">
+    <div class="mb-3 col-12 col-md-6 col-xl-4">
+        <label class="form-control-label">{{ __('Original Price') }}</label>
         <div class="input-group">
             {{ Form::text('original_price', null, [
                     'class' => 'form-control' . ($errors->has('original_price') ? ' is-invalid' : ''),
+                    'placeholder' => __('optional')
                 ])
             }}
-            <span class="input-group-append">
-                <span class="input-group-text">
-                    {{ config('vanilo.foundation.currency.code') }}
-                </span>
+            <span class="input-group-text">
+                {{ config('vanilo.foundation.currency.code') }}
             </span>
         </div>
         @if ($errors->has('original_price'))
-            <input hidden class="form-control is-invalid">
+            <input type="hidden" class="form-control is-invalid">
             <div class="invalid-feedback">{{ $errors->first('original_price') }}</div>
         @endif
     </div>
@@ -80,7 +79,7 @@
 <hr>
 
 <div class="mb-3">
-    <label>{{ __('Description') }}</label>
+    <label class="form-control-label">{{ __('Description') }}</label>
 
     {{ Form::textarea('description', null,
             [
@@ -102,7 +101,7 @@
 
 <div class="mb-3">
     <?php $seoHasErrors = any_key_exists($errors->toArray(), ['ext_title', 'meta_description', 'meta_keywords']) ?>
-    <h5><a data-toggle="collapse" href="#product-form-seo" class="collapse-toggler-heading"
+    <h5><a data-bs-toggle="collapse" href="#product-form-seo" class="collapse-toggler-heading"
            @if ($seoHasErrors)
                aria-expanded="true"
             @endif
@@ -119,7 +118,7 @@
 
 <div class="mb-3">
     <?php $extraHasErrors = any_key_exists($errors->toArray(), ['slug', 'excerpt']) ?>
-    <h5><a data-toggle="collapse" href="#product-form-extra" class="collapse-toggler-heading"
+    <h5><a data-bs-toggle="collapse" href="#product-form-extra" class="collapse-toggler-heading"
            @if ($extraHasErrors)
                aria-expanded="true"
             @endif

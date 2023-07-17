@@ -1,15 +1,15 @@
 <div class="mb-3">
     <div class="input-group">
-        <span class="input-group-prepend">
-            <span class="input-group-text">
-                {!! icon('product') !!}
-            </span>
+        <span class="input-group-text">
+            {!! icon('product') !!}
         </span>
+        <x-appshell::floating-label :label="__('Variant name')" :is-invalid="$errors->has('name')">
         {{ Form::text('name', null, [
                 'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
                 'placeholder' => __('Variant name')
             ])
         }}
+        </x-appshell::floating-label>
         @if ($errors->has('name'))
             <div class="invalid-feedback">{{ $errors->first('name') }}</div>
         @endif
@@ -22,10 +22,8 @@
     <div class="mb-3 col-12 col-md-6 col-xl-4">
         <label class="form-control-label">{{ __('SKU') }}</label>
         <div class="input-group">
-            <span class="input-group-prepend">
-                <span class="input-group-text">
-                    {!! icon('sku') !!}
-                </span>
+            <span class="input-group-text">
+                {!! icon('sku') !!}
             </span>
             {{ Form::text('sku', null, [
                     'class' => 'form-control' . ($errors->has('sku') ? ' is-invalid' : ''),
@@ -42,10 +40,8 @@
     <div class="mb-3 col-12 col-md-6 col-xl-4">
         <label class="form-control-label">{{ __('Stock') }}</label>
         <div class="input-group">
-            <span class="input-group-prepend">
-                <span class="input-group-text">
-                    {!! icon('stock') !!}
-                </span>
+            <span class="input-group-text">
+                {!! icon('stock') !!}
             </span>
             {{ Form::number('stock', null, [
                     'class' => 'form-control' . ($errors->has('stock') ? ' is-invalid' : ''),
@@ -61,7 +57,7 @@
 
 </div>
 
-<div class="form-row">
+<div class="row">
     <div class="mb-3 col-12 col-md-6 col-xl-4">
         <label class="form-control-label">{{ __('Price') }}</label>
         <div class="input-group">
@@ -70,10 +66,8 @@
                     'placeholder' => __('Price')
                 ])
             }}
-            <span class="input-group-append">
-                <span class="input-group-text">
-                    {{ config('vanilo.foundation.currency.code') }}
-                </span>
+            <span class="input-group-text">
+                {{ config('vanilo.foundation.currency.code') }}
             </span>
         </div>
         @if ($errors->has('price'))
@@ -83,17 +77,15 @@
     </div>
 
     <div class="mb-3 col-12 col-md-6 col-xl-4">
-        <label class="form-control-label text-muted">{{ __('Original Price') }} ({{ __('optional') }})</label>
+        <label class="form-control-label">{{ __('Original Price') }}</label>
         <div class="input-group">
             {{ Form::text('original_price', null, [
                     'class' => 'form-control' . ($errors->has('original_price') ? ' is-invalid' : ''),
-                    'placeholder' => __('Aka "strikethrough" price')
+                    'placeholder' => __('optional')
                 ])
             }}
-            <span class="input-group-append">
-                <span class="input-group-text">
-                    {{ config('vanilo.foundation.currency.code') }}
-                </span>
+            <span class="input-group-text">
+                {{ config('vanilo.foundation.currency.code') }}
             </span>
         </div>
         @if ($errors->has('original_price'))
@@ -106,7 +98,7 @@
 <hr>
 
 <div class="mb-3">
-    <label>{{ __('Description') }}</label>
+    <label class="form-control-label">{{ __('Description') }}</label>
 
     {{ Form::textarea('description', null,
             [

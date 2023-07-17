@@ -1,7 +1,7 @@
 <x-appshell::card>
     <x-slot:title>{{ __('Categorization') }}</x-slot:title>
 
-    <table class="table">
+    <table class="table table-sm">
         @foreach($taxonomies as $taxonomy)
             <tr>
                 <td>{{ $taxonomy->name }}</td>
@@ -12,7 +12,7 @@
                 </td>
                 <td class="text-end">
                     <x-appshell::button data-bs-toggle="modal" data-bs-target="#taxon-assign-to-model-{{$taxonomy->id}}"
-                        size="sm" variant="outline-success">
+                        size="xs" variant="outline-success" class="mb-2">
                         {{ __('Manage') }}
                     </x-appshell::button>
                 </td>

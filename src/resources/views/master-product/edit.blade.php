@@ -14,18 +14,16 @@
                 'method' => 'PUT',
             ])
         !!}
-        <div class="card card-accent-success">
-            <div class="card-header">
-                {{ __('Master Details') }}
-            </div>
-            <div class="card-body">
-                @include('vanilo::master-product._form')
-            </div>
-            <div class="card-footer">
-                <button class="btn btn-success">{{ __('Save') }}</button>
-                <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-            </div>
-        </div>
+        <x-appshell::card accent="secondary">
+            <x-slot:title>{{ __('Master Details') }}</x-slot:title>
+
+            @include('vanilo::master-product._form')
+
+            <x-slot:footer>
+                <x-appshell::save-button />
+                <x-appshell::cancel-button />
+            </x-slot:footer>
+        </x-appshell::card>
         {!! Form::close() !!}
     </div>
 
