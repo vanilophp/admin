@@ -196,6 +196,9 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
             OrderStatusProxy::enumClass(),
             [
                 OrderStatus::PENDING => ThemeColor::WARNING(),
+                OrderStatus::PROCESSING => ThemeColor::INFO(),
+                OrderStatus::COMPLETED => ThemeColor::SUCCESS(),
+                OrderStatus::CANCELLED => ThemeColor::SECONDARY(),
             ]
         );
     }
