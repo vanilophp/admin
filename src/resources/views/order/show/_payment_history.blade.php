@@ -7,13 +7,11 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="payment-history-title">
                     {{ __('Payment History') }}
-                    <span class="badge badge-pill badge-light" title="{{ __('Payment hash') }}">
-                        {{ $payment->hash }}
-                    </span>
+                    <x-appshell::badge variant="light" :title="__('Payment hash')">
+                        <small>{{ $payment->hash }}</small>
+                    </x-appshell::badge>
                 </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
             </div>
 
             <div class="modal-body">
@@ -30,7 +28,7 @@
                     @foreach($payment->history as $entry)
                         <tr>
                             <td>
-                                <span class="font-lg mb-3 font-weight-bold" title="{{ $entry->created_at }}">
+                                <span class="mb-3 fw-bold" title="{{ $entry->created_at }}">
                                     {{ show_datetime($entry->created_at) }}
                                 </span>
                                 <div class="text-muted" title="{{ __('Transaction id') }}">
@@ -43,11 +41,11 @@
                                 </div>
                             </td>
                             <td>
-                                <span class="badge badge-pill badge-primary">{{ $entry->new_status->label() }}</span>
+                                <x-appshell::badge variant="primary">{{ $entry->new_status->label() }}</x-appshell::badge>
                             </td>
-                            <td><span class="font-italic">{{ $entry->message }}</span></td>
+                            <td><span class="fst-italic">{{ $entry->message }}</span></td>
                             <td>
-                                <span class="badge badge-pill badge-secondary">{{ $entry->native_status }}</span>
+                                <x-appshell::badge variant="secondary">{{ $entry->native_status }}</x-appshell::badge>
                             </td>
                         </tr>
                     @endforeach
@@ -55,7 +53,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-link" data-dismiss="modal">{{ __('Close') }}</button>
+                <x-appshell::button variant="link" data-bs-dismiss="modal">{{ __('Close') }}</x-appshell::button>
             </div>
         </div>
     </div>

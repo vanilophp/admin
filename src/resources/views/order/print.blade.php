@@ -13,7 +13,7 @@
 
     <h3>{{ __('Customer Notes') }}</h3>
 
-    <div class="font-italic">
+    <div class="fst-italic">
         @isset($order->notes)
             {!! nl2br($order->notes) !!}
         @else

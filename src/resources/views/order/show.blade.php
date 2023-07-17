@@ -4,18 +4,22 @@
     {{ __('Order :no', ['no' => $order->number]) }}
 @stop
 
+@push('page-actions')
+    @include('vanilo::order.show._actions')
+@endpush
+
 @section('content')
 
-    <div class="card-deck mb-3">
+    <div class="row mb-4">
         @include('vanilo::order.show._cards')
     </div>
 
-    <div class="card-deck mb-3">
+    <div class="row mb-4">
         @include('vanilo::order.show._addresses')
         @include('vanilo::order.show._details')
     </div>
 
-    <div class="row">
+    <div class="row mb-4">
 
         <div class="col-12 col-md-8">
             @include('vanilo::order.show._items')
@@ -28,7 +32,5 @@
             @endif
         </div>
     </div>
-
-    @include('vanilo::order.show._actions')
 
 @stop
