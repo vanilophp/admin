@@ -21,6 +21,7 @@
         "laravel/framework": "^10.0",
         "konekt/address": "^3.0",
         "konekt/appshell": "^4.0",
+        "konekt/gears": "^1.12",
         "konekt/concord": "^1.13",
         "spatie/laravel-medialibrary": "^10.7.9",
         "vanilo/framework": "^4.0"
