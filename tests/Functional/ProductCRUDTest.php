@@ -83,7 +83,7 @@ class ProductCRUDTest extends TestCase
         }
 
         $response->assertSee('Description');
-        $response->assertSee('Create product');
+        $response->assertSee('Create new product');
     }
 
     /** @test */
