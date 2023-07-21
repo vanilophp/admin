@@ -37,6 +37,7 @@ use Vanilo\Admin\Http\Requests\CreateShippingMethod;
 use Vanilo\Admin\Http\Requests\CreateTaxon;
 use Vanilo\Admin\Http\Requests\CreateTaxonForm;
 use Vanilo\Admin\Http\Requests\CreateTaxonomy;
+use Vanilo\Admin\Http\Requests\CreateTranslationForm;
 use Vanilo\Admin\Http\Requests\CreateZone;
 use Vanilo\Admin\Http\Requests\CreateZoneMember;
 use Vanilo\Admin\Http\Requests\SyncModelPropertyValues;
@@ -96,6 +97,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         CreateZone::class,
         UpdateZone::class,
         CreateZoneMember::class,
+        CreateTranslationForm::class,
     ];
 
     public function register(): void

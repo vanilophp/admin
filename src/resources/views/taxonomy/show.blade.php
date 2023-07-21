@@ -38,6 +38,7 @@
 
     <div class="col-12 col-md-6 col-lg-4 col-xl-3">
         @include('vanilo::media._index', ['model' => $taxonomy])
+        @includeWhen(true, 'vanilo::translation._summary', ['translatable' => $taxonomy])
     </div>
 
 </div>
