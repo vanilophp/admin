@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Vanilo\Admin\Contracts\Requests\CreateTranslationForm;
 
 class TranslationController
@@ -34,7 +33,7 @@ class TranslationController
         $schema = new \stdClass();
         $schema->hasAdditionalFields = false;
         $schema->usesSlug = true;
-        $schema->getTitle = fn($m) => $m->name;
+        $schema->getTitle = fn ($m) => $m->name;
 
         return view('vanilo::translation.create', [
             'translation' => $translation,
