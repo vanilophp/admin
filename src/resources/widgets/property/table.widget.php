@@ -37,6 +37,16 @@ return [
                     'text' => '$model.type',
                 ]
             ],
+            'is_hidden' => [
+                'title' => __('Visibility'),
+                'valign' => 'middle',
+                'widget' => [
+                    'type' => 'badge',
+                    'color' => ['bool' => ['secondary', 'success']],
+                    'text' => '$model.is_hidden',
+                    'modifier' => sprintf('bool2text:%s,%s', __('hidden'), __('visible'))
+                ]
+            ],
             'created_at' => [
                 'widget' => [
                     'type' => 'show_datetime',

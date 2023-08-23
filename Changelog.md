@@ -13,6 +13,7 @@
 - Changed most of the common CRUD components to use the generic AppShell components
 - Improved the UI
 - Added the `currency` field to the channels form (VFW 4 feature)
+- Added the `is_hidden` field to property screens
 
 ## 3.6.0
 ##### 2023-03-12

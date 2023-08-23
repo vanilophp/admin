@@ -46,3 +46,19 @@
     </div>
 </div>
 
+<hr>
+
+<div class="mb-3 row{{ $errors->has('is_hidden') ? ' has-danger' : '' }}">
+    <div class="col-md-10 offset-md-2">
+        {{ Form::hidden('is_hidden', 0) }}
+
+        <div class="form-check form-switch">
+            {{ Form::checkbox('is_hidden', 1, null, ['class' => 'form-check-input', 'id' => 'is_property_hidden', 'role' => 'switch']) }}
+            <label class="form-check-label" for="is_property_hidden">{{ __('Hidden') }}</label>
+        </div>
+
+        @if ($errors->has('is_hidden'))
+            <div class="invalid-feedback">{{ $errors->first('is_hidden') }}</div>
+        @endif
+    </div>
+</div>
