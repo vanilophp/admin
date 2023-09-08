@@ -60,7 +60,6 @@ class PaymentMethodController extends BaseController
             if (Features::isMultiChannelEnabled()) {
                 $paymentMethod->assignChannels($request->channels());
             }
-
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
 

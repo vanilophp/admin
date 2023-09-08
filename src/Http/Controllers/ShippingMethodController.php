@@ -63,7 +63,6 @@ class ShippingMethodController extends BaseController
             if (Features::isMultiChannelEnabled()) {
                 $shippingMethod->assignChannels($request->channels());
             }
-
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
 
