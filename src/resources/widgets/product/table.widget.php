@@ -62,7 +62,7 @@ return [
             ],
             'channels' => [
                 'title' => __('Channels'),
-                'hideIf' => fn() => Features::isMultiChannelDisabled(),
+                'hideIf' => fn () => Features::isMultiChannelDisabled(),
                 'valign' => 'middle',
                 'widget' => [
                     'type' => 'badges',
