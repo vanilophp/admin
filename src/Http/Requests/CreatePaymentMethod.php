@@ -21,6 +21,8 @@ use Vanilo\Payment\PaymentGateways;
 
 class CreatePaymentMethod extends FormRequest implements CreatePaymentMethodContract
 {
+    use HasChannels;
+
     public function rules()
     {
         return [
@@ -29,6 +31,7 @@ class CreatePaymentMethod extends FormRequest implements CreatePaymentMethodCont
             'configuration' => 'sometimes|json',
             'is_enabled' => 'sometimes|boolean',
             'description' => 'sometimes|nullable|string',
+            'channels' => 'sometimes|array',
         ];
     }
 

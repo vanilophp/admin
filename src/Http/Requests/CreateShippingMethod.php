@@ -21,6 +21,8 @@ use Vanilo\Shipment\ShippingFeeCalculators;
 
 class CreateShippingMethod extends FormRequest implements CreateShippingMethodContract
 {
+    use HasChannels;
+
     public function rules()
     {
         return [
@@ -30,6 +32,7 @@ class CreateShippingMethod extends FormRequest implements CreateShippingMethodCo
             'calculator' => ['sometimes', 'nullable', Rule::in(ShippingFeeCalculators::ids())],
             'configuration' => 'sometimes|json',
             'is_active' => 'sometimes|boolean',
+            'channels' => 'sometimes|array',
         ];
     }
 

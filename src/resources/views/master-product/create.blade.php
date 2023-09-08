@@ -22,7 +22,9 @@
 
     <div class="col-12 col-lg-4 col-xl-3">
         @include('vanilo::media._create')
-        @include('vanilo::channel._create')
+        @if($multiChannelEnabled)
+            @include('vanilo::channel._create')
+        @endif
     </div>
 
     {!! Form::close() !!}

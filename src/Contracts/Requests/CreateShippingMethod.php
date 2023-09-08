@@ -18,4 +18,5 @@ use Konekt\Concord\Contracts\BaseRequest;
 
 interface CreateShippingMethod extends BaseRequest
 {
+    public function channels(): array;
 }

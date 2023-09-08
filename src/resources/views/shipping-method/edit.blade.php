@@ -5,6 +5,9 @@
 @stop
 
 @section('content')
+<div class="row mb-4">
+
+    <div class="col-12 col-lg-8 col-xl-9 mb-4">
     {!! Form::model($shippingMethod, [
             'route'  => ['vanilo.admin.shipping-method.update', $shippingMethod],
             'method' => 'PUT'
@@ -23,4 +26,12 @@
     </x-appshell::card>
 
     {!! Form::close() !!}
+    </div>
+
+    <div class="col-12 col-lg-4 col-xl-3">
+        @if($multiChannelEnabled)
+            @include('vanilo::channel._edit', ['model' => $shippingMethod])
+        @endif
+    </div>
+</div>
 @stop

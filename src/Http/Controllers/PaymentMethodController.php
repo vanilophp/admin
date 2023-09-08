@@ -17,16 +17,24 @@ namespace Vanilo\Admin\Http\Controllers;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreatePaymentMethod;
 use Vanilo\Admin\Contracts\Requests\UpdatePaymentMethod;
+use Vanilo\Foundation\Features;
 use Vanilo\Payment\Contracts\PaymentMethod;
 use Vanilo\Payment\Models\PaymentMethodProxy;
 use Vanilo\Payment\PaymentGateways;
 
 class PaymentMethodController extends BaseController
 {
+    use CanShowChannelsForUi;
+
     public function index()
     {
+        $query = PaymentMethodProxy::query();
+        if (Features::isMultiChannelEnabled()) {
+            $query->with('channels');
+        }
+
         return view('vanilo::payment-method.index', [
-            'paymentMethods' => PaymentMethodProxy::all()
+            'paymentMethods' => $query->get(),
         ]);
     }
 
@@ -35,6 +43,8 @@ class PaymentMethodController extends BaseController
         return view('vanilo::payment-method.create', [
             'paymentMethod' => app(PaymentMethod::class),
             'gateways' => PaymentGateways::choices(),
+            'multiChannelEnabled' => Features::isMultiChannelEnabled(),
+            'channels' => $this->channelsForUi(),
         ]);
     }
 
@@ -46,6 +56,11 @@ class PaymentMethodController extends BaseController
             $attributes['configuration'] = json_decode($attributes['configuration']);
             $paymentMethod = PaymentMethodProxy::create($attributes);
             flash()->success(__(':name has been created', ['name' => $paymentMethod->name]));
+
+            if (Features::isMultiChannelEnabled()) {
+                $paymentMethod->assignChannels($request->channels());
+            }
+
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
 
@@ -65,6 +80,8 @@ class PaymentMethodController extends BaseController
         return view('vanilo::payment-method.edit', [
             'paymentMethod' => $paymentMethod,
             'gateways' => PaymentGateways::choices(),
+            'multiChannelEnabled' => Features::isMultiChannelEnabled(),
+            'channels' => $this->channelsForUi(),
         ]);
     }
 
@@ -90,6 +107,7 @@ class PaymentMethodController extends BaseController
     {
         try {
             $name = $paymentMethod->getName();
+            $paymentMethod->removeFromAllChannels();
             $paymentMethod->delete();
 
             flash()->warning(__(':name has been deleted', ['name' => $name]));

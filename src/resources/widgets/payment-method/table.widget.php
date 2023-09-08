@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Konekt\AppShell\Widgets\AppShellWidgets;
+use Vanilo\Foundation\Features;
 
 return [
     'type' => AppShellWidgets::TABLE,
@@ -29,6 +30,17 @@ return [
             'transaction_count' => [
                 'title' => __('No. of Transactions'),
                 'valign' => 'middle',
+            ],
+            'channels' => [
+                'title' => __('Channels'),
+                'hideIf' => fn() => Features::isMultiChannelDisabled(),
+                'valign' => 'middle',
+                'widget' => [
+                    'type' => 'badges',
+                    'color' => 'secondary',
+                    'text' => '$model.name',
+                    'items' => '$model.channels',
+                ]
             ],
             'is_enabled' => [
                 'title' => __('Status'),

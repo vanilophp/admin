@@ -14,7 +14,7 @@
 - Improved the UI
 - Added the `currency` field to the channels form (VFW 4 feature)
 - Added the `is_hidden` field to property screens
-- Added multiple channel-assignment features to products
+- Added multichannel editing features to products, shipping methods and payment methods
 
 ## 3.6.0
 ##### 2023-03-12

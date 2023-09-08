@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Konekt\AppShell\Widgets\AppShellWidgets;
+use Vanilo\Foundation\Features;
 
 return [
     'type' => AppShellWidgets::TABLE,
@@ -48,6 +49,17 @@ return [
                     'type' => 'text',
                     'text' => '$model.getCalculator().getName()',
                 ],
+            ],
+            'channels' => [
+                'title' => __('Channels'),
+                'hideIf' => fn() => Features::isMultiChannelDisabled(),
+                'valign' => 'middle',
+                'widget' => [
+                    'type' => 'badges',
+                    'color' => 'secondary',
+                    'text' => '$model.name',
+                    'items' => '$model.channels',
+                ]
             ],
             'is_active' => [
                 'title' => __('Status'),

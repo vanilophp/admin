@@ -18,6 +18,7 @@ use Konekt\Address\Query\Zones;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateShippingMethod;
 use Vanilo\Admin\Contracts\Requests\UpdateShippingMethod;
+use Vanilo\Foundation\Features;
 use Vanilo\Shipment\Contracts\ShippingMethod;
 use Vanilo\Shipment\Models\CarrierProxy;
 use Vanilo\Shipment\Models\ShippingMethodProxy;
@@ -25,10 +26,17 @@ use Vanilo\Shipment\ShippingFeeCalculators;
 
 class ShippingMethodController extends BaseController
 {
+    use CanShowChannelsForUi;
+
     public function index()
     {
+        $with = ['zone', 'carrier'];
+        if (Features::isMultiChannelEnabled()) {
+            $with[] = 'channels';
+        }
+
         return view('vanilo::shipping-method.index', [
-            'shippingMethods' => ShippingMethodProxy::all()
+            'shippingMethods' => ShippingMethodProxy::with($with)->get(),
         ]);
     }
 
@@ -39,6 +47,8 @@ class ShippingMethodController extends BaseController
             'carriers' => CarrierProxy::all(),
             'zones' => Zones::withShippingScope()->get(),
             'calculators' => ShippingFeeCalculators::choices(),
+            'multiChannelEnabled' => Features::isMultiChannelEnabled(),
+            'channels' => $this->channelsForUi(),
         ]);
     }
 
@@ -49,6 +59,11 @@ class ShippingMethodController extends BaseController
             $attributes['configuration'] = json_decode($attributes['configuration']);
             $shippingMethod = ShippingMethodProxy::create($attributes);
             flash()->success(__(':name has been created', ['name' => $shippingMethod->name]));
+
+            if (Features::isMultiChannelEnabled()) {
+                $shippingMethod->assignChannels($request->channels());
+            }
+
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
 
@@ -70,6 +85,8 @@ class ShippingMethodController extends BaseController
             'carriers' => CarrierProxy::all(),
             'zones' => Zones::withShippingScope()->get(),
             'calculators' => ShippingFeeCalculators::choices(),
+            'multiChannelEnabled' => Features::isMultiChannelEnabled(),
+            'channels' => $this->channelsForUi(),
         ]);
     }
 
@@ -94,6 +111,7 @@ class ShippingMethodController extends BaseController
     {
         try {
             $name = $shippingMethod->name;
+            $shippingMethod->removeFromAllChannels();
             $shippingMethod->delete();
 
             flash()->warning(__(':name has been deleted', ['name' => $name]));

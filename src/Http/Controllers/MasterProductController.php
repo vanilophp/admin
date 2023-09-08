@@ -19,7 +19,6 @@ use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateMasterProduct;
 use Vanilo\Admin\Contracts\Requests\UpdateMasterProduct;
 use Vanilo\Category\Models\TaxonomyProxy;
-use Vanilo\Channel\Models\ChannelProxy;
 use Vanilo\Foundation\Features;
 use Vanilo\MasterProduct\Contracts\MasterProduct;
 use Vanilo\MasterProduct\Contracts\MasterProductVariant;
@@ -29,6 +28,8 @@ use Vanilo\Properties\Models\PropertyProxy;
 
 class MasterProductController extends BaseController
 {
+    use CanShowChannelsForUi;
+
     public function create()
     {
         return view('vanilo::master-product.create', [
@@ -114,6 +115,7 @@ class MasterProductController extends BaseController
                 });
                 $product->propertyValues()->detach();
                 $product->taxons()->detach();
+                $product->removeFromAllChannels();
                 $product->delete();
             });
             flash()->warning(__(':name has been deleted', ['name' => $name]));
@@ -124,14 +126,5 @@ class MasterProductController extends BaseController
         }
 
         return redirect(route('vanilo.admin.product.index'));
-    }
-
-    private function channelsForUi(): array
-    {
-        if (Features::isMultiChannelDisabled()) {
-            return [];
-        }
-
-        return ChannelProxy::pluck('name', 'id')->toArray();
     }
 }

@@ -19,7 +19,6 @@ use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateProduct;
 use Vanilo\Admin\Contracts\Requests\UpdateProduct;
 use Vanilo\Category\Models\TaxonomyProxy;
-use Vanilo\Channel\Models\ChannelProxy;
 use Vanilo\Foundation\Features;
 use Vanilo\MasterProduct\Models\MasterProductProxy;
 use Vanilo\Product\Contracts\Product;
@@ -29,6 +28,8 @@ use Vanilo\Properties\Models\PropertyProxy;
 
 class ProductController extends BaseController
 {
+    use CanShowChannelsForUi;
+
     public function index()
     {
         LazyCollection::macro('paginate', function ($perPage = 100, $total = null, $page = null, $pageName = 'page') {
@@ -139,6 +140,7 @@ class ProductController extends BaseController
     {
         try {
             $name = $product->name;
+            $product->removeFromAllChannels();
             $product->propertyValues()->detach();
             $product->delete();
 
@@ -150,14 +152,5 @@ class ProductController extends BaseController
         }
 
         return redirect(route('vanilo.admin.product.index'));
-    }
-
-    private function channelsForUi(): array
-    {
-        if (Features::isMultiChannelDisabled()) {
-            return [];
-        }
-
-        return ChannelProxy::pluck('name', 'id')->toArray();
     }
 }

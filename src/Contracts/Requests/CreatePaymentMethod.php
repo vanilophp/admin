@@ -18,4 +18,5 @@ use Konekt\Concord\Contracts\BaseRequest;
 
 interface CreatePaymentMethod extends BaseRequest
 {
+    public function channels(): array;
 }
