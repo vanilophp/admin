@@ -19,6 +19,8 @@ use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateProduct;
 use Vanilo\Admin\Contracts\Requests\UpdateProduct;
 use Vanilo\Category\Models\TaxonomyProxy;
+use Vanilo\Channel\Models\ChannelProxy;
+use Vanilo\Foundation\Features;
 use Vanilo\MasterProduct\Models\MasterProductProxy;
 use Vanilo\Product\Contracts\Product;
 use Vanilo\Product\Models\ProductProxy;
@@ -45,8 +47,12 @@ class ProductController extends BaseController
         });
 
         /** @todo this solution requires significant improvement. It loads all the records in the memory! */
-        $products = ProductProxy::query()->with(['taxons', 'media'])->get();
-        $masterProducts = MasterProductProxy::query()->with(['taxons', 'media'])->get();
+        $with = ['taxons', 'media'];
+        if (Features::isMultiChannelEnabled()) {
+            $with[] = 'channels';
+        }
+        $products = ProductProxy::query()->with($with)->get();
+        $masterProducts = MasterProductProxy::query()->with($with)->get();
 
         $items = collect()->push($products, $masterProducts)->lazy()->flatten()->sortByDesc('created_at');
 
@@ -59,14 +65,16 @@ class ProductController extends BaseController
     {
         return view('vanilo::product.create', [
             'product' => app(Product::class),
-            'states' => ProductStateProxy::choices()
+            'states' => ProductStateProxy::choices(),
+            'multiChannelEnabled' => Features::isMultiChannelEnabled(),
+            'channels' => $this->channelsForUi(),
         ]);
     }
 
     public function store(CreateProduct $request)
     {
         try {
-            $product = ProductProxy::create($request->except('images'));
+            $product = ProductProxy::create($request->except(['images', 'channels']));
             flash()->success(__(':name has been created', ['name' => $product->name]));
 
             try {
@@ -74,6 +82,9 @@ class ProductController extends BaseController
                     $product->addMultipleMediaFromRequest(['images'])->each(function ($fileAdder) {
                         $fileAdder->toMediaCollection();
                     });
+                }
+                if (Features::isMultiChannelEnabled()) {
+                    $product->assignChannels($request->channels());
                 }
             } catch (\Exception $e) { // Here we already have the product created
                 flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
@@ -94,7 +105,8 @@ class ProductController extends BaseController
         return view('vanilo::product.show', [
             'product' => $product,
             'taxonomies' => TaxonomyProxy::all(),
-            'properties' => PropertyProxy::all()
+            'properties' => PropertyProxy::all(),
+            'multiChannelEnabled' => Features::isMultiChannelEnabled(),
         ]);
     }
 
@@ -102,7 +114,9 @@ class ProductController extends BaseController
     {
         return view('vanilo::product.edit', [
             'product' => $product,
-            'states' => ProductStateProxy::choices()
+            'states' => ProductStateProxy::choices(),
+            'multiChannelEnabled' => Features::isMultiChannelEnabled(),
+            'channels' => $this->channelsForUi(),
         ]);
     }
 
@@ -136,5 +150,14 @@ class ProductController extends BaseController
         }
 
         return redirect(route('vanilo.admin.product.index'));
+    }
+
+    private function channelsForUi(): array
+    {
+        if (Features::isMultiChannelDisabled()) {
+            return [];
+        }
+
+        return ChannelProxy::pluck('name', 'id')->toArray();
     }
 }

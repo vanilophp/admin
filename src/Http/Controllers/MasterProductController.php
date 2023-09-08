@@ -19,6 +19,8 @@ use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateMasterProduct;
 use Vanilo\Admin\Contracts\Requests\UpdateMasterProduct;
 use Vanilo\Category\Models\TaxonomyProxy;
+use Vanilo\Channel\Models\ChannelProxy;
+use Vanilo\Foundation\Features;
 use Vanilo\MasterProduct\Contracts\MasterProduct;
 use Vanilo\MasterProduct\Contracts\MasterProductVariant;
 use Vanilo\MasterProduct\Models\MasterProductProxy;
@@ -31,7 +33,9 @@ class MasterProductController extends BaseController
     {
         return view('vanilo::master-product.create', [
             'product' => app(MasterProduct::class),
-            'states' => ProductStateProxy::choices()
+            'states' => ProductStateProxy::choices(),
+            'multiChannelEnabled' => Features::isMultiChannelEnabled(),
+            'channels' => $this->channelsForUi(),
         ]);
     }
 
@@ -40,7 +44,8 @@ class MasterProductController extends BaseController
         return view('vanilo::master-product.show', [
             'product' => $product,
             'taxonomies' => TaxonomyProxy::all(),
-            'properties' => PropertyProxy::all()
+            'properties' => PropertyProxy::all(),
+            'multiChannelEnabled' => Features::isMultiChannelEnabled(),
         ]);
     }
 
@@ -55,6 +60,9 @@ class MasterProductController extends BaseController
                     $product->addMultipleMediaFromRequest(['images'])->each(function ($fileAdder) {
                         $fileAdder->toMediaCollection();
                     });
+                }
+                if (Features::isMultiChannelEnabled()) {
+                    $product->assignChannels($request->channels());
                 }
             } catch (\Exception $e) { // Here we already have the product created
                 flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
@@ -74,7 +82,9 @@ class MasterProductController extends BaseController
     {
         return view('vanilo::master-product.edit', [
             'product' => $product,
-            'states' => ProductStateProxy::choices()
+            'states' => ProductStateProxy::choices(),
+            'multiChannelEnabled' => Features::isMultiChannelEnabled(),
+            'channels' => $this->channelsForUi(),
         ]);
     }
 
@@ -114,5 +124,14 @@ class MasterProductController extends BaseController
         }
 
         return redirect(route('vanilo.admin.product.index'));
+    }
+
+    private function channelsForUi(): array
+    {
+        if (Features::isMultiChannelDisabled()) {
+            return [];
+        }
+
+        return ChannelProxy::pluck('name', 'id')->toArray();
     }
 }

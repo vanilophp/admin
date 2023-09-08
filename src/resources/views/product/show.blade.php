@@ -19,6 +19,27 @@
                 @endif
                 <x-slot:subtitle>
                     {{ $product->sku }}
+                    @if($multiChannelEnabled)
+                        |
+                        @if($product->channels->count())
+                            {{ __('Channels') }}:
+                            @can('view channels')
+                                @foreach($product->channels->take(3) as $channel)
+                                    <a href="{{ route('vanilo.admin.channel.show', $channel->id) }}">
+                                        {{ $channel->name }}
+                                    </a>
+                                @endforeach
+                            @else
+                                {{ $product->channels->take(3)->implode('name', ' | ') }}
+                            @endcan
+                        @else
+                            {{ __('no channels') }}
+                        @endif
+
+                        @if($product->channels->count() > 3)
+                            | {{ __('+ :num more...', ['num' => $product->channels->count() - 3]) }}
+                        @endif
+                    @endif
                 </x-slot:subtitle>
             </x-appshell::card-with-icon>
         </div>

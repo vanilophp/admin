@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 /**
- * Contains the CreateMasterProduct interface.
+ * Contains the AssignChannels interface.
  *
- * @copyright   Copyright (c) 2022 Attila Fulop
+ * @copyright   Copyright (c) 2023 Vanilo UG
  * @author      Attila Fulop
  * @license     MIT
- * @since       2022-11-28
+ * @since       2023-09-08
  *
  */
 
@@ -16,7 +16,9 @@ namespace Vanilo\Admin\Contracts\Requests;
 
 use Konekt\Concord\Contracts\BaseRequest;
 
-interface CreateMasterProduct extends BaseRequest
+interface AssignChannels extends BaseRequest
 {
     public function channels(): array;
+
+    public function getFor();
 }

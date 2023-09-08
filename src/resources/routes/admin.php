@@ -13,6 +13,7 @@ declare(strict_types=1);
 */
 
 Route::resource('channel', 'ChannelController');
+Route::put('/channels', 'ChannelController@assign')->name('channels.assign');
 Route::resource('zone', 'ZoneController');
 Route::resource('taxonomy', 'TaxonomyController');
 Route::resource('product', 'ProductController');

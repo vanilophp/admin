@@ -17,6 +17,7 @@ use Konekt\Address\Models\CountryProxy;
 use Konekt\AppShell\Helpers\Currencies;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Konekt\Gears\Facades\Settings;
+use Vanilo\Admin\Contracts\Requests\AssignChannels;
 use Vanilo\Admin\Contracts\Requests\CreateChannel;
 use Vanilo\Admin\Contracts\Requests\UpdateChannel;
 use Vanilo\Channel\Contracts\Channel;
@@ -100,6 +101,19 @@ class ChannelController extends BaseController
         }
 
         return redirect(route('vanilo.admin.channel.index'));
+    }
+
+    public function assign(AssignChannels $request)
+    {
+        $model = $request->getFor();
+        if (null === $model) {
+            abort(400, sprintf('The `%s` with id `%s` could not be located', $request->input('for'), $request->input('forId')));
+        }
+
+        $model->assignChannels($request->channels());
+        flash()->success(__('Channel assignments have been updated'));
+
+        return redirect()->intended(url()->previous());
     }
 
     private function getCountries()

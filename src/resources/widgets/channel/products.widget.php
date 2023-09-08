@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Konekt\AppShell\Widgets\AppShellWidgets;
-use Vanilo\Foundation\Features;
 
 return [
     'type' => AppShellWidgets::TABLE,
@@ -11,6 +10,7 @@ return [
         'hover' => true,
         'columns' => [
             'thumbnail' => [
+                'title' => '&nbsp;',
                 'widget' => [
                     'type' => 'image',
                     'model' => '$model.getThumbnailUrl()',
@@ -58,17 +58,6 @@ return [
                     'color' => 'secondary',
                     'text' => '$model.name',
                     'items' => '$model.taxons',
-                ]
-            ],
-            'channels' => [
-                'title' => __('Channels'),
-                'hideIf' => fn() => Features::isMultiChannelDisabled(),
-                'valign' => 'middle',
-                'widget' => [
-                    'type' => 'badges',
-                    'color' => 'secondary',
-                    'text' => '$model.name',
-                    'items' => '$model.channels',
                 ]
             ],
             'state' => [

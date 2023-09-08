@@ -17,10 +17,10 @@ return [
                         'text' => '$model.name',
                     ],
                     'url' => [
-                        'route' => 'vanilo.admin.channel.edit',
+                        'route' => 'vanilo.admin.channel.show',
                         'parameters' => ['$model']
                     ],
-                    'onlyIfCan' => 'edit channels',
+                    'onlyIfCan' => 'view channels',
                 ],
                 'title' => __('Name')
             ],

@@ -17,4 +17,5 @@ use Konekt\Concord\Contracts\BaseRequest;
 
 interface CreateProduct extends BaseRequest
 {
+    public function channels(): array;
 }

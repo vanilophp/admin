@@ -28,6 +28,7 @@
 
     <div class="col-12 col-lg-4 col-xl-3">
         @include('vanilo::media._edit', ['model' => $product])
+        @include('vanilo::channel._edit', ['model' => $product])
     </div>
 
 </div>

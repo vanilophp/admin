@@ -21,6 +21,8 @@ use Vanilo\Product\Models\ProductStateProxy;
 
 class CreateMasterProduct extends FormRequest implements CreateMasterProductContract
 {
+    use HasChannels;
+
     public function rules()
     {
         return [
@@ -30,7 +32,8 @@ class CreateMasterProduct extends FormRequest implements CreateMasterProductCont
             'original_price' => 'nullable|numeric',
             'description' => 'nullable|string',
             'images' => 'nullable',
-            'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp'
+            'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
+            'channels' => 'sometimes|array',
         ];
     }
 

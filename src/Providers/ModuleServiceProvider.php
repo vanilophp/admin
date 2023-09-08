@@ -23,6 +23,7 @@ use Konekt\AppShell\Theme\ThemeColor;
 use Konekt\AppShell\Widgets;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\Menu\Facades\Menu;
+use Vanilo\Admin\Http\Requests\AssignChannels;
 use Vanilo\Admin\Http\Requests\CreateCarrier;
 use Vanilo\Admin\Http\Requests\CreateChannel;
 use Vanilo\Admin\Http\Requests\CreateMasterProduct;
@@ -96,6 +97,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         CreateZone::class,
         UpdateZone::class,
         CreateZoneMember::class,
+        AssignChannels::class,
     ];
 
     public function register(): void
