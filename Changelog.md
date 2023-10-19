@@ -4,6 +4,7 @@
 ##### 2023-XX-YY
 
 - Added the emission of `OrderProcessingStarted` (added in v3.7) event when changing the order status
+- Fixed the link to master products on the order item list (backport from v4-dev)
 
 ## 3.6.0
 ##### 2023-03-12

@@ -23,9 +23,15 @@
                         <input type="checkbox" name="order_item[{{$item->id}}]" />
                     </td>
                     <td>{{ $loop->iteration }}</td>
-                    <td>@if($item->product)<a href="{{ route('vanilo.admin.product.show', $item->product) }}">@endif
-                        {{ $item->name }}
-                        @if($item->product)</a>@endif
+                    <td>@if($item->product)
+                            @if($item->product->masterProduct)
+                                <a href="{{ route('vanilo.admin.master_product.show', $item->product->masterProduct) }}">{{ $item->name }}</a>
+                            @else
+                                <a href="{{ route('vanilo.admin.product.show', $item->product) }}">{{ $item->name }}</a>
+                            @endif
+                        @else
+                            {{ $item->name }}
+                        @endif
                     </td>
                     <td>{{ $item->quantity }}</td>
                     <td>{{ format_price($item->price) }}</td>
