@@ -12,6 +12,7 @@
 - Changed the image index to use thumbnails instead of the carousel
 - Changed most of the common CRUD components to use the generic AppShell components
 - Improved the UI
+- Fixed the link to master products on the order item list
 - Added the `currency` field to the channels form (VFW 4 feature)
 - Added the `is_hidden` field to property screens
 - Added multichannel editing features to products, shipping methods and payment methods
