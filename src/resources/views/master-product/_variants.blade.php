@@ -2,7 +2,7 @@
     <x-slot:title>{{ __('Variants') }}</x-slot:title>
 
     @foreach($product->variants as $variant)
-        <a href="{{ route('vanilo.admin.master_product_variant.edit', [$product, $variant]) }}" class="badge bg-secondary">
+        <a href="{{ route('vanilo.admin.master_product_variant.edit', [$product, $variant]) }}" class="badge bg-secondary mb-1">
             @if ($variant->hasImage())
                 <img src="{{ $variant->getThumbnailUrl() }}" style="width: 24px; border-radius: 50%" />
             @elseif($product->hasImage())
