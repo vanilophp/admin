@@ -18,8 +18,15 @@ trait HasChannels
 {
     public function channels(): array
     {
-        $channels = $this->input('channels');
+        if (!is_array($result = $this->input('channels'))) {
+            return [];
+        }
 
-        return is_array($channels) ? $channels : [];
+        return array_unique(array_map('intval', array_map('trim', $result)));
+    }
+
+    public function hasChannels(): bool
+    {
+        return $this->has('channels');
     }
 }
