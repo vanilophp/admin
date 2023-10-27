@@ -1,6 +1,8 @@
+@unless(isset($noCaption))
 |
+@endunless
 @if($model->channels->count())
-    {{ __('Channels') }}:
+    @unless(isset($noCaption)){{ __('Channels') }}:@endunless
     @can('view channels')
         @foreach($model->channels->take(3) as $channel)
             <a href="{{ route('vanilo.admin.channel.show', $channel->id) }}">
