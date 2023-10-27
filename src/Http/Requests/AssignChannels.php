@@ -23,7 +23,7 @@ class AssignChannels extends FormRequest implements AssignChannelsContract
     use HasFor;
     use HasChannels;
 
-    protected array $allowedFor = ['product', 'master_product', 'shipping_method', 'payment_method', 'property', 'taxonomy'];
+    protected array $allowedFor = ['product', 'master_product', 'shipping_method', 'payment_method', 'property', 'taxonomy', 'user'];
 
     public function rules()
     {
