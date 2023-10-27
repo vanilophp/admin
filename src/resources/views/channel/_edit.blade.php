@@ -15,7 +15,7 @@
     @enderror
     <div class="mb-2">
         {!! Form::open(['route' => 'vanilo.admin.channels.assign', 'method' => 'PUT']) !!}
-            {{ Form::hidden('for', shorten(get_class($model))) }}
+            {{ Form::hidden('for', $for ?? shorten(get_class($model))) }}
             {{ Form::hidden('forId', $model->id) }}
 
             @foreach($channels as $channelId => $channelName)
