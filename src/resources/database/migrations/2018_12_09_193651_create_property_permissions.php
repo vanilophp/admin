@@ -16,7 +16,7 @@ class CreatePropertyPermissions extends Migration
         $adminRole = RoleProxy::where(['name' => 'admin'])->first();
 
         if ($adminRole) {
-            $adminRole->givePermissionTo($permissions);
+            $adminRole->givePermissionTo(...$permissions);
         }
     }
 

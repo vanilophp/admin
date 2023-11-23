@@ -8,6 +8,7 @@
 - Dropped PHP 8.0 & 8.1 support
 - Dropped Laravel 9 support
 - Upgraded to AppShell 4, Bootstrap 5.3 and to Konekt Components v3
+- Upgraded migrations to ACL v2
 - Changed minimally required Gears version to v1.12
 - Changed the image index to use thumbnails instead of the carousel
 - Changed most of the common CRUD components to use the generic AppShell components

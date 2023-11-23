@@ -28,7 +28,7 @@ class AddPaymentMethodPermissions extends Migration
             }
 
             if ($adminRole) {
-                $adminRole->givePermissionTo($permissions);
+                $adminRole->givePermissionTo(...$permissions);
             }
         }
     }
