@@ -55,6 +55,37 @@
         @endif
     </div>
 
+    <div class="mb-3 col-12 col-md-6 col-xl-4">
+        <label class="form-control-label">
+            {{ __('Backorder') }}
+            {!! icon(
+                    'help',
+                    'info',
+                    [
+                        'data-bs-toggle' => 'tooltip',
+                        'data-bs-placement' => 'right',
+                        'data-bs-title' => __('The quantity that can be ordered after the stock becomes zero. Set to 0 to disable ordering when out of stock. Leave it empty to allow unrestricted ordering even when out of stock.')
+                    ]
+                )
+            !!}
+        </label>
+        <div class="input-group">
+            <span class="input-group-text">
+                {!! icon('stock') !!}
+            </span>
+            {{ Form::number('backorder', null, [
+                    'class' => 'form-control' . ($errors->has('stock') ? ' is-invalid' : ''),
+                    'placeholder' => __('Maximum Backorder Quantity'),
+                    'min' => 0,
+                ])
+            }}
+        </div>
+        @if ($errors->has('backorder'))
+            <input hidden class="form-control is-invalid">
+            <div class="invalid-feedback">{{ $errors->first('backorder') }}</div>
+        @endif
+    </div>
+
 </div>
 
 <div class="row">

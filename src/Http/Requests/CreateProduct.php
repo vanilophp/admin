@@ -31,6 +31,7 @@ class CreateProduct extends FormRequest implements CreateProductContract
             'price' => 'nullable|numeric',
             'original_price' => 'sometimes|nullable|numeric',
             'stock' => 'nullable|numeric',
+            'backorder' => 'nullable|numeric|min:0',
             'images' => 'nullable',
             'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
             'channels' => 'sometimes|array',

@@ -15,6 +15,7 @@
 - Fixed the link to master products on the order item list
 - Added the `currency` field to the channels form (VFW 4 feature)
 - Added the `is_hidden` field to property screens
+- Added the `backorder` field to product and variant forms (VFW 4 feature)
 - Added multichannel editing features to products, shipping methods and payment methods
 
 ## 3.6.0
