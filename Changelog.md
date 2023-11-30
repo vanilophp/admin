@@ -4,6 +4,7 @@
 ##### 2023-XX-YY
 
 - Added Vanilo v4 support
+- Added PHP 8.3 support
 - Dropped Vanilo v3 support
 - Dropped PHP 8.0 & 8.1 support
 - Dropped Laravel 9 support
