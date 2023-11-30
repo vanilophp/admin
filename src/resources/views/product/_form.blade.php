@@ -4,11 +4,11 @@
             {!! icon('product') !!}
         </span>
         <x-appshell::floating-label :label="__('Product name')" :is-invalid="$errors->has('name')">
-        {{ Form::text('name', null, [
-                'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
-                'placeholder' => __('Product name')
-            ])
-        }}
+            {{ Form::text('name', null, [
+                    'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
+                    'placeholder' => __('Product name')
+                ])
+            }}
         </x-appshell::floating-label>
         @if ($errors->has('name'))
             <div class="invalid-feedback">{{ $errors->first('name') }}</div>
@@ -18,113 +18,7 @@
 
 <hr>
 
-<div class="row">
-    <div class="mb-3 col-12 col-md-6 col-xl-4">
-        <label class="form-control-label">{{ __('SKU') }}</label>
-        <div class="input-group">
-            <span class="input-group-text">
-                {!! icon('sku') !!}
-            </span>
-            {{ Form::text('sku', null, [
-                    'class' => 'form-control' . ($errors->has('sku') ? ' is-invalid' : ''),
-                    'placeholder' => __('SKU (product code)')
-                ])
-            }}
-        </div>
-        @if ($errors->has('sku'))
-            <input hidden class="form-control is-invalid">
-            <div class="invalid-feedback">{{ $errors->first('sku') }}</div>
-        @endif
-    </div>
-
-    <div class="mb-3 col-12 col-md-6 col-xl-4">
-        <label class="form-control-label">{{ __('Stock') }}</label>
-        <div class="input-group">
-            <span class="input-group-text">
-                {!! icon('stock') !!}
-            </span>
-            {{ Form::number('stock', null, [
-                    'class' => 'form-control' . ($errors->has('stock') ? ' is-invalid' : ''),
-                    'placeholder' => __('Product Stock Count')
-                ])
-            }}
-        </div>
-        @if ($errors->has('stock'))
-            <input hidden class="form-control is-invalid">
-            <div class="invalid-feedback">{{ $errors->first('stock') }}</div>
-        @endif
-    </div>
-
-    <div class="mb-3 col-12 col-md-6 col-xl-4">
-        <label class="form-control-label">
-            {{ __('Backorder') }}
-            {!! icon(
-                    'help',
-                    'info',
-                    [
-                        'data-bs-toggle' => 'tooltip',
-                        'data-bs-placement' => 'right',
-                        'data-bs-title' => __('The quantity that can be ordered after the stock becomes zero. Set to 0 to disable ordering when out of stock. Leave it empty to allow unrestricted ordering even when out of stock.')
-                    ]
-                )
-            !!}
-        </label>
-        <div class="input-group">
-            <span class="input-group-text">
-                {!! icon('stock') !!}
-            </span>
-            {{ Form::number('backorder', null, [
-                    'class' => 'form-control' . ($errors->has('stock') ? ' is-invalid' : ''),
-                    'placeholder' => __('Maximum Backorder Quantity'),
-                    'min' => 0,
-                ])
-            }}
-        </div>
-        @if ($errors->has('backorder'))
-            <input hidden class="form-control is-invalid">
-            <div class="invalid-feedback">{{ $errors->first('backorder') }}</div>
-        @endif
-    </div>
-
-</div>
-
-<div class="row">
-    <div class="mb-3 col-12 col-md-6 col-xl-4">
-        <label class="form-control-label">{{ __('Price') }}</label>
-        <div class="input-group">
-            {{ Form::text('price', null, [
-                    'class' => 'form-control' . ($errors->has('price') ? ' is-invalid' : ''),
-                    'placeholder' => __('Price')
-                ])
-            }}
-            <span class="input-group-text">
-                {{ config('vanilo.foundation.currency.code') }}
-            </span>
-        </div>
-        @if ($errors->has('price'))
-            <input type="hidden" class="form-control is-invalid">
-            <div class="invalid-feedback">{{ $errors->first('price') }}</div>
-        @endif
-    </div>
-
-    <div class="mb-3 col-12 col-md-6 col-xl-4">
-        <label class="form-control-label">{{ __('Original Price') }}</label>
-        <div class="input-group">
-            {{ Form::text('original_price', null, [
-                    'class' => 'form-control' . ($errors->has('original_price') ? ' is-invalid' : ''),
-                    'placeholder' => __('optional')
-                ])
-            }}
-            <span class="input-group-text">
-                {{ config('vanilo.foundation.currency.code') }}
-            </span>
-        </div>
-        @if ($errors->has('original_price'))
-            <input type="hidden" class="form-control is-invalid">
-            <div class="invalid-feedback">{{ $errors->first('original_price') }}</div>
-        @endif
-    </div>
-</div>
+@include('vanilo::product._commerce_attributes', ['model' => $product])
 
 <hr>
 
@@ -185,8 +79,8 @@
     <?php $extraHasErrors = any_key_exists($errors->toArray(), ['slug', 'excerpt']) ?>
     <h5><a data-bs-toggle="collapse" href="#product-form-extra" class="collapse-toggler-heading"
            @if ($extraHasErrors)
-           aria-expanded="true"
-                @endif
+               aria-expanded="true"
+           @endif
         >{!! icon('>') !!} {{ __('Extra Settings') }}</a></h5>
 
     <div id="product-form-extra" class="collapse{{ $extraHasErrors ? ' show' : '' }}">
