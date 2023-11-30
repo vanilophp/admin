@@ -40,9 +40,6 @@ class OrderController extends BaseController
 
         $filters->activateFromRequest($request);
         $query = OrderProxy::withCurrentPayment()->orderBy('created_at', 'desc');
-        if (!$filters->isActive('status')) {
-            $query->open(); // Give open orders only if no explicit status was requested
-        }
 
         return view('vanilo::order.index', [
             'orders' => $filters->apply($query)->paginate(100)->withQueryString(),

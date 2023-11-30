@@ -141,7 +141,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 ->data('icon', 'taxonomies')
                 ->activateOnUrls(route('vanilo.admin.taxonomy.index', [], false) . '*')
                 ->allowIfUserCan('list taxonomies');
-            $shop->addSubItem('orders', __('Orders'), ['route' => 'vanilo.admin.order.index'])
+            $shop->addSubItem('orders', __('Orders'), ['route' => ['vanilo.admin.order.index', 'status' => 'open']])
                 ->data('icon', 'bag')
                 ->activateOnUrls(route('vanilo.admin.order.index', [], false) . '*')
                 ->allowIfUserCan('list orders');

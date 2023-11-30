@@ -12,6 +12,8 @@
 - Changed minimally required Gears version to v1.12
 - Changed the image index to use thumbnails instead of the carousel
 - Changed most of the common CRUD components to use the generic AppShell components
+- Changed the order list side menu item to include `?status=open`
+- Removed the implicit `status=open` filter from '/manage/order' if no explicit status query was given  
 - Improved the UI
 - Fixed the link to master products on the order item list
 - Added the `currency` field to the channels form (VFW 4 feature)
