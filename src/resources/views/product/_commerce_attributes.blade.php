@@ -193,7 +193,7 @@
                 },
                 originalBackorder: @json($backorder),
                 backorder: @json($backorder),
-                stock: {{ json_encode((int) old('stock') ?? $model->stock) }}
+                stock: {{ json_encode((int) (old('stock') ?? $model->stock)) }}
             }))
         })
     </script>
