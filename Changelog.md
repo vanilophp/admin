@@ -1,5 +1,10 @@
 # Vanilo Admin Changelog
 
+## Unreleased
+##### 2023-XX-YY
+
+- Added the emission of `OrderProcessingStarted` (added in v3.7) event when changing the order status
+
 ## 3.6.0
 ##### 2023-03-12
 
