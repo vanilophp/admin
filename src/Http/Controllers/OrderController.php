@@ -27,6 +27,7 @@ use Vanilo\Admin\Filters\OrderStatusFilter;
 use Vanilo\Channel\Models\ChannelProxy;
 use Vanilo\Order\Contracts\Order;
 use Vanilo\Order\Contracts\OrderAwareEvent;
+use Vanilo\Order\Events\OrderProcessingStarted;
 use Vanilo\Order\Events\OrderWasCancelled;
 use Vanilo\Order\Events\OrderWasCompleted;
 use Vanilo\Order\Models\OrderProxy;
@@ -119,14 +120,11 @@ class OrderController extends BaseController
 
     private function getStatusUpdateEventClass(string $status, Order $order): ?OrderAwareEvent
     {
-        if (OrderStatus::CANCELLED === $status) {
-            return new OrderWasCancelled($order);
-        }
-
-        if (OrderStatus::COMPLETED === $status) {
-            return new OrderWasCompleted($order);
-        }
-
-        return null;
+        return match ($status) {
+            OrderStatus::CANCELLED => new OrderWasCancelled($order),
+            OrderStatus::COMPLETED => new OrderWasCompleted($order),
+            OrderStatus::PROCESSING => new OrderProcessingStarted($order),
+            default => null,
+        };
     }
 }

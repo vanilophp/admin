@@ -21,6 +21,7 @@
 - Added the `is_hidden` field to property screens
 - Added the `backorder` field to product and variant forms (VFW 4 feature)
 - Added multichannel editing features to products, shipping methods and payment methods
+- Added the emission of `OrderProcessingStarted` event when changing the order status (forward port from v3.7)
 
 ## 3.6.0
 ##### 2023-03-12
