@@ -1,7 +1,7 @@
 # Vanilo Admin Changelog
 
-## Unreleased
-##### 2023-XX-YY
+## 3.7.0
+##### 2023-12-15
 
 - Added the emission of `OrderProcessingStarted` (added in v3.7) event when changing the order status
 - Fixed the link to master products on the order item list (backport from v4-dev)
