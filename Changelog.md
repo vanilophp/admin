@@ -1,5 +1,10 @@
 # Vanilo Admin Changelog
 
+## 3.7.1
+##### 2023-12-17
+
+- Added PHP 8.3 support
+
 ## 3.7.0
 ##### 2023-12-15
 
