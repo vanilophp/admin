@@ -23,6 +23,11 @@
 - Added multichannel editing features to products, shipping methods and payment methods
 - Added the emission of `OrderProcessingStarted` event when changing the order status (forward port from v3.7)
 
+## 3.7.1
+##### 2023-12-17
+
+- Added PHP 8.3 support
+
 ## 3.7.0
 ##### 2023-12-15
 
