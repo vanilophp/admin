@@ -61,3 +61,6 @@
     </div>
 </div>
 
+@if(null !== $pricelists)
+    @include('vanilo::pricelist._select')
+@endif

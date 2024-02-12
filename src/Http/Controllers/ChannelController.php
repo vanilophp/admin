@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Http\Controllers;
 
+use Illuminate\Support\Collection;
 use Konekt\Address\Models\CountryProxy;
 use Konekt\AppShell\Helpers\Currencies;
 use Konekt\AppShell\Http\Controllers\BaseController;
@@ -22,6 +23,8 @@ use Vanilo\Admin\Contracts\Requests\CreateChannel;
 use Vanilo\Admin\Contracts\Requests\UpdateChannel;
 use Vanilo\Channel\Contracts\Channel;
 use Vanilo\Channel\Models\ChannelProxy;
+use Vanilo\Foundation\Features;
+use Vanilo\Pricing\Models\Pricelist;
 
 class ChannelController extends BaseController
 {
@@ -41,6 +44,7 @@ class ChannelController extends BaseController
             'channel' => $channel,
             'countries' => $this->getCountries(),
             'currencies' => Currencies::choices(),
+            'pricelists' => $this->getPricelists(),
         ]);
     }
 
@@ -69,6 +73,7 @@ class ChannelController extends BaseController
             'channel' => $channel,
             'countries' => $this->getCountries(),
             'currencies' => Currencies::choices(),
+            'pricelists' => $this->getPricelists(),
         ]);
     }
 
@@ -119,5 +124,14 @@ class ChannelController extends BaseController
     private function getCountries()
     {
         return CountryProxy::orderBy('name')->pluck('name', 'id');
+    }
+
+    private function getPricelists(): ?Collection
+    {
+        if (Features::isPricingDisabled()) {
+            return null;
+        }
+
+        return Pricelist::select(['id', 'name'])->get()->pluck('name', 'id');
     }
 }
