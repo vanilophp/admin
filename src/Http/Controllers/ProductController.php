@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\LazyCollection;
 use Konekt\AppShell\Http\Controllers\BaseController;
@@ -30,8 +31,12 @@ class ProductController extends BaseController
 {
     use CanShowChannelsForUi;
 
-    public function index()
+    public function index(Request $request)
     {
+        if (request()->wantsJson()) {
+            return JSON\ProductController::index($request);
+        }
+
         LazyCollection::macro('paginate', function ($perPage = 100, $total = null, $page = null, $pageName = 'page') {
             $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
 
