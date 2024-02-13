@@ -32,6 +32,7 @@ class ProductController
     protected Builder $productQuery;
 
     protected ?Builder $masterProductQuery = null;
+
     protected ?Builder $masterProductVariantQuery = null;
 
     public function __construct(
@@ -103,7 +104,7 @@ class ProductController
     {
         $this->searcher->add($this->productQuery);
 
-        return match($this->scope->value()) {
+        return match ($this->scope->value()) {
             ProductListingScope::LISTING => $this->searcher->add($this->masterProductQuery),
             ProductListingScope::BUYABLES => $this->searcher->add($this->masterProductVariantQuery),
         };
