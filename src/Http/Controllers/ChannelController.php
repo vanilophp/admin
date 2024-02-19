@@ -23,8 +23,8 @@ use Vanilo\Admin\Contracts\Requests\CreateChannel;
 use Vanilo\Admin\Contracts\Requests\UpdateChannel;
 use Vanilo\Channel\Contracts\Channel;
 use Vanilo\Channel\Models\ChannelProxy;
-use Vanilo\Support\Features;
 use Vanilo\Pricing\Models\Pricelist;
+use Vanilo\Support\Features;
 
 class ChannelController extends BaseController
 {

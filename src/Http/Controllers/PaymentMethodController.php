@@ -17,10 +17,10 @@ namespace Vanilo\Admin\Http\Controllers;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreatePaymentMethod;
 use Vanilo\Admin\Contracts\Requests\UpdatePaymentMethod;
-use Vanilo\Support\Features;
 use Vanilo\Payment\Contracts\PaymentMethod;
 use Vanilo\Payment\Models\PaymentMethodProxy;
 use Vanilo\Payment\PaymentGateways;
+use Vanilo\Support\Features;
 
 class PaymentMethodController extends BaseController
 {
