@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace Vanilo\Admin\Http\Controllers;
 
 use Vanilo\Channel\Models\ChannelProxy;
-use Vanilo\Foundation\Features;
+use Vanilo\Support\Features;
 
 trait CanShowChannelsForUi
 {

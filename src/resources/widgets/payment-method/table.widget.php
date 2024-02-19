@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Konekt\AppShell\Widgets\AppShellWidgets;
-use Vanilo\Foundation\Features;
+use Vanilo\Support\Features;
 
 return [
     'type' => AppShellWidgets::TABLE,

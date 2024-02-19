@@ -18,7 +18,7 @@ use Konekt\Address\Query\Zones;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateShippingMethod;
 use Vanilo\Admin\Contracts\Requests\UpdateShippingMethod;
-use Vanilo\Foundation\Features;
+use Vanilo\Support\Features;
 use Vanilo\Shipment\Contracts\ShippingMethod;
 use Vanilo\Shipment\Models\CarrierProxy;
 use Vanilo\Shipment\Models\ShippingMethodProxy;

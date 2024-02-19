@@ -20,7 +20,7 @@ use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateProduct;
 use Vanilo\Admin\Contracts\Requests\UpdateProduct;
 use Vanilo\Category\Models\TaxonomyProxy;
-use Vanilo\Foundation\Features;
+use Vanilo\Support\Features;
 use Vanilo\MasterProduct\Models\MasterProductProxy;
 use Vanilo\Product\Contracts\Product;
 use Vanilo\Product\Models\ProductProxy;
