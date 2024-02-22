@@ -37,8 +37,7 @@
     "require-dev": {
         "orchestra/testbench": "^8.0",
         "phpunit/phpunit" : "^9.5",
-        "laravel/legacy-factories": "^1.3",
-        "vanilo/advanced-pricing": "dev-master"
+        "laravel/legacy-factories": "^1.3"
     },
     "repositories": [
         {
