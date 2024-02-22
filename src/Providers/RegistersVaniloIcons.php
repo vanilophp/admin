@@ -124,6 +124,21 @@ trait RegistersVaniloIcons
             LineIconsTheme::ID => 'upload',
             FontAwesomeIconTheme::ID => 'truck-loading'
         ],
+        'cheque' => [
+            ZmdiIconTheme::ID => 'money-box',
+            LineIconsTheme::ID => 'licencse', //Not our typo! It's written like this in LineIcons 2.0!
+            FontAwesomeIconTheme::ID => 'money-check-alt'
+        ],
+        'tax' => [
+            ZmdiIconTheme::ID => 'toll',
+            LineIconsTheme::ID => 'mastercard',
+            FontAwesomeIconTheme::ID => 'coins'
+        ],
+        'percent' => [
+            ZmdiIconTheme::ID => 'time-interval',
+            LineIconsTheme::ID => 'offer',
+            FontAwesomeIconTheme::ID => 'percentage'
+        ],
     ];
 
     private array $enumIcons = [

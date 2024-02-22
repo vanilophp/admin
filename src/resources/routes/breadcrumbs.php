@@ -216,3 +216,23 @@ Breadcrumbs::for('vanilo.admin.zone.edit', function ($breadcrumbs, $zone) {
     $breadcrumbs->parent('vanilo.admin.zone.show', $zone);
     $breadcrumbs->push(__('Edit'), route('vanilo.admin.zone.edit', $zone));
 });
+
+Breadcrumbs::for('vanilo.admin.tax-category.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push(__('Tax Categories'), route('vanilo.admin.tax-category.index'));
+});
+
+Breadcrumbs::for('vanilo.admin.tax-category.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('vanilo.admin.tax-category.index');
+    $breadcrumbs->push(__('Create'));
+});
+
+Breadcrumbs::for('vanilo.admin.tax-category.show', function ($breadcrumbs, $taxCategory) {
+    $breadcrumbs->parent('vanilo.admin.tax-category.index');
+    $breadcrumbs->push($taxCategory->name, route('vanilo.admin.tax-category.show', $taxCategory));
+});
+//
+//Breadcrumbs::for('vanilo.admin.shipping-method.edit', function ($breadcrumbs, $shippingMethod) {
+//    $breadcrumbs->parent('vanilo.admin.shipping-method.show', $shippingMethod);
+//    $breadcrumbs->push(__('Edit'), route('vanilo.admin.shipping-method.edit', $shippingMethod));
+//});

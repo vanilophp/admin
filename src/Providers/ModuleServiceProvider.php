@@ -35,6 +35,7 @@ use Vanilo\Admin\Http\Requests\CreateProperty;
 use Vanilo\Admin\Http\Requests\CreatePropertyValue;
 use Vanilo\Admin\Http\Requests\CreatePropertyValueForm;
 use Vanilo\Admin\Http\Requests\CreateShippingMethod;
+use Vanilo\Admin\Http\Requests\CreateTaxCategory;
 use Vanilo\Admin\Http\Requests\CreateTaxon;
 use Vanilo\Admin\Http\Requests\CreateTaxonForm;
 use Vanilo\Admin\Http\Requests\CreateTaxonomy;
@@ -52,6 +53,7 @@ use Vanilo\Admin\Http\Requests\UpdateProduct;
 use Vanilo\Admin\Http\Requests\UpdateProperty;
 use Vanilo\Admin\Http\Requests\UpdatePropertyValue;
 use Vanilo\Admin\Http\Requests\UpdateShippingMethod;
+use Vanilo\Admin\Http\Requests\UpdateTaxCategory;
 use Vanilo\Admin\Http\Requests\UpdateTaxon;
 use Vanilo\Admin\Http\Requests\UpdateTaxonomy;
 use Vanilo\Admin\Http\Requests\UpdateZone;
@@ -59,6 +61,8 @@ use Vanilo\Order\Models\OrderStatus;
 use Vanilo\Order\Models\OrderStatusProxy;
 use Vanilo\Product\Models\ProductState;
 use Vanilo\Product\Models\ProductStateProxy;
+use Vanilo\Taxes\Models\TaxCategoryType;
+use Vanilo\Taxes\Models\TaxCategoryTypeProxy;
 
 class ModuleServiceProvider extends BaseBoxServiceProvider
 {
@@ -98,6 +102,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         UpdateZone::class,
         CreateZoneMember::class,
         AssignChannels::class,
+        CreateTaxCategory::class,
+        UpdateTaxCategory::class,
     ];
 
     public function register(): void
@@ -167,6 +173,14 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 ->data('icon', 'carrier')
                 ->activateOnUrls(route('vanilo.admin.carrier.index', [], false) . '*')
                 ->allowIfUserCan('list carriers');
+            $settings->addSubItem('tax-rates', __('Tax Rates'), ['route' => 'vanilo.admin.tax-rate.index'])
+                ->data('icon', 'percent')
+                ->activateOnUrls(route('vanilo.admin.tax-rate.index', [], false) . '*')
+                ->allowIfUserCan('list carriers');
+            $settings->addSubItem('tax-categories', __('Tax Categories'), ['route' => 'vanilo.admin.tax-category.index'])
+                ->data('icon', 'tax')
+                ->activateOnUrls(route('vanilo.admin.tax-category.index', [], false) . '*')
+                ->allowIfUserCan('list carriers');
         }
     }
 
@@ -201,6 +215,20 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 OrderStatus::PROCESSING => ThemeColor::INFO(),
                 OrderStatus::COMPLETED => ThemeColor::SUCCESS(),
                 OrderStatus::CANCELLED => ThemeColor::SECONDARY(),
+            ]
+        );
+
+        EnumColors::registerEnumColor(
+            TaxCategoryTypeProxy::enumClass(),
+            [
+                TaxCategoryType::PHYSICAL_GOODS => ThemeColor::PRIMARY(),
+                TaxCategoryType::TRANSPORT_SERVICES => ThemeColor::SECONDARY(),
+                TaxCategoryType::DIGITAL_GOODS_AND_SERVICES => ThemeColor::DARK(),
+                TaxCategoryType::STANDARD_SERVICES => ThemeColor::INFO(),
+                TaxCategoryType::REAL_ESTATE_SERVICES => ThemeColor::DARK(),
+                TaxCategoryType::EVENT_RELATED_SERVICES => ThemeColor::SUCCESS(),
+                TaxCategoryType::TELECOM_SERVICES => ThemeColor::INFO(),
+                TaxCategoryType::BROADCASTING => ThemeColor::INFO(),
             ]
         );
     }
