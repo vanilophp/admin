@@ -39,12 +39,6 @@
         "phpunit/phpunit" : "^9.5",
         "laravel/legacy-factories": "^1.3"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:vanilophp/advanced-pricing.git"
-        }
-    ],
     "autoload-dev": {
         "psr-4": {
             "Vanilo\\Admin\\Tests\\": "tests"
