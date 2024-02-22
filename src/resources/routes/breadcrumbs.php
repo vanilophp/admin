@@ -231,8 +231,28 @@ Breadcrumbs::for('vanilo.admin.tax-category.show', function ($breadcrumbs, $taxC
     $breadcrumbs->parent('vanilo.admin.tax-category.index');
     $breadcrumbs->push($taxCategory->name, route('vanilo.admin.tax-category.show', $taxCategory));
 });
-//
-//Breadcrumbs::for('vanilo.admin.shipping-method.edit', function ($breadcrumbs, $shippingMethod) {
-//    $breadcrumbs->parent('vanilo.admin.shipping-method.show', $shippingMethod);
-//    $breadcrumbs->push(__('Edit'), route('vanilo.admin.shipping-method.edit', $shippingMethod));
-//});
+
+Breadcrumbs::for('vanilo.admin.tax-category.edit', function ($breadcrumbs, $taxCategory) {
+    $breadcrumbs->parent('vanilo.admin.tax-category.show', $taxCategory);
+    $breadcrumbs->push(__('Edit'), route('vanilo.admin.tax-category.edit', $taxCategory));
+});
+
+Breadcrumbs::for('vanilo.admin.tax-rate.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push(__('Tax Rates'), route('vanilo.admin.tax-rate.index'));
+});
+
+Breadcrumbs::for('vanilo.admin.tax-rate.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('vanilo.admin.tax-rate.index');
+    $breadcrumbs->push(__('Create'));
+});
+
+Breadcrumbs::for('vanilo.admin.tax-rate.show', function ($breadcrumbs, $taxRate) {
+    $breadcrumbs->parent('vanilo.admin.tax-rate.index');
+    $breadcrumbs->push($taxRate->name, route('vanilo.admin.tax-rate.show', $taxRate));
+});
+
+Breadcrumbs::for('vanilo.admin.tax-rate.edit', function ($breadcrumbs, $taxRate) {
+    $breadcrumbs->parent('vanilo.admin.tax-rate.show', $taxRate);
+    $breadcrumbs->push(__('Edit'), route('vanilo.admin.tax-rate.edit', $taxRate));
+});

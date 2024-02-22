@@ -39,6 +39,7 @@ use Vanilo\Admin\Http\Requests\CreateTaxCategory;
 use Vanilo\Admin\Http\Requests\CreateTaxon;
 use Vanilo\Admin\Http\Requests\CreateTaxonForm;
 use Vanilo\Admin\Http\Requests\CreateTaxonomy;
+use Vanilo\Admin\Http\Requests\CreateTaxRate;
 use Vanilo\Admin\Http\Requests\CreateZone;
 use Vanilo\Admin\Http\Requests\CreateZoneMember;
 use Vanilo\Admin\Http\Requests\SyncModelPropertyValues;
@@ -56,6 +57,7 @@ use Vanilo\Admin\Http\Requests\UpdateShippingMethod;
 use Vanilo\Admin\Http\Requests\UpdateTaxCategory;
 use Vanilo\Admin\Http\Requests\UpdateTaxon;
 use Vanilo\Admin\Http\Requests\UpdateTaxonomy;
+use Vanilo\Admin\Http\Requests\UpdateTaxRate;
 use Vanilo\Admin\Http\Requests\UpdateZone;
 use Vanilo\Order\Models\OrderStatus;
 use Vanilo\Order\Models\OrderStatusProxy;
@@ -104,6 +106,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         AssignChannels::class,
         CreateTaxCategory::class,
         UpdateTaxCategory::class,
+        CreateTaxRate::class,
+        UpdateTaxRate::class,
     ];
 
     public function register(): void
