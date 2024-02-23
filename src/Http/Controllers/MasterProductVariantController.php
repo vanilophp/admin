@@ -38,7 +38,12 @@ class MasterProductVariantController extends BaseController
     {
         try {
             $variant = MasterProductVariantProxy::create(
-                array_merge(['master_product_id' => $masterProduct->id], $request->except('images'))
+                array_merge([
+                        'master_product_id' => $masterProduct->id,
+                        'tax_category_id' => $masterProduct->tax_category_id,
+                    ],
+                    $request->except('images')
+                )
             );
             flash()->success(__(':name has been created', ['name' => $variant->name]));
 

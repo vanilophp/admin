@@ -25,6 +25,7 @@ use Vanilo\MasterProduct\Models\MasterProductProxy;
 use Vanilo\Product\Models\ProductStateProxy;
 use Vanilo\Properties\Models\PropertyProxy;
 use Vanilo\Support\Features;
+use Vanilo\Taxes\Models\TaxCategoryProxy;
 
 class MasterProductController extends BaseController
 {
@@ -37,6 +38,7 @@ class MasterProductController extends BaseController
             'states' => ProductStateProxy::choices(),
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
             'channels' => $this->channelsForUi(),
+            'taxCategories' => TaxCategoryProxy::get(['name', 'id']),
         ]);
     }
 
@@ -86,13 +88,19 @@ class MasterProductController extends BaseController
             'states' => ProductStateProxy::choices(),
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
             'channels' => $this->channelsForUi(),
+            'taxCategories' => TaxCategoryProxy::get(['name', 'id']),
         ]);
     }
 
     public function update(MasterProduct $product, UpdateMasterProduct $request)
     {
         try {
+            $wantsTaxCategoryUpdate = $product->tax_category_id !== $request->input('tax_category_id');
             $product->update($request->all());
+
+            if ($wantsTaxCategoryUpdate) {
+                $product->variants()->update(['tax_category_id' => $request->input('tax_category_id')]);
+            }
 
             flash()->success(__(':name has been updated', ['name' => $product->name]));
         } catch (\Exception $e) {

@@ -23,6 +23,7 @@
 - Added the `currency` field to the channels form (VFW 4 feature)
 - Added the `is_hidden` field to property screens
 - Added the `backorder` field to product and variant forms (VFW 4 feature)
+- Added tax category editing to product forms
 - Added multichannel editing features to products, shipping methods and payment methods
 - Added the emission of `OrderProcessingStarted` event when changing the order status (forward port from v3.7)
 

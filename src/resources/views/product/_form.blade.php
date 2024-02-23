@@ -23,20 +23,27 @@
 <hr>
 
 <div class="mb-3 row">
-    <label class="form-control-label col-md-2">{{ __('State') }}</label>
-    <div class="col-md-10">
-        <?php /*$errors->has('state') ? ' is-invalid' : ''; */ ?>
-
-        @foreach($states as $key => $value)
-            <label class="radio-inline" for="state_{{ $key }}">
-                {{ Form::radio('state', $key, $product->state->value() === $key, ['id' => "state_$key"]) }}
-                {{ $value }}
-                &nbsp;
-            </label>
-        @endforeach
+    <label class="col-form-label col-form-label-sm col-md-2">{{ __('State') }}</label>
+    <div class="col-md-4">
+        {{ Form::select('state', $states, null, [
+                'class' => 'form-select form-select-sm' . ($errors->has('state') ? ' is-invalid': ''),
+           ])
+        }}
 
         @if ($errors->has('state'))
-            <div class="alert alert-danger">{{ $errors->first('state') }}</div>
+            <div class="invalid-feedback">{{ $errors->first('state') }}</div>
+        @endif
+    </div>
+
+    <label class="col-form-label col-form-label-sm col-md-2">{{ __('Tax Category') }}</label>
+    <div class="col-md-4">
+        {{ Form::select('tax_category_id', $taxCategories->pluck('name', 'id'), null, [
+                'class' => 'form-select form-select-sm' . ($errors->has('tax_category_id') ? ' is-invalid': ''),
+                'placeholder' => __('--')
+           ])
+        }}
+        @if ($errors->has('tax_category_id'))
+            <div class="invalid-feedback">{{ $errors->first('tax_category_id') }}</div>
         @endif
     </div>
 </div>

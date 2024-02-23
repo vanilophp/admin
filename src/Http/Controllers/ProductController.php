@@ -26,6 +26,7 @@ use Vanilo\Product\Models\ProductProxy;
 use Vanilo\Product\Models\ProductStateProxy;
 use Vanilo\Properties\Models\PropertyProxy;
 use Vanilo\Support\Features;
+use Vanilo\Taxes\Models\TaxCategoryProxy;
 
 class ProductController extends BaseController
 {
@@ -74,6 +75,7 @@ class ProductController extends BaseController
             'states' => ProductStateProxy::choices(),
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
             'channels' => $this->channelsForUi(),
+            'taxCategories' => TaxCategoryProxy::get(['name', 'id']),
         ]);
     }
 
@@ -123,6 +125,7 @@ class ProductController extends BaseController
             'states' => ProductStateProxy::choices(),
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
             'channels' => $this->channelsForUi(),
+            'taxCategories' => TaxCategoryProxy::get(['name', 'id']),
         ]);
     }
 
