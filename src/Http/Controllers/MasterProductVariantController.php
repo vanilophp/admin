@@ -38,7 +38,8 @@ class MasterProductVariantController extends BaseController
     {
         try {
             $variant = MasterProductVariantProxy::create(
-                array_merge([
+                array_merge(
+                    [
                         'master_product_id' => $masterProduct->id,
                         'tax_category_id' => $masterProduct->tax_category_id,
                     ],
