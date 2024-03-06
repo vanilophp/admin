@@ -60,7 +60,7 @@ class OrderController extends BaseController
 
         $existingItemAdjustmentTypes = [];
         foreach ($order->getItems() as $item) {
-            foreach($item->adjustments() as $adjustment) {
+            foreach ($item->adjustments() as $adjustment) {
                 $existingItemAdjustmentTypes[$adjustment->getType()->value()] = $adjustment->getType()->label();
             }
         }
