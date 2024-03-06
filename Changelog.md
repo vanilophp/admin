@@ -26,6 +26,7 @@
 - Added tax category editing to product forms
 - Added multichannel editing features to products, shipping methods and payment methods
 - Added the emission of `OrderProcessingStarted` event when changing the order status (forward port from v3.7)
+- Added the listing of order item adjustments
 
 ## 3.7.1
 ##### 2023-12-17

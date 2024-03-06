@@ -9,7 +9,12 @@
             <th>{{ __('Name') }}</th>
             <th>{{ __('Qty') }}</th>
             <th>{{ __('Price') }}</th>
-            <th>{{ __('Subtotal') }}</th>
+            @if($hasItemAdjustments)
+                <th colspan="2">
+                    {{ count($itemAdjustmentTypes) === 1 ? end($itemAdjustmentTypes) : __('Adjustments') }}
+                </th>
+            @endif
+            <th class="text-end">{{ __('Subtotal') }}</th>
         </tr>
         </thead>
 
@@ -32,7 +37,22 @@
                 </td>
                 <td>{{ $item->quantity }}</td>
                 <td>{{ format_price($item->price) }}</td>
-                <td>{{ format_price($item->total) }}</td>
+                @if($hasItemAdjustments)
+                <td class="text-end">
+                    @foreach($item->adjustments() as $adjustment)
+                        {{ format_price($adjustment->getAmount()) }}<br>
+                    @endforeach
+                </td>
+                <td class="text-start">
+                    @foreach($item->adjustments() as $adjustment)
+                        <x-appshell::badge variant="secondary"><small>
+                            {{ $adjustment->getType()->label() }}:
+                            {{ $adjustment->getTitle() }}
+                        </small></x-appshell::badge><br>
+                    @endforeach
+                </td>
+                @endif
+                <td class="text-end">{{ format_price($item->total) }}</td>
             </tr>
         @endforeach
         @foreach($order->adjustments() as $adjustment)
@@ -49,17 +69,18 @@
                     </td>
                     <td>1</td>
                     <td>{{ format_price($adjustment->getAmount()) }}</td>
-                    <td>{{ format_price($adjustment->getAmount()) }}</td>
+                    @if($hasItemAdjustments)<td colspan="2"></td>@endif
+                    <td class="text-end">{{ format_price($adjustment->getAmount()) }}</td>
                 </tr>
             @endunless
         @endforeach
         </tbody>
         <tfoot>
         <tr>
-            <th colspan="4">
+            <th colspan="{{ $hasItemAdjustments ? '7' : '5' }}">
                 <div class="text-end">{{ __('Order total') }}:</div>
             </th>
-            <th>{{ format_price($order->total()) }}</th>
+            <th class="text-end">{{ format_price($order->total()) }}</th>
         </tr>
         </tfoot>
     </table>

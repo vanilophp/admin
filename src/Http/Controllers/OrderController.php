@@ -58,7 +58,18 @@ class OrderController extends BaseController
             $order = OrderProxy::where('id', $order->id)->with(['items', 'items.product'])->first();
         }
 
-        return view("vanilo::order.$view", ['order' => $order]);
+        $existingItemAdjustmentTypes = [];
+        foreach ($order->getItems() as $item) {
+            foreach($item->adjustments() as $adjustment) {
+                $existingItemAdjustmentTypes[$adjustment->getType()->value()] = $adjustment->getType()->label();
+            }
+        }
+
+        return view("vanilo::order.$view", [
+            'order' => $order,
+            'hasItemAdjustments' => !empty($existingItemAdjustmentTypes),
+            'itemAdjustmentTypes' => $existingItemAdjustmentTypes,
+        ]);
     }
 
     public function update(Order $order, UpdateOrder $request)
