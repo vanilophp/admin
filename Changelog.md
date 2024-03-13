@@ -5,11 +5,13 @@
 
 - Added Vanilo v4 support
 - Added PHP 8.3 support
+- Added Laravel 11 support
 - Dropped Vanilo v3 support
 - Dropped PHP 8.0 & 8.1 support
 - Dropped Laravel 9 support
 - Upgraded to AppShell 4, Bootstrap 5.3 and to Konekt Components v3
 - Upgraded migrations to ACL v2
+- Upgraded to Laravel Media Library v11
 - Changed minimally required Gears version to v1.12
 - Changed the image index to use thumbnails instead of the carousel
 - Changed most of the common CRUD components to use the generic AppShell components
