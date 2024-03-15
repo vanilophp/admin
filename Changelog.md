@@ -13,6 +13,7 @@
 - Upgraded migrations to ACL v2
 - Upgraded to Laravel Media Library v11
 - Changed minimally required Gears version to v1.12
+- Changed minimally required Concord version to v1.15
 - Changed the image index to use thumbnails instead of the carousel
 - Changed most of the common CRUD components to use the generic AppShell components
 - Changed the order list side menu item to include `?status=open`
@@ -29,6 +30,7 @@
 - Added multichannel editing features to products, shipping methods and payment methods
 - Added the emission of `OrderProcessingStarted` event when changing the order status (forward port from v3.7)
 - Added the listing of order item adjustments
+- Added the `domain` field to the channel form
 
 ## 3.7.1
 ##### 2023-12-17

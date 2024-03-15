@@ -61,6 +61,29 @@
     </div>
 </div>
 
+<div class="mb-3 row">
+    <label class="col-form-label col-form-label-sm col-md-2">{{ __('Domain') }}</label>
+    <div class="col-md-10">
+        @if(is_array($domains))
+        {{ Form::select('domain', $domains, null, [
+                'class' => 'form-select form-select-sm' . ($errors->has('domain') ? ' is-invalid': ''),
+                'placeholder' => __('--')
+           ])
+        }}
+        @else
+        {{ Form::text('domain', null, [
+                'class' => 'form-control form-control-sm' . ($errors->has('domain') ? ' is-invalid': ''),
+                'placeholder' => __('The domain of the channel')
+            ])
+        }}
+        @endif
+        @if ($errors->has('domain'))
+            <div class="invalid-feedback">{{ $errors->first('domain') }}</div>
+        @endif
+    </div>
+</div>
+
+
 @if(null !== $pricelists)
     @include('vanilo::pricelist._select')
 @endif

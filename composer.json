@@ -22,7 +22,7 @@
         "konekt/address": "^3.1",
         "konekt/appshell": "^4.0",
         "konekt/gears": "^1.12",
-        "konekt/concord": "^1.13",
+        "konekt/concord": "^1.15",
         "spatie/laravel-medialibrary": "^11.0",
         "vanilo/framework": "^4.0"
     },

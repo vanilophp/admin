@@ -30,9 +30,9 @@ class ChannelController extends BaseController
 {
     public function index()
     {
-        return view('vanilo::channel.index', [
+        return view('vanilo::channel.index', $this->processViewData(__METHOD__, [
             'channels' => ChannelProxy::paginate(100)
-        ]);
+        ]));
     }
 
     public function create()
@@ -40,12 +40,13 @@ class ChannelController extends BaseController
         $channel = app(Channel::class);
         $channel->configuration = ['country_id' => Settings::get('appshell.default.country')];
 
-        return view('vanilo::channel.create', [
+        return view('vanilo::channel.create', $this->processViewData(__METHOD__, [
             'channel' => $channel,
             'countries' => $this->getCountries(),
             'currencies' => Currencies::choices(),
             'pricelists' => $this->getPricelists(),
-        ]);
+            'domains' => null,
+        ]));
     }
 
     public function store(CreateChannel $request)
@@ -64,17 +65,18 @@ class ChannelController extends BaseController
 
     public function show(Channel $channel)
     {
-        return view('vanilo::channel.show', ['channel' => $channel]);
+        return view('vanilo::channel.show', $this->processViewData(__METHOD__, ['channel' => $channel]));
     }
 
     public function edit(Channel $channel)
     {
-        return view('vanilo::channel.edit', [
+        return view('vanilo::channel.edit', $this->processViewData(__METHOD__, [
             'channel' => $channel,
             'countries' => $this->getCountries(),
             'currencies' => Currencies::choices(),
             'pricelists' => $this->getPricelists(),
-        ]);
+            'domains' => null,
+        ]));
     }
 
     public function update(Channel $channel, UpdateChannel $request)
