@@ -84,6 +84,41 @@
 </div>
 
 
+<h6 class="mt-5">{{ __('Restrictions') }}</h6>
+<hr>
+
+<div class="mb-3 row">
+    <label class="col-form-label col-form-label-sm col-md-2">{{ __('Billing Zone') }}</label>
+    <div class="col-md-10">
+        {{ Form::select('billing_zone_id', $billingZones->pluck('name', 'id'), null, [
+                'class' => 'form-select form-select-sm' . ($errors->has('billing_zone_id') ? ' is-invalid': ''),
+                'placeholder' => __('--')
+           ])
+        }}
+
+        @if ($errors->has('billing_zone_id'))
+            <div class="invalid-feedback">{{ $errors->first('billing_zone_id') }}</div>
+        @endif
+    </div>
+</div>
+
+<div class="mb-3 row">
+    <label class="col-form-label col-form-label-sm col-md-2">{{ __('Shipping Zone') }}</label>
+    <div class="col-md-10">
+        {{ Form::select('shipping_zone_id', $shippingZones->pluck('name', 'id'), null, [
+                'class' => 'form-select form-select-sm' . ($errors->has('shipping_zone_id') ? ' is-invalid': ''),
+                'placeholder' => __('--')
+           ])
+        }}
+
+        @if ($errors->has('shipping_zone_id'))
+            <div class="invalid-feedback">{{ $errors->first('shipping_zone_id') }}</div>
+        @endif
+    </div>
+</div>
+
+
 @if(null !== $pricelists)
+    <hr class="mt-5">
     @include('vanilo::pricelist._select')
 @endif

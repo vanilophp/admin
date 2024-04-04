@@ -31,6 +31,7 @@
 - Added the emission of `OrderProcessingStarted` event when changing the order status (forward port from v3.7)
 - Added the listing of order item adjustments
 - Added the `domain` field to the channel form
+- Added billing and shipping zones to the channel form
 
 ## 3.7.1
 ##### 2023-12-17

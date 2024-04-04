@@ -15,6 +15,7 @@ namespace Vanilo\Admin\Http\Controllers;
 
 use Illuminate\Support\Collection;
 use Konekt\Address\Models\CountryProxy;
+use Konekt\Address\Query\Zones;
 use Konekt\AppShell\Helpers\Currencies;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Konekt\Gears\Facades\Settings;
@@ -45,6 +46,8 @@ class ChannelController extends BaseController
             'countries' => $this->getCountries(),
             'currencies' => Currencies::choices(),
             'pricelists' => $this->getPricelists(),
+            'billingZones' => Zones::withBillingScope()->get(),
+            'shippingZones' => Zones::withShippingScope()->get(),
             'domains' => null,
         ]));
     }
@@ -75,6 +78,8 @@ class ChannelController extends BaseController
             'countries' => $this->getCountries(),
             'currencies' => Currencies::choices(),
             'pricelists' => $this->getPricelists(),
+            'billingZones' => Zones::withBillingScope()->get(),
+            'shippingZones' => Zones::withShippingScope()->get(),
             'domains' => null,
         ]));
     }
