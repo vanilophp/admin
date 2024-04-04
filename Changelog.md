@@ -12,6 +12,7 @@
 - Upgraded to AppShell 4, Bootstrap 5.3 and to Konekt Components v3
 - Upgraded migrations to ACL v2
 - Upgraded to Laravel Media Library v11
+- Changed minimally required Laravel version to v10.43
 - Changed minimally required Gears version to v1.12
 - Changed minimally required Concord version to v1.15
 - Changed the image index to use thumbnails instead of the carousel
