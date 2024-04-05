@@ -83,6 +83,21 @@
     </div>
 </div>
 
+<div class="mb-3 row">
+    <label class="col-form-label col-form-label-sm col-md-2">{{ __('Color') }}</label>
+    <div class="col-md-10">
+        {{ Form::color('color', $channel->color, [
+                'class' => ($errors->has('color') ? ' is-invalid': ''),
+                'style' => 'padding:0;',
+                'autocomplete' => 'off'
+           ])
+        }}
+        @if ($errors->has('color'))
+            <div class="invalid-feedback">{{ $errors->first('color') }}</div>
+        @endif
+    </div>
+</div>
+
 
 <h6 class="mt-5">{{ __('Restrictions') }}</h6>
 <hr>

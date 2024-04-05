@@ -27,6 +27,9 @@ return [
             'slug' => [
                 'title' => __('Slug'),
             ],
+            'domain' => [
+                'title' => __('Domain'),
+            ],
             'currency' => [
                 'title' => __('Currency'),
                 'widget' => [
