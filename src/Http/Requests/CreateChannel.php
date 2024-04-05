@@ -27,6 +27,8 @@ class CreateChannel extends FormRequest implements CreateChannelContract
             'currency' => ['sometimes', 'nullable', 'alpha:ascii', 'size:3', new CurrencyExists()],
             'configuration' => 'nullable|array',
             'domain' => 'sometimes|nullable|string|min:3|max:255',
+            'billing_zone_id' => 'sometimes|nullable|exists:zones,id',
+            'shipping_zone_id' => 'sometimes|nullable|exists:zones,id',
         ];
     }
 
