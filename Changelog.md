@@ -33,6 +33,7 @@
 - Added the listing of order item adjustments
 - Added the `domain` field to the channel form
 - Added billing and shipping zones to the channel form
+- Added zone support to payment methods
 
 ## 3.7.1
 ##### 2023-12-17

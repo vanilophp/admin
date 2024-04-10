@@ -27,6 +27,16 @@ return [
                 ],
                 'title' => __('Name'),
             ],
+            'zone' => [
+                'title' => __('Zone'),
+                'valign' => 'middle',
+                'widget' => [
+                    'type' => 'badge',
+                    'color' => ['bool' => ['info', 'secondary']],
+                    'text' => '$model.zone.name',
+                    'modifier' => sprintf('text_if_empty:%s', __('Unrestricted'))
+                ]
+            ],
             'transaction_count' => [
                 'title' => __('No. of Transactions'),
                 'valign' => 'middle',

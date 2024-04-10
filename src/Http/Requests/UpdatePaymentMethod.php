@@ -28,6 +28,7 @@ class UpdatePaymentMethod extends FormRequest implements UpdatePaymentMethodCont
             'gateway' => ['required', Rule::in(PaymentGateways::ids())],
             'configuration' => 'sometimes|json',
             'is_enabled' => 'sometimes|boolean',
+            'zone_id' => 'sometimes|nullable|exists:zones,id',
             'description' => 'sometimes|nullable|string',
         ];
     }

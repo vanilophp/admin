@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Http\Controllers;
 
+use Konekt\Address\Query\Zones;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreatePaymentMethod;
 use Vanilo\Admin\Contracts\Requests\UpdatePaymentMethod;
@@ -43,6 +44,7 @@ class PaymentMethodController extends BaseController
         return view('vanilo::payment-method.create', [
             'paymentMethod' => app(PaymentMethod::class),
             'gateways' => PaymentGateways::choices(),
+            'zones' => Zones::withBillingScope()->get(),
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
             'channels' => $this->channelsForUi(),
         ]);
@@ -79,6 +81,7 @@ class PaymentMethodController extends BaseController
         return view('vanilo::payment-method.edit', [
             'paymentMethod' => $paymentMethod,
             'gateways' => PaymentGateways::choices(),
+            'zones' => Zones::withBillingScope()->get(),
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
             'channels' => $this->channelsForUi(),
         ]);

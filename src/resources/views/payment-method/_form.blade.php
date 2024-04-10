@@ -50,6 +50,22 @@
 <hr>
 
 <div class="mb-3 row">
+    <label class="col-form-label col-form-label-sm col-md-2">{{ __('Restricted to Zone') }}</label>
+    <div class="col-md-10">
+        {{ Form::select('zone_id', $zones->pluck('name', 'id'), null, [
+                'class' => 'form-select form-select-sm' . ($errors->has('zone_id') ? ' is-invalid': ''),
+                'placeholder' => '<' . __('Unrestricted') . '>',
+           ])
+        }}
+        @if ($errors->has('zone_id'))
+            <div class="invalid-feedback">{{ $errors->first('zone_id') }}</div>
+        @endif
+    </div>
+</div>
+
+<hr>
+
+<div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Configuration') }}</label>
     <div class="col-md-10">
         <textarea name="configuration"
