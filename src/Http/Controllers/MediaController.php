@@ -23,17 +23,19 @@ class MediaController extends BaseController
 
     public function update(Media $medium)
     {
-        // Unset primary on other images assigned to the model
         $model = $medium->model;
+        $sortOrder = [];
         foreach ($model->getMedia(self::DEFAULT_COLLECTION_NAME) as $mediaItem) {
             if ($medium->id !== $mediaItem->id) {
-                $mediaItem->setCustomProperty('isPrimary', false);
+                $mediaItem->forgetCustomProperty('isPrimary');
                 $mediaItem->save();
+                $sortOrder[] = $mediaItem->id;
             }
         }
 
         $medium->setCustomProperty('isPrimary', true);
         $medium->save();
+        Media::setNewOrder([$medium->id, ...$sortOrder]);
 
         flash()->success(__('Primary image has been updated'));
 
@@ -44,7 +46,6 @@ class MediaController extends BaseController
     {
         try {
             $name = $medium->name;
-            $model = $medium->model;
             $medium->delete();
 
             flash()->warning(__('Media :name has been deleted', ['name' => $name]));

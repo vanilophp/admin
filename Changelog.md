@@ -22,6 +22,7 @@
 - Improved the UI
 - Fixed the link to master products on the order item list
 - Added the JSON variant of product index responses
+- Added updating the sort order when setting the primary image (uses MediaLibrary default sorting facility)
 - Added Tax Category CRUD
 - Added optional pricelist plugin support to channel form
 - Added the `currency` field to the channels form (VFW 4 feature)
