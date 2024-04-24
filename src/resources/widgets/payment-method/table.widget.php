@@ -14,7 +14,7 @@ return [
                 'valign' => 'middle',
                 'widget' => [
                     'type' => 'raw_html',
-                    'html' => fn ($method) => '<div class="gwicon" title="' . $method->getGatewayName() . '"><style>.gwicon svg{max-width: 100%; height: auto}</style>' .$method->getGatewayIcon() . '</div>',
+                    'html' => fn ($method) => '<div class="gwicon" title="' . $method->getGatewayName() . '"><style>.gwicon svg{max-width: 100%; height: auto}</style>' . $method->getGatewayIcon() . '</div>',
                 ],
                 'title' => '&nbsp;',
             ],
