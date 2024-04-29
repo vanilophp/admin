@@ -1,7 +1,7 @@
 <div class="card bg-light">
     <div class="card-body">
         <h5 class="card-title">
-            <a data-toggle="collapse" href="#product-filters" class="collapse-toggler-heading"
+            <a data-bs-toggle="collapse" href="#product-filters" class="collapse-toggler-heading"
                 @if ($hasActiveFilters ?? false)
                 aria-expanded="true"
                 @endif
