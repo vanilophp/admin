@@ -30,6 +30,7 @@ class CreateChannel extends FormRequest implements CreateChannelContract
             'color' => 'nullable|hex_color',
             'billing_zone_id' => 'sometimes|nullable|exists:zones,id',
             'shipping_zone_id' => 'sometimes|nullable|exists:zones,id',
+            'pricelist_id' => 'sometimes|nullable|exists:pricelists,id',
         ];
     }
 
