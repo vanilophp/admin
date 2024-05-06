@@ -1,7 +1,7 @@
 # Vanilo Admin Changelog
 
-## Unreleased
-##### 2023-XX-YY
+## 4.0.0
+##### 2024-05-06
 
 - Added Vanilo v4 support
 - Added PHP 8.3 support
