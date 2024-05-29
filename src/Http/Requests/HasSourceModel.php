@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace Vanilo\Admin\Http\Requests;
 
 use Illuminate\Database\Eloquent\Model;
-use Vanilo\Product\Contracts\Product;
 
 trait HasSourceModel
 {
