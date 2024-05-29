@@ -19,6 +19,7 @@ use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateMasterProduct;
 use Vanilo\Admin\Contracts\Requests\UpdateMasterProduct;
 use Vanilo\Category\Models\TaxonomyProxy;
+use Vanilo\Links\Models\LinkTypeProxy;
 use Vanilo\MasterProduct\Contracts\MasterProduct;
 use Vanilo\MasterProduct\Contracts\MasterProductVariant;
 use Vanilo\MasterProduct\Models\MasterProductProxy;
@@ -49,6 +50,7 @@ class MasterProductController extends BaseController
             'taxonomies' => TaxonomyProxy::all(),
             'properties' => PropertyProxy::all(),
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
+            'linkTypes' => LinkTypeProxy::choices(false, true),
         ]);
     }
 

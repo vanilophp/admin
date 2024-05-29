@@ -4,6 +4,8 @@
 ##### 2024-XX-YY
 
 - Fixed the impossibility to fold out subtaxons
+- Added the link editing feature on product forms
+- Changed the minimum Vanilo requirement to v4.1
 
 ## 4.0.0
 ##### 2024-05-06

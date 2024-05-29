@@ -44,6 +44,7 @@
         @include('vanilo::media._edit', ['model' => $variant])
 
         @include('vanilo::product._show_properties', ['for' => $variant])
+        @include('vanilo::link._index', ['model' => $variant])
     </div>
 
 </div>

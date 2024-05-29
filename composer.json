@@ -24,7 +24,7 @@
         "konekt/gears": "^1.12",
         "konekt/concord": "^1.15",
         "spatie/laravel-medialibrary": "^11.0",
-        "vanilo/framework": "^4.0"
+        "vanilo/framework": "^4.1"
     },
     "autoload": {
         "psr-4": {

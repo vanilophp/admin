@@ -26,6 +26,8 @@ use Konekt\Menu\Facades\Menu;
 use Vanilo\Admin\Http\Requests\AssignChannels;
 use Vanilo\Admin\Http\Requests\CreateCarrier;
 use Vanilo\Admin\Http\Requests\CreateChannel;
+use Vanilo\Admin\Http\Requests\CreateLink;
+use Vanilo\Admin\Http\Requests\CreateLinkForm;
 use Vanilo\Admin\Http\Requests\CreateMasterProduct;
 use Vanilo\Admin\Http\Requests\CreateMasterProductVariant;
 use Vanilo\Admin\Http\Requests\CreateMedia;
@@ -108,6 +110,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         UpdateTaxCategory::class,
         CreateTaxRate::class,
         UpdateTaxRate::class,
+        CreateLinkForm::class,
+        CreateLink::class,
     ];
 
     public function register(): void
@@ -127,6 +131,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $aclResourceMapper->addAlias('master product', 'product');
         $aclResourceMapper->addAlias('master product variant', 'product');
         $aclResourceMapper->addAlias('zone member', 'zone');
+        $aclResourceMapper->addAlias('link', 'product');
 
         $this->registerIconExtensions();
         $this->registerEnumIcons();

@@ -52,3 +52,7 @@ Route::delete('/master-product/{masterProduct}/variant/{masterProductVariant}', 
 Route::get('/zone/{zone}/member/create', 'ZoneMemberController@create')->name('zone_member.create');
 Route::post('/zone/{zone}/member', 'ZoneMemberController@store')->name('zone_member.store');
 Route::delete('/zone/{zone}/member/{zoneMember}', 'ZoneMemberController@destroy')->name('zone_member.destroy');
+
+Route::get('/link/create', 'LinkController@create')->name('link.create');
+Route::post('/link/create', 'LinkController@store')->name('link.store');
+Route::delete('/link/{linkGroupItem}', 'LinkController@destroy')->name('link.destroy');

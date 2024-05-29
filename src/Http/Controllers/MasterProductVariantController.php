@@ -17,6 +17,7 @@ namespace Vanilo\Admin\Http\Controllers;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateMasterProductVariant;
 use Vanilo\Admin\Contracts\Requests\UpdateMasterProductVariant;
+use Vanilo\Links\Models\LinkTypeProxy;
 use Vanilo\MasterProduct\Contracts\MasterProduct;
 use Vanilo\MasterProduct\Contracts\MasterProductVariant;
 use Vanilo\MasterProduct\Models\MasterProductVariantProxy;
@@ -85,6 +86,7 @@ class MasterProductVariantController extends BaseController
             'variant' => $masterProductVariant,
             'states' => ProductStateProxy::choices(),
             'properties' => PropertyProxy::all(),
+            'linkTypes' => LinkTypeProxy::choices(false, true),
         ]);
     }
 
