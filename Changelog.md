@@ -1,5 +1,10 @@
 # Vanilo Admin Changelog
 
+## Unreleased
+##### 2024-XX-YY
+
+- Fixed the impossibility to fold out subtaxons
+
 ## 4.0.0
 ##### 2024-05-06
 
