@@ -21,14 +21,26 @@ use Vanilo\Admin\Contracts\Requests\CreateLinkForm;
 use Vanilo\Links\Contracts\LinkGroupItem;
 use Vanilo\Links\Models\LinkTypeProxy;
 use Vanilo\Links\Query\Establish;
+use Vanilo\Links\Query\Get;
 
 class LinkController extends BaseController
 {
     public function create(CreateLinkForm $request)
     {
+        $source = $request->getSourceModel();
+        $existingGroups = [];
+        foreach ($types = LinkTypeProxy::choices(false, true) as $slug => $name) {
+            if ($group = Get::the($slug)->groups()->of($source)->first()) {
+                $existingGroups[$slug] = [
+                    'omnidirectional' => null === $group->root_item_id,
+                ];
+            }
+        }
+
         return view('vanilo::link.create', [
-            'sourceModel' => $request->getSourceModel(),
-            'linkTypes' => LinkTypeProxy::choices(false, true),
+            'sourceModel' => $source,
+            'linkTypes' => $types,
+            'existingGroups' => $existingGroups,
         ]);
     }
 
@@ -36,10 +48,11 @@ class LinkController extends BaseController
     {
         $source = $request->getSourceModel();
         try {
-            Establish::a($request->getLinkType())
-                ->link()
-                ->between($source)
-                ->and($request->getTargetModel());
+            $establishALinkBetweenSource = Establish::a($request->getLinkType())->link()->between($source);
+            if ($request->wantsUnidirectionalLink()) {
+                $establishALinkBetweenSource->unidirectional();
+            }
+            $establishALinkBetweenSource->and($request->getTargetModel());
         } catch (UniqueConstraintViolationException $e) {
             flash()->error(
                 __(

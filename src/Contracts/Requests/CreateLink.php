@@ -26,4 +26,6 @@ interface CreateLink extends BaseRequest
     public function getTargetModel(): ?Model;
 
     public function getLinkType(): string;
+
+    public function wantsUnidirectionalLink(): bool;
 }

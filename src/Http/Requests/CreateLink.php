@@ -30,6 +30,7 @@ class CreateLink extends FormRequest implements CreateLinkContract
         return [
             'link_type' => 'required|string|exclude_with:link_type_to_create|exists:link_types,slug',
             'link_type_to_create' => 'sometimes|string|min:1|max:255',
+            'omnidirectional' => 'sometimes|bool',
             'source_type' => ['sometimes', 'nullable', 'string', Rule::in(CreateLinkForm::$acceptedTypes)],
             'source_id' => 'required|numeric',
             'target_type' => ['sometimes', 'nullable', 'string', Rule::in(CreateLinkForm::$acceptedTypes)],
@@ -68,6 +69,11 @@ class CreateLink extends FormRequest implements CreateLinkContract
         }
 
         return $this->input('link_type');
+    }
+
+    public function wantsUnidirectionalLink(): bool
+    {
+        return !$this->has('omnidirectional') || !$this->input('omnidirectional');
     }
 
     public function authorize()
