@@ -71,7 +71,12 @@ class LinkController extends BaseController
 
     public function destroy(LinkGroupItem $linkGroupItem)
     {
+        $group = $linkGroupItem->group;
         $linkGroupItem->delete();
+        if ($group?->items->isEmpty() || $group?->items->count() === 1) {
+            $group->delete();
+        }
+
         flash()->success(__('The link has been deleted.'));
 
         return redirect()->back();
