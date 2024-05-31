@@ -73,7 +73,7 @@ class LinkController extends BaseController
     {
         $group = $linkGroupItem->group;
         $linkGroupItem->delete();
-        if ($group?->items->isEmpty() || $group?->items->count() === 1) {
+        if ($group?->items->isEmpty() || 1 === $group?->items->count()) {
             $group->delete();
         }
 
