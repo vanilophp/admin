@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Http\Controllers;
 
+use Illuminate\Database\UniqueConstraintViolationException;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateLink;
 use Vanilo\Admin\Contracts\Requests\CreateLinkForm;
@@ -34,10 +35,23 @@ class LinkController extends BaseController
     public function store(CreateLink $request)
     {
         $source = $request->getSourceModel();
-        Establish::a($request->getLinkType())
-            ->link()
-            ->between($source)
-            ->and($request->getTargetModel());
+        try {
+            Establish::a($request->getLinkType())
+                ->link()
+                ->between($source)
+                ->and($request->getTargetModel());
+        } catch (UniqueConstraintViolationException $e) {
+            flash()->error(
+                __(
+                    'The :type link between :product1 and :product2 already exists',
+                    [
+                        'type' => $request->getLinkType(),
+                        'product1' => $source->name,
+                        'product2' => $request->getTargetModel()->name,
+                    ]
+                )
+            );
+        }
 
         return redirect()->to($request->urlOfModel($source));
     }
