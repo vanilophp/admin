@@ -62,6 +62,21 @@
 <hr>
 
 <div class="mb-3">
+    <?php $contentHasErrors = any_key_exists($errors->toArray(), ['subtitle', 'excerpt', 'description', 'top_content', 'bottom_content']) ?>
+    <h5><a data-bs-toggle="collapse" href="#taxon-form-content" class="collapse-toggler-heading"
+           @if ($contentHasErrors)
+               aria-expanded="true"
+            @endif
+        >{!! icon('>') !!} {{ __('Content') }}</a></h5>
+
+    <div id="taxon-form-content" class="collapse{{ $contentHasErrors ? ' show' : '' }}">
+        <div class="callout">
+            @include('vanilo::taxon._form_content')
+        </div>
+    </div>
+</div>
+
+<div class="mb-3">
     <?php $seoHasErrors = any_key_exists($errors->toArray(), ['ext_title', 'meta_description', 'meta_keywords']) ?>
     <h5><a data-bs-toggle="collapse" href="#taxon-form-seo" class="collapse-toggler-heading"
            @if ($seoHasErrors)
@@ -71,9 +86,7 @@
 
     <div id="taxon-form-seo" class="collapse{{ $seoHasErrors ? ' show' : '' }}">
         <div class="callout">
-
             @include('vanilo::taxon._form_seo')
-
         </div>
     </div>
 </div>

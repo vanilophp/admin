@@ -4,6 +4,7 @@
 ##### 2024-XX-YY
 
 - Fixed the impossibility to fold out subtaxons
+- Added the new v4.1 taxon content fields (`subtitle`, `excerpt`, `description`, `top_content`, `bottom_content`) to the taxon form
 - Added the link editing feature on product forms
 - Changed the minimum Vanilo requirement to v4.1
 

@@ -22,8 +22,17 @@ class UpdateTaxon extends FormRequest implements UpdateTaxonContract
     {
         return [
             'name' => 'required|min:2|max:255',
+            'slug' => 'sometimes|nullable|string|max:255',
             'parent_id' => 'nullable|exists:taxons,id',
-            'priority' => 'nullable|integer'
+            'priority' => 'nullable|integer',
+            'ext_title' => 'sometimes|nullable|string|max:511',
+            'meta_description' => 'sometimes|nullable|string|max:4096',
+            'meta_keywords' => 'sometimes|nullable|string|max:1024',
+            'subtitle' => 'sometimes|nullable|string|max:255',
+            'excerpt' => 'sometimes|nullable|string|max:65534',
+            'description' => 'sometimes|nullable|string|max:65534',
+            'top_content' => 'sometimes|nullable|string|max:65534',
+            'bottom_content' => 'sometimes|nullable|string|max:65534',
         ];
     }
 
