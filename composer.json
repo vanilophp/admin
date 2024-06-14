@@ -29,7 +29,10 @@
     "autoload": {
         "psr-4": {
             "Vanilo\\Admin\\": "src"
-        }
+        },
+        "files": [
+            "src/Support/helpers.php"
+        ]
     },
     "suggest": {
         "vanilo/advanced-pricing": "Use the Advanced Pricing Module for pricelist support"
@@ -42,10 +45,7 @@
     "autoload-dev": {
         "psr-4": {
             "Vanilo\\Admin\\Tests\\": "tests"
-        },
-        "files": [
-            "src/Support/helpers.php"
-        ]
+        }
     },
     "scripts": {
         "test": "phpunit"
