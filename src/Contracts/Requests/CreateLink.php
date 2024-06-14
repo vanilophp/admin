@@ -22,8 +22,6 @@ interface CreateLink extends BaseRequest
 {
     public function getSourceModel(): ?Model;
 
-    public function urlOfModel(Model $model): ?string;
-
     public function getTargetModel(): ?Model;
 
     public function getLinkType(): string;

@@ -18,8 +18,10 @@
                     @foreach($group->items as $link)
                         @unless($link->pointsTo($model))
                         <article class="d-inline-block border rounded me-1 mb-1 pe-1" title="{{ $link->linkable->name }}{{ $link->linkable->sku ? " [SKU: {$link->linkable->sku}]" : '' }}">
-                            <img src="{{ $link->linkable->getThumbnailUrl() }}" class="rounded-start" style="height: 2rem" />
-                            <span class="fw-semibold me-1">{{ Str::limit($link->linkable->name, 12) }}</span>
+                            <a href="{{ admin_link_to($link->linkable) }}">
+                                <img src="{{ $link->linkable->getThumbnailUrl() }}" class="rounded-start" style="height: 2rem" />
+                                <span class="fw-semibold me-1">{{ Str::limit($link->linkable->name, 12) }}</span>
+                            </a>
                             {!! Form::open(['route' => ['vanilo.admin.link.destroy', $link->id], 'method' => 'delete', 'class' => 'd-inline']) !!}
                             <button type="submit" class="btn btn-xs btn-link" title="{{ __('Delete the link') }}" >{!! icon('delete', 'danger') !!}</button>
                             {!! Form::close() !!}

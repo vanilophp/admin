@@ -76,12 +76,12 @@ class LinkController extends BaseController
                 );
             }
 
-            return redirect()->to($request->urlOfModel($target));
+            return redirect()->to(admin_link_to($target));
         }
 
         $source = $request->getSourceModel();
         try {
-            $establishALinkBetweenSource = Establish::a($request->getLinkType())->link()->between($source);
+            $establishALinkBetweenSource = Establish::a($request->getLinkType())->new()->link()->between($source);
             if ($request->wantsUnidirectionalLink()) {
                 $establishALinkBetweenSource->unidirectional();
             }
@@ -99,7 +99,7 @@ class LinkController extends BaseController
             );
         }
 
-        return redirect()->to($request->urlOfModel($source));
+        return redirect()->to(admin_link_to($source));
     }
 
     public function destroy(LinkGroupItem $linkGroupItem)

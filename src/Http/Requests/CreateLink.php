@@ -41,16 +41,6 @@ class CreateLink extends FormRequest implements CreateLinkContract
         ];
     }
 
-    public function urlOfModel(Model $model): ?string
-    {
-        return match (true) {
-            is_master_product($model) => route('vanilo.admin.master_product.show', $model),
-            is_master_product_variant($model) => route('vanilo.admin.master_product_variant.edit', [$model->masterProduct, $model]),
-            $model instanceof Product => route('vanilo.admin.product.show', $model),
-            default => null,
-        };
-    }
-
     public function getTargetModel(): ?Model
     {
         if (null === $class = $this->resolveModelClass($this->input('target_type'))) {

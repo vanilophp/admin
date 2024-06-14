@@ -42,7 +42,10 @@
     "autoload-dev": {
         "psr-4": {
             "Vanilo\\Admin\\Tests\\": "tests"
-        }
+        },
+        "files": [
+            "src/Support/helpers.php"
+        ]
     },
     "scripts": {
         "test": "phpunit"
