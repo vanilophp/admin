@@ -80,7 +80,7 @@ class CreateLink extends FormRequest implements CreateLinkContract
             LinkGroupProxy::find((int) $this->input('link_group_id'))
             :
             null
-            ;
+        ;
     }
 
     public function wantsUnidirectionalLink(): bool
