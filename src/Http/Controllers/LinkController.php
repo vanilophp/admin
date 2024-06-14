@@ -19,6 +19,7 @@ use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateLink;
 use Vanilo\Admin\Contracts\Requests\CreateLinkForm;
 use Vanilo\Links\Contracts\LinkGroupItem;
+use Vanilo\Links\Models\LinkGroupItemProxy;
 use Vanilo\Links\Models\LinkTypeProxy;
 use Vanilo\Links\Query\Establish;
 use Vanilo\Links\Query\Get;
@@ -27,25 +28,57 @@ class LinkController extends BaseController
 {
     public function create(CreateLinkForm $request)
     {
-        $source = $request->getSourceModel();
-        $existingGroups = [];
-        foreach ($types = LinkTypeProxy::choices(false, true) as $slug => $name) {
-            if ($group = Get::the($slug)->groups()->of($source)->first()) {
-                $existingGroups[$slug] = [
-                    'omnidirectional' => null === $group->root_item_id,
-                ];
+        if ($request->wantsToExtendAnExistingLinkGroup()) {
+            $source = null;
+            $desiredGroup = $request->getDesiredLinkGroup();
+            $existingGroups[$desiredGroup->type->slug] = ['omnidirectional' => null === $desiredGroup->root_item_id];
+            $types = null;
+        } else {
+            $desiredGroup = null;
+            $source = $request->getSourceModel();
+            $existingGroups = [];
+            foreach ($types = LinkTypeProxy::choices(false, true) as $slug => $name) {
+                if ($group = Get::the($slug)->groups()->of($source)->first()) {
+                    $existingGroups[$slug] = [
+                        'omnidirectional' => null === $group->root_item_id,
+                    ];
+                }
             }
         }
 
         return view('vanilo::link.create', [
             'sourceModel' => $source,
             'linkTypes' => $types,
+            'desiredGroup' => $desiredGroup,
             'existingGroups' => $existingGroups,
         ]);
     }
 
     public function store(CreateLink $request)
     {
+        if ($request->wantsToAddToAnExistingGroup()) {
+            $target = $request->getTargetModel();
+            $group = $request->getDesiredLinkGroup();
+            try {
+                LinkGroupItemProxy::create([
+                    'link_group_id' => $group->id,
+                    'linkable_id' => $target->id,
+                    'linkable_type' => morph_type_of($target),
+                ]);
+            } catch (UniqueConstraintViolationException $e) {
+                flash()->error(
+                    __(
+                        ':product is already part of the selected link group',
+                        [
+                            'product' => $target->name,
+                        ]
+                    )
+                );
+            }
+
+            return redirect()->to($request->urlOfModel($target));
+        }
+
         $source = $request->getSourceModel();
         try {
             $establishALinkBetweenSource = Establish::a($request->getLinkType())->link()->between($source);

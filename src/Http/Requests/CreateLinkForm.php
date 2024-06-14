@@ -17,6 +17,8 @@ namespace Vanilo\Admin\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Vanilo\Admin\Contracts\Requests\CreateLinkForm as CreateLinkFormContract;
+use Vanilo\Links\Contracts\LinkGroup;
+use Vanilo\Links\Models\LinkGroupProxy;
 
 class CreateLinkForm extends FormRequest implements CreateLinkFormContract
 {
@@ -28,8 +30,23 @@ class CreateLinkForm extends FormRequest implements CreateLinkFormContract
     {
         return [
             'source_type' => ['sometimes', 'nullable', 'string', Rule::in(self::$acceptedTypes)],
-            'source_id' => 'required|numeric',
+            'source_id' => 'required_without:link_group_id|numeric',
+            'link_group_id' => 'required_without:source_id|numeric|exists:link_groups,id',
         ];
+    }
+
+    public function wantsToExtendAnExistingLinkGroup(): bool
+    {
+        return $this->has('link_group_id');
+    }
+
+    public function getDesiredLinkGroup(): ?LinkGroup
+    {
+        return $this->input('link_group_id') ?
+            LinkGroupProxy::find((int) $this->input('link_group_id'))
+            :
+            null
+        ;
     }
 
     public function authorize(): bool

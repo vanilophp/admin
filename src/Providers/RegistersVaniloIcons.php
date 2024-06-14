@@ -139,6 +139,16 @@ trait RegistersVaniloIcons
             LineIconsTheme::ID => 'offer',
             FontAwesomeIconTheme::ID => 'percentage'
         ],
+        'unidirectional' => [
+            ZmdiIconTheme::ID => 'long-arrow-tab',
+            LineIconsTheme::ID => 'shift-left',
+            FontAwesomeIconTheme::ID => 'level-down-alt'
+        ],
+        'omnidirectional' => [
+            ZmdiIconTheme::ID => 'swap-vertical',
+            LineIconsTheme::ID => 'arrows-horizontal',
+            FontAwesomeIconTheme::ID => 'exchange-alt'
+        ],
     ];
 
     private array $enumIcons = [

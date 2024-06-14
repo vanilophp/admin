@@ -16,6 +16,7 @@ namespace Vanilo\Admin\Contracts\Requests;
 
 use Illuminate\Database\Eloquent\Model;
 use Konekt\Concord\Contracts\BaseRequest;
+use Vanilo\Links\Contracts\LinkGroup;
 
 interface CreateLink extends BaseRequest
 {
@@ -27,5 +28,9 @@ interface CreateLink extends BaseRequest
 
     public function getLinkType(): string;
 
+    public function getDesiredLinkGroup(): ?LinkGroup;
+
     public function wantsUnidirectionalLink(): bool;
+
+    public function wantsToAddToAnExistingGroup(): bool;
 }

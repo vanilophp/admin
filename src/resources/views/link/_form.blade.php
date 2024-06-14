@@ -1,7 +1,3 @@
-<x-vanilo::sku-lookup model-type-name="target_type" model-id-name="target_id" :sku-label="__('Linked Product')"></x-vanilo::sku-lookup>
-
-<hr>
-
 <section x-data="vaniloLinkTypeWidget">
     <div class="row">
         <label class="form-label col col-md-4 col-xl-2">{{ __('Link Type') }}</label>
@@ -32,7 +28,7 @@
     </div>
     <div class="mt-2 d-flex">
         <div class="form-check form-switch">
-            {{ Form::checkbox('omnidirectional', 1, null, ['class' => 'form-check-input', 'id' => 'is-omnidirectional', 'role' => 'switch', 'x-model' => 'isOmnidirectional', 'x-bind:disabled' => 'canNotChooseDirection']) }}
+            {{ Form::checkbox('omnidirectional', 1, null, ['class' => 'form-check-input', 'id' => 'is-omnidirectional', 'role' => 'switch', 'x-model' => 'isOmnidirectional']) }}
             <label class="form-check-label" for="is-omnidirectional">{{ __('Omnidirectional') }}</label>
         </div>
         <div class="form-check">
@@ -54,22 +50,6 @@
         document.addEventListener('alpine:init', function() {
             Alpine.data('vaniloLinkTypeWidget', () => ({
                 selectedLinkType: @json(empty($linkTypes) ? '___create' : null),
-                existingGroups: @json($existingGroups),
-                wantsOmnidirectional: false,
-                get isOmnidirectional() {
-                    const existingGroup = this.existingGroups[this.selectedLinkType]
-                    if (undefined !== existingGroup) {
-                        return existingGroup.omnidirectional
-                    }
-
-                    return this.wantsOmnidirectional
-                },
-                set isOmnidirectional(value) {
-                    this.wantsOmnidirectional = !!value
-                },
-                get canNotChooseDirection() {
-                    return undefined !== this.existingGroups[this.selectedLinkType];
-                },
                 wantsToCreateNewType() {
                     return this.selectedLinkType === '___create'
                 }
