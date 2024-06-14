@@ -21,7 +21,6 @@ use Vanilo\Admin\Contracts\Requests\CreateLink as CreateLinkContract;
 use Vanilo\Links\Contracts\LinkGroup;
 use Vanilo\Links\Models\LinkGroupProxy;
 use Vanilo\Links\Models\LinkTypeProxy;
-use Vanilo\Product\Contracts\Product;
 
 class CreateLink extends FormRequest implements CreateLinkContract
 {

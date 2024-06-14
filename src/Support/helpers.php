@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Illuminate\Database\Eloquent\Model;
 use Vanilo\Product\Contracts\Product;
 
-if (! function_exists('admin_link_to')) {
+if (!function_exists('admin_link_to')) {
     function admin_link_to(Model $model, string $operation = 'view'): ?string
     {
         return match (true) {
