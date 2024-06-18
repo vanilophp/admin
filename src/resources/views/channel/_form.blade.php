@@ -62,6 +62,20 @@
 </div>
 
 <div class="mb-3 row">
+    <label class="col-form-label col-form-label-sm col-md-2">{{ __('Language') }}</label>
+    <div class="col-md-10">
+        {{ Form::select('language', $languages, null, [
+                'class' => 'form-select form-select-sm' . ($errors->has('language') ? ' is-invalid': ''),
+                'placeholder' => __('--')
+           ])
+        }}
+        @if ($errors->has('language'))
+            <div class="invalid-feedback">{{ $errors->first('language') }}</div>
+        @endif
+    </div>
+</div>
+
+<div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Domain') }}</label>
     <div class="col-md-10">
         @if(is_array($domains))

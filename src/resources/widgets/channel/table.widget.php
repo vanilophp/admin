@@ -46,6 +46,14 @@ return [
                     'text' => '$model.configuration.country_id',
                 ],
             ],
+            'language' => [
+                'title' => __('Language'),
+                'widget' => [
+                    'type' => 'badge',
+                    'color' => 'primary',
+                    'text' => '$model.language',
+                ],
+            ],
             'created_at' => [
                 'widget' => [
                     'type' => 'show_datetime',
