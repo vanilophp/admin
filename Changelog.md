@@ -8,6 +8,7 @@
 - Added the new v4.1 taxon content fields (`subtitle`, `excerpt`, `description`, `top_content`, `bottom_content`) to the taxon form
 - Added the link editing feature on product forms
 - Added the `admin_link_to()` helper function
+- Added JSON-capable handling of order index, along with `?number=XXX` filter
 - Changed the minimum Vanilo requirement to v4.1
 
 ## 4.0.0

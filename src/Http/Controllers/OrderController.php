@@ -37,6 +37,10 @@ class OrderController extends BaseController
 {
     public function index(Request $request)
     {
+        if (request()->wantsJson()) {
+            return JSON\OrderController::index($request);
+        }
+
         $filters = $this->getFilters();
 
         $filters->activateFromRequest($request);
