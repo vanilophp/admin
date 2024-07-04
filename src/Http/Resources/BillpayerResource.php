@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Vanilo\Admin\Http\Resources;
 
 use Illuminate\Http\Request;
@@ -19,7 +21,7 @@ class BillpayerResource extends JsonResource
             'company_name' => $this->company_name,
             'tax_nr' => $this->tax_nr,
             'registration_nr' => $this->registration_nr,
-            'is_organization' => (bool)$this->is_organization,
+            'is_organization' => (bool) $this->is_organization,
             'country' => $this->address->country_id,
             'postalcode' => $this->address->postalcode,
             'city' => $this->address->city,
