@@ -9,6 +9,7 @@
 - Added the link editing feature on product forms
 - Added the `admin_link_to()` helper function
 - Added JSON-capable handling of order index, along with `?number=XXX` filter
+- Added JSON-only payment index, querying by `?hash=XXX` filter
 - Changed the minimum Vanilo requirement to v4.1
 
 ## 4.0.0

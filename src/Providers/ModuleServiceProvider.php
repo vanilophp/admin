@@ -132,6 +132,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $aclResourceMapper->addAlias('master product variant', 'product');
         $aclResourceMapper->addAlias('zone member', 'zone');
         $aclResourceMapper->addAlias('link', 'product');
+        $aclResourceMapper->addAlias('payment', 'order');
 
         $this->registerIconExtensions();
         $this->registerEnumIcons();
