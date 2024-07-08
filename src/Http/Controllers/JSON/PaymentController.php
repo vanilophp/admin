@@ -29,5 +29,4 @@ class PaymentController
 
         return PaymentResource::collection($payments->paginate(100));
     }
-
 }
