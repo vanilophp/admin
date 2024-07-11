@@ -1,7 +1,7 @@
 # Vanilo Admin Changelog
 
-## Unreleased
-##### 2024-XX-YY
+## 4.1.0
+##### 2024-07-11
 
 - Fixed the impossibility to fold out subtaxons
 - Added language field to the channel form
