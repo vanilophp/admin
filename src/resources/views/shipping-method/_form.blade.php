@@ -1,7 +1,7 @@
 <div class="mb-3">
     <div class="input-group">
         <span class="input-group-text">
-            {!! icon('payment-method') !!}
+            {!! icon('shipping') !!}
         </span>
         <x-appshell::floating-label :label="__('Name')" :is-invalid="$errors->has('name')">
         {{ Form::text('name', null, [

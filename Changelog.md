@@ -4,6 +4,7 @@
 ##### 2024-XX-YY
 
 - Added the missing order status `processing` enum icon
+- Fixed the invalid icons on carrier and shipping method forms
 
 ## 4.1.0
 ##### 2024-07-11

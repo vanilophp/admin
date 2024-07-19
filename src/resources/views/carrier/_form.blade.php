@@ -1,7 +1,7 @@
 <div class="mb-3">
     <div class="input-group input-group-lg {{ $errors->has('name') ? 'has-validation' : '' }}">
         <span class="input-group-text">
-            {!! icon('channel') !!}
+            {!! icon('carrier') !!}
         </span>
         <x-appshell::floating-label :label="__('Carrier name')" :is-invalid="$errors->has('name')">
             {{ Form::text('name', null, [
