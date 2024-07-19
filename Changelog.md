@@ -1,5 +1,10 @@
 # Vanilo Admin Changelog
 
+## Unreleased
+##### 2024-XX-YY
+
+- Added the missing order status `processing` enum icon
+
 ## 4.1.0
 ##### 2024-07-11
 

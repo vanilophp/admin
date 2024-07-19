@@ -154,6 +154,7 @@ trait RegistersVaniloIcons
     private array $enumIcons = [
         OrderStatus::class => [
             OrderStatus::PENDING => 'pending',
+            OrderStatus::PROCESSING => 'processing',
             OrderStatus::COMPLETED => 'completed',
             OrderStatus::CANCELLED => 'cancelled'
         ],
