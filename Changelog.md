@@ -1,7 +1,7 @@
 # Vanilo Admin Changelog
 
-## Unreleased
-##### 2024-XX-YY
+## 4.1.1
+##### 2024-07-23
 
 - Added the missing order status `processing` enum icon
 - Fixed the invalid icons on carrier and shipping method forms
