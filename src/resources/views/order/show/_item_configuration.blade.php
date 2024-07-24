@@ -1,5 +1,5 @@
 <div
-    id="item-configuration-{{ $loop->index }}"
+    id="item-configuration-{{ $item->id }}"
     class="modal fade"
     tabindex="-1"
     role="dialog"
