@@ -24,7 +24,7 @@
         "konekt/gears": "^1.12",
         "konekt/concord": "^1.15",
         "spatie/laravel-medialibrary": "^11.0",
-        "vanilo/framework": "^4.1"
+        "vanilo/framework": "^4.2"
     },
     "autoload": {
         "psr-4": {
@@ -52,7 +52,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "4.1.x-dev"
+            "dev-master": "4.2.x-dev"
         }
     }
 }
