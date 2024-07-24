@@ -31,6 +31,11 @@
                         @else
                             <a href="{{ route('vanilo.admin.product.show', $item->product) }}">{{ $item->name }}</a>
                         @endif
+
+                        @if ($item->hasConfiguration())
+                            <button data-bs-toggle="modal" data-bs-target="#item-configuration-{{ $loop->index }}" class="btn">{!! icon('settings') !!}</button>
+                            @include('vanilo::order.show._item_configuration')
+                        @endif
                     @else
                         {{ $item->name }}
                     @endif
