@@ -145,6 +145,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     {
         if ($menu = Menu::get('appshell')) {
             $shop = $menu->addItem('shop', __('Shop'));
+            $shop->addSubItem('orders', __('Orders'), ['route' => ['vanilo.admin.order.index', 'status' => 'open']])
+                ->data('icon', 'bag')
+                ->activateOnUrls(route('vanilo.admin.order.index', [], false) . '*')
+                ->allowIfUserCan('list orders');
             $shop->addSubItem('products', __('Products'), ['route' => 'vanilo.admin.product.index'])
                 ->data('icon', 'product')
                 ->activateOnUrls(route('vanilo.admin.product.index', [], false) . '*')
@@ -157,10 +161,6 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 ->data('icon', 'taxonomies')
                 ->activateOnUrls(route('vanilo.admin.taxonomy.index', [], false) . '*')
                 ->allowIfUserCan('list taxonomies');
-            $shop->addSubItem('orders', __('Orders'), ['route' => ['vanilo.admin.order.index', 'status' => 'open']])
-                ->data('icon', 'bag')
-                ->activateOnUrls(route('vanilo.admin.order.index', [], false) . '*')
-                ->allowIfUserCan('list orders');
 
             $settings = $menu->getItem('settings_group');
             $settings->addSubItem('channels', __('Channels'), ['route' => 'vanilo.admin.channel.index'])
