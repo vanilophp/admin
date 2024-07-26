@@ -15,10 +15,10 @@
 {{--        {!! widget('vanilo::promotion.table')->render($promotions) !!}--}}
     </x-appshell::card>
 
-    @if($promotions->hasPages())
-        <hr>
-        <nav>
-            {{ $promotions->withQueryString()->links() }}
-        </nav>
-    @endif
+{{--    @if($promotions->hasPages())--}}
+{{--        <hr>--}}
+{{--        <nav>--}}
+{{--            {{ $promotions->withQueryString()->links() }}--}}
+{{--        </nav>--}}
+{{--    @endif--}}
 @stop
