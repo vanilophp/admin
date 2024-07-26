@@ -20,6 +20,6 @@ class PromotionController extends BaseController
 {
     public function index()
     {
-        return view('admin::promotion.index', ['promotions' => collect()]);
+        return view('vanilo::promotion.index', ['promotions' => collect()]);
     }
 }
