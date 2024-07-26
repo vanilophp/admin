@@ -149,6 +149,11 @@ trait RegistersVaniloIcons
             LineIconsTheme::ID => 'arrows-horizontal',
             FontAwesomeIconTheme::ID => 'exchange-alt'
         ],
+        'promotion' => [
+            ZmdiIconTheme::ID => 'label-heart',
+            LineIconsTheme::ID => 'offer',
+            FontAwesomeIconTheme::ID => 'percentage'
+        ]
     ];
 
     private array $enumIcons = [

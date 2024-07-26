@@ -24,6 +24,7 @@ Route::resource('media', 'MediaController')->only(['update', 'destroy', 'store']
 Route::resource('carrier', 'CarrierController');
 Route::resource('payment', 'PaymentController')->only(['index']);
 Route::resource('payment-method', 'PaymentMethodController')->parameters(['payment-method' => 'paymentMethod']);
+Route::resource('promotion', 'PromotionController');
 Route::resource('shipping-method', 'ShippingMethodController')->parameters(['shipping-method' => 'shippingMethod']);
 Route::resource('tax-category', 'TaxCategoryController')->parameters(['tax-category' => 'taxCategory']);
 Route::resource('tax-rate', 'TaxRateController')->parameters(['tax-rate' => 'taxRate']);

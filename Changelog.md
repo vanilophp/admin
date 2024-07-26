@@ -4,6 +4,7 @@
 ##### 2024-XX-YY
 
 - Added modal to display configuration JSON of order items
+- Added the Promotions CRUD
 - Moved the Orders menu item to the top in the Shop section
 
 ## 4.1.1

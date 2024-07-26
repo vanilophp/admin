@@ -161,6 +161,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 ->data('icon', 'taxonomies')
                 ->activateOnUrls(route('vanilo.admin.taxonomy.index', [], false) . '*')
                 ->allowIfUserCan('list taxonomies');
+            $shop->addSubItem('promotions', __('Promotions'), ['route' => 'vanilo.admin.promotion.index'])
+                ->data('icon', 'promotion')
+                ->activateOnUrls(route('vanilo.admin.promotion.index', [], false) . '*')
+                ->allowIfUserCan('list promotions');
 
             $settings = $menu->getItem('settings_group');
             $settings->addSubItem('channels', __('Channels'), ['route' => 'vanilo.admin.channel.index'])
