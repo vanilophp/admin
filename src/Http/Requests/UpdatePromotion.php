@@ -25,6 +25,13 @@ class UpdatePromotion extends FormRequest implements UpdatePromotionContract
         ];
     }
 
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'priority' => $this->priority ?? 10
+        ]);
+    }
+
     public function authorize()
     {
         return true;
