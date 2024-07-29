@@ -58,3 +58,10 @@ Route::delete('/zone/{zone}/member/{zoneMember}', 'ZoneMemberController@destroy'
 Route::get('/link/create', 'LinkController@create')->name('link.create');
 Route::post('/link/create', 'LinkController@store')->name('link.store');
 Route::delete('/link/{linkGroupItem}', 'LinkController@destroy')->name('link.destroy');
+
+Route::get('/promotion/{promotion}/coupon/create', 'CouponController@create')->name('coupon.create');
+Route::post('/promotion/{promotion}/coupon', 'CouponController@store')->name('coupon.store');
+Route::get('/promotion/{promotion}/coupon/{coupon}/edit', 'CouponController@edit')->name('coupon.edit');
+Route::get('/promotion/{promotion}/coupon/{coupon}', 'CouponController@show')->name('coupon.show');
+Route::put('/promotion/{promotion}/coupon/{coupon}', 'CouponController@update')->name('coupon.update');
+Route::delete('/promotion/{promotion}/coupon/{coupon}', 'CouponController@destroy')->name('coupon.destroy');

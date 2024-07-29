@@ -6,6 +6,7 @@ namespace Vanilo\Admin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Vanilo\Admin\Contracts\Requests\UpdatePromotion as UpdatePromotionContract;
+use Vanilo\Admin\Http\Rules\StartsBeforeEnds;
 
 class UpdatePromotion extends FormRequest implements UpdatePromotionContract
 {
@@ -18,8 +19,8 @@ class UpdatePromotion extends FormRequest implements UpdatePromotionContract
             'is_exclusive' => 'required|boolean',
             'usage_limit' => 'nullable|integer|min:0',
             'is_coupon_based' => 'required|boolean',
-            'starts_at' => 'required|date|before:ends_at',
-            'ends_at' => 'required|date|after:starts_at',
+            'starts_at' => 'sometimes|nullable|date',
+            'ends_at' => ['sometimes', 'nullable', 'date', new StartsBeforeEnds()],
             'applies_to_discounted' => 'required|boolean',
         ];
     }

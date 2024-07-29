@@ -153,6 +153,11 @@ trait RegistersVaniloIcons
             ZmdiIconTheme::ID => 'label-heart',
             LineIconsTheme::ID => 'offer',
             FontAwesomeIconTheme::ID => 'percentage'
+        ],
+        'coupon' => [
+            ZmdiIconTheme::ID => 'receipt',
+            LineIconsTheme::ID => 'ticket',
+            FontAwesomeIconTheme::ID => 'ticket-alt'
         ]
     ];
 

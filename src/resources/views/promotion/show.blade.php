@@ -17,7 +17,7 @@
                 $hasEnded = $now->greaterThanOrEqualTo($promotion->ends_at);
             @endphp
 
-            <x-appshell::card-with-icon :icon="$hasStarted && !$hasEnded ? 'promotion' : 'promotion-off'" :type="!$hasStarted ? 'info' : ($hasStarted && !$hasEnded ? 'success' : 'warning')">
+            <x-appshell::card-with-icon icon="promotion" :type="!$hasStarted ? 'info' : ($hasStarted && !$hasEnded ? 'success' : 'secondary')">
                 {{ $promotion->name }}
 
                 <x-slot:subtitle>
@@ -34,7 +34,7 @@
 
         <div class="col-sm-6 col-md-5 mb-3">
             <x-appshell::card-with-icon icon="time" type="info">
-                {{ __('Promotion Duration') }}
+                {{ __('Duration') }}
 
                 <x-slot:subtitle>
                     {{ __('Starts at') }}
@@ -48,7 +48,7 @@
 
         <div class="col-sm-6 col-md-3 mb-3">
             <x-appshell::card-with-icon icon="bag">
-                {{ __('Usage Count: ') }} {{ $promotion->usage_count }}
+                {{ __('Used :num times', ['num' => $promotion->usage_count]) }}
 
                 <x-slot:subtitle>
                     {{ __('Usage Limit: ') }} {{ $promotion->usage_limit ?? __('Unlimited') }}
@@ -56,4 +56,19 @@
             </x-appshell::card-with-icon>
         </div>
     </div>
+
+    @if($promotion->is_coupon_based)
+    @can('list coupons')
+        <x-appshell::card>
+            <x-slot:title>{{ __('Coupons') }}</x-slot:title>
+
+            <x-slot:actions>
+                <x-appshell::button :href="route('vanilo.admin.coupon.create', $promotion)" variant="outline-success" icon="+" size="sm">{{ __('Create a coupon') }}</x-appshell::button>
+            </x-slot:actions>
+
+            {!! widget('vanilo::coupon.table')->render($promotion->coupons) !!}
+
+        </x-appshell::card>
+    @endcan
+    @endif
 @stop
