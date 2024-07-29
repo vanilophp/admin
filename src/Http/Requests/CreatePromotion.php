@@ -24,15 +24,15 @@ class CreatePromotion extends FormRequest implements CreatePromotionContract
         ];
     }
 
+    public function authorize()
+    {
+        return true;
+    }
+
     protected function prepareForValidation(): void
     {
         $this->merge([
             'priority' => $this->priority ?? 10
         ]);
-    }
-
-    public function authorize()
-    {
-        return true;
     }
 }
