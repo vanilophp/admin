@@ -31,4 +31,3 @@ class StartsBeforeEnds implements DataAwareRule, ValidationRule
         return $this;
     }
 }
-
