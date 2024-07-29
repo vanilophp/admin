@@ -5,20 +5,20 @@
 @stop
 
 @push('page-actions')
-    <x-appshell::create-action model-name="promotion" route="vanilo.admin.promotion.create" />
+    <x-appshell::create-action model-name="promotion" route="vanilo.admin.promotion.create"/>
 @endpush
 
 @section('content')
     <x-appshell::card accent="secondary">
         <x-slot:title>@yield('title')</x-slot:title>
 
-{{--        {!! widget('vanilo::promotion.table')->render($promotions) !!}--}}
+        {!! widget('vanilo::promotion.table')->render($promotions) !!}
     </x-appshell::card>
 
-{{--    @if($promotions->hasPages())--}}
-{{--        <hr>--}}
-{{--        <nav>--}}
-{{--            {{ $promotions->withQueryString()->links() }}--}}
-{{--        </nav>--}}
-{{--    @endif--}}
+    @if($promotions->hasPages())
+        <hr>
+        <nav>
+            {{ $promotions->withQueryString()->links() }}
+        </nav>
+    @endif
 @stop

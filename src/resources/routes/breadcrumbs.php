@@ -256,3 +256,23 @@ Breadcrumbs::for('vanilo.admin.tax-rate.edit', function ($breadcrumbs, $taxRate)
     $breadcrumbs->parent('vanilo.admin.tax-rate.show', $taxRate);
     $breadcrumbs->push(__('Edit'), route('vanilo.admin.tax-rate.edit', $taxRate));
 });
+
+Breadcrumbs::for('vanilo.admin.promotion.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push(__('Promotions'), route('vanilo.admin.promotion.index'));
+});
+
+Breadcrumbs::for('vanilo.admin.promotion.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('vanilo.admin.promotion.index');
+    $breadcrumbs->push(__('Create'));
+});
+
+Breadcrumbs::for('vanilo.admin.promotion.show', function ($breadcrumbs, $promotion) {
+    $breadcrumbs->parent('vanilo.admin.promotion.index');
+    $breadcrumbs->push($promotion->name, route('vanilo.admin.promotion.show', $promotion));
+});
+
+Breadcrumbs::for('vanilo.admin.promotion.edit', function ($breadcrumbs, $promotion) {
+    $breadcrumbs->parent('vanilo.admin.promotion.show', $promotion);
+    $breadcrumbs->push(__('Edit'), route('vanilo.admin.promotion.edit', $promotion));
+});
