@@ -33,6 +33,7 @@ use Vanilo\Admin\Http\Requests\CreateMasterProductVariant;
 use Vanilo\Admin\Http\Requests\CreateMedia;
 use Vanilo\Admin\Http\Requests\CreatePaymentMethod;
 use Vanilo\Admin\Http\Requests\CreateProduct;
+use Vanilo\Admin\Http\Requests\CreatePromotion;
 use Vanilo\Admin\Http\Requests\CreateProperty;
 use Vanilo\Admin\Http\Requests\CreatePropertyValue;
 use Vanilo\Admin\Http\Requests\CreatePropertyValueForm;
@@ -53,6 +54,7 @@ use Vanilo\Admin\Http\Requests\UpdateMasterProductVariant;
 use Vanilo\Admin\Http\Requests\UpdateOrder;
 use Vanilo\Admin\Http\Requests\UpdatePaymentMethod;
 use Vanilo\Admin\Http\Requests\UpdateProduct;
+use Vanilo\Admin\Http\Requests\UpdatePromotion;
 use Vanilo\Admin\Http\Requests\UpdateProperty;
 use Vanilo\Admin\Http\Requests\UpdatePropertyValue;
 use Vanilo\Admin\Http\Requests\UpdateShippingMethod;
@@ -112,6 +114,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         UpdateTaxRate::class,
         CreateLinkForm::class,
         CreateLink::class,
+        CreatePromotion::class,
+        UpdatePromotion::class,
     ];
 
     public function register(): void
