@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Vanilo\Admin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Konekt\AppShell\Validation\CurrencyExists;
 use Vanilo\Admin\Contracts\Requests\CreatePromotion as CreatePromotionContract;
-
 
 class CreatePromotion extends FormRequest implements CreatePromotionContract
 {
