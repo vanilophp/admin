@@ -8,7 +8,7 @@
     {!! Form::model($promotion, ['route' => 'vanilo.admin.promotion.store', 'autocomplete' => 'off']) !!}
 
     <x-appshell::card accent="success">
-        <x-slot:title>{{ __('Promotion Details') }}</x-slot:title>
+        <x-slot:title>{{ __('Details') }}</x-slot:title>
 
         @include('vanilo::promotion._form')
 
