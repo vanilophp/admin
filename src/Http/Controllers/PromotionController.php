@@ -18,7 +18,7 @@ use Konekt\AppShell\Http\Controllers\BaseController;
 
 use Vanilo\Admin\Contracts\Requests\CreatePromotion;
 use Vanilo\Admin\Contracts\Requests\UpdatePromotion;
-use Vanilo\Promotion\Models\Promotion;
+use Vanilo\Promotion\Contracts\Promotion;
 use Vanilo\Promotion\Models\PromotionProxy;
 
 class PromotionController extends BaseController
