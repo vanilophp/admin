@@ -276,3 +276,19 @@ Breadcrumbs::for('vanilo.admin.promotion.edit', function ($breadcrumbs, $promoti
     $breadcrumbs->parent('vanilo.admin.promotion.show', $promotion);
     $breadcrumbs->push(__('Edit'), route('vanilo.admin.promotion.edit', $promotion));
 });
+
+Breadcrumbs::for('vanilo.admin.coupon.create', function ($breadcrumbs, $promotion) {
+    $breadcrumbs->parent('vanilo.admin.promotion.show', $promotion);
+    $breadcrumbs->push(__('Create Coupon'));
+});
+
+Breadcrumbs::for('vanilo.admin.coupon.show', function ($breadcrumbs, $promotion, $coupon) {
+    $breadcrumbs->parent('vanilo.admin.promotion.index');
+    $breadcrumbs->push($promotion->name, route('vanilo.admin.promotion.show', $promotion));
+    $breadcrumbs->push($coupon->code, route('vanilo.admin.coupon.show', [$promotion, $coupon]));
+});
+
+Breadcrumbs::for('vanilo.admin.coupon.edit', function ($breadcrumbs, $promotion, $coupon) {
+    $breadcrumbs->parent('vanilo.admin.promotion.show', $promotion);
+    $breadcrumbs->push($coupon->code);
+});

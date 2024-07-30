@@ -21,7 +21,7 @@ return [
                     ],
                     'url' => [
                         'route' => 'vanilo.admin.coupon.show',
-                        'parameters' => ['$model']
+                        'parameters' => ['$model.promotion', '$model']
                     ],
                     'onlyIfCan' => 'view coupons',
                 ],
@@ -48,7 +48,7 @@ return [
                 'widget' => [
                     'type' => 'text',
                     'text' => '$model.usage_limit',
-                    'modifier' => fn ($limit) => null === $limit ? __('Unlimited') : $limit,
+                    'modifier' => fn ($limit) => "" === $limit ? __('Unlimited') : $limit,
                 ],
             ],
             'per_customer_usage_limit' => [
@@ -56,7 +56,7 @@ return [
                 'widget' => [
                     'type' => 'text',
                     'text' => '$model.per_customer_usage_limit',
-                    'modifier' => fn ($limit) => null === $limit ? __('Unlimited') : $limit,
+                    'modifier' => fn ($limit) => "" === $limit ? __('Unlimited') : $limit,
                 ],
             ],
         ]
