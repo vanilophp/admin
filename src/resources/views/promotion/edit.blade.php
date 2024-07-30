@@ -13,7 +13,7 @@
     !!}
 
     <x-appshell::card accent="secondary">
-        <x-slot:title>{{ __('Promotion Details') }}</x-slot:title>
+        <x-slot:title>{{ __('Details') }}</x-slot:title>
 
         @include('vanilo::promotion._form')
 

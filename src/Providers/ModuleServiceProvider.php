@@ -26,6 +26,7 @@ use Konekt\Menu\Facades\Menu;
 use Vanilo\Admin\Http\Requests\AssignChannels;
 use Vanilo\Admin\Http\Requests\CreateCarrier;
 use Vanilo\Admin\Http\Requests\CreateChannel;
+use Vanilo\Admin\Http\Requests\CreateCoupon;
 use Vanilo\Admin\Http\Requests\CreateLink;
 use Vanilo\Admin\Http\Requests\CreateLinkForm;
 use Vanilo\Admin\Http\Requests\CreateMasterProduct;
@@ -49,6 +50,7 @@ use Vanilo\Admin\Http\Requests\SyncModelPropertyValues;
 use Vanilo\Admin\Http\Requests\SyncModelTaxons;
 use Vanilo\Admin\Http\Requests\UpdateCarrier;
 use Vanilo\Admin\Http\Requests\UpdateChannel;
+use Vanilo\Admin\Http\Requests\UpdateCoupon;
 use Vanilo\Admin\Http\Requests\UpdateMasterProduct;
 use Vanilo\Admin\Http\Requests\UpdateMasterProductVariant;
 use Vanilo\Admin\Http\Requests\UpdateOrder;
@@ -116,6 +118,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         CreateLink::class,
         CreatePromotion::class,
         UpdatePromotion::class,
+        CreateCoupon::class,
+        UpdateCoupon::class,
     ];
 
     public function register(): void

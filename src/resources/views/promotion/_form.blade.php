@@ -5,7 +5,7 @@
         <span class="input-group-text">
             {!! icon('promotion') !!}
         </span>
-        <x-appshell::floating-label :label="__('Promotion name')" :is-invalid="$errors->has('name')">
+        <x-appshell::floating-label :label="__('Name')" :is-invalid="$errors->has('name')">
             {{ Form::text('name', null, [
                     'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
                     'placeholder' => __('Name of the promotion')
