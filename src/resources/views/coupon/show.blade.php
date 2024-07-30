@@ -29,7 +29,7 @@
                 {{ __('Expires at') }}
 
                 <x-slot:subtitle>
-                    {{ show_datetime($coupon->expires_at) }}
+                    {{ $coupon->expires_at ? show_datetime($coupon->expires_at) : __('Never') }}
                 </x-slot:subtitle>
             </x-appshell::card-with-icon>
         </div>
