@@ -289,6 +289,6 @@ Breadcrumbs::for('vanilo.admin.coupon.show', function ($breadcrumbs, $promotion,
 });
 
 Breadcrumbs::for('vanilo.admin.coupon.edit', function ($breadcrumbs, $promotion, $coupon) {
-    $breadcrumbs->parent('vanilo.admin.promotion.show', $promotion);
-    $breadcrumbs->push($coupon->code);
+    $breadcrumbs->parent('vanilo.admin.coupon.show', $promotion, $coupon);
+    $breadcrumbs->push(__('Edit'));
 });
