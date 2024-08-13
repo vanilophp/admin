@@ -56,6 +56,17 @@
                                 </button>
                             </td>
                         </tr>
+
+                        @if ($hasPropertyValuesError)
+                            <tr>
+                                <td colspan="3">
+                                    <input type="hidden" class="form-control is-invalid">
+                                    <div class="invalid-feedback">
+                                        {{ $propertyValuesErrorMessage }}
+                                    </div>
+                                </td>
+                            </tr>
+                        @endif
                     </tfoot>
                 </table>
 

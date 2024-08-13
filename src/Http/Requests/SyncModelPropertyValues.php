@@ -29,7 +29,8 @@ class SyncModelPropertyValues extends FormRequest implements SyncModelPropertyVa
     public function rules()
     {
         return array_merge($this->getForRules(), [
-            'propertyValues' => 'sometimes|array'
+            'propertyValues' => 'sometimes|array',
+            'propertyValues.*' => 'integer',
         ]);
     }
 
@@ -44,5 +45,12 @@ class SyncModelPropertyValues extends FormRequest implements SyncModelPropertyVa
     public function authorize()
     {
         return true;
+    }
+
+    public function messages()
+    {
+        return [
+            'propertyValues.*.integer' => __('Each property value must be a valid entry.'),
+        ];
     }
 }
