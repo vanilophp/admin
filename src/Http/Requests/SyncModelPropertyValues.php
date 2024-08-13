@@ -50,7 +50,7 @@ class SyncModelPropertyValues extends FormRequest implements SyncModelPropertyVa
     public function messages()
     {
         return [
-            'propertyValues.*.integer' => __('Each property value must be a valid integer.'),
+            'propertyValues.*.integer' => __('Each property value must be a valid entry.'),
         ];
     }
 }
