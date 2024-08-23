@@ -35,6 +35,7 @@ use Vanilo\Admin\Http\Requests\CreateMedia;
 use Vanilo\Admin\Http\Requests\CreatePaymentMethod;
 use Vanilo\Admin\Http\Requests\CreateProduct;
 use Vanilo\Admin\Http\Requests\CreatePromotion;
+use Vanilo\Admin\Http\Requests\CreatePromotionAction;
 use Vanilo\Admin\Http\Requests\CreatePromotionRule;
 use Vanilo\Admin\Http\Requests\CreateProperty;
 use Vanilo\Admin\Http\Requests\CreatePropertyValue;
@@ -58,6 +59,7 @@ use Vanilo\Admin\Http\Requests\UpdateOrder;
 use Vanilo\Admin\Http\Requests\UpdatePaymentMethod;
 use Vanilo\Admin\Http\Requests\UpdateProduct;
 use Vanilo\Admin\Http\Requests\UpdatePromotion;
+use Vanilo\Admin\Http\Requests\UpdatePromotionAction;
 use Vanilo\Admin\Http\Requests\UpdatePromotionRule;
 use Vanilo\Admin\Http\Requests\UpdateProperty;
 use Vanilo\Admin\Http\Requests\UpdatePropertyValue;
@@ -124,6 +126,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         UpdateCoupon::class,
         CreatePromotionRule::class,
         UpdatePromotionRule::class,
+        CreatePromotionAction::class,
+        UpdatePromotionAction::class
     ];
 
     public function register(): void
