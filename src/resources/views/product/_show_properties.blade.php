@@ -20,9 +20,34 @@
     </table>
 </x-appshell::card>
 
+@if ($errors->any())
+    @php
+        $hasPropertyValuesError = false;
+        $propertyValuesErrorMessage = null;
+
+        foreach ($errors->keys() as $key) {
+            if (Str::startsWith($key, 'propertyValues')) {
+                $hasPropertyValuesError = true;
+                $propertyValuesErrorMessage = $errors->first($key);
+                break;
+            }
+        }
+    @endphp
+
+    @if($hasPropertyValuesError)
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                new bootstrap.Modal('#properties-assign-to-model-modal').show();
+            });
+        </script>
+    @endif
+@endif
+
 @include('vanilo::property-value.assign._form', [
     'for' => shorten(get_class($for)),
     'forId' => $for->id,
     'assignments' => $for->propertyValues,
-    'properties' => $properties
+    'properties' => $properties,
+    'hasPropertyValuesError' => $hasPropertyValuesError ?? null,
+    'propertyValuesErrorMessage' => $propertyValuesErrorMessage ?? null,
 ])
