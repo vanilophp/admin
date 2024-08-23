@@ -6,6 +6,7 @@
 - Added modal to display configuration JSON of order items
 - Added the Promotions & Coupons CRUD
 - Moved the Orders menu item to the top in the Shop section
+- Added the Promotion Rules/Actions CRUD
 
 ## 4.1.1
 ##### 2024-07-23
