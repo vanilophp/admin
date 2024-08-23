@@ -26,7 +26,7 @@ class PromotionRuleController extends BaseController
     public function store(Promotion $promotion, CreatePromotionRule $request)
     {
         try {
-            PromotionRuleProxy::create(
+            $promotionRule = PromotionRuleProxy::create(
                 array_merge(
                     [
                         'promotion_id' => $promotion->id,
@@ -35,7 +35,7 @@ class PromotionRuleController extends BaseController
                 )
             );
 
-            flash()->success(__('Rule has been created'));
+            flash()->success(__('Rule :title has been created', ['title' => $promotionRule->getTitle()]));
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
 
@@ -59,7 +59,7 @@ class PromotionRuleController extends BaseController
         try {
             $promotionRule->update($request->validated());
 
-            flash()->success(__('The rule has been updated'));
+            flash()->success(__('The rule :title has been updated', ['title' => $promotionRule->getTitle()]));
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
 
@@ -72,9 +72,10 @@ class PromotionRuleController extends BaseController
     public function destroy(Promotion $promotion, PromotionRule $promotionRule)
     {
         try {
+            $title = $promotionRule->getTitle();
             $promotionRule->delete();
 
-            flash()->warning(__('The rule has been deleted'));
+            flash()->warning(__('The rule :title has been deleted', ['title' => $title]));
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
 

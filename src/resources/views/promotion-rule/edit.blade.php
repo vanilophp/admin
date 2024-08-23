@@ -1,7 +1,7 @@
 @extends('appshell::layouts.private')
 
 @section('title')
-    {{ __('Editing') }} {{ $rule->type }}
+    {{ __('Editing') }} {{ $rule->getTitle() }}
 @stop
 
 @section('content')

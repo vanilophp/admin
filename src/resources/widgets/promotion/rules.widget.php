@@ -15,7 +15,7 @@ return [
                     'type' => 'link',
                     'text' => [
                         'bold' => true,
-                        'text' => '$model.type',
+                        'text' => '$model.getTitle()',
                     ],
                     'url' => [
                         'route' => 'vanilo.admin.promotion.rule.edit',
