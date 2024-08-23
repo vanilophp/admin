@@ -8,5 +8,4 @@ use Konekt\Concord\Contracts\BaseRequest;
 
 interface UpdatePromotionAction extends BaseRequest
 {
-
 }
