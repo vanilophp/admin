@@ -42,7 +42,7 @@ if (!function_exists('vnl_promo_validity_text')) {
         if ($promotion->starts_at->isFuture()) {
             return
                 null === $promotion->ends_at ?
-                    __('will start at :datetime and will not expire', ['datetime' =>show_datetime($promotion->starts_at)])
+                    __('will start at :datetime and will not expire', ['datetime' => show_datetime($promotion->starts_at)])
                     :
                     __('will start at :starttime and expire at :endtime', ['starttime' => show_datetime($promotion->starts_at), 'endtime' => show_datetime($promotion->ends_at)]);
         }
@@ -53,7 +53,7 @@ if (!function_exists('vnl_promo_validity_text')) {
 
         return
             null === $promotion->ends_at ?
-                __('started at :datetime and will not expire', ['datetime' =>show_datetime($promotion->starts_at)])
+                __('started at :datetime and will not expire', ['datetime' => show_datetime($promotion->starts_at)])
                 :
                 __('started at :starttime and will expire at :endtime', ['starttime' => show_datetime($promotion->starts_at), 'endtime' => show_datetime($promotion->ends_at)]);
     }

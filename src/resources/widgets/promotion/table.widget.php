@@ -53,7 +53,7 @@ return [
                     'html' => function ($promo) {
                         $result = sprintf('%s/%s', $promo->usage_count, $promo->usage_limit ?? '&infin;');
                         if ($promo->usage_limit > 0) {
-                            $result .= ' <small class="text-muted">[' . round($promo->usage_count/$promo->usage_limit * 100) . '%]</small>';
+                            $result .= ' <small class="text-muted">[' . round($promo->usage_count / $promo->usage_limit * 100) . '%]</small>';
                         }
 
                         return $result;
@@ -89,7 +89,6 @@ return [
                     'modifier' => sprintf('bool2text:%s,%s', __('yes'), __('no'))
                 ]
             ],
-
         ]
     ]
 ];
