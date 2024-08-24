@@ -3,7 +3,10 @@
 declare(strict_types=1);
 
 use Illuminate\Database\Eloquent\Model;
+use Konekt\AppShell\Theme\ThemeColor;
 use Vanilo\Product\Contracts\Product;
+use Vanilo\Promotion\Contracts\Promotion;
+use Vanilo\Promotion\Models\PromotionStatus;
 
 if (!function_exists('admin_link_to')) {
     function admin_link_to(Model $model, string $operation = 'view'): ?string
@@ -14,5 +17,44 @@ if (!function_exists('admin_link_to')) {
             $model instanceof Product => route('vanilo.admin.product.show', $model),
             default => null,
         };
+    }
+}
+
+if (!function_exists('vnl_promo_status_color')) {
+    function vnl_admin_promo_status_color(PromotionStatus $status): string
+    {
+        return match ($status) {
+            PromotionStatus::Inactive => ThemeColor::WARNING,
+            PromotionStatus::Active => ThemeColor::SUCCESS,
+            PromotionStatus::Expired => ThemeColor::SECONDARY,
+            PromotionStatus::Depleted => ThemeColor::INFO,
+        };
+    }
+}
+
+if (!function_exists('vnl_promo_validity_text')) {
+    function vnl_promo_validity_text(Promotion $promotion): string
+    {
+        if (null === $promotion->starts_at) {
+            return null === $promotion->ends_at ? __('does not expire') : __('expires at :datetime', ['datetime' => show_datetime($promotion->ends_at)]);
+        }
+        // it has a start date
+        if ($promotion->starts_at->isFuture()) {
+            return
+                null === $promotion->ends_at ?
+                    __('will start at :datetime and will not expire', ['datetime' =>show_datetime($promotion->starts_at)])
+                    :
+                    __('will start at :starttime and expire at :endtime', ['starttime' => show_datetime($promotion->starts_at), 'endtime' => show_datetime($promotion->ends_at)]);
+        }
+
+        if (null !== $promotion->ends_at && $promotion->ends_at->isPast()) {
+            return __('expired at :endtime', ['endtime' => show_datetime($promotion->ends_at)]);
+        }
+
+        return
+            null === $promotion->ends_at ?
+                __('started at :datetime and will not expire', ['datetime' =>show_datetime($promotion->starts_at)])
+                :
+                __('started at :starttime and will expire at :endtime', ['starttime' => show_datetime($promotion->starts_at), 'endtime' => show_datetime($promotion->ends_at)]);
     }
 }

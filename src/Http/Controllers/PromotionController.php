@@ -25,8 +25,10 @@ class PromotionController extends BaseController
 {
     public function index()
     {
+        $query = PromotionProxy::with(['actions', 'rules'])->orderBy('priority');
+
         return view('vanilo::promotion.index', [
-            'promotions' => PromotionProxy::paginate(100),
+            'promotions' => $query->paginate(100),
         ]);
     }
 

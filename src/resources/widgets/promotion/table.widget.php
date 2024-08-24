@@ -11,21 +11,68 @@ return [
         'columns' => [
             'name' => [
                 'widget' => [
-                    'type' => 'link',
-                    'text' => [
-                        'bold' => true,
+                    'type' => 'multi_text',
+                    'primary' => [
                         'text' => '$model.name',
+                        'url' => [
+                            'route' => 'vanilo.admin.promotion.show',
+                            'parameters' => ['$model']
+                        ],
+                        'onlyIfCan' => 'view promotions',
                     ],
-                    'url' => [
-                        'route' => 'vanilo.admin.promotion.show',
-                        'parameters' => ['$model']
+                    'secondary' => [
+                        'text' => '$model.description',
+                        'modifier' => sprintf('text_if_empty:%s', __('No description')),
                     ],
-                    'onlyIfCan' => 'view promotions',
                 ],
-                'title' => __('Name')
+                'title' => __('Promotion'),
+            ],
+            'status' => [
+                'title' => __('Status'),
+                'valign' => 'middle',
+                'widget' => [
+                    'type' => 'badge',
+                    'color' => fn ($promo) => vnl_admin_promo_status_color($promo->getStatus()),
+                    'text' => '$model',
+                    'modifier' => fn ($promo) => $promo->getStatus()->label(),
+                ]
+            ],
+            'validity' => [
+                'title' => __('Validity'),
+                'valign' => 'middle',
+                'widget' => [
+                    'type' => 'text',
+                    'text' => fn ($promo) => vnl_promo_validity_text($promo),
+                ]
+            ],
+            'usage' => [
+                'title' => __('Usage'),
+                'valign' => 'middle',
+                'widget' => [
+                    'type' => 'raw_html',
+                    'html' => function ($promo) {
+                        $result = sprintf('%s/%s', $promo->usage_count, $promo->usage_limit ?? '&infin;');
+                        if ($promo->usage_limit > 0) {
+                            $result .= ' <small class="text-muted">[' . round($promo->usage_count/$promo->usage_limit * 100) . '%]</small>';
+                        }
+
+                        return $result;
+                    },
+                ]
+            ],
+            'is_coupon_based' => [
+                'title' => __('Coupon Based'),
+                'valign' => 'middle',
+                'widget' => [
+                    'type' => 'badge',
+                    'color' => ['bool' => ['success', 'secondary']],
+                    'text' => '$model.is_coupon_based',
+                    'modifier' => sprintf('bool2text:%s,%s', __('yes'), __('no'))
+                ]
             ],
             'priority' => [
                 'title' => __('Priority'),
+                'valign' => 'middle',
                 'widget' => [
                     'type' => 'badge',
                     'color' => 'primary',
@@ -42,40 +89,7 @@ return [
                     'modifier' => sprintf('bool2text:%s,%s', __('yes'), __('no'))
                 ]
             ],
-            'is_coupon_based' => [
-                'title' => __('Coupon Based'),
-                'valign' => 'middle',
-                'widget' => [
-                    'type' => 'badge',
-                    'color' => ['bool' => ['success', 'secondary']],
-                    'text' => '$model.is_coupon_based',
-                    'modifier' => sprintf('bool2text:%s,%s', __('yes'), __('no'))
-                ]
-            ],
-            'applies_to_discounted' => [
-                'title' => __('Applies to Discounted'),
-                'valign' => 'middle',
-                'widget' => [
-                    'type' => 'badge',
-                    'color' => ['bool' => ['success', 'secondary']],
-                    'text' => '$model.applies_to_discounted',
-                    'modifier' => sprintf('bool2text:%s,%s', __('yes'), __('no'))
-                ]
-            ],
-            'starts_at' => [
-                'widget' => [
-                    'type' => 'show_datetime',
-                    'text' => '$model.starts_at'
-                ],
-                'title' => __('Starts at'),
-            ],
-            'ends_at' => [
-                'widget' => [
-                    'type' => 'show_datetime',
-                    'text' => '$model.ends_at'
-                ],
-                'title' => __('Ends at'),
-            ],
+
         ]
     ]
 ];
