@@ -7,6 +7,7 @@
 - Added the Promotions & Coupons CRUD
 - Moved the Orders menu item to the top in the Shop section
 - Added input validation at Property Value assignment
+- Added the Promotion Rules/Actions CRUD
 
 ## 4.1.1
 ##### 2024-07-23

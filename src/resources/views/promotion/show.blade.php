@@ -57,6 +57,34 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-6">
+            <x-appshell::card>
+                <x-slot:title>{{ __('Rules') }}</x-slot:title>
+
+                <x-slot:actions>
+                    <x-appshell::button :href="route('vanilo.admin.promotion.rule.create', $promotion)" variant="outline-success" icon="+" size="sm">{{ __('Add Rule') }}</x-appshell::button>
+                </x-slot:actions>
+
+                {!! widget('vanilo::promotion.rules')->render($promotion->getRules()) !!}
+
+            </x-appshell::card>
+        </div>
+
+        <div class="col-md-6">
+            <x-appshell::card>
+                <x-slot:title>{{ __('Actions') }}</x-slot:title>
+
+                <x-slot:actions>
+                    <x-appshell::button :href="route('vanilo.admin.promotion.action.create', $promotion)" variant="outline-success" icon="+" size="sm">{{ __('Add Action') }}</x-appshell::button>
+                </x-slot:actions>
+
+                {!! widget('vanilo::promotion.actions')->render($promotion->getActions()) !!}
+
+            </x-appshell::card>
+        </div>
+    </div>
+
     @if($promotion->is_coupon_based)
     @can('list coupons')
         <x-appshell::card>

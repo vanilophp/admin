@@ -35,6 +35,8 @@ use Vanilo\Admin\Http\Requests\CreateMedia;
 use Vanilo\Admin\Http\Requests\CreatePaymentMethod;
 use Vanilo\Admin\Http\Requests\CreateProduct;
 use Vanilo\Admin\Http\Requests\CreatePromotion;
+use Vanilo\Admin\Http\Requests\CreatePromotionAction;
+use Vanilo\Admin\Http\Requests\CreatePromotionRule;
 use Vanilo\Admin\Http\Requests\CreateProperty;
 use Vanilo\Admin\Http\Requests\CreatePropertyValue;
 use Vanilo\Admin\Http\Requests\CreatePropertyValueForm;
@@ -57,6 +59,8 @@ use Vanilo\Admin\Http\Requests\UpdateOrder;
 use Vanilo\Admin\Http\Requests\UpdatePaymentMethod;
 use Vanilo\Admin\Http\Requests\UpdateProduct;
 use Vanilo\Admin\Http\Requests\UpdatePromotion;
+use Vanilo\Admin\Http\Requests\UpdatePromotionAction;
+use Vanilo\Admin\Http\Requests\UpdatePromotionRule;
 use Vanilo\Admin\Http\Requests\UpdateProperty;
 use Vanilo\Admin\Http\Requests\UpdatePropertyValue;
 use Vanilo\Admin\Http\Requests\UpdateShippingMethod;
@@ -120,6 +124,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         UpdatePromotion::class,
         CreateCoupon::class,
         UpdateCoupon::class,
+        CreatePromotionRule::class,
+        UpdatePromotionRule::class,
+        CreatePromotionAction::class,
+        UpdatePromotionAction::class
     ];
 
     public function register(): void
@@ -138,6 +146,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $aclResourceMapper->overrideResourcePlural('taxon', 'taxons');
         $aclResourceMapper->addAlias('master product', 'product');
         $aclResourceMapper->addAlias('master product variant', 'product');
+        $aclResourceMapper->addAlias('promotion rule', 'promotion');
+        $aclResourceMapper->addAlias('promotion action', 'promotion');
         $aclResourceMapper->addAlias('zone member', 'zone');
         $aclResourceMapper->addAlias('link', 'product');
         $aclResourceMapper->addAlias('payment', 'order');

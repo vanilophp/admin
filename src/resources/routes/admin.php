@@ -12,6 +12,8 @@ declare(strict_types=1);
 |--------------------------------------------------------------------------
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::resource('channel', 'ChannelController');
 Route::put('/channels', 'ChannelController@assign')->name('channels.assign');
 Route::resource('zone', 'ZoneController');
@@ -65,3 +67,15 @@ Route::get('/promotion/{promotion}/coupon/{coupon}/edit', 'CouponController@edit
 Route::get('/promotion/{promotion}/coupon/{coupon}', 'CouponController@show')->name('coupon.show');
 Route::put('/promotion/{promotion}/coupon/{coupon}', 'CouponController@update')->name('coupon.update');
 Route::delete('/promotion/{promotion}/coupon/{coupon}', 'CouponController@destroy')->name('coupon.destroy');
+
+Route::get('/promotion/{promotion}/rule/create', 'PromotionRuleController@create')->name('promotion.rule.create');
+Route::post('/promotion/{promotion}/rule', 'PromotionRuleController@store')->name('promotion.rule.store');
+Route::get('/promotion/{promotion}/rule/{promotionRule}/edit', 'PromotionRuleController@edit')->name('promotion.rule.edit');
+Route::put('/promotion/{promotion}/rule/{promotionRule}', 'PromotionRuleController@update')->name('promotion.rule.update');
+Route::delete('/promotion/{promotion}/rule/{promotionRule}', 'PromotionRuleController@destroy')->name('promotion.rule.destroy');
+
+Route::get('/promotion/{promotion}/action/create', 'PromotionActionController@create')->name('promotion.action.create');
+Route::post('/promotion/{promotion}/action', 'PromotionActionController@store')->name('promotion.action.store');
+Route::get('/promotion/{promotion}/action/{promotionAction}/edit', 'PromotionActionController@edit')->name('promotion.action.edit');
+Route::put('/promotion/{promotion}/action/{promotionAction}', 'PromotionActionController@update')->name('promotion.action.update');
+Route::delete('/promotion/{promotion}/action/{promotionAction}', 'PromotionActionController@destroy')->name('promotion.action.destroy');
