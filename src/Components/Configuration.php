@@ -27,12 +27,19 @@ use Vanilo\Contracts\Configurable;
 class Configuration extends Component
 {
     public readonly bool $modelIsBeingCreated;
+
     public readonly bool $hasSchema;
+
     public readonly ?Schema $schema;
+
     public readonly ?array $sample;
+
     public readonly string $sampleAsJson;
+
     public readonly string $sampleAsHtml;
+
     public readonly string $jsid;
+
     public array $widgets = [];
 
     public function __construct(
@@ -88,7 +95,7 @@ class Configuration extends Component
                 if ($item instanceof Type) {
                     $type = (new ReflectionObject($item))->getProperty('type');
                     $type->setAccessible(true);
-                    $widget = match($type->getValue($item)) {
+                    $widget = match ($type->getValue($item)) {
                         'int' => "<label>$name</label><input type=\"number\" name=\"$name\" class=\"form-control form-control-sm\" />",
                         default => "<label>$name</label><input type=\"text\" name=\"$name\" class=\"form-control form-control-sm\" />"
                     };
@@ -98,4 +105,3 @@ class Configuration extends Component
         }
     }
 }
-
