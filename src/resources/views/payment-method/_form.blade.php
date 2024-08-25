@@ -21,6 +21,7 @@
     <div class="col-md-10">
         {{ Form::select('gateway', $gateways, null, [
                 'class' => 'form-select form-select-sm' . ($errors->has('gateway') ? ' is-invalid': ''),
+                'id' => 'gatewaySelector',
                 'placeholder' => __('--')
            ])
         }}
@@ -65,17 +66,5 @@
 
 <hr>
 
-<div class="mb-3 row">
-    <label class="col-form-label col-form-label-sm col-md-2">{{ __('Configuration') }}</label>
-    <div class="col-md-10">
-        <textarea name="configuration"
-            class="form-control form-control-sm{{ $errors->has('configuration') ? ' is-invalid' : '' }}"
-            placeholder="{{ __('Enter JSON config') }}"
-            rows="6"
-        >{{ old('configuration') ?? json_encode(Form::getModel()->configuration ?? [], JSON_PRETTY_PRINT | JSON_FORCE_OBJECT) }}</textarea>
-        @if ($errors->has('configuration'))
-            <div class="invalid-feedback">{{ $errors->first('configuration') }}</div>
-        @endif
-    </div>
-</div>
-
+<x-vanilo::configuration :model="$paymentMethod" reload-on-change-of="gatewaySelector" pass-on-reload="gateway"
+                         :sample-refresh-route="route('vanilo.admin.payment-method.create')"></x-vanilo::configuration>

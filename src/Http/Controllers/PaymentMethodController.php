@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Konekt\Address\Query\Zones;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreatePaymentMethod;
@@ -39,15 +40,23 @@ class PaymentMethodController extends BaseController
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('vanilo::payment-method.create', [
-            'paymentMethod' => app(PaymentMethod::class),
+        $paymentMethod = app(PaymentMethod::class);
+        $gateway = $request->query('gateway');
+        if ($gateway && in_array($gateway, PaymentGateways::ids())) {
+            $paymentMethod->gateway = $gateway;
+        }
+
+        $view = view('vanilo::payment-method.create', [
+            'paymentMethod' => $paymentMethod,
             'gateways' => PaymentGateways::choices(),
             'zones' => Zones::withBillingScope()->get(),
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
             'channels' => $this->channelsForUi(),
         ]);
+
+        return ($fragment = $request->query('_fragment')) ? $view->fragment($fragment) : $view;
     }
 
     public function store(CreatePaymentMethod $request)

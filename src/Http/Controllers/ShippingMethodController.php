@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Konekt\Address\Query\Zones;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateShippingMethod;
@@ -40,16 +41,24 @@ class ShippingMethodController extends BaseController
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('vanilo::shipping-method.create', [
-            'shippingMethod' => app(ShippingMethod::class),
+        $shippingMethod = app(ShippingMethod::class);
+        $calculator = $request->query('calculator');
+        if ($calculator && in_array($calculator, ShippingFeeCalculators::ids())) {
+            $shippingMethod->calculator = $calculator;
+        }
+
+        $view = view('vanilo::shipping-method.create', [
+            'shippingMethod' => $shippingMethod,
             'carriers' => CarrierProxy::all(),
             'zones' => Zones::withShippingScope()->get(),
             'calculators' => ShippingFeeCalculators::choices(),
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
             'channels' => $this->channelsForUi(),
         ]);
+
+        return ($fragment = $request->query('_fragment')) ? $view->fragment($fragment) : $view;
     }
 
     public function store(CreateShippingMethod $request)

@@ -6,7 +6,7 @@
 
 @section('content')
 
-    {!! Form::model($promotion, ['url' => route('vanilo.admin.promotion.rule.store', $promotion), 'autocomplete' => 'off', 'class' => 'row']) !!}
+    {!! Form::model($rule, ['url' => route('vanilo.admin.promotion.rule.store', $promotion), 'autocomplete' => 'off', 'class' => 'row']) !!}
 
     <div class="col-12 col-lg-8 col-xl-9">
         <x-appshell::card accent="success">

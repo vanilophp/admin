@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreatePromotionRule;
 use Vanilo\Admin\Contracts\Requests\UpdatePromotionRule;
@@ -14,13 +15,21 @@ use Vanilo\Promotion\PromotionRuleTypes;
 
 class PromotionRuleController extends BaseController
 {
-    public function create(Promotion $promotion)
+    public function create(Request $request, Promotion $promotion)
     {
-        return view('vanilo::promotion-rule.create', [
+        $rule = app(PromotionRule::class);
+        $type = $request->query('type');
+        if ($type && in_array($type, PromotionRuleTypes::ids())) {
+            $rule->type = $type;
+        }
+
+        $view = view('vanilo::promotion-rule.create', [
             'promotion' => $promotion,
-            'rule' => app(PromotionRule::class),
+            'rule' => $rule,
             'types' => PromotionRuleTypes::choices(),
         ]);
+
+        return ($fragment = $request->query('_fragment')) ? $view->fragment($fragment) : $view;
     }
 
     public function store(Promotion $promotion, CreatePromotionRule $request)

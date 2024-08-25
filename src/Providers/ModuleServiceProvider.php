@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Konekt\Address\Models\ZoneScope;
 use Konekt\Address\Models\ZoneScopeProxy;
 use Konekt\AppShell\Acl\ResourcePermissionMapper;
@@ -23,6 +24,7 @@ use Konekt\AppShell\Theme\ThemeColor;
 use Konekt\AppShell\Widgets;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\Menu\Facades\Menu;
+use Vanilo\Admin\Components\Configuration;
 use Vanilo\Admin\Http\Requests\AssignChannels;
 use Vanilo\Admin\Http\Requests\CreateCarrier;
 use Vanilo\Admin\Http\Requests\CreateChannel;
@@ -152,6 +154,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $aclResourceMapper->addAlias('link', 'product');
         $aclResourceMapper->addAlias('payment', 'order');
 
+        $this->registerBladeComponents();
         $this->registerIconExtensions();
         $this->registerEnumIcons();
         $this->registerEnumColors();
@@ -264,5 +267,12 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 TaxCategoryType::BROADCASTING => ThemeColor::INFO(),
             ]
         );
+    }
+
+    private function registerBladeComponents(): void
+    {
+        Blade::componentNamespace('Vanilo\\Admin\\Components', 'vanilo');
+
+        //Blade::component('configurationz', Configuration::class);
     }
 }
