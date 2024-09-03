@@ -25,6 +25,7 @@ use Vanilo\Admin\Contracts\Requests\CreateChannel;
 use Vanilo\Admin\Contracts\Requests\UpdateChannel;
 use Vanilo\Channel\Contracts\Channel;
 use Vanilo\Channel\Models\ChannelProxy;
+use Vanilo\Foundation\Search\ProductSearch;
 use Vanilo\Pricing\Models\Pricelist;
 use Vanilo\Support\Features;
 
@@ -70,7 +71,10 @@ class ChannelController extends BaseController
 
     public function show(Channel $channel)
     {
-        return view('vanilo::channel.show', $this->processViewData(__METHOD__, ['channel' => $channel]));
+        return view('vanilo::channel.show', $this->processViewData(__METHOD__, [
+            'channel' => $channel,
+            'channelProducts' => (new ProductSearch())->withinChannel($channel)->withInactiveProducts()->getResults(),
+        ]));
     }
 
     public function edit(Channel $channel)
