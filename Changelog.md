@@ -8,6 +8,7 @@
 - Moved the Orders menu item to the top in the Shop section
 - Added input validation at Property Value assignment
 - Added the configuration widget, that can handle JSON config samples
+- Fixed master products not being listed on the Channel show page
 
 ## 4.1.1
 ##### 2024-07-23

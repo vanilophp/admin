@@ -15,7 +15,7 @@
             <x-appshell::button href="#" variant="outline-success" icon="+" size="sm">{{ __('Assign a product') }}</x-appshell::button>
         </x-slot:actions>
 
-        {!! widget('vanilo::channel.products')->render($channel->products) !!}
+        {!! widget('vanilo::channel.products')->render($products) !!}
 
     </x-appshell::card>
 @stop
