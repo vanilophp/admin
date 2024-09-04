@@ -73,7 +73,7 @@ class ChannelController extends BaseController
     {
         return view('vanilo::channel.show', $this->processViewData(__METHOD__, [
             'channel' => $channel,
-            'channelProducts' => (new ProductSearch())->withinChannel($channel)->withInactiveProducts()->getResults(),
+            'products' => (new ProductSearch())->withinChannel($channel)->withInactiveProducts()->getResults(),
         ]));
     }
 
