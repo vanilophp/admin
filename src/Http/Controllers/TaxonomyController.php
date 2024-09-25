@@ -113,7 +113,6 @@ class TaxonomyController extends BaseController
             $model->touch();
         });
 
-
         return redirect(route(sprintf('vanilo.admin.%s.show', shorten(get_class($model))), $model));
     }
 }
