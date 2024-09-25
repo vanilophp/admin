@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreatePropertyValue;
 use Vanilo\Admin\Contracts\Requests\CreatePropertyValueForm;
@@ -102,8 +103,18 @@ class PropertyValueController extends BaseController
 
     public function sync(SyncModelPropertyValues $request, $for, $forId)
     {
-        $model = $request->getFor();
-        $model->propertyValues()->sync($request->getPropertyValueIds());
+        DB::beginTransaction();
+        try {
+            $model = $request->getFor();
+            $model->propertyValues()->sync($request->getPropertyValueIds());
+            $model->touch();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            flash()->error(__('There was an error at updating the properties: :msg', ['msg' => $e->getMessage()]));
+
+            return redirect()->back();
+        }
 
         $resource = shorten(get_class($model));
         if ('master_product_variant' === $resource) {

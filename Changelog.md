@@ -9,7 +9,8 @@
 - Added input validation at Property Value assignment
 - Added the configuration widget, that can handle JSON config samples
 - Fixed master products not being listed on the Channel show page
-- Changed the product/master product creation so that the record creation and channel assignment are in a single transaction 
+- Changed the product/master product creation so that the record creation and channel assignment are in a single transaction
+- Added the touching of the parent model (product/master/variant) when changing property assignments
 
 ## 4.1.1
 ##### 2024-07-23
