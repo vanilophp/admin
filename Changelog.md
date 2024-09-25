@@ -10,7 +10,11 @@
 - Added the configuration widget, that can handle JSON config samples
 - Fixed master products not being listed on the Channel show page
 - Changed the product/master product creation so that the record creation and channel assignment are in a single transaction
-- Added the touching of the parent model (product/master/variant) when changing property assignments
+- Added the touching of the parent model (product/master/variant) at:
+  - property assignment,
+  - channel assignment,
+  - taxon assignment
+  - variant write operations.
 
 ## 4.1.1
 ##### 2024-07-23

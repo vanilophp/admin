@@ -130,6 +130,7 @@ class ChannelController extends BaseController
         }
 
         $model->assignChannels($request->channels());
+        $model->touch();
         flash()->success(__('Channel assignments have been updated'));
 
         return redirect()->intended(url()->previous());

@@ -47,6 +47,8 @@ class MasterProductVariantController extends BaseController
                     $request->except('images')
                 )
             );
+            $masterProduct->touch();
+
             flash()->success(__(':name has been created', ['name' => $variant->name]));
 
             try {
@@ -94,6 +96,7 @@ class MasterProductVariantController extends BaseController
     {
         try {
             $masterProductVariant->update($request->all());
+            $masterProduct->touch();
 
             flash()->success(__(':name has been updated', ['name' => $masterProductVariant->name]));
         } catch (\Exception $e) {
@@ -111,6 +114,7 @@ class MasterProductVariantController extends BaseController
             $name = $masterProductVariant->name;
             $masterProductVariant->propertyValues()->detach();
             $masterProductVariant->delete();
+            $masterProduct->touch();
 
             flash()->warning(__(':name has been deleted', ['name' => $name]));
         } catch (\Exception $e) {

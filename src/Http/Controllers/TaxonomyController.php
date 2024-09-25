@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateTaxonomy;
 use Vanilo\Admin\Contracts\Requests\SyncModelTaxons;
@@ -107,7 +108,11 @@ class TaxonomyController extends BaseController
             );
         }
 
-        $model->taxons()->byTaxonomy($taxonomy)->sync($taxonIds);
+        DB::transaction(function () use ($taxonIds, $model, $taxonomy) {
+            $model->taxons()->byTaxonomy($taxonomy)->sync($taxonIds);
+            $model->touch();
+        });
+
 
         return redirect(route(sprintf('vanilo.admin.%s.show', shorten(get_class($model))), $model));
     }

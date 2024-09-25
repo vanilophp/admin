@@ -157,12 +157,16 @@ class ProductController extends BaseController
     {
         try {
             $name = $product->name;
+            DB::beginTransaction();
+
             $product->removeFromAllChannels();
             $product->propertyValues()->detach();
             $product->delete();
 
+            DB::commit();
             flash()->warning(__(':name has been deleted', ['name' => $name]));
         } catch (\Exception $e) {
+            DB::rollBack();
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
 
             return redirect()->back();
