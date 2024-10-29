@@ -8,6 +8,7 @@
             <a href="{{ route('vanilo.admin.channel.show', $channel->id) }}">
                 {{ $channel->name }}
             </a>
+            @unless($loop->last) | @endunless
         @endforeach
     @else
         {{ $model->channels->take(3)->implode('name', ' | ') }}
