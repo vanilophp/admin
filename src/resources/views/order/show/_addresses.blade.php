@@ -3,8 +3,8 @@
         <x-slot:title>{{ __('Bill To') }}</x-slot:title>
 
         <x-slot:actions>
-            <x-appshell::button size="sm" data-bs-toggle="modal" data-bs-target="#update-billpayer-modal">
-                Modify
+            <x-appshell::button size="xs" data-bs-toggle="modal" data-bs-target="#update-billpayer-modal">
+                {{ __('Modify') }}
             </x-appshell::button>
         </x-slot:actions>
 

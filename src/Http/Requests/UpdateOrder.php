@@ -45,13 +45,11 @@ class UpdateOrder extends FormRequest implements UpdateOrderContract
 
     public function wantsToChangeOrderStatus(Order $order): bool
     {
-        $status = $this->getStatus();
-
-        if (null === $status) {
+        if (!$this->has('status') {
             return false;
         }
-
-        return $status !== $order->getStatus()->value();
+        
+        return $this->getStatus() !== $order->getStatus()->value();
     }
 
     public function wantsToUpdateBillpayerData(): bool
@@ -59,7 +57,7 @@ class UpdateOrder extends FormRequest implements UpdateOrderContract
         return !empty($this->input('billpayer'));
     }
 
-    public function getStatus(): ?string
+    public function getStatus(): string
     {
         return $this->get('status');
     }

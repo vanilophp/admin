@@ -20,7 +20,5 @@ interface UpdateOrder extends BaseRequest
 {
     public function wantsToChangeOrderStatus(Order $order): bool;
 
-    public function getStatus(): ?string;
-
-    public function wantsToUpdateBillpayerData(): bool;
+    public function getStatus(): string;
 }
