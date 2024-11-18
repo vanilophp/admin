@@ -2,6 +2,12 @@
     <x-appshell::card class="h-100">
         <x-slot:title>{{ __('Bill To') }}</x-slot:title>
 
+        <x-slot:actions>
+            <x-appshell::button size="sm" data-bs-toggle="modal" data-bs-target="#update-billpayer-modal">
+                Modify
+            </x-appshell::button>
+        </x-slot:actions>
+
         <?php
         $billpayer = $order->billpayer;
         $billingAddress = $billpayer->getBillingAddress();
@@ -42,5 +48,15 @@
         @else
             <h6>{{ __('No Shipping Address') }}</h6>
         @endif
-        </x-appshell::card>
+    </x-appshell::card>
 </div>
+
+@include('vanilo::order.show._update_billpayer_modal')
+
+@if(session('updateBillpayerValidationError'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            new bootstrap.Modal('#update-billpayer-modal').show();
+        });
+    </script>
+@endif
