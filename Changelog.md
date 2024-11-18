@@ -15,6 +15,7 @@
   - channel assignment,
   - taxon assignment
   - variant write operations.
+- Added editing of billpayer details for orders
 
 ## 4.1.1
 ##### 2024-07-23

@@ -15,6 +15,8 @@ declare(strict_types=1);
 namespace Vanilo\Admin\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Konekt\Address\Models\CountryProxy;
 use Konekt\AppShell\Filters\Filters;
 use Konekt\AppShell\Filters\Generic\ExactMatch;
 use Konekt\AppShell\Filters\Generic\PartialMatch;
@@ -27,6 +29,7 @@ use Vanilo\Admin\Filters\OrderStatusFilter;
 use Vanilo\Channel\Models\ChannelProxy;
 use Vanilo\Order\Contracts\Order;
 use Vanilo\Order\Contracts\OrderAwareEvent;
+use Vanilo\Order\Events\OrderBillpayerUpdated;
 use Vanilo\Order\Events\OrderProcessingStarted;
 use Vanilo\Order\Events\OrderWasCancelled;
 use Vanilo\Order\Events\OrderWasCompleted;
@@ -69,11 +72,12 @@ class OrderController extends BaseController
             }
         }
 
-        return view("vanilo::order.$view", [
+        return view("vanilo::order.$view", $this->processViewData(__METHOD__, [
             'order' => $order,
             'hasItemAdjustments' => !empty($existingItemAdjustmentTypes),
             'itemAdjustmentTypes' => $existingItemAdjustmentTypes,
-        ]);
+            'countries' => CountryProxy::orderBy('name')->pluck('name', 'id'),
+        ]));
     }
 
     public function update(Order $order, UpdateOrder $request)
@@ -82,6 +86,33 @@ class OrderController extends BaseController
             $event = null;
             if ($request->wantsToChangeOrderStatus($order)) {
                 $event = $this->getStatusUpdateEventClass($request->getStatus(), $order);
+            }
+
+            if ($request->wantsToUpdateBillpayerData()) {
+                $billpayer = $order->billpayer;
+                $billpayerAddress = $billpayer->address;
+
+                DB::transaction(static function () use ($request, $billpayer, $billpayerAddress) {
+                    $billpayer->update([
+                        'email' => $request->input('billpayer.email'),
+                        'phone' => $request->input('billpayer.phone'),
+                        'firstname' => $request->input('billpayer.firstname'),
+                        'lastname' => $request->input('billpayer.lastname'),
+                        'company_name' => $request->input('billpayer.company_name'),
+                        'tax_nr' => $request->input('billpayer.tax_nr'),
+                        'registration_nr' => $request->input('billpayer.registration_nr'),
+                        'is_organization' => $request->isOrganization(),
+                    ]);
+
+                    $billpayerAddress->update([
+                        'country_id' => $request->input('billpayer.address.country_id'),
+                        'postalcode' => $request->input('billpayer.address.postalcode'),
+                        'city' => $request->input('billpayer.address.city'),
+                        'address' => $request->input('billpayer.address.address'),
+                    ]);
+                });
+
+                $event = new OrderBillpayerUpdated($order);
             }
 
             $order->update($request->all());
