@@ -56,7 +56,7 @@ class UpdateOrder extends FormRequest implements UpdateOrderContract
 
     public function wantsToUpdateBillpayerData(): bool
     {
-       return !empty($this->input('billpayer'));
+        return !empty($this->input('billpayer'));
     }
 
     public function getStatus(): ?string
@@ -72,6 +72,13 @@ class UpdateOrder extends FormRequest implements UpdateOrderContract
     public function isOrganization(): bool
     {
         return $this->input('billpayer.is_organization') || !empty($this->input('company_name'));
+    }
+
+    public function messages(): array
+    {
+        return [
+            'billpayer.company_name.required_if' => __('Enter the company name, or uncheck the `Organization` switch'),
+        ];
     }
 
     protected function failedValidation(Validator $validator): void
@@ -94,12 +101,5 @@ class UpdateOrder extends FormRequest implements UpdateOrderContract
                 ]),
             ]);
         }
-    }
-
-    public function messages(): array
-    {
-        return [
-            'billpayer.company_name.required_if' => __('Enter the company name, or uncheck the `Organization` switch'),
-        ];
     }
 }

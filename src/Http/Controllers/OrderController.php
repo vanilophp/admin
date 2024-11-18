@@ -16,6 +16,7 @@ namespace Vanilo\Admin\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Konekt\Address\Models\CountryProxy;
 use Konekt\AppShell\Filters\Filters;
 use Konekt\AppShell\Filters\Generic\ExactMatch;
 use Konekt\AppShell\Filters\Generic\PartialMatch;
@@ -28,13 +29,12 @@ use Vanilo\Admin\Filters\OrderStatusFilter;
 use Vanilo\Channel\Models\ChannelProxy;
 use Vanilo\Order\Contracts\Order;
 use Vanilo\Order\Contracts\OrderAwareEvent;
+use Vanilo\Order\Events\OrderBillpayerUpdated;
 use Vanilo\Order\Events\OrderProcessingStarted;
 use Vanilo\Order\Events\OrderWasCancelled;
 use Vanilo\Order\Events\OrderWasCompleted;
-use Vanilo\Order\Events\OrderBillpayerUpdated;
 use Vanilo\Order\Models\OrderProxy;
 use Vanilo\Order\Models\OrderStatus;
-use Konekt\Address\Models\CountryProxy;
 
 class OrderController extends BaseController
 {
@@ -112,7 +112,7 @@ class OrderController extends BaseController
                     ]);
                 });
 
-               $event = new OrderBillpayerUpdated($order);
+                $event = new OrderBillpayerUpdated($order);
             }
 
             $order->update($request->all());
