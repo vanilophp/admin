@@ -48,7 +48,7 @@ class UpdateOrder extends FormRequest implements UpdateOrderContract
         if (!$this->has('status')) {
             return false;
         }
-        
+
         return $this->getStatus() !== $order->getStatus()->value();
     }
 
