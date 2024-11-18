@@ -205,7 +205,7 @@
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('editBillpayerModal', () => ({
-                isOrganization: @json(old('is_organization') === null && $billpayer->is_organization) || {{ old('billpayer.is_organization') == '1' ? 'true' : 'false' }} || @json(!empty($billpayer->company_name)),
+                isOrganization: @json(old('billpayer.is_organization') == '1' || !empty($billpayer->company_name)),
                 countries: @json($countries),
         }))
         });
