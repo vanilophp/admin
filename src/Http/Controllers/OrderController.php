@@ -30,6 +30,7 @@ use Vanilo\Channel\Models\ChannelProxy;
 use Vanilo\Order\Contracts\Order;
 use Vanilo\Order\Contracts\OrderAwareEvent;
 use Vanilo\Order\Events\OrderBillpayerUpdated;
+use Vanilo\Order\Events\OrderShippingAddressUpdated;
 use Vanilo\Order\Events\OrderProcessingStarted;
 use Vanilo\Order\Events\OrderWasCancelled;
 use Vanilo\Order\Events\OrderWasCompleted;
