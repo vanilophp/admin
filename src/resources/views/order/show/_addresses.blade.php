@@ -34,6 +34,10 @@
                 <a href="{{ route('vanilo.admin.shipping-method.show', $order->shippingMethod) }}" class="badge badge-pill bg-primary" title="{{ __('Shipping method') }}">
                     {{ $order->shippingMethod->name }}
                 </a>
+
+                <x-appshell::button size="xs" data-bs-toggle="modal" data-bs-target="#update-shipping-address-modal">
+                    {{ __('Modify') }}
+                </x-appshell::button>
             </x-slot:actions>
         @endif
 
@@ -52,11 +56,20 @@
 </div>
 
 @include('vanilo::order.show._update_billpayer_modal')
+@include('vanilo::order.show._update_shipping_address_modal')
 
 @if(session('updateBillpayerValidationError'))
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             new bootstrap.Modal('#update-billpayer-modal').show();
+        });
+    </script>
+@endif
+
+@if(session('updateShippingAddressValidationError'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            new bootstrap.Modal('#update-shipping-address-modal').show();
         });
     </script>
 @endif

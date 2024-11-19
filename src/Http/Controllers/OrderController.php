@@ -115,6 +115,22 @@ class OrderController extends BaseController
                 $event = new OrderBillpayerUpdated($order);
             }
 
+            if ($request->wantsToUpdateShippingAddressData()) {
+                $shippingAddress = $order->getShippingAddress();
+
+                if (null !== $shippingAddress) {
+                    $shippingAddress->update([
+                        'name' => $request->input('shippingAddress.name'),
+                        'country_id' => $request->input('shippingAddress.country_id'),
+                        'postalcode' => $request->input('shippingAddress.postalcode'),
+                        'city' => $request->input('shippingAddress.city'),
+                        'address' => $request->input('shippingAddress.address'),
+                    ]);
+
+                    $event = new OrderShippingAddressUpdated($order);
+                }
+            }
+
             $order->update($request->all());
 
             if (null !== $event) {
