@@ -16,6 +16,7 @@
   - taxon assignment
   - variant write operations.
 - Added editing of billpayer details for orders
+- Added editing of shipping address details for orders
 
 ## 4.1.1
 ##### 2024-07-23

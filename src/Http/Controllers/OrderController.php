@@ -31,6 +31,7 @@ use Vanilo\Order\Contracts\Order;
 use Vanilo\Order\Contracts\OrderAwareEvent;
 use Vanilo\Order\Events\OrderBillpayerUpdated;
 use Vanilo\Order\Events\OrderProcessingStarted;
+use Vanilo\Order\Events\OrderShippingAddressUpdated;
 use Vanilo\Order\Events\OrderWasCancelled;
 use Vanilo\Order\Events\OrderWasCompleted;
 use Vanilo\Order\Models\OrderProxy;
@@ -113,6 +114,22 @@ class OrderController extends BaseController
                 });
 
                 $event = new OrderBillpayerUpdated($order);
+            }
+
+            if ($request->wantsToUpdateShippingAddressData()) {
+                $shippingAddress = $order->getShippingAddress();
+
+                if (null !== $shippingAddress) {
+                    $shippingAddress->update([
+                        'name' => $request->input('shippingAddress.name'),
+                        'country_id' => $request->input('shippingAddress.country_id'),
+                        'postalcode' => $request->input('shippingAddress.postalcode'),
+                        'city' => $request->input('shippingAddress.city'),
+                        'address' => $request->input('shippingAddress.address'),
+                    ]);
+
+                    $event = new OrderShippingAddressUpdated($order);
+                }
             }
 
             $order->update($request->all());

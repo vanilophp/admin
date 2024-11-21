@@ -40,6 +40,12 @@ class UpdateOrder extends FormRequest implements UpdateOrderContract
             'billpayer.address.postalcode' => 'nullable|min:4|max:12',
             'billpayer.address.city' => 'nullable|min:2|max:255',
             'billpayer.address.country_id' => ['required_with:billpayer', 'alpha:ascii', 'size:2', 'exists:countries,id'],
+            'shippingAddress' => 'sometimes|array',
+            'shippingAddress.name' => 'sometimes|nullable|string|max:255',
+            'shippingAddress.address' => 'required_with:shippingAddress',
+            'shippingAddress.postalcode' => 'sometimes|nullable|min:4|max:12',
+            'shippingAddress.city' => 'sometimes|nullable|min:2|max:255',
+            'shippingAddress.country_id' => ['required_with:shippingAddress', 'alpha:ascii', 'size:2', 'exists:countries,id'],
         ];
     }
 
@@ -55,6 +61,11 @@ class UpdateOrder extends FormRequest implements UpdateOrderContract
     public function wantsToUpdateBillpayerData(): bool
     {
         return !empty($this->input('billpayer'));
+    }
+
+    public function wantsToUpdateShippingAddressData(): bool
+    {
+        return !empty($this->input('shippingAddress'));
     }
 
     public function getStatus(): string
@@ -81,7 +92,13 @@ class UpdateOrder extends FormRequest implements UpdateOrderContract
 
     protected function failedValidation(Validator $validator): void
     {
-        session()->flash('updateBillpayerValidationError');
+        if ($this->wantsToUpdateBillpayerData()) {
+            session()->flash('updateBillpayerValidationError');
+        }
+
+        if ($this->wantsToUpdateShippingAddressData()) {
+            session()->flash('updateShippingAddressValidationError');
+        }
 
         throw new HttpResponseException(
             redirect()->back()->withErrors($validator)->withInput()
