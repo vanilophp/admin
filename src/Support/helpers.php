@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use Illuminate\Database\Eloquent\Model;
 use Konekt\AppShell\Theme\ThemeColor;
+use Vanilo\Category\Contracts\Taxon;
+use Vanilo\Category\Contracts\Taxonomy;
 use Vanilo\Product\Contracts\Product;
 use Vanilo\Promotion\Contracts\Promotion;
 use Vanilo\Promotion\Models\PromotionStatus;
@@ -15,6 +17,8 @@ if (!function_exists('admin_link_to')) {
             is_master_product($model) => route('vanilo.admin.master_product.show', $model),
             is_master_product_variant($model) => route('vanilo.admin.master_product_variant.edit', [$model->masterProduct, $model]),
             $model instanceof Product => route('vanilo.admin.product.show', $model),
+            $model instanceof Taxon => route('vanilo.admin.taxon.edit', [$model->taxonomy_id, $model]),
+            $model instanceof Taxonomy => route('vanilo.admin.taxonomy.show', [$model]),
             default => null,
         };
     }
