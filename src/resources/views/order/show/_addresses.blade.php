@@ -3,7 +3,7 @@
         <x-slot:title>{{ __('Bill To') }}</x-slot:title>
 
         <x-slot:actions>
-            <x-appshell::button size="xs" data-bs-toggle="modal" data-bs-target="#update-billpayer-modal">
+            <x-appshell::button size="xs" variant="secondary" data-bs-toggle="modal" data-bs-target="#update-billpayer-modal">
                 {{ __('Modify') }}
             </x-appshell::button>
         </x-slot:actions>
@@ -31,11 +31,13 @@
         <x-slot:title>{{ __('Ship To') }}</x-slot:title>
         @if($order->shipping_method_id)
             <x-slot:actions>
-                <a href="{{ route('vanilo.admin.shipping-method.show', $order->shippingMethod) }}" class="badge badge-pill bg-primary" title="{{ __('Shipping method') }}">
+                <x-appshell::button size="xs" variant="light" icon="shipping"
+                    href="{{ route('vanilo.admin.shipping-method.show', $order->shippingMethod) }}"
+                    title="{{ __('Shipping method') }}">
                     {{ $order->shippingMethod->name }}
-                </a>
+                </x-appshell::button>
 
-                <x-appshell::button size="xs" data-bs-toggle="modal" data-bs-target="#update-shipping-address-modal">
+                <x-appshell::button size="xs" variant="secondary" data-bs-toggle="modal" data-bs-target="#update-shipping-address-modal">
                     {{ __('Modify') }}
                 </x-appshell::button>
             </x-slot:actions>
