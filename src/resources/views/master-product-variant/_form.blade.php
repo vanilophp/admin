@@ -22,6 +22,22 @@
 
 <hr>
 
+<div class="mb-3 row">
+    <label class="col-form-label col-form-label-sm col-md-2">{{ __('State') }}</label>
+    <div class="col-md-4">
+        {{ Form::select('state', $states, null, [
+                'class' => 'form-select form-select-sm' . ($errors->has('state') ? ' is-invalid': ''),
+           ])
+        }}
+
+        @if ($errors->has('state'))
+            <div class="invalid-feedback">{{ $errors->first('state') }}</div>
+        @endif
+    </div>
+</div>
+
+<hr>
+
 <div class="mb-3">
     <label class="form-control-label">{{ __('Description') }}</label>
 

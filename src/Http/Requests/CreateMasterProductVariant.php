@@ -15,7 +15,9 @@ declare(strict_types=1);
 namespace Vanilo\Admin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Vanilo\Admin\Contracts\Requests\CreateMasterProductVariant as CreateMasterProductVariantContract;
+use Vanilo\Product\Models\ProductStateProxy;
 
 class CreateMasterProductVariant extends FormRequest implements CreateMasterProductVariantContract
 {
@@ -31,7 +33,8 @@ class CreateMasterProductVariant extends FormRequest implements CreateMasterProd
             'excerpt' => 'sometimes|nullable|max:8192',
             'description' => 'sometimes|nullable|max:32768',
             'images' => 'nullable',
-            'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp'
+            'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
+            'state' => ['required', Rule::in(ProductStateProxy::values())],
         ];
     }
 
