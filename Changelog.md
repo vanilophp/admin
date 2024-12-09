@@ -17,6 +17,7 @@
   - variant write operations.
 - Added editing of billpayer details for orders
 - Added editing of shipping address details for orders
+- Added the state select to the variant form
 
 ## 4.1.1
 ##### 2024-07-23
