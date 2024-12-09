@@ -34,7 +34,7 @@ class UpdateMasterProductVariant extends FormRequest implements UpdateMasterProd
             'description' => 'sometimes|nullable|max:32768',
             'images' => 'nullable',
             'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
-            'state' => ['required', Rule::in(ProductStateProxy::values())],
+            'state' => ['sometimes', 'nullable', Rule::in(ProductStateProxy::values())],
         ];
     }
 

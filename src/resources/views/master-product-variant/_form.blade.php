@@ -27,6 +27,7 @@
     <div class="col-md-4">
         {{ Form::select('state', $states, null, [
                 'class' => 'form-select form-select-sm' . ($errors->has('state') ? ' is-invalid': ''),
+                'placeholder' => __('--'),
            ])
         }}
 
