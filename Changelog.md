@@ -1,7 +1,7 @@
 # Vanilo Admin Changelog
 
-## Unreleased
-##### 2024-XX-YY
+## 4.2.0
+##### 2024-12-15
 
 - Added modal to display configuration JSON of order items
 - Added the Promotions (incl. Rules/Actions) & Coupons CRUD
