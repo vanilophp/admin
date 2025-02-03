@@ -1,5 +1,10 @@
 # Vanilo Admin Changelog
 
+## Unreleased
+##### 2025-XX-YY
+
+- Added the `gtin` field to the product and master product variant forms
+
 ## 4.2.0
 ##### 2024-12-15
 

@@ -66,7 +66,7 @@
 </div>
 
 <div class="mb-3">
-    <?php $seoHasErrors = any_key_exists($errors->toArray(), ['ext_title', 'meta_description', 'meta_keywords']) ?>
+    <?php $seoHasErrors = any_key_exists($errors->toArray(), ['ext_title', 'meta_description', 'meta_keywords', 'gtin']) ?>
     <h5><a data-bs-toggle="collapse" href="#product-form-seo" class="collapse-toggler-heading"
            @if ($seoHasErrors)
                aria-expanded="true"
