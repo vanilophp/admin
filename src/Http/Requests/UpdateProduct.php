@@ -34,7 +34,8 @@ class UpdateProduct extends FormRequest implements UpdateProductContract
             'stock' => 'nullable|numeric',
             'backorder' => 'nullable|numeric|min:0',
             'images' => 'nullable',
-            'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp'
+            'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
+            'gtin' => 'sometimes|nullable|string|max:255',
         ];
     }
 

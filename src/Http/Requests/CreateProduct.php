@@ -35,6 +35,7 @@ class CreateProduct extends FormRequest implements CreateProductContract
             'images' => 'nullable',
             'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
             'channels' => 'sometimes|array',
+            'gtin' => 'sometimes|nullable|string|max:255',
         ];
     }
 
