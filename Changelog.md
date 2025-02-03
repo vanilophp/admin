@@ -1,8 +1,13 @@
 # Vanilo Admin Changelog
 
-## Unreleased
-##### 2025-XX-YY
+## 5.x Series
 
+## Unreleased
+##### 2025-04-XX
+
+- Dropped PHP 8.2 Support
+- Dropped Laravel 10 Support
+- Added Laravel 12 Support
 - Added the `gtin` field to the product and master product variant forms
 
 ## 4.2.0

@@ -8,7 +8,17 @@
 
 This is the Vanilo Admin package that used to be the part of the `vanilo/framework` package in versions 0.x, 1.x and 2.x.
 
-Beginning with v3.x the Admin has been extracted from the Framework and is optional.
+## Development Version
+
+> [!WARNING]  
+> You are browsing the unstable, v5.x version of this repository!
+>
+> Do not use this branch in any real projects yet, as it's a subject of heavy changes!
+
+> [!NOTE]  
+> Vanilo v5 is expected to be released in April 2025, but there's no final deadline yet.
+
+For the stable version see the `4.x` branch.
 
 ## Further Information
 
