@@ -28,6 +28,7 @@
 
     <x-appshell::card accent="secondary">
         <x-slot:title>@yield('title')</x-slot:title>
+        <x-slot:actions>{!! $filters->render() !!}</x-slot:actions>
 
         {!! widget('vanilo::product.table')->render($products) !!}
     </x-appshell::card>

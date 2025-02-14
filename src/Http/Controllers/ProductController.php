@@ -18,9 +18,16 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\LazyCollection;
+use Konekt\AppShell\Filters\Filters;
+use Konekt\AppShell\Filters\Generic\ExactMatch;
+use Konekt\AppShell\Filters\Generic\PartialMatch;
+use Konekt\AppShell\Filters\PartialMatchPattern;
 use Konekt\AppShell\Http\Controllers\BaseController;
+use Konekt\AppShell\Widgets;
+use Konekt\AppShell\Widgets\AppShellWidgets;
 use Vanilo\Admin\Contracts\Requests\CreateProduct;
 use Vanilo\Admin\Contracts\Requests\UpdateProduct;
+use Vanilo\Admin\Filters\ProductSorter;
 use Vanilo\Category\Models\TaxonomyProxy;
 use Vanilo\Links\Models\LinkTypeProxy;
 use Vanilo\MasterProduct\Models\MasterProductProxy;
@@ -61,13 +68,39 @@ class ProductController extends BaseController
         if (Features::isMultiChannelEnabled()) {
             $with[] = 'channels';
         }
-        $products = ProductProxy::query()->with($with)->get();
-        $masterProducts = MasterProductProxy::query()->with($with)->get();
 
-        $items = collect()->push($products, $masterProducts)->lazy()->flatten()->sortByDesc('created_at');
+        $productsQuery = ProductProxy::query()->with($with);
+        $masterProductsQuery = MasterProductProxy::query()->with($with);
+
+        $filters = $this->getFilters();
+        $filters->activateFromRequest($request);
+
+        $productsQuery = $filters->apply($productsQuery);
+        $masterProductsQuery = $filters->apply($masterProductsQuery);
+
+        $products = $productsQuery->get();
+        $masterProducts = $masterProductsQuery->get();
+
+        $items = collect()->push($products, $masterProducts)
+                        ->lazy()
+                        ->flatten();
+
+        if ($request->filled('order_by')) {
+            $items = match ($request->input('order_by')) {
+                'Sales desc' => $items->sortByDesc('units_sold'),
+                'Sales asc' => $items->sortBy('units_sold'),
+                'Name desc' => $items->sortByDesc('name'),
+                'Name asc' => $items->sortBy('name'),
+                default => $items->sortByDesc('created_at'),
+            };
+        }
 
         return view('vanilo::product.index', [
-                'products' => $items->paginate(100)->withPath(route('vanilo.admin.product.index')),
+            'products' => $items->paginate(100)->withPath(route('vanilo.admin.product.index')),
+            'filters' => Widgets::make(AppShellWidgets::FILTER_SET, [
+                'route' => 'vanilo.admin.product.index',
+                'filters' => $filters,
+            ])
         ]);
     }
 
@@ -173,5 +206,20 @@ class ProductController extends BaseController
         }
 
         return redirect(route('vanilo.admin.product.index'));
+    }
+
+    protected function getFilters(): Filters
+    {
+        $filters = [
+            (new PartialMatch('name', __('Name'), PartialMatchPattern::ANYWHERE()))->displayAsTextField(),
+            new ExactMatch(
+                'state',
+                __('State'),
+                [null => __('Any state')] + ProductStateProxy::choices(),
+            ),
+            new ProductSorter(),
+        ];
+
+        return Filters::make($filters);
     }
 }
