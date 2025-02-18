@@ -83,7 +83,8 @@ class ProductController extends BaseController
 
         $items = collect()->push($products, $masterProducts)
                         ->lazy()
-                        ->flatten();
+                        ->flatten()
+                        ->sortByDesc('created_at');
 
         if ($request->filled('order_by')) {
             $items = match ($request->input('order_by')) {
@@ -91,7 +92,7 @@ class ProductController extends BaseController
                 'Sales asc' => $items->sortBy('units_sold'),
                 'Name desc' => $items->sortByDesc('name'),
                 'Name asc' => $items->sortBy('name'),
-                default => $items->sortByDesc('created_at'),
+                default => $items,
             };
         }
 
