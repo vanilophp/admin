@@ -88,10 +88,10 @@ class ProductController extends BaseController
 
         if ($request->filled('order_by')) {
             $items = match ($request->input('order_by')) {
-                'Sales desc' => $items->sortByDesc('units_sold'),
-                'Sales asc' => $items->sortBy('units_sold'),
-                'Name desc' => $items->sortByDesc('name'),
-                'Name asc' => $items->sortBy('name'),
+                'Highest sales first' => $items->sortByDesc('units_sold'),
+                'Lowest sales first' => $items->sortBy('units_sold'),
+                'Name (Z-A)' => $items->sortByDesc('name'),
+                'Name (A-Z)' => $items->sortBy('name'),
                 default => $items,
             };
         }
