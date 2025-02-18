@@ -18,17 +18,19 @@ class ProductSorter implements Filter
     use HasWidgetType;
     use DoesNotAllowMultipleValues;
 
-    public const CREATED_DESC = 'Newest first';
-    public const NAME_ASC = 'Name (A-Z)';
-    public const NAME_DESC = 'Name (Z-A)';
-    public const SALES_ASC = 'Lowest sales first';
-    public const SALES_DESC = 'Highest sales first';
+    public const CREATED_DESC = 'newest_first';
+    public const CREATED_ASC = 'oldest_first';
+    public const NAME_ASC = 'name_asc';
+    public const NAME_DESC = 'name_desc';
+    public const SALES_ASC = 'sales_asc';
+    public const SALES_DESC = 'sales_desc';
 
     public function __construct()
     {
         $this->id = 'order_by';
         $this->possibleValues = [
             self::CREATED_DESC => __('Newest first'),
+            self::CREATED_ASC => __('Oldest first'),
             self::NAME_ASC => __('Name (A-Z)'),
             self::NAME_DESC => __('Name (Z-A)'),
             self::SALES_ASC => __('Lowest sales first'),
