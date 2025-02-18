@@ -9,6 +9,7 @@
 - Dropped Laravel 10 Support
 - Added Laravel 12 Support
 - Added the `gtin` field to the product and master product variant forms
+- Added sorting and filtering options to the Product index
 
 ## 4.2.0
 ##### 2024-12-15
