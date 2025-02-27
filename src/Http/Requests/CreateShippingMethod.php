@@ -17,6 +17,7 @@ namespace Vanilo\Admin\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Vanilo\Admin\Contracts\Requests\CreateShippingMethod as CreateShippingMethodContract;
+use Vanilo\Shipment\Models\TimeUnit;
 use Vanilo\Shipment\ShippingFeeCalculators;
 
 class CreateShippingMethod extends FormRequest implements CreateShippingMethodContract
@@ -33,6 +34,9 @@ class CreateShippingMethod extends FormRequest implements CreateShippingMethodCo
             'configuration' => 'sometimes|json',
             'is_active' => 'sometimes|boolean',
             'channels' => 'sometimes|array',
+            'eta_min' => 'sometimes|nullable|integer',
+            'eta_max' => 'sometimes|nullable|integer',
+            'eta_units' => ['sometimes', 'nullable', Rule::enum(TimeUnit::class)],
         ];
     }
 

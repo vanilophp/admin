@@ -17,6 +17,7 @@ namespace Vanilo\Admin\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Vanilo\Admin\Contracts\Requests\UpdateShippingMethod as UpdateShippingMethodContract;
+use Vanilo\Shipment\Models\TimeUnit;
 use Vanilo\Shipment\ShippingFeeCalculators;
 
 class UpdateShippingMethod extends FormRequest implements UpdateShippingMethodContract
@@ -30,6 +31,9 @@ class UpdateShippingMethod extends FormRequest implements UpdateShippingMethodCo
             'calculator' => ['sometimes', 'nullable', Rule::in(ShippingFeeCalculators::ids())],
             'configuration' => 'sometimes|json',
             'is_active' => 'sometimes|boolean',
+            'eta_min' => 'sometimes|nullable|integer',
+            'eta_max' => 'sometimes|nullable|integer',
+            'eta_units' => ['sometimes', 'nullable', Rule::enum(TimeUnit::class)],
         ];
     }
 
