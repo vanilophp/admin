@@ -35,6 +35,7 @@ class UpdateMasterProductVariant extends FormRequest implements UpdateMasterProd
             'images' => 'nullable',
             'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
             'state' => ['sometimes', 'nullable', Rule::in(ProductStateProxy::values())],
+            'gtin' => 'sometimes|nullable|string|max:255',
         ];
     }
 

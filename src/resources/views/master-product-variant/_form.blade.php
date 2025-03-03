@@ -68,3 +68,20 @@
         <div class="invalid-feedback">{{ $errors->first('excerpt') }}</div>
     @endif
 </div>
+
+<div class="mb-3">
+    <?php $seoHasErrors = any_key_exists($errors->toArray(), ['gtin']) ?>
+    <h5><a data-bs-toggle="collapse" href="#master-product-variant-form-seo" class="collapse-toggler-heading"
+           @if ($seoHasErrors)
+               aria-expanded="true"
+           @endif
+        >{!! icon('>') !!} {{ __('SEO') }}</a></h5>
+
+    <div id="master-product-variant-form-seo" class="collapse{{ $seoHasErrors ? ' show' : '' }}">
+        <div class="callout">
+
+            @include('vanilo::master-product-variant._form_seo')
+
+        </div>
+    </div>
+</div>
