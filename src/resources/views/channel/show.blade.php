@@ -24,7 +24,7 @@
                     {{ $country?->name ?? __('No country assigned') }}
 
                     <x-slot:subtitle>
-                        {{ ($channel->currency ?? config('vanilo.foundation.currency.code')) ?: ($channel->language ?? substr(app()->getLocale(), 0, 2)) }}
+                        {{ ($channel->currency ?? config('vanilo.foundation.currency.code')) }} | {{ ($channel->language ?? substr(app()->getLocale(), 0, 2)) }}
                     </x-slot:subtitle>
                 </x-appshell::card-with-icon>
             </div>
