@@ -34,7 +34,7 @@
                 {{ __(':num purchases', ['num' => $orderCount]) }}
 
                 <x-slot:subtitle>
-                    {{ show_date($lastOrderDate) }}
+                    {{ show_date($lastOrderDate, __('No purchase recorded')) }}
                 </x-slot:subtitle>
             </x-appshell::card-with-icon>
         </div>
