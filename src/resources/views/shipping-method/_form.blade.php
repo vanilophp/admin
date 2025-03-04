@@ -90,7 +90,7 @@
 
 <div class="mb-3 row">
     <div class="col-md-6 col-xl-4">
-        <label for="eta_min" class="col-form-label col-form-label-sm col-md-2">{{ __('Minimum ETA') }}</label>
+        <label for="eta_min" class="col-form-label col-form-label-sm">{{ __('Minimum ETA') }}</label>
         <div>
             {{ Form::number('eta_min', null, [
                     'class' => 'form-control form-control-sm' . ($errors->has('eta_min') ? ' is-invalid': ''),
@@ -105,7 +105,7 @@
     </div>
 
     <div class="col-md-6 col-xl-4">
-        <label for="eta_max" class="col-form-label col-form-label-sm col-md-2">{{ __('Maximum ETA') }}</label>
+        <label for="eta_max" class="col-form-label col-form-label-sm">{{ __('Maximum ETA') }}</label>
         <div>
             {{ Form::number('eta_max', null, [
                     'class' => 'form-control form-control-sm' . ($errors->has('eta_max') ? ' is-invalid': ''),
@@ -120,7 +120,7 @@
     </div>
 
     <div class="col-md-6 col-xl-4">
-        <label for="eta_units" class="col-form-label col-form-label-sm col-md-2">{{ __('ETA Units') }}</label>
+        <label for="eta_units" class="col-form-label col-form-label-sm">{{ __('ETA Units') }}</label>
         <div>
             {{ Form::select('eta_units', collect($timeUnits)->pluck('value', 'value'), null, [
                     'class' => 'form-select form-select-sm' . ($errors->has('eta_units') ? ' is-invalid': ''),
