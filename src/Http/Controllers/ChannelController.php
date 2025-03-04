@@ -27,6 +27,7 @@ use Vanilo\Admin\Contracts\Requests\UpdateChannel;
 use Vanilo\Channel\Contracts\Channel;
 use Vanilo\Channel\Models\ChannelProxy;
 use Vanilo\Foundation\Search\ProductSearch;
+use Vanilo\Order\Models\OrderProxy;
 use Vanilo\Pricing\Models\Pricelist;
 use Vanilo\Support\Features;
 
@@ -76,12 +77,11 @@ class ChannelController extends BaseController
             'channel' => $channel,
             'products' => (new ProductSearch())->withinChannel($channel)->withInactiveProducts()->getResults(),
             'country' => CountryProxy::where('id', $channel->configuration()['country_id'])->first(),
-            'orderCount' => DB::table('orders')->where('channel_id', $channel->id)->count(),
-            'ordersPerCurrency' => DB::table('orders')
-                ->select('currency', DB::raw('COUNT(*) as order_count'))
-                ->where('channel_id', $channel->id)
-                ->groupBy('currency')
+            'orderCount' => OrderProxy::where('channel_id', $channel->id)->count(),
+            'orderTotalsPerCurrency' => OrderProxy::where('channel_id', $channel->id)
                 ->get()
+                ->groupBy('currency')
+                ->map(fn($orders) => $orders->sum('total'))
         ]));
     }
 

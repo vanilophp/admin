@@ -34,7 +34,12 @@
                 {{ __(':num purchases', ['num' => $orderCount]) }}
 
                 <x-slot:subtitle>
-                    {{ $ordersPerCurrency->map(fn($row) => "{$row->currency}: {$row->order_count}")->implode(' | ') }}
+                    @foreach ($orderTotalsPerCurrency as $currency => $sum)
+                        {{ $currency }}: {{ $sum }}
+                        @if (!$loop->last)
+                            |
+                        @endif
+                    @endforeach
                 </x-slot:subtitle>
             </x-appshell::card-with-icon>
         </div>
