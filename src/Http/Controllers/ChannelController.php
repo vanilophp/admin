@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Vanilo\Admin\Http\Controllers;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Konekt\Address\Models\CountryProxy;
 use Konekt\Address\Models\Language;
 use Konekt\Address\Query\Zones;
@@ -74,6 +75,13 @@ class ChannelController extends BaseController
         return view('vanilo::channel.show', $this->processViewData(__METHOD__, [
             'channel' => $channel,
             'products' => (new ProductSearch())->withinChannel($channel)->withInactiveProducts()->getResults(),
+            'country' => CountryProxy::where('id', $channel->configuration()['country_id'])->first(),
+            'orderCount' => DB::table('orders')->where('channel_id', $channel->id)->count(),
+            'ordersPerCurrency' => DB::table('orders')
+                ->select('currency', DB::raw('COUNT(*) as order_count'))
+                ->where('channel_id', $channel->id)
+                ->groupBy('currency')
+                ->get()
         ]));
     }
 
