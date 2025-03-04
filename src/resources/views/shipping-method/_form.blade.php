@@ -122,7 +122,7 @@
     <div class="col-md-6 col-xl-4">
         <label for="eta_units" class="col-form-label col-form-label-sm">{{ __('ETA Units') }}</label>
         <div>
-            {{ Form::select('eta_units', collect($timeUnits)->pluck('value', 'value'), null, [
+            {{ Form::select('eta_units', $timeUnits, null, [
                     'class' => 'form-select form-select-sm' . ($errors->has('eta_units') ? ' is-invalid': ''),
                     'id' => 'eta_units',
                     'placeholder' => __('--')
