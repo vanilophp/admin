@@ -57,7 +57,7 @@ class ShippingMethodController extends BaseController
             'calculators' => ShippingFeeCalculators::choices(),
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
             'channels' => $this->channelsForUi(),
-            'timeUnits' => TimeUnit::cases(),
+            'timeUnits' => TimeUnit::choices(),
         ]);
 
         return ($fragment = $request->query('_fragment')) ? $view->fragment($fragment) : $view;
@@ -97,7 +97,7 @@ class ShippingMethodController extends BaseController
             'calculators' => ShippingFeeCalculators::choices(),
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
             'channels' => $this->channelsForUi(),
-            'timeUnits' => TimeUnit::cases(),
+            'timeUnits' => TimeUnit::choices(),
         ]);
     }
 
