@@ -11,6 +11,7 @@
 - Added the `gtin` field to the product and master product variant forms
 - Added sorting and filtering options to the Product index
 - Added ETA fields to the Shipping Method forms
+- Added Info Widgets to the Channel Show Page
 
 ## 4.2.0
 ##### 2024-12-15
