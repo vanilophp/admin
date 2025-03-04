@@ -72,15 +72,14 @@ class ChannelController extends BaseController
 
     public function show(Channel $channel)
     {
+        $lastOrderInChannel = OrderProxy::inChannel($channel)->orderBy('id', 'desc')->first();
+
         return view('vanilo::channel.show', $this->processViewData(__METHOD__, [
             'channel' => $channel,
             'products' => (new ProductSearch())->withinChannel($channel)->withInactiveProducts()->getResults(),
             'country' => CountryProxy::where('id', $channel->configuration()['country_id'])->first(),
-            'orderCount' => OrderProxy::where('channel_id', $channel->id)->count(),
-            'orderTotalsPerCurrency' => OrderProxy::where('channel_id', $channel->id)
-                ->get()
-                ->groupBy('currency')
-                ->map(fn ($orders) => $orders->sum('total'))
+            'orderCount' => OrderProxy::inChannel($channel)->count(),
+            'lastOrderDate' => $lastOrderInChannel?->ordered_at ?? $lastOrderInChannel?->created_at,
         ]));
     }
 

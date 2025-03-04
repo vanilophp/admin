@@ -14,7 +14,7 @@
             <x-appshell::card-with-icon icon="channel" type="info">
                 {{ $channel->name }}
                 <x-slot:subtitle>
-                    {{ $channel->slug }} | {{ $channel->domain ? __('domain: :domain', ['domain' => $channel->domain]) : __('No domain assigned') }}
+                    {{ $channel->domain ? __('domain: :domain', ['domain' => $channel->domain]) : __('No domain assigned') }}
                 </x-slot:subtitle>
             </x-appshell::card-with-icon>
         </div>
@@ -34,12 +34,7 @@
                 {{ __(':num purchases', ['num' => $orderCount]) }}
 
                 <x-slot:subtitle>
-                    @foreach ($orderTotalsPerCurrency as $currency => $sum)
-                        {{ $currency }}: {{ $sum }}
-                        @if (!$loop->last)
-                            |
-                        @endif
-                    @endforeach
+                    {{ show_date($lastOrderDate) }}
                 </x-slot:subtitle>
             </x-appshell::card-with-icon>
         </div>
