@@ -20,11 +20,23 @@
         </div>
 
             <div class="col">
-                <x-appshell::card-with-icon icon="globe" type="success">
+                <x-appshell::card-with-icon icon="globe" :type="$country ? 'success' : null">
                     {{ $country?->name ?? __('No country assigned') }}
 
                     <x-slot:subtitle>
-                        {{ ($channel->currency ?? config('vanilo.foundation.currency.code')) }} | {{ ($channel->language ?? substr(app()->getLocale(), 0, 2)) }}
+                        @if($channel->currency)
+                            {{ __('Currency:') }}
+                            {{ ($channel->currency }}
+                        @else
+                            {{ __('Default currency (:value)', ['value' => config('vanilo.foundation.currency.code')]) }}
+                        @endif
+                        |
+                        @if ($channel->language)
+                            {{ __('Language:') }}
+                            {{ ($channel->language }}
+                        @else
+                            {{ __('Default language (:value)', ['value' => substr(app()->getLocale(), 0, 2)]) }}
+                        @endif
                     </x-slot:subtitle>
                 </x-appshell::card-with-icon>
             </div>
