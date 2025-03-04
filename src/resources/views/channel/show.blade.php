@@ -26,14 +26,14 @@
                     <x-slot:subtitle>
                         @if($channel->currency)
                             {{ __('Currency:') }}
-                            {{ ($channel->currency }}
+                            {{ $channel->currency }}
                         @else
                             {{ __('Default currency (:value)', ['value' => config('vanilo.foundation.currency.code')]) }}
                         @endif
                         |
                         @if ($channel->language)
                             {{ __('Language:') }}
-                            {{ ($channel->language }}
+                            {{ $channel->language }}
                         @else
                             {{ __('Default language (:value)', ['value' => substr(app()->getLocale(), 0, 2)]) }}
                         @endif
