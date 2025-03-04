@@ -22,6 +22,7 @@ use Vanilo\Admin\Contracts\Requests\UpdateShippingMethod;
 use Vanilo\Shipment\Contracts\ShippingMethod;
 use Vanilo\Shipment\Models\CarrierProxy;
 use Vanilo\Shipment\Models\ShippingMethodProxy;
+use Vanilo\Shipment\Models\TimeUnit;
 use Vanilo\Shipment\ShippingFeeCalculators;
 use Vanilo\Support\Features;
 
@@ -56,6 +57,7 @@ class ShippingMethodController extends BaseController
             'calculators' => ShippingFeeCalculators::choices(),
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
             'channels' => $this->channelsForUi(),
+            'timeUnits' => TimeUnit::cases(),
         ]);
 
         return ($fragment = $request->query('_fragment')) ? $view->fragment($fragment) : $view;
@@ -95,6 +97,7 @@ class ShippingMethodController extends BaseController
             'calculators' => ShippingFeeCalculators::choices(),
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
             'channels' => $this->channelsForUi(),
+            'timeUnits' => TimeUnit::cases(),
         ]);
     }
 

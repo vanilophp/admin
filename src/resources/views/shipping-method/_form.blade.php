@@ -85,3 +85,47 @@
 
 <x-vanilo::configuration :model="$shippingMethod" reload-on-change-of="calculatorSelector" pass-on-reload="calculator"
      :sample-refresh-route="route('vanilo.admin.shipping-method.create')"></x-vanilo::configuration>
+
+<hr>
+
+<div class="mb-3 row">
+    <label for="eta_min" class="col-form-label col-form-label-sm col-md-2">{{ __('Minimum ETA') }}</label>
+    <div class="col-md-10">
+        {{ Form::number('eta_min', null, [
+                'class' => 'form-control form-control-sm' . ($errors->has('eta_min') ? ' is-invalid': ''),
+                'placeholder' => __('--')
+           ])
+        }}
+        @if ($errors->has('eta_min'))
+            <div class="invalid-feedback">{{ $errors->first('eta_min') }}</div>
+        @endif
+    </div>
+</div>
+
+<div class="mb-3 row">
+    <label for="eta_max" class="col-form-label col-form-label-sm col-md-2">{{ __('Maximum ETA') }}</label>
+    <div class="col-md-10">
+        {{ Form::number('eta_max', null, [
+                'class' => 'form-control form-control-sm' . ($errors->has('eta_max') ? ' is-invalid': ''),
+                'placeholder' => __('--')
+           ])
+        }}
+        @if ($errors->has('eta_max'))
+            <div class="invalid-feedback">{{ $errors->first('eta_max') }}</div>
+        @endif
+    </div>
+</div>
+
+<div class="mb-3 row">
+    <label for="eta_units" class="col-form-label col-form-label-sm col-md-2">{{ __('ETA Units') }}</label>
+    <div class="col-md-10">
+        {{ Form::select('eta_units', collect($timeUnits)->pluck('value', 'value'), null, [
+                'class' => 'form-select form-select-sm' . ($errors->has('eta_units') ? ' is-invalid': ''),
+                'placeholder' => __('--')
+           ])
+        }}
+        @if ($errors->has('eta_units'))
+            <div class="invalid-feedback">{{ $errors->first('eta_units') }}</div>
+        @endif
+    </div>
+</div>
