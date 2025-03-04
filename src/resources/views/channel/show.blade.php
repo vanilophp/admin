@@ -29,7 +29,7 @@
                 </x-appshell::card-with-icon>
             </div>
 
-        <div class="col-sm-6 col-md-3 mb-3">
+        <div class="col">
             <x-appshell::card-with-icon icon="bag">
                 {{ __(':num purchases', ['num' => $orderCount]) }}
 
