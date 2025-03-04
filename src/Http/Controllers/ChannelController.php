@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Vanilo\Admin\Http\Controllers;
 
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 use Konekt\Address\Models\CountryProxy;
 use Konekt\Address\Models\Language;
 use Konekt\Address\Query\Zones;
@@ -81,7 +80,7 @@ class ChannelController extends BaseController
             'orderTotalsPerCurrency' => OrderProxy::where('channel_id', $channel->id)
                 ->get()
                 ->groupBy('currency')
-                ->map(fn($orders) => $orders->sum('total'))
+                ->map(fn ($orders) => $orders->sum('total'))
         ]));
     }
 
