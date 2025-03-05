@@ -18,6 +18,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Vanilo\Admin\Contracts\Requests\CreateMasterProductVariant as CreateMasterProductVariantContract;
 use Vanilo\Product\Models\ProductStateProxy;
+use Vanilo\Support\Validation\Rules\MustBeAValidGtin;
 
 class CreateMasterProductVariant extends FormRequest implements CreateMasterProductVariantContract
 {
@@ -35,7 +36,7 @@ class CreateMasterProductVariant extends FormRequest implements CreateMasterProd
             'images' => 'nullable',
             'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
             'state' => ['sometimes', 'nullable', Rule::in(ProductStateProxy::values())],
-            'gtin' => 'sometimes|nullable|string|max:255',
+            'gtin' => ['bail', 'sometimes', 'nullable', new MustBeAValidGtin()],
         ];
     }
 

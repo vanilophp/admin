@@ -17,6 +17,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Vanilo\Admin\Contracts\Requests\CreateProduct as CreateProductContract;
 use Vanilo\Product\Models\ProductStateProxy;
+use Vanilo\Support\Validation\Rules\MustBeAValidGtin;
 
 class CreateProduct extends FormRequest implements CreateProductContract
 {
@@ -35,7 +36,7 @@ class CreateProduct extends FormRequest implements CreateProductContract
             'images' => 'nullable',
             'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
             'channels' => 'sometimes|array',
-            'gtin' => 'sometimes|nullable|string|max:255',
+            'gtin' => ['bail', 'sometimes', 'nullable', new MustBeAValidGtin()],
         ];
     }
 
