@@ -17,6 +17,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Vanilo\Admin\Contracts\Requests\UpdateProduct as UpdateProductContract;
 use Vanilo\Product\Models\ProductStateProxy;
+use Vanilo\Support\Validation\Rules\MustBeAValidGtin;
 
 class UpdateProduct extends FormRequest implements UpdateProductContract
 {
@@ -35,7 +36,7 @@ class UpdateProduct extends FormRequest implements UpdateProductContract
             'backorder' => 'nullable|numeric|min:0',
             'images' => 'nullable',
             'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
-            'gtin' => 'sometimes|nullable|string|max:255',
+            'gtin' => ['bail', 'sometimes', 'nullable', new MustBeAValidGtin()],
         ];
     }
 
