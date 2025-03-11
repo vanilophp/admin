@@ -23,6 +23,7 @@
 
     <div class="col-12 col-lg-4 col-xl-3">
         @include('vanilo::media._edit', ['model' => $taxon])
+        @include('vanilo::video._edit', ['model' => $taxon])
     </div>
 </div>
 @stop

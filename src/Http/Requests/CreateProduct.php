@@ -35,6 +35,8 @@ class CreateProduct extends FormRequest implements CreateProductContract
             'backorder' => 'nullable|numeric|min:0',
             'images' => 'nullable',
             'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
+            'videos' => 'nullable',
+            'videos.*' => 'nullable', // 50MB limit
             'channels' => 'sometimes|array',
             'gtin' => ['bail', 'sometimes', 'nullable', new MustBeAValidGtin()],
         ];
