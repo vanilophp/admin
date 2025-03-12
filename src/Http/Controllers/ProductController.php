@@ -18,7 +18,6 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\LazyCollection;
-use Illuminate\Support\Str;
 use Konekt\AppShell\Filters\Filters;
 use Konekt\AppShell\Filters\Generic\ExactMatch;
 use Konekt\AppShell\Filters\Generic\PartialMatch;
@@ -38,7 +37,6 @@ use Vanilo\Product\Models\ProductStateProxy;
 use Vanilo\Properties\Models\PropertyProxy;
 use Vanilo\Support\Features;
 use Vanilo\Taxes\Models\TaxCategoryProxy;
-use Vanilo\Video\Models\VideoProxy;
 
 class ProductController extends BaseController
 {
@@ -146,34 +144,6 @@ class ProductController extends BaseController
             }
         } catch (\Exception $e) { // Here we already have the product created
             flash()->warning(__('Error at adding the product images: :msg', ['msg' => $e->getMessage()]));
-
-            return redirect()->route('vanilo.admin.product.edit', ['product' => $product]);
-        }
-
-        try {
-            if (!empty($request->files->filter('videos'))) {
-                $product->addMultipleMediaFromRequest(['videos'])->each(function ($fileAdder) use ($product) {
-                    $file = $fileAdder->toMediaCollection();
-
-                    DB::transaction(static function () use ($file, $product) {
-                        /*VideoProxy::create([
-                            'hash' => Str::uuid()->getHex(),
-                            'type' => 'local/medialibrary',
-                            'reference' => $file->file_name,
-                            'size_in_bytes' => 1570024
-                        ]);*/
-
-                        $product->videos()->create([
-                            'hash' => Str::uuid()->getHex(),
-                            'type' => 'local/medialibrary',
-                            'reference' => $file->file_name,
-                            'size_in_bytes' => 1570024
-                        ]);
-                    });
-                });
-            }
-        } catch (\Exception $e) { // Here we already have the product created
-            flash()->warning(__('Error at adding the product videos: :msg', ['msg' => $e->getMessage()]));
 
             return redirect()->route('vanilo.admin.product.edit', ['product' => $product]);
         }

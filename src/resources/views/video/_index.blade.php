@@ -1,18 +1,19 @@
-<?php $media = $model->getMedia($collection ?? 'default') ?>
+<?php $videos = $model->videos ?>
 
 <x-appshell::card>
     <x-slot:title>
         {{ __('Videos') }}
-        <x-appshell::badge variant="secondary">{{ $media->count() }}</x-appshell::badge>
+        <x-appshell::badge variant="secondary">{{ $videos?->count() ?? 0 }}</x-appshell::badge>
     </x-slot:title>
 
-    @if($media->isNotEmpty())
+    @if($videos?->isNotEmpty())
         <div class="row">
-        @foreach($media as $medium)
-            <div class="col col-md-3 mb-3">
-                <img class="img-thumbnail" src="{{ $medium->getUrl('thumbnail') }}" alt="{{ $medium->name }}">
-            </div>
-        @endforeach
+            @foreach($videos as $video)
+                <div class="text-sm-left text-info fw-bold">
+                    <a href="{{ route('vanilo.admin.video.show', $video) }}" title="{{ $video->title }}" class="small text-secondary"
+                       target="_blank">{{ $video->title }} {!! icon('link') !!}</a>
+                </div>
+            @endforeach
         </div>
     @else
         <x-appshell::alert variant="secondary">{{ __('No video') }}</x-appshell::alert>

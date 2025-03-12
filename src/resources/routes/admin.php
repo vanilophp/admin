@@ -23,6 +23,7 @@ Route::resource('master_product', 'MasterProductController')->except(['index']);
 Route::resource('property', 'PropertyController');
 Route::resource('order', 'OrderController');
 Route::resource('media', 'MediaController')->only(['update', 'destroy', 'store']);
+Route::resource('video', 'VideoController')->except(['index', 'create']);
 Route::resource('carrier', 'CarrierController');
 Route::resource('payment', 'PaymentController')->only(['index']);
 Route::resource('payment-method', 'PaymentMethodController')->parameters(['payment-method' => 'paymentMethod']);

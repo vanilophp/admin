@@ -12,6 +12,7 @@
 - Added sorting and filtering options to the Product index
 - Added ETA fields to the Shipping Method forms
 - Added Info Widgets to the Channel Show Page
+- Added Video CRUD
 
 ## 4.2.0
 ##### 2024-12-15
