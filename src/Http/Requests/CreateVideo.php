@@ -14,6 +14,8 @@ class CreateVideo extends FormRequest implements CreateVideoContract
 
     protected array $allowedFor = ['product'];
 
+    protected $errorBag = 'video';
+
     public function rules(): array
     {
         return [

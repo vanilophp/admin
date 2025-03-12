@@ -9,6 +9,8 @@ use Vanilo\Admin\Contracts\Requests\UpdateVideo as UpdateVideoContract;
 
 class UpdateVideo extends FormRequest implements UpdateVideoContract
 {
+    protected $errorBag = 'video';
+
     public function rules(): array
     {
         return [

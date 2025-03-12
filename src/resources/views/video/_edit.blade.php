@@ -64,4 +64,11 @@
 </x-appshell::card>
 
 @include('vanilo::video._create_modal')
-@include('vanilo::video._edit_modal')
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        @if ($errors->video->any())
+            new bootstrap.Modal('#create-video-modal').show();
+        @endif
+    });
+</script>
