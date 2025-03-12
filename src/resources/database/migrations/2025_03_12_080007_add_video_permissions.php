@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Konekt\Acl\Models\PermissionProxy;
 use Konekt\Acl\Models\RoleProxy;
 use Konekt\Acl\PermissionRegistrar;
 use Konekt\AppShell\Acl\ResourcePermissionMapper;
 
-return new class extends Migration {
+return new class () extends Migration {
     private array $resources = ['video'];
 
     private ?ResourcePermissionMapper $mapper = null;
