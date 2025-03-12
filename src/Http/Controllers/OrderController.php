@@ -48,7 +48,7 @@ class OrderController extends BaseController
         $filters = $this->getFilters();
 
         $filters->activateFromRequest($request);
-        $query = OrderProxy::withCurrentPayment()->orderBy('created_at', 'desc');
+        $query = OrderProxy::withCurrentPayment()->with(['billpayer', 'items', 'items.adjustmentsRelation', 'adjustmentsRelation', 'paymentMethod', 'shippingAddress', 'shippingAddress.country'])->orderBy('created_at', 'desc');
 
         return view('vanilo::order.index', [
             'orders' => $filters->apply($query)->paginate(100)->withQueryString(),
