@@ -61,7 +61,7 @@ return [
                 'widget' => [
                     'type' => 'badge',
                     'color' => 'dark',
-                    'text' => fn($order) => $order->paymentMethod?->name ?? $order->currentPayment->method->name,
+                    'text' => fn ($order) => $order->paymentMethod?->name ?? $order->currentPayment->method->name,
                 ]
             ],
             'status' => [
