@@ -9,7 +9,14 @@ use Vanilo\Admin\Contracts\Requests\UpdateVideo as UpdateVideoContract;
 
 class UpdateVideo extends FormRequest implements UpdateVideoContract
 {
-    protected $errorBag = 'video';
+    protected $errorBag = 'updateVideo';
+
+    protected function getValidatorInstance()
+    {
+        $this->errorBag .= (string) $this->route('video')->hash;
+
+        return parent::getValidatorInstance();
+    }
 
     public function rules(): array
     {

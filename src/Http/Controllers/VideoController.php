@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Http\Controllers;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateVideo;
@@ -27,20 +26,6 @@ class VideoController extends BaseController
         }
 
         return redirect()->back();
-    }
-
-    public function show(Video $video): View
-    {
-        return view('vanilo::video.show', [
-            'video' => $video,
-        ]);
-    }
-
-    public function edit(Video $video): View
-    {
-        return view('vanilo::video.edit', [
-            'video' => $video,
-        ]);
     }
 
     public function update(UpdateVideo $request, Video $video): RedirectResponse

@@ -8,4 +8,5 @@ use Konekt\Concord\Contracts\BaseRequest;
 
 interface CreateVideo extends BaseRequest
 {
+    public function getFor();
 }

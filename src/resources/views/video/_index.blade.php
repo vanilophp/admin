@@ -10,8 +10,7 @@
         <div class="row">
             @foreach($videos as $video)
                 <div class="text-sm-left text-info fw-bold">
-                    <a href="{{ route('vanilo.admin.video.show', $video) }}" title="{{ $video->title }}" class="small text-secondary"
-                       target="_blank">{{ $video->title }} {!! icon('link') !!}</a>
+                    <p title="{{ $video->title }}" class="small text-secondary">{{ $video->title }}</p>
                 </div>
             @endforeach
         </div>

@@ -1,9 +1,13 @@
-<div id="create-video-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+@php
+    $errorBag = 'updateVideo' . $video->hash;
+@endphp
+
+<div id="edit-video-modal-{{ $video->hash }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
-            {!! Form::open([
-                    'url'  => route('vanilo.admin.video.store'),
-                    'method' => 'POST'
+            {!! Form::model($video, [
+                    'route'  => ['vanilo.admin.video.update', $video],
+                    'method' => 'PUT'
                 ])
             !!}
 
@@ -13,15 +17,15 @@
             </div>
 
             <div class="modal-body">
-                {{ Form::hidden('for', shorten($model::class)) }}
+                {{ Form::hidden('for', shorten(get_class($model))) }}
                 {{ Form::hidden('forId', $model->id) }}
 
-                @include('vanilo::video._form', ['errorBag' => $errors->video])
+                @include('vanilo::video._form', ['errorBag' => $errors->$errorBag])
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-link" data-bs-dismiss="modal">{{ __('Close') }}</button>
-                <button class="btn btn-primary">{{ __('Save') }}</button>
+                <button class="btn btn-primary">{{ __('Update') }}</button>
             </div>
 
             {!! Form::close() !!}
@@ -29,10 +33,10 @@
     </div>
 </div>
 
-@if($errors->video->any())
+@if($errors->$errorBag->any())
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            new bootstrap.Modal('#create-video-modal').show();
-        });
+      document.addEventListener('DOMContentLoaded', function () {
+          new bootstrap.Modal('#edit-video-modal-{{ $video->hash }}').show();
+      });
     </script>
 @endif

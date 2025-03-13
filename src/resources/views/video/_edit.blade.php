@@ -15,14 +15,14 @@
     @error('forId')
     <x-appshell::alert variant="danger">{{ $message }}</x-appshell::alert>
     @enderror
+
     @if($videos?->isNotEmpty())
         @foreach($videos as $video)
             <div class="card mb-2">
                 <div class="card-body p-4 d-flex align-items-center justify-content-between" style="height: 3.35rem;">
                     <div>
-                        <div class="text-sm-left text-info fw-bold">
-                            <a href="{{ route('vanilo.admin.video.show', $video) }}" title="{{ $video->title }}" class="small text-secondary"
-                               target="_blank">{{ $video->title }} {!! icon('link') !!}</a>
+                        <div class="text-sm-left text-info fw-bold ps-2">
+                            <span title="{{ $video->title }}">{{ $video->title }}</span>
                         </div>
                     </div>
                     <div>
@@ -35,6 +35,14 @@
                                 </button>
 
                                 {!! Form::close() !!}
+                            @endcan
+
+                            @can('edit videos')
+                                <button class="btn btn-sm btn-outline-secondary" title="{{ __('Edit video') }}" data-bs-toggle="modal" data-bs-target="#edit-video-modal-{{ $video->hash }}">
+                                    {!! icon('edit') !!}
+                                </button>
+
+                                @include('vanilo::video._edit_modal')
                             @endcan
                         </div>
                     </div>
@@ -64,11 +72,3 @@
 </x-appshell::card>
 
 @include('vanilo::video._create_modal')
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        @if ($errors->video->any())
-            new bootstrap.Modal('#create-video-modal').show();
-        @endif
-    });
-</script>
