@@ -48,6 +48,7 @@ use Vanilo\Admin\Http\Requests\CreateTaxon;
 use Vanilo\Admin\Http\Requests\CreateTaxonForm;
 use Vanilo\Admin\Http\Requests\CreateTaxonomy;
 use Vanilo\Admin\Http\Requests\CreateTaxRate;
+use Vanilo\Admin\Http\Requests\CreateVideo;
 use Vanilo\Admin\Http\Requests\CreateZone;
 use Vanilo\Admin\Http\Requests\CreateZoneMember;
 use Vanilo\Admin\Http\Requests\SyncModelPropertyValues;
@@ -70,6 +71,7 @@ use Vanilo\Admin\Http\Requests\UpdateTaxCategory;
 use Vanilo\Admin\Http\Requests\UpdateTaxon;
 use Vanilo\Admin\Http\Requests\UpdateTaxonomy;
 use Vanilo\Admin\Http\Requests\UpdateTaxRate;
+use Vanilo\Admin\Http\Requests\UpdateVideo;
 use Vanilo\Admin\Http\Requests\UpdateZone;
 use Vanilo\Order\Models\OrderStatus;
 use Vanilo\Order\Models\OrderStatusProxy;
@@ -129,7 +131,9 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         CreatePromotionRule::class,
         UpdatePromotionRule::class,
         CreatePromotionAction::class,
-        UpdatePromotionAction::class
+        UpdatePromotionAction::class,
+        CreateVideo::class,
+        UpdateVideo::class,
     ];
 
     public function register(): void

@@ -292,3 +292,14 @@ Breadcrumbs::for('vanilo.admin.coupon.edit', function ($breadcrumbs, $promotion,
     $breadcrumbs->parent('vanilo.admin.coupon.show', $promotion, $coupon);
     $breadcrumbs->push(__('Edit'));
 });
+
+Breadcrumbs::for('vanilo.admin.video.show', function ($breadcrumbs, $video) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push(__('Videos'));
+    $breadcrumbs->push($video->title, route('vanilo.admin.video.show', $video));
+});
+
+Breadcrumbs::for('vanilo.admin.video.edit', function ($breadcrumbs, $video) {
+    $breadcrumbs->parent('vanilo.admin.video.show', $video);
+    $breadcrumbs->push(__('Edit'), route('vanilo.admin.video.edit', $video));
+});

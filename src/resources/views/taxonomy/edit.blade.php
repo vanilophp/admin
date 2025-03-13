@@ -30,6 +30,7 @@
 
         <div class="col-12 col-lg-4 col-xl-3">
             @include('vanilo::media._edit', ['model' => $taxonomy])
+            @include('vanilo::video._edit', ['model' => $taxonomy])
         </div>
 
     </div>

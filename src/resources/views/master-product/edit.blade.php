@@ -29,6 +29,7 @@
 
     <div class="col-12 col-lg-4 col-xl-3">
         @include('vanilo::media._edit', ['model' => $product])
+        @include('vanilo::video._edit', ['model' => $product])
         @if($multiChannelEnabled)
             @include('vanilo::channel._edit', ['model' => $product])
         @endif

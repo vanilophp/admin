@@ -42,6 +42,7 @@
 
     <div class="col-12 col-lg-4 col-xl-3">
         @include('vanilo::media._edit', ['model' => $variant])
+        @include('vanilo::video._edit', ['model' => $variant])
 
         @include('vanilo::product._show_properties', ['for' => $variant])
         @include('vanilo::link._index', ['model' => $variant])

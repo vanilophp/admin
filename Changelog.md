@@ -14,6 +14,7 @@
 - Added Info Widgets to the Channel Show Page
 - Improved the Order list performance by adding eager loading
 - Changed the minimum Address module version to v3.5.1
+- Added Video CRUD
 
 ## 4.2.0
 ##### 2024-12-15
