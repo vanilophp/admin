@@ -7,12 +7,13 @@
         <div class="modal-content">
             {!! Form::model($video, [
                     'route'  => ['vanilo.admin.video.update', $video],
-                    'method' => 'PUT'
+                    'method' => 'PUT',
+                    'id' => 'edit-video-form' . $video->hash
                 ])
             !!}
 
             <div class="modal-header">
-                <h5 class="modal-title">{{ __('Add Video') }}</h5>
+                <h5 class="modal-title">{{ __('Edit Video') }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('Close') }}"></button>
             </div>
 

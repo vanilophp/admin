@@ -3,7 +3,8 @@
         <div class="modal-content">
             {!! Form::open([
                     'url'  => route('vanilo.admin.video.store'),
-                    'method' => 'POST'
+                    'method' => 'POST',
+                    'id' => 'create-video-form'
                 ])
             !!}
 
