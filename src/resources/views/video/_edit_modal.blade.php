@@ -18,9 +18,6 @@
             </div>
 
             <div class="modal-body">
-                {{ Form::hidden('for', shorten(get_class($model))) }}
-                {{ Form::hidden('forId', $model->id) }}
-
                 @include('vanilo::video._form', ['errorBag' => $errors->$errorBag])
             </div>
 
