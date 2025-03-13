@@ -11,13 +11,6 @@ class UpdateVideo extends FormRequest implements UpdateVideoContract
 {
     protected $errorBag = 'updateVideo';
 
-    protected function getValidatorInstance()
-    {
-        $this->errorBag .= (string) $this->route('video')->hash;
-
-        return parent::getValidatorInstance();
-    }
-
     public function rules(): array
     {
         return [
@@ -31,5 +24,12 @@ class UpdateVideo extends FormRequest implements UpdateVideoContract
     public function authorize(): true
     {
         return true;
+    }
+
+    protected function getValidatorInstance()
+    {
+        $this->errorBag .= (string) $this->route('video')->hash;
+
+        return parent::getValidatorInstance();
     }
 }
