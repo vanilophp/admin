@@ -18,7 +18,7 @@ class VideoController extends BaseController
             $model = $request->getFor();
             $model->videos()->create($request->validated());
 
-            flash()->success(__('Video :title has been added', ['title' => $model->title]));
+            flash()->success(__('Video :title has been added', ['title' => $request->validated('title')]));
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
 
