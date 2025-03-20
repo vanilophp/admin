@@ -1,3 +1,4 @@
+@can('list videos')
 <?php $videos = $model->videos ?>
 
 <x-appshell::card>
@@ -18,3 +19,4 @@
         <x-appshell::alert variant="secondary">{{ __('No video') }}</x-appshell::alert>
     @endif
 </x-appshell::card>
+@endcan

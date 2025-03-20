@@ -1,3 +1,4 @@
+@can('list videos')
 <?php $videos = $model->videos ?>
 
 <x-appshell::card accent="secondary">
@@ -52,13 +53,8 @@
     @endif
 
     @can('create videos')
-        <x-appshell::button class="btn btn-sm btn-success" icon="upload" title="{{ __('Upload video(s)') }}" data-bs-toggle="modal" data-bs-target="#create-video-modal">
-            @if($videos?->isNotEmpty())
-                {{ __('Add Another Video') }}
-            @else
-                {{ __('Add Videos') }}
-            @endif
-        </x-appshell::button>
+        <x-appshell::button class="btn btn-sm btn-success" icon="+" title="{{ __('Add a video') }}"
+                            data-bs-toggle="modal" data-bs-target="#create-video-modal"></x-appshell::button>
         @if ($errors->has('videos.*'))
             <x-appshell::alert variant="danger" class="my-2">
                 @foreach($errors->get('videos.*') as $fileErrors)
@@ -72,3 +68,4 @@
 </x-appshell::card>
 
 @include('vanilo::video._create_modal')
+@endcan
