@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Vanilo\Admin\Http\Controllers;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -74,7 +76,7 @@ class CsvOrderExport
 
     private static function getHeaders(): array
     {
-        return array_keys(self::mapOrderData(new class extends Model {
+        return array_keys(self::mapOrderData(new class () extends Model {
         }));
     }
 }

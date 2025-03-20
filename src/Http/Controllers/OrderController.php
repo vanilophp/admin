@@ -50,7 +50,7 @@ class OrderController extends BaseController
         $filters->activateFromRequest($request);
         $query = OrderProxy::withCurrentPayment()->with(['billpayer', 'items', 'items.adjustmentsRelation', 'adjustmentsRelation', 'paymentMethod', 'shippingAddress', 'shippingAddress.country'])->orderBy('created_at', 'desc');
 
-        if ($request->query('format') === 'csv') {
+        if ('csv' === $request->query('format')) {
             return response()->download(CsvOrderExport::generate($filters->apply($query)));
         }
 
