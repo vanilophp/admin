@@ -50,6 +50,10 @@ class OrderController extends BaseController
         $filters->activateFromRequest($request);
         $query = OrderProxy::withCurrentPayment()->with(['billpayer', 'items', 'items.adjustmentsRelation', 'adjustmentsRelation', 'paymentMethod', 'shippingAddress', 'shippingAddress.country'])->orderBy('created_at', 'desc');
 
+        if ($request->query('format') === 'csv') {
+            return response()->download(CsvOrderExport::generate($filters->apply($query)));
+        }
+
         return view('vanilo::order.index', [
             'orders' => $filters->apply($query)->paginate(100)->withQueryString(),
             'filters' => Widgets::make(AppShellWidgets::FILTER_SET, [

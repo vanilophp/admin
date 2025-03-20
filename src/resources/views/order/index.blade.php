@@ -4,6 +4,12 @@
     {{ __('Orders') }}
 @stop
 
+@push('page-actions')
+    <x-appshell::button variant="outline-success" :href="route('vanilo.admin.order.index',  array_merge(request()->query(), ['format' => 'csv']))" size="sm">
+        {{ __('Export') }}
+    </x-appshell::button>
+@endpush
+
 @section('content')
 
     <x-appshell::card accent="secondary">
