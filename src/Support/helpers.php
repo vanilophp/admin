@@ -73,7 +73,7 @@ if (!function_exists('vnl_video_drivers')) {
                 'referenceIs' => __('Reference'),
             ],
         ];
-        foreach(VideoDrivers::ids() as $id) {
+        foreach (VideoDrivers::ids() as $id) {
             if (null !== $class = VideoDrivers::getClassOf($id)) {
                 $result[$id] = [
                     'name' => $class::getName(),
