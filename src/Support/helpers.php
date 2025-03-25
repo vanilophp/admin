@@ -9,6 +9,7 @@ use Vanilo\Category\Contracts\Taxonomy;
 use Vanilo\Product\Contracts\Product;
 use Vanilo\Promotion\Contracts\Promotion;
 use Vanilo\Promotion\Models\PromotionStatus;
+use Vanilo\Video\VideoDrivers;
 
 if (!function_exists('admin_link_to')) {
     function admin_link_to(Model $model, string $operation = 'view'): ?string
@@ -60,5 +61,27 @@ if (!function_exists('vnl_promo_validity_text')) {
                 __('started at :datetime and will not expire', ['datetime' => show_datetime($promotion->starts_at)])
                 :
                 __('started at :starttime and will expire at :endtime', ['starttime' => show_datetime($promotion->starts_at), 'endtime' => show_datetime($promotion->ends_at)]);
+    }
+}
+
+if (!function_exists('vnl_video_drivers')) {
+    function vnl_video_drivers(): array
+    {
+        $result = [
+            null => [
+                'name' => '--',
+                'referenceIs' => __('Reference'),
+            ],
+        ];
+        foreach(VideoDrivers::ids() as $id) {
+            if (null !== $class = VideoDrivers::getClassOf($id)) {
+                $result[$id] = [
+                    'name' => $class::getName(),
+                    'referenceIs' => $class::whatIsReference(),
+                ];
+            }
+        }
+
+        return $result;
     }
 }

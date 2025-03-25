@@ -4,7 +4,7 @@
 
 <div id="edit-video-modal-{{ $video->hash }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
-        <div class="modal-content">
+        <div class="modal-content" x-data="videoModal{{ $video->id }}">
             {!! Form::model($video, [
                     'route'  => ['vanilo.admin.video.update', $video],
                     'method' => 'PUT',
@@ -38,3 +38,5 @@
       });
     </script>
 @endif
+
+@include('vanilo::video._script', ['modalId' => $video->id])

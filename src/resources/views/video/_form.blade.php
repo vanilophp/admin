@@ -1,41 +1,36 @@
-<div>
+<div class="mb-3">
     <label for="title" class="form-label">{{ __('Title') }}</label>
 
-    <div class="mb-3">
-        {{ Form::text('title', null, ['class' => 'form-control' . ($errorBag->has('title') ? ' is-invalid' : ''), 'id' => 'title']) }}
+    {{ Form::text('title', null, ['class' => 'form-control' . ($errorBag->has('title') ? ' is-invalid' : ''), 'id' => 'title']) }}
 
-        @if ($errorBag->has('title'))
-            <div class="invalid-feedback">{{ $errorBag->first('title') }}</div>
-        @endif
-    </div>
+    @if ($errorBag->has('title'))
+        <div class="invalid-feedback">{{ $errorBag->first('title') }}</div>
+    @endif
 </div>
 
-<div>
-    <label for="type" class="form-label">{{ __('Type') }}</label>
+<div class="mb-3">
+    <label for="driver" class="form-label">{{ __('Type') }}</label>
 
-    <div class="mb-3">
-        {{ Form::select('type', ['video' => 'Video'], null, [
-                'class' => 'form-select form-select-sm' . ($errorBag->has('type') ? ' is-invalid': ''),
-                'id' => 'type',
-           ])
-        }}
+    {{ Form::select('driver', array_map(fn($driver) => $driver['name'], vnl_video_drivers()), null, [
+            'class' => 'form-select form-select-sm' . ($errorBag->has('driver') ? ' is-invalid': ''),
+            'id' => 'driver',
+            'x-model' => 'driver'
+       ])
+    }}
 
-        @if ($errorBag->has('type'))
-            <div class="invalid-feedback">{{ $errorBag->first('type') }}</div>
-        @endif
-    </div>
+    @if ($errorBag->has('driver'))
+        <div class="invalid-feedback">{{ $errorBag->first('driver') }}</div>
+    @endif
 </div>
 
-<div>
-    <label for="reference" class="form-label">{{ __('Reference') }}</label>
+<div class="mb-3">
+    <label for="reference" class="form-label" x-text="referenceLabel">{{ __('Reference') }}</label>
 
-    <div class="mb-3">
-        {{ Form::text('reference', null, ['class' => 'form-control' . ($errorBag->has('reference') ? ' is-invalid' : ''), 'id' => 'reference']) }}
+    {{ Form::text('reference', null, ['class' => 'form-control' . ($errorBag->has('reference') ? ' is-invalid' : ''), 'id' => 'reference']) }}
 
-        @if ($errorBag->has('reference'))
-            <div class="invalid-feedback">{{ $errorBag->first('reference') }}</div>
-        @endif
-    </div>
+    @if ($errorBag->has('reference'))
+        <div class="invalid-feedback">{{ $errorBag->first('reference') }}</div>
+    @endif
 </div>
 
 <div class="mb-3 row{{ $errorBag->has('is_published') ? ' has-danger' : '' }}">

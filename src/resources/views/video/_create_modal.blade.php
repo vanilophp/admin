@@ -1,6 +1,6 @@
 <div id="create-video-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
-        <div class="modal-content">
+        <div class="modal-content" x-data="videoModalCreate">
             {!! Form::open([
                     'url'  => route('vanilo.admin.video.store'),
                     'method' => 'POST',
@@ -37,3 +37,5 @@
         });
     </script>
 @endif
+
+@include('vanilo::video._script', ['modalId' => 'Create', 'video' => null])
