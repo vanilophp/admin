@@ -9,7 +9,7 @@
                     @unless($group->isEmpty())
                     <h6>{{ $linkTypeTitle }}
                         @if($group->isUnidirectional())
-                            {{ __('of :link_group_root', ['link_group_root' => $group->rootItem->linkable->name]) }}
+                            {{ __('of :link_group_root', ['link_group_root' => $group->rootItem->linkable?->name ?? __('[Deleted Entry]')]) }}
                             {!! icon('unidirectional', 'muted', ['title' => __('Unidirectional')]) !!}
                         @else
                             {!! icon('omnidirectional', 'muted', ['title' => __('Omnidirectional')]) !!}
@@ -17,11 +17,19 @@
                     </h6>
                     @foreach($group->items as $link)
                         @unless($link->pointsTo($model))
-                        <article class="d-inline-block border rounded me-1 mb-1 pe-1" title="{{ $link->linkable->name }}{{ $link->linkable->sku ? " [SKU: {$link->linkable->sku}]" : '' }}">
-                            <a href="{{ admin_link_to($link->linkable) }}">
-                                <img src="{{ $link->linkable->getThumbnailUrl() }}" class="rounded-start" style="height: 2rem" />
-                                <span class="fw-semibold me-1">{{ Str::limit($link->linkable->name, 12) }}</span>
-                            </a>
+                        <article class="d-inline-block border rounded me-1 mb-1 pe-1" title="{{ $link->linkable?->name ?? __('Deleted Entry (:type [:id])', ['type' => $link->linkable_type, 'id' => $link->linkable_id]) }}{{ $link->linkable?->sku ? " [SKU: {$link->linkable->sku}]" : '' }}">
+                            @if(null !== $link->linkable)
+                                <a href="{{ admin_link_to($link->linkable) }}">
+                                    <img src="{{ $link->linkable->getThumbnailUrl() }}" class="rounded-start" style="height: 2rem" />
+                                    <span class="fw-semibold me-1">{{ Str::limit($link->linkable->name, 12) }}</span>
+                                </a>
+                            @else
+                                <a href="#">
+                                    <img src="data:;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6AQMAAACyIsh+AAAAA1BMVEWSj4+Y8UtxAAAAHklEQVRo3u3BAQEAAACCoP6vbojAAAAAAAAAAICwAyA6AAFG0xi/AAAAAElFTkSuQmCC"
+                                         class="rounded-start" style="height: 2rem" />
+                                    <span class="fw-semibold me-1">{{ __('Deleted Entry (:type [:id])', ['type' => $link->linkable_type, 'id' => $link->linkable_id]) }}</span>
+                                </a>
+                            @endif
                             {!! Form::open(['route' => ['vanilo.admin.link.destroy', $link->id], 'method' => 'delete', 'class' => 'd-inline']) !!}
                             <button type="submit" class="btn btn-xs btn-link" title="{{ __('Delete the link') }}" >{!! icon('delete', 'danger') !!}</button>
                             {!! Form::close() !!}

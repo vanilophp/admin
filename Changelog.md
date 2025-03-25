@@ -15,6 +15,7 @@
 - Improved the Order list performance by adding eager loading
 - Changed the minimum Address module version to v3.5.1
 - Added Video CRUD
+- Fixed the 500 error when a link is broken (the linkable has been deleted in the meantime)
 
 ## 4.2.0
 ##### 2024-12-15
