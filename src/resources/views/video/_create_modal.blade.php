@@ -1,3 +1,4 @@
+@can('create videos')
 <div id="create-video-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content" x-data="videoModalCreate">
@@ -39,3 +40,4 @@
 @endif
 
 @include('vanilo::video._script', ['modalId' => 'Create', 'video' => null])
+@endcan
