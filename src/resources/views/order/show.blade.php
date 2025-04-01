@@ -5,6 +5,7 @@
 @stop
 
 @push('page-actions')
+    @include('vanilo::order.show._extra_actions')
     @include('vanilo::order.show._actions')
 @endpush
 

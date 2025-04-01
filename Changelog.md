@@ -12,6 +12,7 @@
 - Added sorting and filtering options to the Product index
 - Added ETA fields to the Shipping Method forms
 - Added Info Widgets to the Channel Show Page
+- Added the `order/show/_extra_actions` partial so that apps can add buttons to the order show page
 - Improved the Order list performance by adding eager loading
 - Changed the minimum Address module version to v3.5.1
 - Added Video CRUD
