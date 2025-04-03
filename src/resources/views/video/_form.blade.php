@@ -47,3 +47,7 @@
         @endif
     </div>
 </div>
+
+@foreach(array_filter($errorBag->keys(), fn ($key) => !in_array($key, ['title', 'driver', 'reference', 'is_published'])) as $otherKey)
+    <x-appshell::alert variant="warning">{{ $errorBag->first($otherKey) }}</x-appshell::alert>
+@endforeach

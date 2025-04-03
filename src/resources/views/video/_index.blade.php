@@ -9,10 +9,14 @@
 
     @if($videos?->isNotEmpty())
         <div class="row">
+            <?php /** @var \Vanilo\Video\Contracts\Video $video */ ?>
             @foreach($videos as $video)
-                <div class="text-sm-left text-info fw-bold">
-                    <p title="{{ $video->title }}" class="small text-secondary">{{ $video->title }}</p>
-                </div>
+                <a class="col" href="{{ $video->getVideoUrl() ?? '#' }}" target="_blank">
+                    <img src="{{ $video->getThumbnail()->url ?? 'data:;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6AQMAAACyIsh+AAAAA1BMVEWSj4+Y8UtxAAAAHklEQVRo3u3BAQEAAACCoP6vbojAAAAAAAAAAICwAyA6AAFG0xi/AAAAAElFTkSuQmCC' }}"
+                         class="img-thumbnail" style="height: 4rem; width: auto;"
+                         title="{{ $video->getTitle() }}"
+                    />
+                </a>
             @endforeach
         </div>
     @else
