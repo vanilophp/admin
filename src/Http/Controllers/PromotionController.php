@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace Vanilo\Admin\Http\Controllers;
 
 use Konekt\AppShell\Http\Controllers\BaseController;
-
 use Vanilo\Admin\Contracts\Requests\CreatePromotion;
 use Vanilo\Admin\Contracts\Requests\UpdatePromotion;
 use Vanilo\Promotion\Contracts\Promotion;
