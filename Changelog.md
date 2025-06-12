@@ -18,6 +18,7 @@
 - Changed the minimum length of a variant from 2 -> 1 (eg. when a t-shirt is of size "S")
 - Added Video CRUD
 - Fixed the 500 error when a link is broken (the linkable has been deleted in the meantime)
+- Fixed a 500 error when deleting a unidirectional link from the root item
 
 ## 4.2.0
 ##### 2024-12-15

@@ -105,6 +105,9 @@ class LinkController extends BaseController
     public function destroy(LinkGroupItem $linkGroupItem)
     {
         $group = $linkGroupItem->group;
+        if ($group->root_item_id === $linkGroupItem->id) {
+            $group->update(['root_item_id' => null]);
+        }
         $linkGroupItem->delete();
         if ($group?->items->isEmpty() || 1 === $group?->items->count()) {
             $group->delete();
