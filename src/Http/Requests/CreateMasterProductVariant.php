@@ -25,7 +25,7 @@ class CreateMasterProductVariant extends FormRequest implements CreateMasterProd
     public function rules()
     {
         return [
-            'name' => 'required|min:2|max:255',
+            'name' => 'required|min:1|max:255',
             'sku' => 'required|unique:products',
             'price' => 'nullable|numeric',
             'original_price' => 'sometimes|nullable|numeric',
