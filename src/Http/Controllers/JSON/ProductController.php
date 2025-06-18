@@ -56,6 +56,8 @@ class ProductController
 
         if ($request->has('sku')) {
             $instance->havingSku($request->input('sku'));
+        } elseif ($request->has('name')) {
+            $instance->havingName($request->input('name'));
         }
 
         return match ($scope->value()) {
@@ -81,6 +83,14 @@ class ProductController
     {
         $this->productQuery->where('sku', $sku);
         $this->masterProductVariantQuery?->where('sku', $sku);
+
+        return $this;
+    }
+
+    protected function havingName(string $name): self
+    {
+        $this->productQuery->whereRaw("LOWER(name) LIKE LOWER(?)", ["%$name%"]);
+        $this->masterProductQuery?->whereRaw('LOWER(name) LIKE LOWER(?)', ["%$name%"]);
 
         return $this;
     }
