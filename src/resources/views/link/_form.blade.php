@@ -28,7 +28,7 @@
     </div>
     <div class="mt-2 d-flex">
         <div class="form-check form-switch">
-            {{ Form::checkbox('omnidirectional', 1, null, ['class' => 'form-check-input', 'id' => 'is-omnidirectional', 'role' => 'switch', 'x-model' => 'isOmnidirectional']) }}
+            {{ Form::checkbox('omnidirectional', 1, null, ['class' => 'form-check-input', 'id' => 'is-omnidirectional', 'role' => 'switch']) }}
             <label class="form-check-label" for="is-omnidirectional">{{ __('Omnidirectional') }}</label>
         </div>
         <div class="form-check">

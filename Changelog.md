@@ -19,6 +19,7 @@
 - Added Video CRUD
 - Fixed the 500 error when a link is broken (the linkable has been deleted in the meantime)
 - Fixed a 500 error when deleting a unidirectional link from the root item
+- Added option to link Master Products to other products  
 
 ## 4.2.0
 ##### 2024-12-15
