@@ -91,7 +91,7 @@ class ProductController
     protected function havingName(string $name): self
     {
         // Return nothing in case of empty name
-        if ($name === '') {
+        if ('' === $name) {
             $this->productQuery->whereRaw('1 = 0');
             $this->masterProductQuery?->whereRaw('1 = 0');
         }
