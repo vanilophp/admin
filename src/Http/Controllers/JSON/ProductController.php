@@ -56,9 +56,9 @@ class ProductController
         $instance = new self($scope);
 
         if ($request->has('sku')) {
-            $instance->havingSku($request->input('sku'));
+            $instance->havingSku((string) $request->input('sku'));
         } elseif ($request->has('name')) {
-            $instance->havingName($request->input('name'));
+            $instance->havingName((string) $request->input('name'));
         }
 
         return match ($scope->value()) {
@@ -90,6 +90,12 @@ class ProductController
 
     protected function havingName(string $name): self
     {
+        // Return nothing in case of empty name
+        if ($name === '') {
+            $this->productQuery->whereRaw('1 = 0');
+            $this->masterProductQuery?->whereRaw('1 = 0');
+        }
+
         $this->productQuery->whereRaw("LOWER(name) LIKE LOWER(?)", ["%$name%"]);
         $this->masterProductQuery?->whereRaw('LOWER(name) LIKE LOWER(?)', ["%$name%"]);
 
