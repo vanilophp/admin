@@ -61,9 +61,9 @@
 
         <x-slot:footer>
             @if($desiredGroup)
-                <x-appshell::create-button :text="__('Link as :name', ['name' => $desiredGroup->type->name])" x-bind:disabled="!readyToSubmit()" />
+                <x-appshell::create-button :text="__('Link as :name', ['name' => $desiredGroup->type->name])" x-bind:disabled="!readyToSubmit" />
             @else
-            <x-appshell::create-button :text="__('Create link')" x-bind:disabled="!readyToSubmit()" />
+                <x-appshell::create-button :text="__('Create link')" x-bind:disabled="!readyToSubmit" />
             @endif
             <x-appshell::cancel-button />
         </x-slot:footer>
@@ -79,7 +79,14 @@
     <script>
         document.addEventListener('alpine:init', function() {
             Alpine.data('vaniloLookupController', () => ({
-                lookupMode: 'sku' // default mode
+                lookupMode: 'sku',
+                get readyToSubmit() {
+                    const lookupComponent = this.lookupMode === 'sku'
+                        ? document.querySelector('[x-data="vaniloSkuLookup"]')?._x_dataStack?.[0]
+                        : document.querySelector('[x-data="vaniloNameLookup"]')?._x_dataStack?.[0];
+
+                    return lookupComponent?.readyToSubmit?.() ?? false;
+                }
             }));
         });
     </script>
