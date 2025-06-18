@@ -20,7 +20,7 @@
         <label class="form-control-label">{{ __('Click to select') }}</label>
         <div>
             <template x-for="product in products">
-                <article class="d-inline-block border rounded me-1 px-1" x-bind:class="selected.id === product.id ? 'bg-info' : ''" x-on:click="select(product.id, product.morph_type_name)" style="cursor: pointer">
+                <article class="d-inline-block border rounded me-1 px-1" x-bind:class="selected.id === product.id && selected.type === product.morph_type_name ? 'bg-info' : ''" x-on:click="select(product.id, product.morph_type_name)" style="cursor: pointer">
                     <img x-bind:src="product.thumbnail" class="rounded-start" style="height: 2rem" />
                     <span x-text="product.name" class="fw-semibold me-1"></span>
                     <span x-text="product.price + ' {{ config('vanilo.foundation.currency.sign')}}'" class="text-secondary me-1"></span>
