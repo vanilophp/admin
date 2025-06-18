@@ -10,13 +10,39 @@
 
 @section('content')
     @if($sourceModel || $desiredGroup)
-    {!! Form::open(['url' => route('vanilo.admin.link.store'), 'autocomplete' => 'off', 'x-data' => 'vaniloSkuLookup']) !!}
+    {!! Form::open(['url' => route('vanilo.admin.link.store'), 'autocomplete' => 'off', 'x-data' => 'vaniloLookupController']) !!}
 
     <x-appshell::card accent="success">
 
         <x-slot:title>{{ __('Link') }}</x-slot:title>
 
-        <x-vanilo::sku-lookup model-type-name="target_type" model-id-name="target_id" :sku-label="$desiredGroup ? __('Product to link') : __('Linked Product')"></x-vanilo::sku-lookup>
+        <div class="mb-3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="lookup-sku" value="sku" x-model="lookupMode">
+                <label class="form-check-label" for="lookup-sku">{{ __('by SKU') }}</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="lookup-name" value="name" x-model="lookupMode">
+                <label class="form-check-label" for="lookup-name">{{ __('by Name') }}</label>
+            </div>
+        </div>
+
+        <div x-show="lookupMode === 'sku'" x-data="vaniloSkuLookup">
+            @include('vanilo::components.sku-lookup', [
+                'modelTypeName' => 'target_type',
+                'modelIdName' => 'target_id',
+                'skuLabel' => $desiredGroup ? __('Product to link') : __('Linked Product')
+            ])
+        </div>
+
+        <div x-show="lookupMode === 'name'" x-data="vaniloNameLookup">
+            @include('vanilo::components.name-lookup', [
+                'modelTypeName' => 'target_type',
+                'modelIdName' => 'target_id',
+                'nameLabel' => $desiredGroup ? __('Product to link') : __('Linked Product')
+            ])
+        </div>
 
         <hr>
 
@@ -44,3 +70,13 @@
         <x-appshell::alert>{{ __('The source product or group can not be found') }}</x-appshell::alert>
     @endif
 @stop
+
+@push('scripts')
+    <script>
+        document.addEventListener('alpine:init', function() {
+            Alpine.data('vaniloLookupController', () => ({
+                lookupMode: 'sku' // default mode
+            }));
+        });
+    </script>
+@endpush
