@@ -28,21 +28,25 @@
             </div>
         </div>
 
-        <div x-show="lookupMode === 'sku'" x-data="vaniloSkuLookup">
-            @include('vanilo::components.sku-lookup', [
-                'modelTypeName' => 'target_type',
-                'modelIdName' => 'target_id',
-                'skuLabel' => $desiredGroup ? __('Product to link') : __('Linked Product')
-            ])
-        </div>
+        <template x-if="lookupMode === 'sku'">
+            <div x-data="vaniloSkuLookup">
+                @include('vanilo::components.sku-lookup', [
+                    'modelTypeName' => 'target_type',
+                    'modelIdName' => 'target_id',
+                    'skuLabel' => $desiredGroup ? __('Product to link') : __('Linked Product')
+                ])
+            </div>
+        </template>
 
-        <div x-show="lookupMode === 'name'" x-data="vaniloNameLookup">
-            @include('vanilo::components.name-lookup', [
-                'modelTypeName' => 'target_type',
-                'modelIdName' => 'target_id',
-                'nameLabel' => $desiredGroup ? __('Product to link') : __('Linked Product')
-            ])
-        </div>
+        <template x-if="lookupMode === 'name'">
+            <div x-data="vaniloNameLookup">
+                @include('vanilo::components.name-lookup', [
+                    'modelTypeName' => 'target_type',
+                    'modelIdName' => 'target_id',
+                    'nameLabel' => $desiredGroup ? __('Product to link by name') : __('Linked Product by name')
+                ])
+            </div>
+        </template>
 
         <hr>
 
