@@ -93,6 +93,8 @@ class ProductController extends BaseController
                 ProductSorter::NAME_DESC => $items->sortByDesc('name'),
                 ProductSorter::SALES_ASC => $items->sortBy('units_sold'),
                 ProductSorter::SALES_DESC => $items->sortByDesc('units_sold'),
+                ProductSorter::LAST_SALE_DESC => $items->sortByDesc('last_sale_at'),
+                ProductSorter::LAST_SALE_ASC => $items->sortBy('last_sale_at'),
                 default => $items,
             };
         }

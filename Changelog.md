@@ -19,7 +19,8 @@
 - Added Video CRUD
 - Fixed the 500 error when a link is broken (the linkable has been deleted in the meantime)
 - Fixed a 500 error when deleting a unidirectional link from the root item
-- Added option to link Master Products to other products  
+- Added option to link Master Products to other products
+- Added option to sort the product list by `last_sale_at` field (most recently sold/longest ago sold)
 
 ## 4.2.0
 ##### 2024-12-15

@@ -25,6 +25,9 @@ class ProductSorter implements Filter
     public const SALES_ASC = 'sales_asc';
     public const SALES_DESC = 'sales_desc';
 
+    public const LAST_SALE_DESC = 'most_recent_sales';
+    public const LAST_SALE_ASC = 'least_recent_sales';
+
     public function __construct()
     {
         $this->id = 'order_by';
@@ -33,8 +36,10 @@ class ProductSorter implements Filter
             self::CREATED_ASC => __('Oldest first'),
             self::NAME_ASC => __('Name (A-Z)'),
             self::NAME_DESC => __('Name (Z-A)'),
-            self::SALES_ASC => __('Lowest sales first'),
-            self::SALES_DESC => __('Highest sales first'),
+            self::SALES_ASC => __('Least sold first'),
+            self::SALES_DESC => __('Most sold first'),
+            self::LAST_SALE_DESC => __('Recently sold first'),
+            self::LAST_SALE_ASC => __('Longest ago sold first'),
         ];
         $this->label = __('Order by');
     }
