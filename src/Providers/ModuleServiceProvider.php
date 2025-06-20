@@ -208,6 +208,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 ->data('icon', 'shipping')
                 ->activateOnUrls(route('vanilo.admin.shipping-method.index', [], false) . '*')
                 ->allowIfUserCan('list shipping methods');
+            $settings->addSubItem('shipping-categories', __('Shipping Categories'), ['route' => 'vanilo.admin.shipping-category.index'])
+                ->data('icon', 'tax')
+                ->activateOnUrls(route('vanilo.admin.shipping-category.index', [], false) . '*')
+                ->allowIfUserCan('list shipping categories');
             $settings->addSubItem('carriers', __('Carriers'), ['route' => 'vanilo.admin.carrier.index'])
                 ->data('icon', 'carrier')
                 ->activateOnUrls(route('vanilo.admin.carrier.index', [], false) . '*')
