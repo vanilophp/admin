@@ -42,6 +42,7 @@ use Vanilo\Admin\Http\Requests\CreatePromotionRule;
 use Vanilo\Admin\Http\Requests\CreateProperty;
 use Vanilo\Admin\Http\Requests\CreatePropertyValue;
 use Vanilo\Admin\Http\Requests\CreatePropertyValueForm;
+use Vanilo\Admin\Http\Requests\CreateShippingCategory;
 use Vanilo\Admin\Http\Requests\CreateShippingMethod;
 use Vanilo\Admin\Http\Requests\CreateTaxCategory;
 use Vanilo\Admin\Http\Requests\CreateTaxon;
@@ -66,6 +67,7 @@ use Vanilo\Admin\Http\Requests\UpdatePromotionAction;
 use Vanilo\Admin\Http\Requests\UpdatePromotionRule;
 use Vanilo\Admin\Http\Requests\UpdateProperty;
 use Vanilo\Admin\Http\Requests\UpdatePropertyValue;
+use Vanilo\Admin\Http\Requests\UpdateShippingCategory;
 use Vanilo\Admin\Http\Requests\UpdateShippingMethod;
 use Vanilo\Admin\Http\Requests\UpdateTaxCategory;
 use Vanilo\Admin\Http\Requests\UpdateTaxon;
@@ -112,6 +114,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         UpdatePaymentMethod::class,
         CreateShippingMethod::class,
         UpdateShippingMethod::class,
+        CreateShippingCategory::class,
+        UpdateShippingCategory::class,
         CreateCarrier::class,
         UpdateCarrier::class,
         CreateZone::class,
