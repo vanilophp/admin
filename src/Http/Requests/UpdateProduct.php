@@ -30,6 +30,7 @@ class UpdateProduct extends FormRequest implements UpdateProductContract
                 Rule::unique('products')->ignore($this->route('product')->id),
                 ],
             'state' => ['required', Rule::in(ProductStateProxy::values())],
+            'tax_category_id' => 'sometimes|nullable|exists:tax_categories,id',
             'shipping_category_id' => 'sometimes|nullable|exists:shipping_categories,id',
             'price' => 'nullable|numeric',
             'original_price' => 'sometimes|nullable|numeric',

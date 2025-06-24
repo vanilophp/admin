@@ -26,6 +26,7 @@ class UpdateMasterProduct extends FormRequest implements UpdateMasterProductCont
         return [
             'name' => 'required|min:2|max:255',
             'state' => ['required', Rule::in(ProductStateProxy::values())],
+            'tax_category_id' => 'sometimes|nullable|exists:tax_categories,id',
             'shipping_category_id' => 'sometimes|nullable|exists:shipping_categories,id',
             'price' => 'nullable|numeric',
             'original_price' => 'nullable|numeric',
