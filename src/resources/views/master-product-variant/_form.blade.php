@@ -23,17 +23,33 @@
 <hr>
 
 <div class="mb-3 row">
-    <label class="col-form-label col-form-label-sm col-md-2">{{ __('State') }}</label>
-    <div class="col-md-4">
-        {{ Form::select('state', $states, null, [
-                'class' => 'form-select form-select-sm' . ($errors->has('state') ? ' is-invalid': ''),
-                'placeholder' => __('--'),
-           ])
-        }}
+    <div class="my-3 col-md-6 col-xl-4">
+        <label class="form-control-label">{{ __('State') }}</label>
+        <div>
+            {{ Form::select('state', $states, null, [
+                    'class' => 'form-select form-select-sm' . ($errors->has('state') ? ' is-invalid': ''),
+                    'placeholder' => __('--'),
+               ])
+            }}
 
-        @if ($errors->has('state'))
-            <div class="invalid-feedback">{{ $errors->first('state') }}</div>
-        @endif
+            @if ($errors->has('state'))
+                <div class="invalid-feedback">{{ $errors->first('state') }}</div>
+            @endif
+        </div>
+    </div>
+
+    <div class="my-3 col-md-6 col-xl-4">
+        <label class="form-control-label">{{ __('Shipping Category') }}</label>
+        <div>
+            {{ Form::select('shipping_category_id', $shippingCategories->pluck('name', 'id'), null, [
+                    'class' => 'form-select form-select-sm' . ($errors->has('shipping_category_id') ? ' is-invalid': ''),
+                    'placeholder' => __('--')
+               ])
+            }}
+            @if ($errors->has('shipping_category_id'))
+                <div class="invalid-feedback">{{ $errors->first('shipping_category_id') }}</div>
+            @endif
+        </div>
     </div>
 </div>
 

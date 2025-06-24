@@ -23,6 +23,7 @@ use Vanilo\MasterProduct\Contracts\MasterProductVariant;
 use Vanilo\MasterProduct\Models\MasterProductVariantProxy;
 use Vanilo\Product\Models\ProductStateProxy;
 use Vanilo\Properties\Models\PropertyProxy;
+use Vanilo\Shipment\Models\ShippingCategoryProxy;
 
 class MasterProductVariantController extends BaseController
 {
@@ -31,7 +32,8 @@ class MasterProductVariantController extends BaseController
         return view('vanilo::master-product-variant.create', [
             'master' => $masterProduct,
             'variant' => app(MasterProductVariant::class),
-            'states' => ProductStateProxy::choices()
+            'states' => ProductStateProxy::choices(),
+            'shippingCategories' => ShippingCategoryProxy::get(['name', 'id']),
         ]);
     }
 
@@ -89,6 +91,7 @@ class MasterProductVariantController extends BaseController
             'states' => ProductStateProxy::choices(),
             'properties' => PropertyProxy::all(),
             'linkTypes' => LinkTypeProxy::choices(false, true),
+            'shippingCategories' => ShippingCategoryProxy::get(['name', 'id']),
         ]);
     }
 

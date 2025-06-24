@@ -19,30 +19,47 @@
 <hr>
 
 <div class="mb-3 row">
-    <label class="col-form-label col-form-label-sm col-md-2">{{ __('State') }}</label>
-    <div class="col-md-4">
-        {{ Form::select('state', $states, null, [
-                'class' => 'form-select form-select-sm' . ($errors->has('state') ? ' is-invalid': ''),
-           ])
-        }}
+    <div class="my-3 col-md-6 col-xl-4">
+        <label class="form-control-label">{{ __('State') }}</label>
+        <div>
+            {{ Form::select('state', $states, null, [
+                    'class' => 'form-select form-select-sm' . ($errors->has('state') ? ' is-invalid': ''),
+               ])
+            }}
 
-        @if ($errors->has('state'))
-            <div class="invalid-feedback">{{ $errors->first('state') }}</div>
-        @endif
+            @if ($errors->has('state'))
+                <div class="invalid-feedback">{{ $errors->first('state') }}</div>
+            @endif
+        </div>
     </div>
 
-    <label class="col-form-label col-form-label-sm col-md-2">{{ __('Tax Category') }}</label>
-    <div class="col-md-4">
-        {{ Form::select('tax_category_id', $taxCategories->pluck('name', 'id'), null, [
-                'class' => 'form-select form-select-sm' . ($errors->has('tax_category_id') ? ' is-invalid': ''),
-                'placeholder' => __('--')
-           ])
-        }}
-        @if ($errors->has('tax_category_id'))
-            <div class="invalid-feedback">{{ $errors->first('tax_category_id') }}</div>
-        @endif
+    <div class="my-3 col-md-6 col-xl-4">
+        <label class="form-control-label">{{ __('Tax Category') }}</label>
+        <div>
+            {{ Form::select('tax_category_id', $taxCategories->pluck('name', 'id'), null, [
+                    'class' => 'form-select form-select-sm' . ($errors->has('tax_category_id') ? ' is-invalid': ''),
+                    'placeholder' => __('--')
+               ])
+            }}
+            @if ($errors->has('tax_category_id'))
+                <div class="invalid-feedback">{{ $errors->first('tax_category_id') }}</div>
+            @endif
+        </div>
     </div>
-</div>
+
+    <div class="my-3 col-md-6 col-xl-4">
+        <label class="form-control-label">{{ __('Shipping Category') }}</label>
+        <div>
+            {{ Form::select('shipping_category_id', $shippingCategories->pluck('name', 'id'), null, [
+                    'class' => 'form-select form-select-sm' . ($errors->has('shipping_category_id') ? ' is-invalid': ''),
+                    'placeholder' => __('--')
+               ])
+            }}
+            @if ($errors->has('shipping_category_id'))
+                <div class="invalid-feedback">{{ $errors->first('shipping_category_id') }}</div>
+            @endif
+        </div>
+    </div>
 
 <hr>
 

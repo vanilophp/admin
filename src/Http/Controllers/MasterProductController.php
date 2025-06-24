@@ -25,6 +25,7 @@ use Vanilo\MasterProduct\Contracts\MasterProductVariant;
 use Vanilo\MasterProduct\Models\MasterProductProxy;
 use Vanilo\Product\Models\ProductStateProxy;
 use Vanilo\Properties\Models\PropertyProxy;
+use Vanilo\Shipment\Models\ShippingCategoryProxy;
 use Vanilo\Support\Features;
 use Vanilo\Taxes\Models\TaxCategoryProxy;
 
@@ -40,6 +41,7 @@ class MasterProductController extends BaseController
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
             'channels' => $this->channelsForUi(),
             'taxCategories' => TaxCategoryProxy::get(['name', 'id']),
+            'shippingCategories' => ShippingCategoryProxy::get(['name', 'id']),
         ]);
     }
 
@@ -96,6 +98,7 @@ class MasterProductController extends BaseController
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
             'channels' => $this->channelsForUi(),
             'taxCategories' => TaxCategoryProxy::get(['name', 'id']),
+            'shippingCategories' => ShippingCategoryProxy::get(['name', 'id']),
         ]);
     }
 
