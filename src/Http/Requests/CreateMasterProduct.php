@@ -28,6 +28,7 @@ class CreateMasterProduct extends FormRequest implements CreateMasterProductCont
         return [
             'name' => 'required|min:2|max:255',
             'state' => ['required', Rule::in(ProductStateProxy::values())],
+            'shipping_category_id' => 'sometimes|nullable|exists:shipping_categories,id',
             'price' => 'nullable|numeric',
             'original_price' => 'nullable|numeric',
             'description' => 'nullable|string',

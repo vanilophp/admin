@@ -27,6 +27,7 @@ class CreateMasterProductVariant extends FormRequest implements CreateMasterProd
         return [
             'name' => 'required|min:1|max:255',
             'sku' => 'required|unique:products',
+            'shipping_category_id' => 'sometimes|nullable|exists:shipping_categories,id',
             'price' => 'nullable|numeric',
             'original_price' => 'sometimes|nullable|numeric',
             'stock' => 'nullable|numeric',

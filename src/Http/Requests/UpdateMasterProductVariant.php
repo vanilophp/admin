@@ -29,6 +29,7 @@ class UpdateMasterProductVariant extends FormRequest implements UpdateMasterProd
             'sku' => 'required|unique:products',
             'price' => 'nullable|numeric',
             'original_price' => 'sometimes|nullable|numeric',
+            'shipping_category_id' => 'sometimes|nullable|exists:shipping_categories,id',
             'stock' => 'nullable|numeric',
             'backorder' => 'nullable|numeric|min:0',
             'excerpt' => 'sometimes|nullable|max:8192',

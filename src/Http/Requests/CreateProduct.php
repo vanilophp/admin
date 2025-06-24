@@ -29,6 +29,7 @@ class CreateProduct extends FormRequest implements CreateProductContract
             'name' => 'required|min:2|max:255',
             'sku' => 'required|unique:products',
             'state' => ['required', Rule::in(ProductStateProxy::values())],
+            'shipping_category_id' => 'sometimes|nullable|exists:shipping_categories,id',
             'price' => 'nullable|numeric',
             'original_price' => 'sometimes|nullable|numeric',
             'stock' => 'nullable|numeric',
