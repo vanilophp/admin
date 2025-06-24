@@ -177,6 +177,26 @@ Breadcrumbs::for('vanilo.admin.shipping-method.edit', function ($breadcrumbs, $s
     $breadcrumbs->push(__('Edit'), route('vanilo.admin.shipping-method.edit', $shippingMethod));
 });
 
+Breadcrumbs::for('vanilo.admin.shipping-category.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push(__('Shipping Categories'), route('vanilo.admin.shipping-category.index'));
+});
+
+Breadcrumbs::for('vanilo.admin.shipping-category.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('vanilo.admin.shipping-category.index');
+    $breadcrumbs->push(__('Create'));
+});
+
+Breadcrumbs::for('vanilo.admin.shipping-category.show', function ($breadcrumbs, $shippingMethod) {
+    $breadcrumbs->parent('vanilo.admin.shipping-category.index');
+    $breadcrumbs->push($shippingMethod->name, route('vanilo.admin.shipping-category.show', $shippingMethod));
+});
+
+Breadcrumbs::for('vanilo.admin.shipping-category.edit', function ($breadcrumbs, $shippingMethod) {
+    $breadcrumbs->parent('vanilo.admin.shipping-category.show', $shippingMethod);
+    $breadcrumbs->push(__('Edit'), route('vanilo.admin.shipping-category.edit', $shippingMethod));
+});
+
 Breadcrumbs::for('vanilo.admin.carrier.index', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
     $breadcrumbs->push(__('Carriers'), route('vanilo.admin.carrier.index'));
