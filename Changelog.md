@@ -21,6 +21,7 @@
 - Fixed a 500 error when deleting a unidirectional link from the root item
 - Added option to link Master Products to other products
 - Added option to sort the product list by `last_sale_at` field (most recently sold/longest ago sold)
+- BC: Replaced the `ProductListingScope` (the class has been deleted) with the new VFW `ProductAvailabilityScope` enum
 
 ## 4.2.0
 ##### 2024-12-15

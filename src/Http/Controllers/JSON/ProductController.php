@@ -23,6 +23,9 @@ use Vanilo\Admin\Http\Resources\BuyableResource;
 use Vanilo\Admin\Http\Resources\ListingResource;
 use Vanilo\MasterProduct\Models\MasterProductProxy;
 use Vanilo\MasterProduct\Models\MasterProductVariantProxy;
+use Vanilo\Product\Contracts\ProductAvailabilityScope as ProductAvailabilityScopeContract;
+use Vanilo\Product\Models\ProductAvailabilityScope;
+use Vanilo\Product\Models\ProductAvailabilityScopeProxy;
 use Vanilo\Product\Models\ProductProxy;
 use Vanilo\Product\Models\ProductStateProxy;
 
@@ -37,7 +40,7 @@ class ProductController
     protected ?Builder $masterProductVariantQuery = null;
 
     public function __construct(
-        protected ProductListingScope $scope
+        protected ProductAvailabilityScopeContract $scope
     ) {
         $this->searcher = Search::new();
         $this->productQuery = ProductProxy::query();
@@ -62,22 +65,22 @@ class ProductController
         }
 
         return match ($scope->value()) {
-            ProductListingScope::BUYABLES => BuyableResource::collection($instance->getResults()),
-            ProductListingScope::LISTING => ListingResource::collection($instance->getResults()),
+            ProductAvailabilityScope::BUYING => BuyableResource::collection($instance->getResults()),
+            ProductAvailabilityScope::LISTING => ListingResource::collection($instance->getResults()),
         };
     }
 
-    protected static function obtainScope(Request $request): ProductListingScope
+    protected static function obtainScope(Request $request): ProductAvailabilityScope
     {
-        if ($request->has('scope') && ProductListingScope::has($request->input('scope'))) {
-            return ProductListingScope::create($request->input('scope'));
+        if ($request->has('scope') && ProductAvailabilityScope::has($request->input('scope'))) {
+            return ProductAvailabilityScope::create($request->input('scope'));
         };
 
         if ($request->has(['sku'])) {
-            return ProductListingScope::BUYABLES();
+            return ProductAvailabilityScopeProxy::BUYING();
         }
 
-        return ProductListingScope::create();
+        return ProductAvailabilityScope::LISTING(); // fallback to the implicit default
     }
 
     protected function havingSku(string $sku): self
@@ -122,8 +125,8 @@ class ProductController
         $this->searcher->add($this->productQuery);
 
         return match ($this->scope->value()) {
-            ProductListingScope::LISTING => $this->searcher->add($this->masterProductQuery),
-            ProductListingScope::BUYABLES => $this->searcher->add($this->masterProductVariantQuery),
+            ProductAvailabilityScope::LISTING => $this->searcher->add($this->masterProductQuery),
+            ProductAvailabilityScope::BUYING => $this->searcher->add($this->masterProductVariantQuery),
         };
     }
 
