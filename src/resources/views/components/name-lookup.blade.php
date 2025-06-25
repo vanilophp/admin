@@ -3,7 +3,7 @@
         <label class="form-control-label mb-2">{{ $nameLabel ?? __('Product') }}</label>
         <div class="input-group">
                 <span class="input-group-text">
-                    {!! icon('label') !!}
+                    {!! icon('product') !!}
                 </span>
             {{ Form::text('name', null, [
                     'class' => 'form-control',
