@@ -74,6 +74,7 @@
         {{ Form::select('shipping_category_id', $shippingCategories->pluck('name', 'id'), null, [
                 'class' => 'form-select form-select-sm' . ($errors->has('shipping_category_id') ? ' is-invalid': ''),
                 'placeholder' => __('--'),
+                'x-model' => 'selectedShippingCategory'
            ])
         }}
         @if ($errors->has('shipping_category_id'))
@@ -82,12 +83,14 @@
     </div>
 </div>
 
+{{ Form::hidden('shipping_category_matching_condition', null, ['x-bind:value' => 'shippingCategoryMatchingCondition']) }}
+
 <div class="mb-3 row" x-show="isCategorySelected">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Match Products') }}</label>
     <div class="col-md-10">
         @foreach($shippingCategoryMatchingConditions as $key => $value)
             <div class="form-check form-check-inline {{ $errors->has('shipping_category_matching_condition') ? 'is-invalid' : '' }}">
-                {{ Form::radio('type', $key, $shippingMethod->shipping_category_matching_condition == $value, ['id' => "shipping_category_matching_condition_$key", 'x-model' => 'shippingCategoryMatchingCondition', 'class' => 'form-check-input' . ($errors->has('shipping_category_matching_condition') ? ' is-invalid': '')]) }}
+                {{ Form::radio('shipping_category_matching_condition', $key, $shippingMethod->shipping_category_matching_condition == $value, ['id' => "shipping_category_matching_condition_$key", 'x-model' => 'shippingCategoryMatchingCondition', 'class' => 'form-check-input' . ($errors->has('shipping_category_matching_condition') ? ' is-invalid': '')]) }}
                 <label class="form-check-label" for="shipping_category_matching_condition_{{ $key }}">{{ $value }}</label>
             </div>
         @endforeach
@@ -174,8 +177,16 @@
         document.addEventListener('alpine:init', function() {
             Alpine.data('shippingMethod', () => ({
                 shippingCategoryMatchingCondition: '{{ old('shipping_category_matching_condition') ?: $shippingMethod->shipping_category_matching_condition->value() }}',
+                selectedShippingCategory: '{{ old('shipping_category_id') ?: ($shippingMethod->shipping_category_id ?? '') }}',
                 isCategorySelected() {
-                    return false;
+                    return this.selectedShippingCategory !== '';
+                },
+                init() {
+                    this.$watch('selectedShippingCategory', (value) => {
+                        if (value === '') {
+                            this.shippingCategoryMatchingCondition = null;
+                        }
+                    });
                 }
             }))
         })

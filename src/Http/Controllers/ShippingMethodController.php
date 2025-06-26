@@ -98,6 +98,8 @@ class ShippingMethodController extends BaseController
             'shippingMethod' => $shippingMethod,
             'carriers' => CarrierProxy::all(),
             'zones' => Zones::withShippingScope()->get(),
+            'shippingCategories' => ShippingCategoryProxy::all(),
+            'shippingCategoryMatchingConditions' => ShippingCategoryMatchingConditionProxy::choices(),
             'calculators' => ShippingFeeCalculators::choices(),
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
             'channels' => $this->channelsForUi(),
