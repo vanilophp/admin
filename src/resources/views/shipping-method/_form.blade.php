@@ -1,3 +1,4 @@
+<section x-data="shippingMethod">
 <div class="mb-3">
     <div class="input-group">
         <span class="input-group-text">
@@ -61,6 +62,38 @@
         }}
         @if ($errors->has('zone_id'))
             <div class="invalid-feedback">{{ $errors->first('zone_id') }}</div>
+        @endif
+    </div>
+</div>
+
+<hr>
+
+<div class="mb-3 row">
+    <label class="col-form-label col-form-label-sm col-md-2">{{ __('Shipping Category') }}</label>
+    <div class="col-md-10">
+        {{ Form::select('shipping_category_id', $shippingCategories->pluck('name', 'id'), null, [
+                'class' => 'form-select form-select-sm' . ($errors->has('shipping_category_id') ? ' is-invalid': ''),
+                'placeholder' => __('--'),
+           ])
+        }}
+        @if ($errors->has('shipping_category_id'))
+            <div class="invalid-feedback">{{ $errors->first('shipping_category_id') }}</div>
+        @endif
+    </div>
+</div>
+
+<div class="mb-3 row" x-show="isCategorySelected">
+    <label class="col-form-label col-form-label-sm col-md-2">{{ __('Match Products') }}</label>
+    <div class="col-md-10">
+        @foreach($shippingCategoryMatchingConditions as $key => $value)
+            <div class="form-check form-check-inline {{ $errors->has('shipping_category_matching_condition') ? 'is-invalid' : '' }}">
+                {{ Form::radio('type', $key, $shippingMethod->shipping_category_matching_condition == $value, ['id' => "shipping_category_matching_condition_$key", 'x-model' => 'shippingCategoryMatchingCondition', 'class' => 'form-check-input' . ($errors->has('shipping_category_matching_condition') ? ' is-invalid': '')]) }}
+                <label class="form-check-label" for="shipping_category_matching_condition_{{ $key }}">{{ $value }}</label>
+            </div>
+        @endforeach
+
+        @if ($errors->has('shipping_category_matching_condition'))
+            <div class="invalid-feedback">{{ $errors->first('shipping_category_matching_condition') }}</div>
         @endif
     </div>
 </div>
@@ -134,3 +167,17 @@
         </div>
     </div>
 </div>
+</section>
+
+@push('scripts')
+    <script>
+        document.addEventListener('alpine:init', function() {
+            Alpine.data('shippingMethod', () => ({
+                shippingCategoryMatchingCondition: '{{ old('shipping_category_matching_condition') ?: $shippingMethod->shipping_category_matching_condition->value() }}',
+                isCategorySelected() {
+                    return false;
+                }
+            }))
+        })
+    </script>
+@endpush

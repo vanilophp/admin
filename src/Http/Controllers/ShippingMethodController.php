@@ -21,6 +21,8 @@ use Vanilo\Admin\Contracts\Requests\CreateShippingMethod;
 use Vanilo\Admin\Contracts\Requests\UpdateShippingMethod;
 use Vanilo\Shipment\Contracts\ShippingMethod;
 use Vanilo\Shipment\Models\CarrierProxy;
+use Vanilo\Shipment\Models\ShippingCategoryMatchingConditionProxy;
+use Vanilo\Shipment\Models\ShippingCategoryProxy;
 use Vanilo\Shipment\Models\ShippingMethodProxy;
 use Vanilo\Shipment\Models\TimeUnit;
 use Vanilo\Shipment\ShippingFeeCalculators;
@@ -54,6 +56,8 @@ class ShippingMethodController extends BaseController
             'shippingMethod' => $shippingMethod,
             'carriers' => CarrierProxy::all(),
             'zones' => Zones::withShippingScope()->get(),
+            'shippingCategories' => ShippingCategoryProxy::all(),
+            'shippingCategoryMatchingConditions' => ShippingCategoryMatchingConditionProxy::choices(),
             'calculators' => ShippingFeeCalculators::choices(),
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
             'channels' => $this->channelsForUi(),
