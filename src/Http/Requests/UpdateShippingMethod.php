@@ -17,7 +17,6 @@ namespace Vanilo\Admin\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Vanilo\Admin\Contracts\Requests\UpdateShippingMethod as UpdateShippingMethodContract;
-use Vanilo\Shipment\Models\ShippingCategoryMatchingCondition;
 use Vanilo\Shipment\Models\ShippingCategoryMatchingConditionProxy;
 use Vanilo\Shipment\Models\TimeUnit;
 use Vanilo\Shipment\ShippingFeeCalculators;
@@ -41,6 +40,11 @@ class UpdateShippingMethod extends FormRequest implements UpdateShippingMethodCo
         ];
     }
 
+    public function authorize()
+    {
+        return true;
+    }
+
     protected function prepareForValidation()
     {
         if (!$this->filled('shipping_category_id')) {
@@ -48,10 +52,5 @@ class UpdateShippingMethod extends FormRequest implements UpdateShippingMethodCo
                 'shipping_category_matching_condition' => null,
             ]);
         }
-    }
-
-    public function authorize()
-    {
-        return true;
     }
 }
