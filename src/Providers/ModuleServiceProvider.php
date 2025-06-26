@@ -248,6 +248,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
             ProductStateProxy::enumClass(),
             [
                 ProductState::DRAFT => ThemeColor::SECONDARY(),
+                ProductState::UNLISTED => ThemeColor::INFO(),
                 ProductState::INACTIVE => ThemeColor::SECONDARY(),
                 ProductState::ACTIVE => ThemeColor::SUCCESS(),
                 ProductState::UNAVAILABLE => ThemeColor::WARNING(),
