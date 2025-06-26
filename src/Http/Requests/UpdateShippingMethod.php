@@ -17,6 +17,7 @@ namespace Vanilo\Admin\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Vanilo\Admin\Contracts\Requests\UpdateShippingMethod as UpdateShippingMethodContract;
+use Vanilo\Shipment\Models\ShippingCategoryMatchingConditionProxy;
 use Vanilo\Shipment\Models\TimeUnit;
 use Vanilo\Shipment\ShippingFeeCalculators;
 
@@ -34,11 +35,22 @@ class UpdateShippingMethod extends FormRequest implements UpdateShippingMethodCo
             'eta_min' => 'sometimes|nullable|integer',
             'eta_max' => 'sometimes|nullable|integer',
             'eta_units' => ['sometimes', 'nullable', Rule::enum(TimeUnit::class)],
+            'shipping_category_id' => 'sometimes|nullable|exists:shipping_categories,id',
+            'shipping_category_matching_condition' => ['sometimes', 'nullable', Rule::in(ShippingCategoryMatchingConditionProxy::values())]
         ];
     }
 
     public function authorize()
     {
         return true;
+    }
+
+    protected function prepareForValidation()
+    {
+        if (!$this->filled('shipping_category_id')) {
+            $this->merge([
+                'shipping_category_matching_condition' => null,
+            ]);
+        }
     }
 }
