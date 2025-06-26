@@ -87,10 +87,12 @@
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Match Products') }}</label>
     <div class="col-md-10">
         @foreach($shippingCategoryMatchingConditions as $key => $value)
+            @unless(is_null($key))
             <div class="form-check form-check-inline {{ $errors->has('shipping_category_matching_condition') ? 'is-invalid' : '' }}">
                 {{ Form::radio('shipping_category_matching_condition', $key, $shippingMethod->shipping_category_matching_condition && $shippingMethod->shipping_category_matching_condition->value() == $key, ['id' => "shipping_category_matching_condition_$key", 'x-model' => 'shippingCategoryMatchingCondition', 'class' => 'form-check-input' . ($errors->has('shipping_category_matching_condition') ? ' is-invalid': '')]) }}
                 <label class="form-check-label" for="shipping_category_matching_condition_{{ $key }}">{{ $value }}</label>
             </div>
+            @endunless
         @endforeach
 
         @if ($errors->has('shipping_category_matching_condition'))
@@ -174,8 +176,8 @@
     <script>
         document.addEventListener('alpine:init', function() {
             Alpine.data('shippingMethod', () => ({
-                shippingCategoryMatchingCondition: '{{ old('shipping_category_matching_condition') ?: ($shippingMethod->shipping_category_matching_condition ? $shippingMethod->shipping_category_matching_condition->value() : 'none') }}',
-                selectedShippingCategory: '{{ old('shipping_category_id') ?: ($shippingMethod->shipping_category_id ?? '') }}',
+                shippingCategoryMatchingCondition: @json(old('shipping_category_matching_condition') ?: $shippingMethod->shipping_category_matching_condition?->value()),
+                selectedShippingCategory: @json(old('shipping_category_id') ?: $shippingMethod->shipping_category_id),
                 isCategorySelected() {
                     return this.selectedShippingCategory !== '';
                 }
