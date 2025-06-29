@@ -178,8 +178,8 @@
             Alpine.data('shippingMethod', () => ({
                 shippingCategoryMatchingCondition: @json(old('shipping_category_matching_condition') ?: $shippingMethod->shipping_category_matching_condition?->value()),
                 selectedShippingCategory: @json(old('shipping_category_id') ?: $shippingMethod->shipping_category_id),
-                isCategorySelected() {
-                    return this.selectedShippingCategory !== '';
+                get isCategorySelected() {
+                    return '' !== this.selectedShippingCategory && null !== this.selectedShippingCategory;
                 }
             }))
         })
