@@ -10,6 +10,7 @@
 - Added Laravel 12 Support
 - Added the `gtin` field to the product and master product variant forms
 - Added sorting and filtering options to the Product index
+- Added support for displaying sub order-items in a distinguishable manner on the order show page
 - Added ETA fields to the Shipping Method forms
 - Added Info Widgets to the Channel Show Page
 - Added the `order/show/_extra_actions` partial so that apps can add buttons to the order show page

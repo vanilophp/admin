@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Vanilo\Admin\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Konekt\Address\Models\CountryProxy;
 use Konekt\AppShell\Filters\Filters;
@@ -75,6 +76,7 @@ class OrderController extends BaseController
 
         return view("vanilo::order.$view", $this->processViewData(__METHOD__, [
             'order' => $order,
+            'sortedItems' => $this->sortItemsByParent($order->getItems()),
             'hasItemAdjustments' => !empty($existingItemAdjustmentTypes),
             'itemAdjustmentTypes' => $existingItemAdjustmentTypes,
             'countries' => CountryProxy::orderBy('name')->pluck('name', 'id'),
@@ -179,6 +181,26 @@ class OrderController extends BaseController
         }
 
         return Filters::make(array_merge($filters, [new OrderStatusFilter()]));
+    }
+
+    protected function sortItemsByParent(Collection $items): Collection
+    {
+        $grouped = $items->sortBy('id')->groupBy('parent_id');
+
+        $result = collect();
+
+        $addChildren = function ($parentId) use (&$addChildren, $grouped, &$result) {
+            $children = $grouped->get($parentId, collect());
+
+            foreach ($children as $child) {
+                $result->push($child);
+                $addChildren($child->id);
+            }
+        };
+
+        $addChildren(null);
+
+        return $result;
     }
 
     private function getStatusUpdateEventClass(string $status, Order $order): ?OrderAwareEvent

@@ -19,13 +19,16 @@
         </thead>
 
         <tbody>
-        @foreach($order->getItems() as $item)
+        @foreach($sortedItems as $item)
             <tr>
                 <td>
                     <input type="checkbox" name="order_item[{{$item->id}}]" />
                 </td>
                 <td>{{ $loop->iteration }}</td>
                 <td>@if($item->product)
+                        @if($item->hasParent())
+                            <span style="cursor: pointer;" title="{{ __('Sub-item of :parent', ['parent' => $item->getParent()?->name ?? "#{$item->id}"]) }}">&rdsh;</span>
+                        @endif
                         @if($item->product->masterProduct)
                             <a href="{{ route('vanilo.admin.master_product.show', $item->product->masterProduct) }}">{{ $item->name }}</a>
                         @else
