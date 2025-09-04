@@ -8,17 +8,12 @@
 
 This is the Vanilo Admin package that used to be the part of the `vanilo/framework` package in versions 0.x, 1.x and 2.x.
 
-## Development Version
+## Stable Version
 
-> [!WARNING]  
-> You are browsing the unstable, v5.x version of this repository!
->
-> Do not use this branch in any real projects yet, as it's a subject of heavy changes!
+#### 5.x
 
-> [!NOTE]  
-> Vanilo v5 is expected to be released in April 2025, but there's no final deadline yet.
-
-For the stable version see the `4.x` branch.
+The latest stable release is **5.0.0**, and it was released on September 4th, 2025.
+Vanilo v5 supports Laravel 10.48, 11.x and 12.x versions and PHP 8.3 - 8.4
 
 ## Further Information
 
