@@ -2,11 +2,11 @@
 
 ## 5.x Series
 
-## Unreleased
-##### 2025-04-XX
+## 5.0.0
+##### 2025-09-04
 
 - Dropped PHP 8.2 Support
-- ~~Dropped Laravel 10 Support~~
+- Changed the minimum Laravel version to v10.48
 - Added Laravel 12 Support
 - Added the `gtin` field to the product and master product variant forms
 - Added sorting and filtering options to the Product index
