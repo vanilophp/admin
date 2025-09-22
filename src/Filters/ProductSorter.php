@@ -28,12 +28,17 @@ class ProductSorter implements Filter
     public const LAST_SALE_DESC = 'most_recent_sales';
     public const LAST_SALE_ASC = 'least_recent_sales';
 
+    public const PRIORITY_DESC = 'priority_desc';
+    public const PRIORITY_ASC = 'priority_asc';
+
     public function __construct()
     {
         $this->id = 'order_by';
         $this->possibleValues = [
             self::CREATED_DESC => __('Newest first'),
             self::CREATED_ASC => __('Oldest first'),
+            self::PRIORITY_DESC => __('Priority order'),
+            self::PRIORITY_ASC => __('Priority reverse'),
             self::NAME_ASC => __('Name (A-Z)'),
             self::NAME_DESC => __('Name (Z-A)'),
             self::SALES_ASC => __('Least sold first'),

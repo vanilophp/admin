@@ -6,6 +6,7 @@
 ##### 2025-XX-YY
 
 - Added the new `priority` field to the product/master/variant screens
+- Added sorting by priority to the product list 
 
 ## 5.0.0
 ##### 2025-09-04
