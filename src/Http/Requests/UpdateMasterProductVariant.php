@@ -34,6 +34,7 @@ class UpdateMasterProductVariant extends FormRequest implements UpdateMasterProd
             'backorder' => 'nullable|numeric|min:0',
             'excerpt' => 'sometimes|nullable|max:8192',
             'description' => 'sometimes|nullable|max:32768',
+            'priority' => 'sometimes|integer',
             'images' => 'nullable',
             'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
             'state' => ['sometimes', 'nullable', Rule::in(ProductStateProxy::values())],

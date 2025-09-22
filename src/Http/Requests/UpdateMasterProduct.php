@@ -31,6 +31,7 @@ class UpdateMasterProduct extends FormRequest implements UpdateMasterProductCont
             'price' => 'nullable|numeric',
             'original_price' => 'nullable|numeric',
             'description' => 'nullable|string',
+            'priority' => 'sometimes|integer',
             'images' => 'nullable',
             'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp'
         ];

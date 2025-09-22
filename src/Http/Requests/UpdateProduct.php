@@ -36,6 +36,7 @@ class UpdateProduct extends FormRequest implements UpdateProductContract
             'original_price' => 'sometimes|nullable|numeric',
             'stock' => 'nullable|numeric',
             'backorder' => 'nullable|numeric|min:0',
+            'priority' => 'sometimes|integer',
             'images' => 'nullable',
             'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
             'gtin' => ['bail', 'sometimes', 'nullable', new MustBeAValidGtin()],

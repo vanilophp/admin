@@ -33,6 +33,7 @@ class CreateMasterProduct extends FormRequest implements CreateMasterProductCont
             'price' => 'nullable|numeric',
             'original_price' => 'nullable|numeric',
             'description' => 'nullable|string',
+            'priority' => 'sometimes|nullable|integer',
             'images' => 'nullable',
             'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
             'channels' => 'sometimes|array',

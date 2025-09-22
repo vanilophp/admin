@@ -2,6 +2,11 @@
 
 ## 5.x Series
 
+## Unreleased
+##### 2025-XX-YY
+
+- Added the new `priority` field to the product/master/variant screens
+
 ## 5.0.0
 ##### 2025-09-04
 

@@ -39,6 +39,20 @@
     </div>
 
     <div class="my-3 col-md-6 col-xl-4">
+        <label class="form-control-label">{{ __('Priority') }}</label>
+        <div>
+            {{ Form::number('priority', null, [
+                        'class' => 'form-control form-control-sm' . ($errors->has('priority') ? ' is-invalid': ''),
+                        'placeholder' => __('Priority')
+                    ])
+                }}
+            @if ($errors->has('priority'))
+                <div class="invalid-feedback">{{ $errors->first('priority') }}</div>
+            @endif
+        </div>
+    </div>
+
+    <div class="my-3 col-md-6 col-xl-4">
         <label class="form-control-label">{{ __('Shipping Category') }}</label>
         <div>
             {{ Form::select('shipping_category_id', $shippingCategories->pluck('name', 'id'), null, [
@@ -51,6 +65,8 @@
             @endif
         </div>
     </div>
+
+
 </div>
 
 <hr>

@@ -71,6 +71,16 @@ return [
                     'items' => '$model.channels',
                 ]
             ],
+            'priority' => [
+                'title' => __('Priority'),
+                'valign' => 'middle',
+                'align' => 'center',
+                'widget' => [
+                    'type' => 'text',
+                    'color' => 'secondary',
+                    'text' => fn ($product) => 0 === $product->priority ? '0' : $product->priority,
+                ]
+            ],
             'state' => [
                 'title' => __('Status'),
                 'valign' => 'middle',
