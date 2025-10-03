@@ -37,9 +37,11 @@
                     {{ $order->shippingMethod->name }}
                 </x-appshell::button>
 
+                @if(null !== $order->shipping_address_id)
                 <x-appshell::button size="xs" variant="secondary" data-bs-toggle="modal" data-bs-target="#update-shipping-address-modal">
                     {{ __('Modify') }}
                 </x-appshell::button>
+                @endif
             </x-slot:actions>
         @endif
 
@@ -58,7 +60,9 @@
 </div>
 
 @include('vanilo::order.show._update_billpayer_modal')
-@include('vanilo::order.show._update_shipping_address_modal')
+@if(null !== $order->shipping_address_id)
+    @include('vanilo::order.show._update_shipping_address_modal')
+@endif
 
 @if(session('updateBillpayerValidationError'))
     <script>

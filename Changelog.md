@@ -7,6 +7,7 @@
 
 - Added the new `priority` field to the product/master/variant screens
 - Added sorting by priority to the product list 
+- Fixed the `Attempt to read property "name" on null` error when displaying orders without shipping address
 
 ## 5.0.0
 ##### 2025-09-04
