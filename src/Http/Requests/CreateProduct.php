@@ -48,10 +48,17 @@ class CreateProduct extends FormRequest implements CreateProductContract
         return true;
     }
 
-    protected function prepareForValidation()
+    protected function prepareForValidation(): void
     {
         $this->merge([
             'stock' => $this->stock ?? 0,
         ]);
+
+        // Do not force the user to enter a priority when we can default it to zero
+        if ($this->has('priority') && is_null($this->input('priority'))) {
+            $this->merge([
+                'priority' => 0,
+            ]);
+        }
     }
 }

@@ -44,4 +44,14 @@ class CreateMasterProduct extends FormRequest implements CreateMasterProductCont
     {
         return true;
     }
+
+    protected function prepareForValidation(): void
+    {
+        // Do not force the user to enter a priority when we can default it to zero
+        if ($this->has('priority') && is_null($this->input('priority'))) {
+            $this->merge([
+                'priority' => 0,
+            ]);
+        }
+    }
 }

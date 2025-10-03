@@ -45,6 +45,7 @@ class MasterProductVariantController extends BaseController
                     [
                         'master_product_id' => $masterProduct->id,
                         'tax_category_id' => $masterProduct->tax_category_id,
+                        'priority' => 0,
                     ],
                     $request->except('images')
                 )

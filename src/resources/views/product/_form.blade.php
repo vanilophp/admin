@@ -101,7 +101,7 @@
 </div>
 
 <div class="mb-3">
-    <?php $extraHasErrors = any_key_exists($errors->toArray(), ['slug', 'excerpt']) ?>
+    <?php $extraHasErrors = any_key_exists($errors->toArray(), ['slug', 'excerpt', 'priority']) ?>
     <h5><a data-bs-toggle="collapse" href="#product-form-extra" class="collapse-toggler-heading"
            @if ($extraHasErrors)
                aria-expanded="true"
