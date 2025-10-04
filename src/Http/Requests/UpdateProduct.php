@@ -64,7 +64,7 @@ class UpdateProduct extends FormRequest implements UpdateProductContract
     public function attributesForCreate(): array
     {
         $except = ['id', 'deleted_at', 'updated_at', 'created_at', 'units_sold', 'last_sale_at'];
-        return $this->validated(array_keys($this->rules()),['']);
+        return $this->validated(array_keys($this->rules()), ['']);
     }
 
     protected function prepareForValidation()
