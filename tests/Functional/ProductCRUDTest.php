@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Tests\Functional;
 
+use PHPUnit\Framework\Attributes\Test;
 use Vanilo\Foundation\Models\Product;
 use Vanilo\Product\Models\ProductState;
 
 class ProductCRUDTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_list_active_products()
     {
         $productA = Product::create([
@@ -46,7 +47,7 @@ class ProductCRUDTest extends TestCase
         $response->assertSee($productC->sku);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_list_only_active_products()
     {
         Product::create([
@@ -70,7 +71,7 @@ class ProductCRUDTest extends TestCase
         $response->assertDontSee('BMW X6');
     }
 
-    /** @test */
+    #[Test]
     public function the_new_product_form_can_be_displayed()
     {
         $response = $this->actingAs($this->admin)->get(route('vanilo.admin.product.create'));
@@ -86,7 +87,7 @@ class ProductCRUDTest extends TestCase
         $response->assertSee('Create new product');
     }
 
-    /** @test */
+    #[Test]
     public function the_product_edit_form_can_be_displayed()
     {
         $product = Product::create([
@@ -113,7 +114,7 @@ class ProductCRUDTest extends TestCase
         $response->assertSee('Save');
     }
 
-    /** @test */
+    #[Test]
     public function a_product_can_be_deleted()
     {
         $product = Product::create([

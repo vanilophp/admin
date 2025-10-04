@@ -14,9 +14,11 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class ModulesTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function all_vanilo_modules_are_loaded()
     {
         $modules = $this->app->concord

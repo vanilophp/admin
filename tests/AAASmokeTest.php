@@ -14,24 +14,21 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Tests;
 
+use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Test;
+
 class AAASmokeTest extends TestCase
 {
-    public const MIN_PHP_VERSION = '8.0.0';
+    public const MIN_PHP_VERSION = '8.2.0';
 
-    /**
-     * @test
-     */
+    #[Test]
     public function smoke()
     {
         $this->assertTrue(true);
     }
 
-    /**
-     * Test for minimum PHP version
-     *
-     * @depends smoke
-     * @test
-     */
+    #[Test]
+    #[Depends('smoke')]
     public function php_version_satisfies_requirements()
     {
         $this->assertFalse(
