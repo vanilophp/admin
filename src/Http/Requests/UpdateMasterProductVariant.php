@@ -22,23 +22,35 @@ use Vanilo\Support\Validation\Rules\MustBeAValidGtin;
 
 class UpdateMasterProductVariant extends FormRequest implements UpdateMasterProductVariantContract
 {
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required|min:1|max:255',
-            'sku' => 'required|unique:products',
+            'sku' => [
+                'required',
+                'max:255',
+                Rule::unique('master_product_variants')->ignore($this->route('masterProductVariant')->id),
+            ],
             'price' => 'nullable|numeric',
             'original_price' => 'sometimes|nullable|numeric',
-            'shipping_category_id' => 'sometimes|nullable|exists:shipping_categories,id',
+            'shipping_category_id' => 'sometimes|nullable|integer|exists:shipping_categories,id',
+            'tax_category_id' => 'sometimes|nullable|integer|exists:tax_categories,id', // This field is not present on the form
             'stock' => 'nullable|numeric',
             'backorder' => 'nullable|numeric|min:0',
-            'excerpt' => 'sometimes|nullable|max:8192',
-            'description' => 'sometimes|nullable|max:32768',
+            'excerpt' => 'sometimes|nullable|string|max:16383',
+            'description' => 'sometimes|nullable|string',
             'priority' => 'sometimes|integer',
             'images' => 'nullable',
             'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
             'state' => ['sometimes', 'nullable', Rule::in(ProductStateProxy::values())],
             'gtin' => ['bail', 'sometimes', 'nullable', new MustBeAValidGtin()],
+            'subtitle' => 'sometimes|nullable|string|max:255',
+            'slug' => 'sometimes|nullable|string|max:255',
+            'weight' => 'sometimes|nullable|numeric',
+            'height' => 'sometimes|nullable|numeric',
+            'width' => 'sometimes|nullable|numeric',
+            'length' => 'sometimes|nullable|numeric',
+            'custom_attributes' => 'sometimes|nullable|array',
         ];
     }
 

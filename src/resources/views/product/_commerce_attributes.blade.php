@@ -7,7 +7,7 @@
 <section x-data="commercialAttributes">
     <div class="row">
         <div class="my-3 col-md-6 col-xl-4">
-            <label class="form-control-label">{{ __('SKU') }}</label>
+            <label class="form-control-label">{{ __('SKU') }}*</label>
             <div class="input-group">
                 <span class="input-group-text">
                     {!! icon('sku') !!}
@@ -46,16 +46,7 @@
         <div class="py-3 col-md-6 col-xl-4 bg-light rounded-start rounded-xl-start-0 rounded-xl-top ">
             <label class="form-control-label">
                 {{ __('Backorder') }}
-                {!! icon(
-                        'help',
-                        'info',
-                        [
-                            'data-bs-toggle' => 'tooltip',
-                            'data-bs-placement' => 'right',
-                            'data-bs-title' => __('Backorder defines what happens once the stock has depleted')
-                        ]
-                    )
-                !!}
+                <x-vanilo::help-tooltip>{{ __('Backorder defines what happens once the stock has depleted') }}</x-vanilo::help-tooltip>
             </label>
 
             <div class="input-group mb-3">

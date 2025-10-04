@@ -16,56 +16,12 @@
     </div>
 </div>
 
-<hr>
-
-<div class="mb-3 row">
-    <div class="my-3 col-md-6 col-xl-4">
-        <label class="form-control-label">{{ __('State') }}</label>
-        <div>
-            {{ Form::select('state', $states, null, [
-                    'class' => 'form-select form-select-sm' . ($errors->has('state') ? ' is-invalid': ''),
-               ])
-            }}
-
-            @if ($errors->has('state'))
-                <div class="invalid-feedback">{{ $errors->first('state') }}</div>
-            @endif
-        </div>
-    </div>
-
-    <div class="my-3 col-md-6 col-xl-4">
-        <label class="form-control-label">{{ __('Tax Category') }}</label>
-        <div>
-            {{ Form::select('tax_category_id', $taxCategories->pluck('name', 'id'), null, [
-                    'class' => 'form-select form-select-sm' . ($errors->has('tax_category_id') ? ' is-invalid': ''),
-                    'placeholder' => __('--')
-               ])
-            }}
-            @if ($errors->has('tax_category_id'))
-                <div class="invalid-feedback">{{ $errors->first('tax_category_id') }}</div>
-            @endif
-        </div>
-    </div>
-
-    <div class="my-3 col-md-6 col-xl-4">
-        <label class="form-control-label">{{ __('Shipping Category') }}</label>
-        <div>
-            {{ Form::select('shipping_category_id', $shippingCategories->pluck('name', 'id'), null, [
-                    'class' => 'form-select form-select-sm' . ($errors->has('shipping_category_id') ? ' is-invalid': ''),
-                    'placeholder' => __('--')
-               ])
-            }}
-            @if ($errors->has('shipping_category_id'))
-                <div class="invalid-feedback">{{ $errors->first('shipping_category_id') }}</div>
-            @endif
-        </div>
-    </div>
-</div>
-
-<hr>
+<x-vanilo::collapsible-form-block name="name-settings" :label="__('Title & URL Settings')" label-size="6" :fields="['slug', 'ext_title', 'subtitle']">
+    @include('vanilo::product._name_settings')
+</x-vanilo::collapsible-form-block>
 
 <div class="row">
-    <div class="mb-3 col-12 col-md-6 col-xl-4">
+    <div class="my-3 col-12 col-md-6 col-xl-4">
         <label class="form-control-label">{{ __('Price') }}</label>
         <div class="input-group">
             {{ Form::text('price', null, [
@@ -83,7 +39,7 @@
         @endif
     </div>
 
-    <div class="mb-3 col-12 col-md-6 col-xl-4">
+    <div class="my-3 col-12 col-md-6 col-xl-4">
         <label class="form-control-label">{{ __('Original Price') }}</label>
         <div class="input-group">
             {{ Form::text('original_price', null, [
@@ -102,60 +58,45 @@
     </div>
 </div>
 
-<hr>
+<div class="px-2 bg-light rounded">
+    @include('vanilo::product._settings')
+</div>
 
 <div class="mb-3">
-    <label class="form-control-label">{{ __('Description') }}</label>
-
-    {{ Form::textarea('description', null,
+    <x-vanilo::collapsible-form-block name="description" :label="__('Description')" label-size="5" fields="description">
+        {{ Form::textarea('description', null,
             [
                 'class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''),
                 'placeholder' => __('Type or copy/paste product description here')
             ]
-    ) }}
+        ) }}
 
-    @if ($errors->has('description'))
-        <div class="invalid-feedback">{{ $errors->first('description') }}</div>
-    @endif
+        @if ($errors->has('description'))
+            <div class="invalid-feedback">{{ $errors->first('description') }}</div>
+        @endif
+    </x-vanilo::collapsible-form-block>
 </div>
 
-<hr>
+<div class="mb-3">
+    <x-vanilo::collapsible-form-block name="short-description" :label="__('Short Description')" label-size="5" fields="excerpt">
+        {{ Form::textarea('excerpt', null, [
+            'class' => 'form-control form-control-sm' . ($errors->has('excerpt') ? ' is-invalid' : ''),
+            'placeholder' => __('Short Description'),
+            'rows' => 4
+            ])
+        }}
+        @if ($errors->has('excerpt'))
+            <div class="invalid-feedback">{{ $errors->first('excerpt') }}</div>
+        @endif
+    </x-vanilo::collapsible-form-block>
+</div>
+
+<div class="mb-3">
+    <x-vanilo::collapsible-form-block name="seo" :label="__('SEO')" label-size="5" fields="meta_description,meta_keywords,gtin">
+        @include('vanilo::product._form_seo')
+    </x-vanilo::collapsible-form-block>
+</div>
 
 @if($product->exists)
     @include('vanilo::master-product._variants')
 @endif
-
-<div class="mb-3">
-    <?php $seoHasErrors = any_key_exists($errors->toArray(), ['ext_title', 'meta_description', 'meta_keywords']) ?>
-    <h5><a data-bs-toggle="collapse" href="#product-form-seo" class="collapse-toggler-heading"
-           @if ($seoHasErrors)
-               aria-expanded="true"
-            @endif
-        >{!! icon('>') !!} {{ __('SEO') }}</a></h5>
-
-    <div id="product-form-seo" class="collapse{{ $seoHasErrors ? ' show' : '' }}">
-        <div class="callout">
-
-            @include('vanilo::product._form_seo')
-
-        </div>
-    </div>
-</div>
-
-<div class="mb-3">
-    <?php $extraHasErrors = any_key_exists($errors->toArray(), ['slug', 'excerpt', 'priority']) ?>
-    <h5><a data-bs-toggle="collapse" href="#product-form-extra" class="collapse-toggler-heading"
-           @if ($extraHasErrors)
-               aria-expanded="true"
-            @endif
-        >{!! icon('>') !!} {{ __('Extra Settings') }}</a></h5>
-
-    <div id="product-form-extra" class="collapse{{ $extraHasErrors ? ' show' : '' }}">
-        <div class="callout">
-
-            @include('vanilo::product._form_extra')
-
-        </div>
-    </div>
-</div>
-

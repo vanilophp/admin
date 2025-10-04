@@ -5,8 +5,12 @@
 ## Unreleased
 ##### 2025-XX-YY
 
-- Added the new `priority` field to the product/master/variant screens
-- Added sorting by priority to the product list 
+- Added the new `priority` and `subtitle` fields to the product/master/variant screens
+- Added sorting by priority to the product list
+- Added validation rule for every product/master/variant field in create/update request classes
+- Improved the product/master/variant forms by slight field reorganization and grouping
+- Changed the minimum product name length from 2 to 1 (eg. when a t-shirt is of size "S")
+- Changed the product/master/variant create/update actions to use `validated()` instead of `all()`
 - Fixed the `Attempt to read property "name" on null` error when displaying orders without shipping address
 - Fixed the error shown when trying to create a product with an empty `priority` field
 - Fixed the invisible validation error due to the collapsed block when the `priority` field is invalid on product forms

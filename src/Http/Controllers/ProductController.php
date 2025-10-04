@@ -16,6 +16,8 @@ namespace Vanilo\Admin\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\LazyCollection;
 use Konekt\AppShell\Filters\Filters;
@@ -129,7 +131,13 @@ class ProductController extends BaseController
         try {
             DB::beginTransaction();
 
-            $product = ProductProxy::create($request->except(['images', 'channels']));
+            $attributes = $request->validated();
+            $attributes = match (true) {
+                is_array($attributes) => Arr::except($attributes, ['images', 'channels']),
+                $attributes instanceof Collection => $attributes->except(['images', 'channels']),
+                default => $attributes,
+            };
+            $product = ProductProxy::create($attributes);
             if (Features::isMultiChannelEnabled()) {
                 $product->assignChannels($request->channels());
             }
@@ -184,7 +192,7 @@ class ProductController extends BaseController
     public function update(Product $product, UpdateProduct $request)
     {
         try {
-            $product->update($request->all());
+            $product->update($request->validated());
 
             flash()->success(__(':name has been updated', ['name' => $product->name]));
         } catch (\Exception $e) {

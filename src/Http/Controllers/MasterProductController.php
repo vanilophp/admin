@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Http\Controllers;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateMasterProduct;
@@ -61,7 +63,13 @@ class MasterProductController extends BaseController
         try {
             DB::beginTransaction();
 
-            $product = MasterProductProxy::create($request->except('images'));
+            $attributes = $request->validated();
+            $attributes = match (true) {
+                is_array($attributes) => Arr::except($attributes, ['images', 'channels']),
+                $attributes instanceof Collection => $attributes->except(['images', 'channels']),
+                default => $attributes,
+            };
+            $product = MasterProductProxy::create($attributes);
             if (Features::isMultiChannelEnabled()) {
                 $product->assignChannels($request->channels());
             }
@@ -107,7 +115,7 @@ class MasterProductController extends BaseController
         try {
             DB::transaction(function () use ($product, $request) {
                 $wantsTaxCategoryUpdate = $product->tax_category_id !== $request->input('tax_category_id');
-                $product->update($request->all());
+                $product->update($request->validated());
 
                 if ($wantsTaxCategoryUpdate) {
                     $product->variants()->update(['tax_category_id' => $request->input('tax_category_id')]);

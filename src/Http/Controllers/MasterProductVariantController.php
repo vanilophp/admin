@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Http\Controllers;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateMasterProductVariant;
 use Vanilo\Admin\Contracts\Requests\UpdateMasterProductVariant;
@@ -40,6 +42,12 @@ class MasterProductVariantController extends BaseController
     public function store(MasterProduct $masterProduct, CreateMasterProductVariant $request)
     {
         try {
+            $attributes = $request->validated();
+            $attributes = match (true) {
+                is_array($attributes) => Arr::except($attributes, ['images']),
+                $attributes instanceof Collection => $attributes->except(['images']),
+                default => $attributes,
+            };
             $variant = MasterProductVariantProxy::create(
                 array_merge(
                     [
@@ -47,7 +55,7 @@ class MasterProductVariantController extends BaseController
                         'tax_category_id' => $masterProduct->tax_category_id,
                         'priority' => 0,
                     ],
-                    $request->except('images')
+                    $attributes,
                 )
             );
             $masterProduct->touch();
@@ -99,7 +107,7 @@ class MasterProductVariantController extends BaseController
     public function update(MasterProduct $masterProduct, MasterProductVariant $masterProductVariant, UpdateMasterProductVariant $request)
     {
         try {
-            $masterProductVariant->update($request->all());
+            $masterProductVariant->update($request->validated());
             $masterProduct->touch();
 
             flash()->success(__(':name has been updated', ['name' => $masterProductVariant->name]));

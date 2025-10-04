@@ -23,14 +23,14 @@ class CreateProduct extends FormRequest implements CreateProductContract
 {
     use HasChannels;
 
-    public function rules()
+    public function rules(): array
     {
         return [
-            'name' => 'required|min:2|max:255',
-            'sku' => 'required|unique:products',
-            'state' => ['required', Rule::in(ProductStateProxy::values())],
-            'tax_category_id' => 'sometimes|nullable|exists:tax_categories,id',
-            'shipping_category_id' => 'sometimes|nullable|exists:shipping_categories,id',
+            'name' => 'required|min:1|max:255',
+            'sku' => 'required|max:255|unique:products',
+            'state' => ['required', 'max:255', Rule::in(ProductStateProxy::values())],
+            'tax_category_id' => 'sometimes|nullable|integer|exists:tax_categories,id',
+            'shipping_category_id' => 'sometimes|nullable|integer|exists:shipping_categories,id',
             'price' => 'nullable|numeric',
             'original_price' => 'sometimes|nullable|numeric',
             'stock' => 'nullable|numeric',
@@ -40,6 +40,18 @@ class CreateProduct extends FormRequest implements CreateProductContract
             'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
             'channels' => 'sometimes|array',
             'gtin' => ['bail', 'sometimes', 'nullable', new MustBeAValidGtin()],
+            'excerpt' => 'sometimes|nullable|string|max:16383',
+            'meta_keywords' => 'sometimes|nullable|string|max:2047',
+            'meta_description' => 'sometimes|nullable|string|max:4095',
+            'ext_title' => 'sometimes|nullable|string|max:511',
+            'subtitle' => 'sometimes|nullable|string|max:255',
+            'slug' => 'sometimes|nullable|string|max:255',
+            'description' => 'sometimes|nullable|string',
+            'weight' => 'sometimes|nullable|numeric',
+            'height' => 'sometimes|nullable|numeric',
+            'width' => 'sometimes|nullable|numeric',
+            'length' => 'sometimes|nullable|numeric',
+            'custom_attributes' => 'sometimes|nullable|array',
         ];
     }
 

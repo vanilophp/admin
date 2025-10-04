@@ -23,13 +23,13 @@ class CreateMasterProduct extends FormRequest implements CreateMasterProductCont
 {
     use HasChannels;
 
-    public function rules()
+    public function rules(): array
     {
         return [
-            'name' => 'required|min:2|max:255',
-            'state' => ['required', Rule::in(ProductStateProxy::values())],
-            'tax_category_id' => 'sometimes|nullable|exists:tax_categories,id',
-            'shipping_category_id' => 'sometimes|nullable|exists:shipping_categories,id',
+            'name' => 'required|min:1|max:255',
+            'state' => ['required', 'max:255', Rule::in(ProductStateProxy::values())],
+            'tax_category_id' => 'sometimes|nullable|integer|exists:tax_categories,id',
+            'shipping_category_id' => 'sometimes|nullable|integer|exists:shipping_categories,id',
             'price' => 'nullable|numeric',
             'original_price' => 'nullable|numeric',
             'description' => 'nullable|string',
@@ -37,6 +37,17 @@ class CreateMasterProduct extends FormRequest implements CreateMasterProductCont
             'images' => 'nullable',
             'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
             'channels' => 'sometimes|array',
+            'excerpt' => 'sometimes|nullable|string|max:16383',
+            'ext_title' => 'sometimes|nullable|string|max:511',
+            'subtitle' => 'sometimes|nullable|string|max:255',
+            'slug' => 'sometimes|nullable|string|max:255',
+            'meta_keywords' => 'sometimes|nullable|string|max:2047',
+            'meta_description' => 'sometimes|nullable|string|max:4095',
+            'weight' => 'sometimes|nullable|numeric',
+            'height' => 'sometimes|nullable|numeric',
+            'width' => 'sometimes|nullable|numeric',
+            'length' => 'sometimes|nullable|numeric',
+            'custom_attributes' => 'sometimes|nullable|array',
         ];
     }
 

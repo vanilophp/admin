@@ -22,23 +22,31 @@ use Vanilo\Support\Validation\Rules\MustBeAValidGtin;
 
 class CreateMasterProductVariant extends FormRequest implements CreateMasterProductVariantContract
 {
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required|min:1|max:255',
-            'sku' => 'required|unique:products',
-            'shipping_category_id' => 'sometimes|nullable|exists:shipping_categories,id',
+            'sku' => 'required|max:255|unique:master_product_variants',
+            'shipping_category_id' => 'sometimes|nullable|integer|exists:shipping_categories,id',
+            'tax_category_id' => 'sometimes|nullable|integer|exists:tax_categories,id', // This field is not present on the form
             'price' => 'nullable|numeric',
             'original_price' => 'sometimes|nullable|numeric',
             'stock' => 'nullable|numeric',
             'priority' => 'sometimes|nullable|integer',
             'backorder' => 'nullable|numeric|min:0',
-            'excerpt' => 'sometimes|nullable|max:8192',
-            'description' => 'sometimes|nullable|max:32768',
+            'excerpt' => 'sometimes|nullable|string|max:16383',
+            'description' => 'sometimes|nullable|string',
             'images' => 'nullable',
             'images.*' => 'image|mimes:jpg,jpeg,pjpg,png,gif,webp',
             'state' => ['sometimes', 'nullable', Rule::in(ProductStateProxy::values())],
             'gtin' => ['bail', 'sometimes', 'nullable', new MustBeAValidGtin()],
+            'subtitle' => 'sometimes|nullable|string|max:255',
+            'slug' => 'sometimes|nullable|string|max:255',
+            'weight' => 'sometimes|nullable|numeric',
+            'height' => 'sometimes|nullable|numeric',
+            'width' => 'sometimes|nullable|numeric',
+            'length' => 'sometimes|nullable|numeric',
+            'custom_attributes' => 'sometimes|nullable|array',
         ];
     }
 
