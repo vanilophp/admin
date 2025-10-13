@@ -53,6 +53,8 @@ class ChannelController extends BaseController
             'shippingZones' => Zones::withShippingScope()->get(),
             'domains' => null,
             'languages' => $this->getLanguages(),
+            'sidebarWidgets' => [],
+            'formWidgets' => [],
         ]));
     }
 
@@ -94,6 +96,8 @@ class ChannelController extends BaseController
             'shippingZones' => Zones::withShippingScope()->get(),
             'domains' => null,
             'languages' => $this->getLanguages(),
+            'sidebarWidgets' => [],
+            'formWidgets' => [],
         ]));
     }
 

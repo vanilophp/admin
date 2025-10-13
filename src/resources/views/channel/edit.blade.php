@@ -10,7 +10,8 @@
         'method' => 'PUT'
     ])
 !!}
-
+<div class="row">
+    <div class="col col-md-8">
     <x-appshell::card accent="secondary">
         <x-slot:title>{{ __('Channel Details') }}</x-slot:title>
 
@@ -22,6 +23,13 @@
         </x-slot:footer>
 
     </x-appshell::card>
+    </div>
 
+    <div class="col col-md-4">
+        @foreach($sidebarWidgets ?? [] as $widget)
+            @include($widget)
+        @endforeach
+    </div>
+</div>
 {!! Form::close() !!}
 @stop

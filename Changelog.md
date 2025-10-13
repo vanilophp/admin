@@ -7,6 +7,7 @@
 
 - Added the new `priority` and `subtitle` fields to the product/master/variant screens
 - Added sorting by priority to the product list
+- Added support for additional sidebar and form widgets to the create/update channel screens
 - Added validation rule for every product/master/variant field in create/update request classes
 - Improved the product/master/variant forms by slight field reorganization and grouping
 - Changed the minimum product name length from 2 to 1 (eg. when a t-shirt is of size "S")

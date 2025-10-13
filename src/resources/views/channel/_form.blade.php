@@ -151,3 +151,12 @@
     <hr class="mt-5">
     @include('vanilo::pricelist._select')
 @endif
+
+@foreach($formWidgets ?? [] as $widget)
+    @include($widget)
+@endforeach
+
+@push('onload-scripts')
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+@endpush()
