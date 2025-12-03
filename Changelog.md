@@ -2,8 +2,8 @@
 
 ## 5.x Series
 
-## Unreleased
-##### 2025-XX-YY
+## 5.1.0
+##### 2025-12-03
 
 - Added the new `priority` and `subtitle` fields to the product/master/variant screens
 - Added sorting by priority to the product list
