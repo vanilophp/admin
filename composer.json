@@ -20,7 +20,7 @@
         "ext-pdo": "*",
         "laravel/framework": "^10.48|^11.46.2|^12.38",
         "konekt/address": "^3.5.1",
-        "konekt/appshell": "^>=4.8,<4.16.0 || >=4.16.1",
+        "konekt/appshell": ">=4.8,<4.16.0 || >=4.16.1",
         "konekt/gears": "^1.13",
         "konekt/concord": "^1.15",
         "spatie/laravel-medialibrary": "^11.0",
