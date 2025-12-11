@@ -2,10 +2,10 @@
 
 ## 5.x Series
 
-## Unreleased
-##### 2025-XX-YY
+## 5.1.2
+##### 2025-12-11
 
-- Fixed errors with AppShell v4.16
+- Fixed errors with AppShell v4.16.0 (excluded the specific version)
 
 ## 5.1.1
 ##### 2025-12-03
