@@ -38,7 +38,7 @@ return [
                 'title' => __('Used'),
                 'widget' => [
                     'type' => 'badge',
-                    'color' => fn ($count) => 0 > $count ? 'primary' : 'secondary',
+                    'color' => fn ($model) => 0 > (is_int($model) ? $model : $model->usage_count) ? 'primary' : 'secondary',
                     'text' => '$model.usage_count',
                     'suffix' => __(' times'),
                 ],
