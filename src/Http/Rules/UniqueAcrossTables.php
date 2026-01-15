@@ -16,7 +16,8 @@ class UniqueAcrossTables implements ValidationRule
     public function __construct(
         protected array $tables,
         protected string $column
-    ) {}
+    ) {
+    }
 
     public function ignore(string $table, string|int $id): static
     {
@@ -37,7 +38,7 @@ class UniqueAcrossTables implements ValidationRule
         foreach ($this->tables as $table) {
             $query = DB::table($table)->where($column, $value);
             if (!empty($ignore = $this->ignore[$table] ?? null)) {
-                match(sizeof($ignore)) {
+                match (sizeof($ignore)) {
                     1 => $query->where('id', '!=', Arr::first($ignore)),
                     default => $query->whereNotIn('id', $ignore),
                 };
