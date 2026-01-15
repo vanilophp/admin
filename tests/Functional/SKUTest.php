@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Functional;
+namespace Vanilo\Admin\Tests\Functional;
 
 use Illuminate\Support\Str;
 use PHPUnit\Framework\Attributes\Test;
-use Vanilo\Admin\Tests\Functional\TestCase;
 use Vanilo\Foundation\Models\MasterProduct;
 use Vanilo\Foundation\Models\MasterProductVariant;
 use Vanilo\Foundation\Models\Product;
