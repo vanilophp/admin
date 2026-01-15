@@ -16,6 +16,7 @@ namespace Vanilo\Admin\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Vanilo\Admin\Contracts\Requests\UpdateProduct as UpdateProductContract;
+use Vanilo\Admin\Http\Rules\UniqueAcrossTables;
 use Vanilo\Product\Models\ProductStateProxy;
 use Vanilo\Support\Validation\Rules\MustBeAValidGtin;
 
@@ -28,7 +29,8 @@ class UpdateProduct extends FormRequest implements UpdateProductContract
             'sku' => [
                 'required',
                 'max:255',
-                Rule::unique('products')->ignore($this->route('product')->id),
+                (new UniqueAcrossTables(['products', 'master_product_variants'], 'sku'))
+                    ->ignore('products', $this->route('product')->id),
             ],
             'state' => ['required', 'max:255', Rule::in(ProductStateProxy::values())],
             'tax_category_id' => 'sometimes|nullable|integer|exists:tax_categories,id',

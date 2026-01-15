@@ -16,6 +16,7 @@ namespace Vanilo\Admin\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Vanilo\Admin\Contracts\Requests\CreateProduct as CreateProductContract;
+use Vanilo\Admin\Http\Rules\UniqueAcrossTables;
 use Vanilo\Product\Models\ProductStateProxy;
 use Vanilo\Support\Validation\Rules\MustBeAValidGtin;
 
@@ -27,7 +28,7 @@ class CreateProduct extends FormRequest implements CreateProductContract
     {
         return [
             'name' => 'required|min:1|max:255',
-            'sku' => 'required|max:255|unique:products',
+            'sku' => ['required', 'max:255', new UniqueAcrossTables(['products', 'master_product_variants'], 'sku')],
             'state' => ['required', 'max:255', Rule::in(ProductStateProxy::values())],
             'tax_category_id' => 'sometimes|nullable|integer|exists:tax_categories,id',
             'shipping_category_id' => 'sometimes|nullable|integer|exists:shipping_categories,id',

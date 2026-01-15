@@ -17,6 +17,7 @@ namespace Vanilo\Admin\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Vanilo\Admin\Contracts\Requests\CreateMasterProductVariant as CreateMasterProductVariantContract;
+use Vanilo\Admin\Http\Rules\UniqueAcrossTables;
 use Vanilo\Product\Models\ProductStateProxy;
 use Vanilo\Support\Validation\Rules\MustBeAValidGtin;
 
@@ -26,7 +27,7 @@ class CreateMasterProductVariant extends FormRequest implements CreateMasterProd
     {
         return [
             'name' => 'required|min:1|max:255',
-            'sku' => 'required|max:255|unique:master_product_variants',
+            'sku' => ['required', 'max:255', new UniqueAcrossTables(['products', 'master_product_variants'], 'sku')],
             'shipping_category_id' => 'sometimes|nullable|integer|exists:shipping_categories,id',
             'tax_category_id' => 'sometimes|nullable|integer|exists:tax_categories,id', // This field is not present on the form
             'price' => 'nullable|numeric',

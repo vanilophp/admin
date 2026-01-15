@@ -17,6 +17,7 @@ namespace Vanilo\Admin\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Vanilo\Admin\Contracts\Requests\UpdateMasterProductVariant as UpdateMasterProductVariantContract;
+use Vanilo\Admin\Http\Rules\UniqueAcrossTables;
 use Vanilo\Product\Models\ProductStateProxy;
 use Vanilo\Support\Validation\Rules\MustBeAValidGtin;
 
@@ -29,7 +30,8 @@ class UpdateMasterProductVariant extends FormRequest implements UpdateMasterProd
             'sku' => [
                 'required',
                 'max:255',
-                Rule::unique('master_product_variants')->ignore($this->route('masterProductVariant')->id),
+                (new UniqueAcrossTables(['products', 'master_product_variants'], 'sku'))
+                    ->ignore('master_product_variants', $this->route('masterProductVariant')->id),
             ],
             'price' => 'nullable|numeric',
             'original_price' => 'sometimes|nullable|numeric',
