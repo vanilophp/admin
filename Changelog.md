@@ -2,8 +2,8 @@
 
 ## 5.x Series
 
-## Unreleased
-##### 2026-XX-YY
+## 5.1.3
+##### 2026-01-15
 
 - Fixed the missing SKU uniqueness validation across products and variants
 
