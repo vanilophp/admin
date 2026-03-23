@@ -2,6 +2,11 @@
 
 ## 5.x Series
 
+## Unreleased
+##### 2026-XX-YY
+
+- [SECURITY] Fixed the possible XSS vulnerability on the order show form (Unescaped display of order notes)
+
 ## 5.1.3
 ##### 2026-01-15
 

@@ -7,7 +7,7 @@
             @empty($order->notes)
                 -
             @else
-                {!! nl2br($order->notes) !!}
+                {!! nl2br(e($order->notes)) !!}
             @endempty
         </div>
     </x-appshell::card>
