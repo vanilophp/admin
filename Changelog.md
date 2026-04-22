@@ -21,6 +21,7 @@
 ##### 2025-12-03
 
 - Fixes dependency issues with 5.1.0
+- Added PHP 8.5 support
 - Changed the minimum Laravel version requirements to v10.48, v11.46.2 and v12.38 respectively
 - Changed the minimum Vanilo requirement from 5.0 to 5.1
 
