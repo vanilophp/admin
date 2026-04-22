@@ -12,8 +12,8 @@ This is the Vanilo Admin package that used to be the part of the `vanilo/framewo
 
 #### 5.x
 
-The latest stable release is **5.1.4**, and it was released on March 23rd, 2026.
-Vanilo v5.1 supports Laravel 10.48+, 11.46.2+ and 12.38+ versions and PHP 8.3 - 8.5
+The latest stable release is **5.2.0**, and it was released on April 22nd, 2026.
+Vanilo v5.2 supports Laravel 10.48+, 11.46.2+, 12.50+ and 13.2+ versions and PHP 8.3 - 8.5
 
 ## Further Information
 
