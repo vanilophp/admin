@@ -2,6 +2,12 @@
 
 ## 5.x Series
 
+## Unreleased
+#### 2026-XX-YY
+
+- Added Laravel 13 support
+- Changed the minimum Laravel 12 requirement to v12.50 (Laravel 10/11 minimums are unchanged)
+
 ## 5.1.4
 ##### 2026-03-23
 
