@@ -15,16 +15,16 @@
         "issues": "https://github.com/vanilophp/admin/issues"
     },
     "require": {
-        "php": "^8.3",
+        "php": "^8.4",
         "ext-json": "*",
         "ext-pdo": "*",
-        "laravel/framework": "^10.48|^11.46.2|^12.50|^13.2",
-        "konekt/address": "^3.5.1",
-        "konekt/appshell": ">=4.8,<4.16.0 || >=4.16.1",
-        "konekt/gears": "^1.13",
-        "konekt/concord": "^1.15",
-        "spatie/laravel-medialibrary": "^11.0",
-        "vanilo/framework": "^5.1"
+        "laravel/framework": "^12.50|^13.2",
+        "konekt/address": "^3.6",
+        "konekt/appshell": "^4.18",
+        "konekt/gears": "^1.14",
+        "konekt/concord": "^1.18",
+        "spatie/laravel-medialibrary": "^11.12.5",
+        "vanilo/framework": "^6.0"
     },
     "autoload": {
         "psr-4": {
@@ -38,7 +38,7 @@
         "vanilo/advanced-pricing": "Use the Advanced Pricing Module for pricelist support"
     },
     "require-dev": {
-        "orchestra/testbench": "^8.0|^9.0|^10.0|^11.0",
+        "orchestra/testbench": "^10.0|^11.0",
         "phpunit/phpunit" : "^10.0|^11.0",
         "laravel/legacy-factories": "^1.4"
     },
@@ -52,7 +52,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "5.1.x-dev"
+            "dev-master": "6.0.x-dev"
         }
     }
 }

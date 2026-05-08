@@ -1,5 +1,12 @@
 # Vanilo Admin Changelog
 
+## Unreleased
+#### 2026-XX-YY
+
+- Dropped PHP 8.3 support
+- Dropped Laravel 10 & 11 support 
+- Requires Vanilo 6
+
 ## 5.x Series
 
 ## 5.2.0
