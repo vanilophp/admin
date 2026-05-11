@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-sm-6 col-md-4 mb-3">
             @php
-                $hasExpired = now()->greaterThanOrEqualTo($coupon->expires_at);
+                $hasExpired = null !== $coupon->expires_at && now()->greaterThanOrEqualTo($coupon->expires_at);
             @endphp
 
             <x-appshell::card-with-icon icon="coupon" :type="$hasExpired ? 'secondary' : 'success'">
