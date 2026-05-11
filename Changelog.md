@@ -6,6 +6,7 @@
 - Dropped PHP 8.3 support
 - Dropped Laravel 10 & 11 support 
 - Requires Vanilo 6
+- Added Tax Category Selection to the Shipping Method Form
 
 ## 5.x Series
 

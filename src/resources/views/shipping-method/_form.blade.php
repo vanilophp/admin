@@ -103,6 +103,26 @@
 
 <hr>
 
+<div class="mb-3 row">
+    <label class="col-form-label col-form-label-sm col-md-2">{{ __('Tax Category') }}</label>
+    <div class="col-md-10">
+        {{ Form::select('tax_category_id', $taxCategories->pluck('name', 'id'), null, [
+                'class' => 'form-select form-select-sm' . ($errors->has('tax_category_id') ? ' is-invalid': ''),
+                'id' => 'taxCategorySelector',
+                'placeholder' => __('--')
+           ])
+        }}
+        @if ($errors->has('tax_category_id'))
+            <div class="invalid-feedback">{{ $errors->first('tax_category_id') }}</div>
+        @endif
+        @if($taxCategories->isEmpty())
+            <small class="text-muted">{{ __('No eligible tax categories found. Create at least one tax category with the "transport" type.') }}</small>
+        @endif
+    </div>
+</div>
+
+<hr>
+
 
 <div class="mb-3 row">
     <label class="col-form-label col-form-label-sm col-md-2">{{ __('Calculator') }}</label>

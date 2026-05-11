@@ -29,6 +29,7 @@ class UpdateShippingMethod extends FormRequest implements UpdateShippingMethodCo
             'name' => 'required|min:2|max:255',
             'carrier_id' => 'required|exists:carriers,id',
             'zone_id' => 'sometimes|nullable|exists:zones,id',
+            'tax_category_id' => 'sometimes|nullable|exists:tax_categories,id',
             'calculator' => ['sometimes', 'nullable', Rule::in(ShippingFeeCalculators::ids())],
             'configuration' => 'sometimes|json',
             'is_active' => 'sometimes|boolean',

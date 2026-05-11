@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Vanilo\Admin\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Konekt\Address\Query\Zones;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateShippingMethod;
@@ -27,6 +28,8 @@ use Vanilo\Shipment\Models\ShippingMethodProxy;
 use Vanilo\Shipment\Models\TimeUnit;
 use Vanilo\Shipment\ShippingFeeCalculators;
 use Vanilo\Support\Features;
+use Vanilo\Taxes\Models\TaxCategoryProxy;
+use Vanilo\Taxes\Models\TaxCategoryType;
 
 class ShippingMethodController extends BaseController
 {
@@ -58,6 +61,7 @@ class ShippingMethodController extends BaseController
             'zones' => Zones::withShippingScope()->get(),
             'shippingCategories' => ShippingCategoryProxy::all(),
             'shippingCategoryMatchingConditions' => ShippingCategoryMatchingConditionProxy::choices(),
+            'taxCategories' => $this->getEligibleTaxCategories(),
             'calculators' => ShippingFeeCalculators::choices(),
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
             'channels' => $this->channelsForUi(),
@@ -100,6 +104,7 @@ class ShippingMethodController extends BaseController
             'zones' => Zones::withShippingScope()->get(),
             'shippingCategories' => ShippingCategoryProxy::all(),
             'shippingCategoryMatchingConditions' => ShippingCategoryMatchingConditionProxy::choices(),
+            'taxCategories' => $this->getEligibleTaxCategories(),
             'calculators' => ShippingFeeCalculators::choices(),
             'multiChannelEnabled' => Features::isMultiChannelEnabled(),
             'channels' => $this->channelsForUi(),
@@ -139,5 +144,13 @@ class ShippingMethodController extends BaseController
         }
 
         return redirect(route('vanilo.admin.shipping-method.index'));
+    }
+
+    private function getEligibleTaxCategories(): Collection
+    {
+        return TaxCategoryProxy::whereIn('type', [
+            TaxCategoryType::TRANSPORT_SERVICES,
+            TaxCategoryType::LOCATION_TIED_SERVICES,
+        ])->get();
     }
 }
