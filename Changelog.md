@@ -8,6 +8,7 @@
 - Requires Vanilo 6
 - Added Tax Category Selection to the Shipping Method Form
 - Fixed an error with Carbon 3 on the coupon show page
+- Fixed a bug where orders with multiple payments would only show the last payment in the modal
 
 ## 5.x Series
 

@@ -1,4 +1,4 @@
-<div id="payment-history" class="modal fade" tabindex="-1" role="dialog"
+<div id="payment-history-{{ $payment->id }}" class="modal fade" tabindex="-1" role="dialog"
      aria-labelledby="payment-history-title" aria-hidden="true">
 
     <div class="modal-dialog modal-lg" role="document">

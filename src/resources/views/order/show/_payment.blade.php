@@ -8,7 +8,7 @@
                 <td>
                         <span class="mb-3 fw-bold" title="{{ $payment->hash }}">
                             <a href="#" title="{{ __('Click to open payment history...') }}"
-                               data-bs-toggle="modal" data-bs-target="#payment-history">
+                               data-bs-toggle="modal" data-bs-target="#payment-history-{{ $payment->id }}">
                                 {{ $payment->getMethod()->getName() }}
                             </a>
                         </span>
@@ -39,4 +39,6 @@
     </table>
 </x-appshell::card>
 
-@includeWhen($order->payments->isNotEmpty(), 'vanilo::order.show._payment_history')
+@foreach($order->payments as $payment)
+    @include('vanilo::order.show._payment_history')
+@endforeach
