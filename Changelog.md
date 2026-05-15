@@ -7,6 +7,7 @@
 - Dropped Laravel 10 & 11 support 
 - Requires Vanilo 6
 - Added Tax Category Selection to the Shipping Method Form
+- Added support for shipping line items
 - Fixed an error with Carbon 3 on the coupon show page
 - Fixed a bug where orders with multiple payments would only show the last payment in the modal
 

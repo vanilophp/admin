@@ -31,6 +31,8 @@
                         @endif
                         @if($item->product->masterProduct)
                             <a href="{{ route('vanilo.admin.master_product.show', $item->product->masterProduct) }}">{{ $item->name }}</a>
+                        @elseif('shipping_method' === $item->product_type)
+                            <a href="{{ route('vanilo.admin.shipping-method.show', $item->product_id) }}">{{ $item->name }}</a>
                         @else
                             <a href="{{ route('vanilo.admin.product.show', $item->product) }}">{{ $item->name }}</a>
                         @endif
