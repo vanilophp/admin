@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Vanilo\Admin\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
-use Konekt\AppShell\Contracts\Filter;
 use Konekt\AppShell\Filters\Generic\PartialMatch;
 use Konekt\AppShell\Filters\PartialMatchPattern;
 
@@ -18,9 +17,9 @@ class ProductSkuFilter extends PartialMatch
     }
     public function apply(Builder $query, $criteria): Builder
     {
-        if ($query->from === 'products') {
+        if ('products' === $query->from) {
             return parent::apply($query, $criteria);
-        } elseif ($query->from === 'master_products') {
+        } elseif ('master_products' === $query->from) {
             return $query->whereHas('variants', function ($query) use ($criteria) {
                 return $query->where('sku', 'like', PartialMatchPattern::ANYWHERE()->sqlExpression($criteria));
             });
