@@ -29,6 +29,8 @@ use Konekt\AppShell\Widgets;
 use Konekt\AppShell\Widgets\AppShellWidgets;
 use Vanilo\Admin\Contracts\Requests\CreateProduct;
 use Vanilo\Admin\Contracts\Requests\UpdateProduct;
+use Vanilo\Admin\Filters\ChannelsFilter;
+use Vanilo\Admin\Filters\ProductSkuFilter;
 use Vanilo\Admin\Filters\ProductSorter;
 use Vanilo\Category\Models\TaxonomyProxy;
 use Vanilo\Links\Models\LinkTypeProxy;
@@ -229,12 +231,14 @@ class ProductController extends BaseController
     protected function getFilters(): Filters
     {
         $filters = [
-            (new PartialMatch('name', __('Name'), PartialMatchPattern::ANYWHERE()))->displayAsTextField(),
+            new PartialMatch('name', __('Name'), PartialMatchPattern::ANYWHERE())->displayAsTextField(),
+            new ProductSkuFilter(),
             new ExactMatch(
                 'state',
                 __('State'),
                 [null => __('Any state')] + ProductStateProxy::choices(),
             ),
+            new ChannelsFilter(),
             new ProductSorter(),
         ];
 
