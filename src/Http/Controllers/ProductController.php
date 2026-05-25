@@ -238,9 +238,13 @@ class ProductController extends BaseController
                 __('State'),
                 [null => __('Any state')] + ProductStateProxy::choices(),
             ),
-            new ChannelsFilter(),
-            new ProductSorter(),
         ];
+
+        if (Features::isMultiChannelEnabled()) {
+            $filters[] = new ChannelsFilter();
+        }
+
+        $filters[] = new ProductSorter();
 
         return Filters::make($filters);
     }
