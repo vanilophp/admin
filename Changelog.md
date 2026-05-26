@@ -10,6 +10,7 @@
 - Added Tax Category Selection to the Shipping Method Form
 - Added support for shipping line items
 - Added cards with proper info to the shipping method's show page
+- Added the triggering of the `OrderStateChangedToPending` event when changing the order status to `pending` in the Admin
 - Fixed an error with Carbon 3 on the coupon show page
 - Fixed a bug where orders with multiple payments would only show the last payment in the modal
 
