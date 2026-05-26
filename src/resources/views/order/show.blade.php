@@ -34,4 +34,6 @@
         </div>
     </div>
 
+    @include('vanilo::order.show._extra_content')
+
 @stop
