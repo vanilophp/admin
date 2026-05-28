@@ -4,5 +4,5 @@ declare(strict_types=1);
 
 return [
     'name' => 'Vanilo Admin',
-    'version' => '5.2.1',
+    'version' => '6.0-dev',
 ];
