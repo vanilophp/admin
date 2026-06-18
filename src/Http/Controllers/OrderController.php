@@ -36,6 +36,7 @@ use Vanilo\Order\Events\OrderShippingAddressUpdated;
 use Vanilo\Order\Events\OrderStateChangedToPending;
 use Vanilo\Order\Events\OrderWasCancelled;
 use Vanilo\Order\Events\OrderWasCompleted;
+use Vanilo\Order\Events\OrderWasWithdrawn;
 use Vanilo\Order\Models\OrderProxy;
 use Vanilo\Order\Models\OrderStatus;
 
@@ -211,6 +212,7 @@ class OrderController extends BaseController
             OrderStatus::COMPLETED => new OrderWasCompleted($order),
             OrderStatus::PROCESSING => new OrderProcessingStarted($order),
             OrderStatus::PENDING => new OrderStateChangedToPending($order),
+            OrderStatus::WITHDRAWN => new OrderWasWithdrawn($order),
             default => null,
         };
     }
