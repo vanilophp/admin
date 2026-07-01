@@ -56,19 +56,19 @@ return [
                 'align' => 'center',
                 'widget' => [
                     'type' => 'raw_html',
-                    'html' => function($product) {
+                    'html' => function ($product) {
                         $stock = null;
                         $text = '';
-                        if ($product instanceof \Vanilo\Product\Contracts\Product) {
+                        if ($product instanceof Vanilo\Product\Contracts\Product) {
                             $stock = (int) $product->stock;
-                        } elseif ($product instanceof \Vanilo\MasterProduct\Contracts\MasterProduct) {
+                        } elseif ($product instanceof Vanilo\MasterProduct\Contracts\MasterProduct) {
                             $stock = (int) $product->variants->sum('stock');
                             $text = 'Σ';
                         }
 
                         $text .= $stock;
 
-                        $color = match(is_int($stock)) {
+                        $color = match (is_int($stock)) {
                             true => $stock <= 0 ? 'danger' : ($stock < 6 ? 'warning' : 'secondary'),
                             default => 'secondary',
                         };
