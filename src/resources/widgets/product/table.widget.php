@@ -50,6 +50,33 @@ return [
                 ],
                 'title' => __('Sales'),
             ],
+            'stock' => [
+                'title' => __('Stock'),
+                'valign' => 'middle',
+                'align' => 'center',
+                'widget' => [
+                    'type' => 'raw_html',
+                    'html' => function($product) {
+                        $stock = null;
+                        $text = '';
+                        if ($product instanceof \Vanilo\Product\Contracts\Product) {
+                            $stock = (int) $product->stock;
+                        } elseif ($product instanceof \Vanilo\MasterProduct\Contracts\MasterProduct) {
+                            $stock = (int) $product->variants->sum('stock');
+                            $text = 'Σ';
+                        }
+
+                        $text .= $stock;
+
+                        $color = match(is_int($stock)) {
+                            true => $stock <= 0 ? 'danger' : ($stock < 6 ? 'warning' : 'secondary'),
+                            default => 'secondary',
+                        };
+
+                        return sprintf('<span class="text-%s">%s</span>', $color, $text);
+                    },
+                ]
+            ],
             'taxons' => [
                 'title' => __('Categorization'),
                 'valign' => 'middle',

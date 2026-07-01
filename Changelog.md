@@ -7,7 +7,8 @@
 - Dropped Laravel 10 & 11 support 
 - Requires Vanilo 6
 - Added the handling of the WITHDRAWN order status
-- Added the channels and SKU filters to the product index 
+- Added the channels and SKU filters to the product index
+- Added the stock field to the product index
 - Added Tax Category Selection to the Shipping Method Form
 - Added support for shipping line items
 - Added cards with proper info to the shipping method's show page
