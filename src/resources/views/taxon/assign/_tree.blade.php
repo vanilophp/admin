@@ -14,7 +14,10 @@
            name="taxons[{{$taxon->id}}]"
            @if($assignments->has($taxon->id))checked="checked" @endif
     />
-    <label for="taxon-checkbox-{{$taxon->id}}"></label>{{ $taxon->name }}
+    <label for="taxon-checkbox-{{$taxon->id}}"
+        @class(['text-secondary' => false === $taxon->is_active])
+        @if(false === $taxon->is_active)title="{{ __('Inactive') }}"@endif
+    >{{ $taxon->name }}</label>
 
     @if ($taxon->children->isNotEmpty())
         <div class="collapse multi-collapse" id="taxon-{{$taxon->id}}" data-bs-toggle="collapse">

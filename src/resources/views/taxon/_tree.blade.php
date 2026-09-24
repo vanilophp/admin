@@ -13,11 +13,13 @@
         @endif
 
         @can('edit taxons')
-            <a href="{{ route('vanilo.admin.taxon.edit', [$taxonomy, $taxon]) }}">{{ $taxon->name }}</a>
-        @else
-            {{ $taxon->name }}
+            <a href="{{ route('vanilo.admin.taxon.edit', [$taxonomy, $taxon]) }}">
         @endcan
-        &nbsp;<x-appshell::badge variant="light" class="small">{{ $taxon->products()->count() }}</x-appshell::badge>
+            <span @class(['text-secondary' => false === $taxon->is_active])>{{ $taxon->name }}</span>
+        @can('edit taxons')
+            </a>
+        @endcan
+        &nbsp;<x-appshell::badge variant="light" class="small" :title="__('Number of products assigned')">{{ $taxon->products()->count() }}</x-appshell::badge>
         @if(false === $taxon->is_active)
             &nbsp;<x-appshell::badge variant="warning" class="small">{{ __('inactive') }}</x-appshell::badge>
         @endif
@@ -47,7 +49,7 @@
     </div>
 
     @if ($taxon->children->isNotEmpty())
-        <div id="taxon-{{$taxon->id}}" class="collapse show">
+        <div id="taxon-{{$taxon->id}}" class="collapse">
             <div class="card-body">
                 <div class="card">
                     @include('vanilo::taxon._tree', ['taxons' => $taxon->children])

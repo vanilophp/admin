@@ -20,6 +20,7 @@
 - Added the `order/show/_extra_content` partial so that apps can add further elements to the bottom of the order show page
 - Fixed an error with Carbon 3 on the coupon show page
 - Fixed a bug where orders with multiple payments would only show the last payment in the modal
+- Fixed the behavior where every taxon group was opened by default on the taxon tree (introduced as an undesired side effect of the related fix in v4.1.0)
 
 ## 5.x Series
 
