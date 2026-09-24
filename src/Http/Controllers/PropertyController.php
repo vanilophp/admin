@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Vanilo\Admin\Http\Controllers;
 
+use Illuminate\Support\Arr;
 use Konekt\AppShell\Http\Controllers\BaseController;
 use Vanilo\Admin\Contracts\Requests\CreateProperty;
 use Vanilo\Admin\Contracts\Requests\UpdateProperty;
@@ -43,7 +44,7 @@ class PropertyController extends BaseController
     public function store(CreateProperty $request)
     {
         try {
-            $property = PropertyProxy::create($request->except('images'));
+            $property = PropertyProxy::create(Arr::except($request->validated(), 'images'));
             flash()->success(__(':name has been created', ['name' => $property->name]));
             $this->createMedia($property, $request);
         } catch (\Exception $e) {
@@ -71,7 +72,7 @@ class PropertyController extends BaseController
     public function update(Property $property, UpdateProperty $request)
     {
         try {
-            $property->update($request->except('images'));
+            $property->update(Arr::except($request->validated(), 'images'));
 
             flash()->success(__(':name has been updated', ['name' => $property->name]));
         } catch (\Exception $e) {

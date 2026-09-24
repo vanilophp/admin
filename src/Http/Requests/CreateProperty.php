@@ -20,22 +20,18 @@ use Vanilo\Properties\PropertyTypes;
 
 class CreateProperty extends FormRequest implements CreatePropertyContract
 {
-    /**
-     * @inheritDoc
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required|min:1|max:255',
             'slug' => 'nullable|max:255',
             'type' => ['required', Rule::in(PropertyTypes::values())],
+            'excerpt' => 'sometimes|nullable|string|max:16383',
+            'description' => 'sometimes|nullable|string',
         ];
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }

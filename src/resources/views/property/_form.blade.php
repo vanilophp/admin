@@ -46,8 +46,6 @@
     </div>
 </div>
 
-<hr>
-
 <div class="mb-3 row{{ $errors->has('is_hidden') ? ' has-danger' : '' }}">
     <div class="col-md-10 offset-md-2">
         {{ Form::hidden('is_hidden', 0) }}
@@ -60,5 +58,44 @@
         @if ($errors->has('is_hidden'))
             <div class="invalid-feedback">{{ $errors->first('is_hidden') }}</div>
         @endif
+    </div>
+</div>
+
+<hr>
+
+<div class="mb-3">
+    <?php $contentHasErrors = any_key_exists($errors->toArray(), ['excerpt', 'description']) ?>
+    <h5><a data-bs-toggle="collapse" href="#property-form-content" class="collapse-toggler-heading"
+           @if ($contentHasErrors)
+               aria-expanded="true"
+            @endif
+        >{!! icon('>') !!} {{ __('Content') }}</a></h5>
+
+    <div id="property-form-content" class="collapse{{ $contentHasErrors ? ' show' : '' }}">
+        <div class="callout">
+            <div class="mb-3">
+                {{ Form::textarea('excerpt', null, [
+                        'class' => 'form-control form-control-sm' . ($errors->has('excerpt') ? ' is-invalid' : ''),
+                        'placeholder' => __('Short Description'),
+                        'rows' => 4
+                    ])
+                }}
+                @if ($errors->has('excerpt'))
+                    <div class="invalid-feedback">{{ $errors->first('excerpt') }}</div>
+                @endif
+            </div>
+
+            <div class="mb-3">
+                {{ Form::textarea('description', null, [
+                        'class' => 'form-control form-control-sm' . ($errors->has('description') ? ' is-invalid' : ''),
+                        'placeholder' => __('Description'),
+                        'rows' => 7
+                    ])
+                }}
+                @if ($errors->has('description'))
+                    <div class="invalid-feedback">{{ $errors->first('description') }}</div>
+                @endif
+            </div>
+        </div>
     </div>
 </div>
