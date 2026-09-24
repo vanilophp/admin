@@ -59,6 +59,21 @@
     </div>
 </div>
 
+<div class="mb-3 row{{ $errors->has('is_active') ? ' has-danger' : '' }}">
+    <div class="col-md-10 offset-md-2">
+        {{ Form::hidden('is_active', 0) }}
+
+        <div class="form-check form-switch">
+            {{ Form::checkbox('is_active', 1, null, ['class' => 'form-check-input', 'id' => 'is-taxon-active', 'role' => 'switch']) }}
+            <label class="form-check-label" for="is-taxon-active">{{ __('Enabled') }}</label>
+        </div>
+
+        @if ($errors->has('is_active'))
+            <div class="invalid-feedback">{{ $errors->first('is_active') }}</div>
+        @endif
+    </div>
+</div>
+
 <hr>
 
 <div class="mb-3">

@@ -18,13 +18,14 @@ use Vanilo\Admin\Contracts\Requests\UpdateTaxon as UpdateTaxonContract;
 
 class UpdateTaxon extends FormRequest implements UpdateTaxonContract
 {
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required|min:2|max:255',
             'slug' => 'sometimes|nullable|string|max:255',
             'parent_id' => 'nullable|exists:taxons,id',
             'priority' => 'nullable|integer',
+            'is_active' => 'nullable|boolean',
             'ext_title' => 'sometimes|nullable|string|max:511',
             'meta_description' => 'sometimes|nullable|string|max:4096',
             'meta_keywords' => 'sometimes|nullable|string|max:1024',
@@ -36,7 +37,7 @@ class UpdateTaxon extends FormRequest implements UpdateTaxonContract
         ];
     }
 
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }

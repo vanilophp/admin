@@ -18,6 +18,9 @@
             {{ $taxon->name }}
         @endcan
         &nbsp;<x-appshell::badge variant="light" class="small">{{ $taxon->products()->count() }}</x-appshell::badge>
+        @if(false === $taxon->is_active)
+            &nbsp;<x-appshell::badge variant="warning" class="small">{{ __('inactive') }}</x-appshell::badge>
+        @endif
 
         <div class="d-inline card-actionbar-show-on-hover">
             @can('create taxons')

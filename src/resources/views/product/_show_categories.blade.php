@@ -7,7 +7,7 @@
                 <td>{{ $taxonomy->name }}</td>
                 <td>
                     @foreach($for->taxons()->byTaxonomy($taxonomy)->get() as $taxon)
-                        <x-appshell::badge variant="dark">{{ $taxon->name }}</x-appshell::badge>
+                        <x-appshell::badge :variant="false === $taxon->is_active ? 'secondary' : 'dark'" :title="false === $taxon->is_active ? __('inactive') : ''">{{ $taxon->name }}</x-appshell::badge>
                     @endforeach
                 </td>
                 <td class="text-end">

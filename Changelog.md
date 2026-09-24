@@ -9,6 +9,7 @@
 - Added the handling of the WITHDRAWN order status
 - Added the channels and SKU filters to the product index
 - Added the stock field to the product index
+- Added support for the new, `is_active` field of the taxon model
 - Added Tax Category Selection to the Shipping Method Form
 - Added support for shipping line items
 - Added cards with proper info to the shipping method's show page
