@@ -23,7 +23,7 @@ class CreateAttachment extends FormRequest implements CreateAttachmentContract
     use HasFor;
 
     public static array $allowedExtensions = [
-        'pdf', 'txt', 'csv', 'rtf', 'md', 'json', '7z', 'tar', 'tgz', 'gz', '.tar.gz',
+        'pdf', 'txt', 'csv', 'rtf', 'md', 'json', '7z', 'tar', 'tgz', 'gz', 'tar.gz',
         'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'odt', 'ods', 'odp',
         'jpg', 'jpeg', 'png', 'gif', 'webp',
         'zip', 'dwg', 'dxf', 'step', 'stp', 'stl',
