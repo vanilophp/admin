@@ -33,6 +33,7 @@ use Vanilo\Admin\Http\Requests\CreateLink;
 use Vanilo\Admin\Http\Requests\CreateLinkForm;
 use Vanilo\Admin\Http\Requests\CreateMasterProduct;
 use Vanilo\Admin\Http\Requests\CreateMasterProductVariant;
+use Vanilo\Admin\Http\Requests\CreateAttachment;
 use Vanilo\Admin\Http\Requests\CreateMedia;
 use Vanilo\Admin\Http\Requests\CreatePaymentMethod;
 use Vanilo\Admin\Http\Requests\CreateProduct;
@@ -102,6 +103,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         CreateTaxonForm::class,
         SyncModelTaxons::class,
         CreateMedia::class,
+        CreateAttachment::class,
         CreateProperty::class,
         UpdateProperty::class,
         CreatePropertyValueForm::class,
@@ -161,6 +163,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $aclResourceMapper->addAlias('zone member', 'zone');
         $aclResourceMapper->addAlias('link', 'product');
         $aclResourceMapper->addAlias('payment', 'order');
+        $aclResourceMapper->addAlias('attachment', 'media');
 
         $this->registerBladeComponents();
         $this->registerIconExtensions();

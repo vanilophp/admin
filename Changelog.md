@@ -5,6 +5,7 @@
 
 - Changed the minimum Laravel versions to v12.69.0 and v13.30, respectively
 - Changed the minimum Spatie Media Library version to v11.23
+- Added the file attachments support to products, master products and master product variants
 
 ## 6.0.0
 #### 2026-09-25
