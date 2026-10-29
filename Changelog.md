@@ -1,5 +1,11 @@
 # Vanilo Admin Changelog
 
+## Unreleased
+#### 2026-XX-YY
+
+- Changed the minimum Laravel versions to v12.69.0 and v13.30, respectively
+- Changed the minimum Spatie Media Library version to v11.23
+
 ## 6.0.0
 #### 2026-09-25
 

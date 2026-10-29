@@ -18,13 +18,13 @@
         "php": "^8.4",
         "ext-json": "*",
         "ext-pdo": "*",
-        "laravel/framework": "^12.61.1|^13.12",
+        "laravel/framework": "^12.69.0|^13.30",
         "konekt/address": "^3.9",
         "konekt/appshell": "^4.18",
         "konekt/gears": "^1.14",
         "konekt/concord": "^1.18",
-        "spatie/laravel-medialibrary": "^11.12.5",
-        "vanilo/framework": "^6.0"
+        "spatie/laravel-medialibrary": "^11.23",
+        "vanilo/framework": "^6.1"
     },
     "autoload": {
         "psr-4": {
@@ -52,7 +52,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "6.0.x-dev"
+            "dev-master": "6.1.x-dev"
         }
     }
 }
