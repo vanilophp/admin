@@ -183,7 +183,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 ->allowIfUserCan('list orders');
             $shop->addSubItem('products', __('Products'), ['route' => 'vanilo.admin.product.index'])
                 ->data('icon', 'product')
-                ->activateOnUrls(route('vanilo.admin.product.index', [], false) . '*')
+                ->activateOnUrls($this->getProductRouteUrlPattern())
                 ->allowIfUserCan('list products');
             $shop->addSubItem('product_properties', __('Product Properties'), ['route' => 'vanilo.admin.property.index'])
                 ->data('icon', 'properties')
@@ -232,6 +232,15 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 ->activateOnUrls(route('vanilo.admin.tax-category.index', [], false) . '*')
                 ->allowIfUserCan('list carriers');
         }
+    }
+
+    private function getProductRouteUrlPattern(): string
+    {
+        return sprintf(
+            '(%s|%s)*',
+            ltrim(route('vanilo.admin.product.index', [], false), '/'),
+            ltrim(route('vanilo.admin.master_product.store', [], false), '/')
+        );
     }
 
     private function registerEnumColors(): void
