@@ -1,7 +1,9 @@
 # Vanilo Admin Changelog
 
-## Unreleased
-#### 2026-XX-YY
+## 6.1.0
+#### 2026-11-24
+
+> By accident, this was released late (Nov 24 instead of Nov 6), and it goes in pair with [Vanilo 6.1.0](https://github.com/vanilophp/framework/releases/tag/6.1.0) release.
 
 - Changed the minimum Laravel versions to v12.69.0 and v13.30, respectively
 - Changed the minimum Spatie Media Library version to v11.23
